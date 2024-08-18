@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Jacob Richey's personal page</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 
 <!-- Google tag (gtag.js) -->
@@ -15,40 +16,43 @@
   gtag('config', 'G-8KNCG5G8RV');
 </script>
 
+<body>
+    <div class="header">
+        <a href="index.html" class="logo">Jacob Richey</a>
+        <div class="header-right">
+            <a href="pagedocs/jacob_richey_cv.pdf">CV</a>
+            <a href="research.html">Research</a>
+            <a href="teaching.html">Teaching</a>
+            <a href="other.html">Extra</a>
+        </div>
+    </div>
 
-<body leftmargin="30">
-    <font size="+1">
-    <h1>Jacob Richey</h1>
+    <div class="bio">
+        <figure>
+            <img src="jacob.jpg" alt="Jacob" class="pic">
+            <figcaption>email: jrichey[at]renyi[dot]hu</figcaption>
+    <!--        <div class="caption">email: jrichey[at]renyi[dot]hu</div>-->
+        </figure>
 
-    <img src="jacob.jpg" width="500" hspace="30" vspace="20" align="right">
-    <p>
-        I am a postdoctoral researcher at the <a href="https://www.renyi.hu/">Alfr&eacuted R&eacutenyi Institute of Mathematics</a>.
-    </p>
+        I am a postdoctoral researcher in the <a href="https://dynasnet.renyi.hu/">DYNASNET</a> group at the
+        <a href="https://www.renyi.hu">Alfr&eacuted R&eacutenyi Institute of Mathematics</a>, under the
+        supervision of <a href="https://math.bme.hu/~gabor/">Gábor Pete</a> and <a href="https://math.bme.hu/~rathb/">Balázs Ráth</a>.
+        From 2020-2023, I was a postdoc in the <a href="https://personal.math.ubc.ca/~slade/Probability/">probability group</a>
+        at the University of British Columbia. Prior to that, I earned a PhD in mathematics in 2020 from the <a href="https://math.washington.edu/">University of Washington</a>,
+        and a BA in mathematics and chinese language in 2014 from Dartmouth College.
+        <p></p>
+        My research interests are mostly in <b>discrete probability</b> and <b>statistical physics</b>. I have ongoing projects related to: particle systems,
+        random matrices, shifts of finite type, mixing times, random walks, stochastic geometry.
+        <p><a href="https://scholar.google.com/citations?user=oablNsIAAAAJ&hl=en">My google scholar page</a></p>
+    </div>
 
-    <p>
-        <a href="pagedocs/jacob_richey_cv.pdf">CV</a> (updated August, 2024)
-    </p>
+    <div class="demo1">
+        <p><img src="ssm_subcritical.gif" onclick="this.src='ssm_subcritical.gif'" class="demo1"></p>
+        <p><img src="ssm_subcritical.gif" alt="ssm_subcritical" class="demo1"></p>
+        <p><img src="ssm_subcritical.gif" alt="ssm_subcritical" class="demo1"></p>
+    </div>
 
-    <p>
-        <b> <a href="research.html">Research Projects</a>: </b> My research interests are mostly in <b>discrete probability</b> and <b>statistical physics</b>. I have ongoing projects related to: particle systems,
-        random matrices, shifts of finite type, mixing times, random walks, stochastic geometry. <a href="https://scholar.google.com/citations?hl=en&user=oablNsIAAAAJ">Google scholar</a>
-    </p>
-
-    <p>
-        <b> <a href="open.html">Random random:</a> </b> Some original probability models and questions.
-    </p>
-
-<!--    <p>
-        <b> <a href="teaching.html">Teaching</a> </b>
-    </p>-->
-
-    <p>
-        <b> <a href="other.html">Bridge, etc.</a></b>
-    </p>
-
-
-
-
-</font>
+    <!--<img src="ssm_subcritical.gif">
+-->
 </body>
 </html>
