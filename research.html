@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Jacob Richey's personal page</title>
     <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="research_style.css" type="text/css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <!-- Google tag (gtag.js) -->
@@ -27,127 +30,203 @@
         </div>
     </div>
 
-    <div class="math">
-        <div class="titles">Research projects & open problems</div>
+    <div class="titles">Research projects & open problems</div>
 
-        <div class="pj">Shifts of finite type</div>
-
-            Fix a set a set of 'forbidden' patterns on a transitive graph, i.e. a finite set of colorings of
-            some finite subgraphs. Consider an iid coloring the full graph conditioned to avoid all of the forbidden patterns.
-            What does a typical configuration look like, and what statistical properties does it have? This model originated
-            in ergodic theory and symbolic dynamics, and lies at the intersection of probability, combinatorics, dynamics, and statistical physics.
-            Many interesting questions arise already in the one dimensional setting. For example: consider bi-infinite binary words, and
-            forbid a single binary pattern. The entropy of the resulting shift space (i.e. the exponential growth rate
-            of the number of allowable words) is described by a simple combinatorial statistic, the auto-correlation polynomial
-            of the forbidden word. Another natural object is the asymptotic density of 1s, or of another fixed (allowable) pattern. Is there a
-            similar combinatorial statistic that describes these densities?
-
-            <div class="pub">
-            <p>Continuously-evolving draft: <a href="pagedocs/sft_patterns.pdf">SFT Patterns</a></p>
-            <p><a href="https://arxiv.org/abs/1709.09163"><em>Shifts of finite type with a single forbidden word</em></a>, with N. Chandgotia, B. Marcus, C. Wu. Submitted to , 2024.</p>
-            <p><a href="https://arxiv.org/abs/1709.09163"><em>Bias, length, and symmetry in Penney's ante</em></a>, with M. Drexel, A. Ju, P. Peng. Undergraduate research. Submitted to Involve, 2024.</p>
+    <div class="block-container split-block">
+        <div class="text-part">
+            <div class="pj">Shifts of finite type</div>
+            <div class="math">
+                Fix a set a set of <em>forbidden</em> patterns on a transitive graph, i.e. a finite set of colorings of
+                some finite subgraphs. Consider an iid coloring the full graph conditioned to avoid all of the forbidden patterns.
+                What does a typical configuration look like, and what statistical properties does it have? This model originated
+                in ergodic theory and symbolic dynamics, and lies at the intersection of probability, combinatorics, dynamics, and statistical physics.
+                Many interesting questions arise already in the one dimensional setting. For example: consider bi-infinite binary words, and
+                forbid a single binary pattern. The entropy of the resulting shift space (i.e. the exponential growth rate
+                of the number of allowable words) is described by a simple combinatorial statistic, the auto-correlation polynomial
+                of the forbidden word. Another natural object is the asymptotic density of 1s, or of another fixed (allowable) pattern. Is there a
+                similar combinatorial statistic that describes these densities?
             </div>
 
-        <div class="pj">Activated random walk and the stochastic sandpile</div>
+            <div class="pub">
+                <p>Continuously-evolving draft: <a href="pagedocs/sft_patterns.pdf">SFT Patterns</a></p>
+                <p><a href="https://arxiv.org/abs/1709.09163"><em>Shifts of finite type with a single forbidden word</em></a>, with N. Chandgotia, B. Marcus, C. Wu. In preparation.</p>
+                <p><a href="https://arxiv.org/abs/1709.09163"><em>Bias, length, and symmetry in Penney's ante</em></a>, with M. Drexel, A. Ju, P. Peng. Undergraduate research. In preparation.</p>
+            </div>
+        </div>
+        <div class="image-part">
+            <img src="math_images/monosquares_weighted.png" style="max-width: 30vw; height: auto" alt="2dsft_example">
+            <div class="latex-caption">Fix \(\beta \in \mathbb{R}\), and put a Gibbs measure \(\mu_\beta(x)\) on configurations
+            of Red/Green/Blue on a compact subset of a discrete 2D lattice with \(\mu_\beta(x) \sim \exp(\beta N(x))\), where
+            \(x\) is a configuration of R/G/B, and \(N(x)\) is the number of monocolored \(2 \times 2\) squares in \(x\). These images are sampled from
+            Glauber dynamics w.r.t. \(\mu\) on a large 2D torus: from left to right, \(\beta = -2, 1,\) and \(9/4\). </div>
+        </div>
+    </div>
 
-            In the 1980s physicists Per Bak, Chao Tang and Kurt Wiesenfeld coined and popularized the idea of 'self organized criticality' (SOC),
-            a phenomenon they observed in real-world systems like avalanches and forest fires. In these systems, energy slowly builds up over time,
-            and is released in shocks with sizes that follow a statistical power law. They proposed a number of simple
-            but mathematically challenging models to study SOC, including the sandpile model, a precursor to activated random walk (ARW).
-            Deepak Dhar later proved that the sandpile has a certain abelian property, which is shared by activated random walk.
+    <div class="block-container split-block">
+        <div class="text-part">
+            <div class="pj">Self organized criticality for abelian particle systems</div>
+            <div class="math">
+                In the 1980s physicists Per Bak, Chao Tang and Kurt Wiesenfeld coined and popularized the idea of <em>self organized criticality</em> (SOC),
+                a phenomenon they observed in real-world systems like avalanches and forest fires. In these systems, energy slowly builds up over time,
+                and is released in shocks with sizes that follow a statistical power law. They proposed a number of simple
+                but mathematically challenging models to study SOC, including the abelian sandpile model, a precursor to <em>activated random walk</em> (ARW).
+                Deepak Dhar later proved that the sandpile has a certain abelian property, which is shared by activated random walk.
 
-            Simulations suggest that ARW, a stochastic variant of the abelian sandpile, has a critical limiting state that exhibits SOC in a robust way, with little dependence on the exact setup
-            of the model. Research on ARW has recently gained traction, and many results on the critical density are now available. Still,
-            we lack a mathematical description of exactly how SOC arises for ARW. While the two-dimensional case is of particular practical interest,
-            ARW in one dimension, on a tree, or in the mean field (on the complete graph) are more tractable, and are not yet fully solved.
+                Simulations suggest that ARW has a critical limiting state that exhibits SOC in a robust way, with little dependence on the exact setup
+                of the model. Research on ARW has recently gained traction, and many results on the critical density are now available. Still,
+                we lack a mathematical description of exactly how SOC arises for ARW. While the two-dimensional case is of particular practical interest,
+                ARW in one dimension, on a tree, or in the mean field (on the complete graph) are more tractable, and are not yet fully solved.
+            </div>
 
-        <div class="pub">
-            <p><a href="pagedocs/kutszem_SSM_talk.pdf">Talk slides</a></p>
-            <p><a href="https://arxiv.org/abs/2212.08293"><em>Active phase for the stochastic sandpile on Z</em></a>, with C. Hoffman, Y. Hu, and D. Rizzolo. Submitted to CPAM, 2023</p>
-            <p><a href="https://arxiv.org/abs/2009.09491"><em>Active phase for activated random walk on Z</em></a>, with C. Hoffman and L. Rolla. Published in CMP, 2022.</p>
-            <p><a href="https://arxiv.org/abs/1709.09163"><em>Activated random walk on a cycle</em></a>, with R. Basu, S. Ganguly, and C. Hoffman. Published in AIHP, 2019.</p>
+            <div class="pub">
+                <p><a href="pagedocs/kutszem_SSM_talk.pdf">Talk slides</a></p>
+                <p><a href="https://arxiv.org/abs/2212.08293"><em>Active phase for the stochastic sandpile on \(\mathbb{Z}\)</em></a>, with C. Hoffman, Y. Hu, and D. Rizzolo. Submitted to CPAM, 2023</p>
+                <p><a href="https://arxiv.org/abs/2009.09491"><em>Active phase for activated random walk on \(\mathbb{Z}\)</em></a>, with C. Hoffman and L. Rolla. Published in CMP, 2022.</p>
+                <p><a href="https://arxiv.org/abs/1709.09163"><em>Activated random walk on a cycle</em></a>, with R. Basu, S. Ganguly, and C. Hoffman. Published in AIHP, 2019.</p>
+            </div>
+        </div>
+        <div class="image-part">
+            <img src="math_images/ava_combo.png" style="max-width: 30vw; height: auto" alt="avalanche_combo">
+            <div class="latex-caption">Two avalanches, at different scales, in the stochastic sandpile on a \(200 \times 200\) torus at
+            (approximately) the critical state. Sites colored brighter were toppled more times during the avalanche.  </div>
+        </div>
+    </div>
+
+    <div class="block-container split-block">
+        <div class="text-part">
+            <div class="pj">Combinatorial stochastic processes</div>
+            <div class="math">
+                I am often drawn to questions about random combinatorial objects: markov chains, fragmentation/coagulation processes,
+                interacting particle systems, renewal processes, random number theory. Proving limit theorems, describing stationary
+                configurations or evolutions, or studying mean field behavior of these systems, to name a few objectives,
+                often leads to cutting edge ideas and unsolved problems.
+            </div>
+
+            <div class="pub">
+                <p>Continuously evolving draft: <a href="pagedocs/combinatorial_processes.pdf">Combinatorial stochastic processes</a></p>
+                <p></p>Random 'sumset' problems for real numbers, related to the 'Bernoulli factory' problem: <a href="pagedocs/sum_constructions.pdf">Sum constructions</a></p>
+                <p>Writeup of a coupon-collector type problem: <a href="pagedocs/geo_coupons23.pdf">Geometric coupons</a></p>
+            </div>
+
         </div>
 
-        <div class="pj">Geometry detection in random graphs</div>
+        <div class="image-part">
+            <img src="math_images/candidates_hist.png" style="align: right; max-width: 550px; height: auto" alt="candidates">
+            <div class="latex-caption">Sample \(n\) iid Uniform\((0,1)\) random variables, or <em>candidates</em>. Each candidate has
+            a block of voters, which is their Voronoi cell in the unit interval. In each step, the candidate with the smallest cell
+            is removed. Eventually, one candidate remains. This is a histogram of the distribution of the location of the election winner
+            with \(n = 51\). One can easily show that the distribution is supported on \((\frac{1}{4}, \frac{3}{4})\). Proving that it is bimodal
+            for any \(n\) is open. (I heard this question from Omer Angel.)</div>
+        </div>
+    </div>
 
+    <div class="block-container">
+        <div class="pj">Geometry detection in random graphs</div>
+        <div class="math">
             A recurring theme in the study of large finite graphs is to describe hidden geometric features. For a given measure on random graphs,
             i.e. a random matrix ensemble, we can say it has <em>geometry</em> if it can be roughly-isometrically embedded in a low-dimensional metric space.
             For Wishart matrices, aka random graphs embedded in a sphere, one can exactly characterize the phase transition, depending on the underlying
             dimension, between geometry and no geometry. Another combinatorial graph model, called the random intersection graph, shares the same phase transition,
             at essentially the same critical value. This suggests a universal phenomenon: is it possible to characterize a large class of
             random graphs that undergo exhibit the same phase transition?
-
-        <div class="pub">
-        <p><a href="https://arxiv.org/abs/1611.05838"><em>A smooth transition from Wishart to GOE</em></a>, with M. Racz. Published in JTP, 2018.</p>
-        <p><em>When random intersection graphs lose geometry</em>, with S. Bubeck and M. Racz. In preperation.</p>
         </div>
 
-        <div class="pj">Finding the source</div>
-
-            Run a random growth model or diffusion on a graph up to a fixed time. Given only a snapshot of the set of
-            sites visited by the process, what information can be determined about the process? Can you guess the starting point,
-            the ending point, most visited point, or the distribution of the process? These kinds of questions arise in
-            applied computer science, for example in infection spread through a social network. Giving a precise answer
-            for simple random walk in Z^d is already a difficult problem.
-
         <div class="pub">
-        <p><a href="pagedocs/cornell_sourcefind.pdf">Talk slides</a></p>
-        <p><a href="https://arxiv.org/abs/2006.11211"><em>Rumor source detection with multiple observations under adaptive diffusions</em></a>, with M. Racz. Published in IEEE, 2020. </p>
+            <p><a href="https://arxiv.org/abs/1611.05838"><em>A smooth transition from Wishart to GOE</em></a>, with M. Racz. Published in JTP, 2018.</p>
+            <p><em>When random intersection graphs lose geometry</em>, with S. Bubeck and M. Racz. In preperation.</p>
+        </div>
+    </div>
+
+    <div class="block-container split-block">
+        <div class="text-part">
+            <div class="pj">Finding the source</div>
+            <div class="math">
+                Run a random growth model or diffusion on a graph up to a fixed time. Given only a snapshot of the set of
+                sites visited by the process, what information can be determined about the process? Can you guess the starting point,
+                the ending point, most visited point, or the distribution of the process? These kinds of questions arise in
+                applied computer science, for example in infection spread through a social network. Giving a precise answer
+                for simple random walk in \(\mathbb{Z}^d\) is already a difficult problem.
+            </div>
+
+            <div class="pub">
+                <p><a href="pagedocs/cornell_sourcefind.pdf">Talk slides</a></p>
+                <p><a href="https://arxiv.org/abs/2006.11211"><em>Rumor source detection with multiple observations under adaptive diffusions</em></a>, with M. Racz. Published in IEEE, 2020. </p>
+            </div>
         </div>
 
+        <div class="image-part">
+            <img src="math_images/srwocc_10mil.png" style="max-height: 400px; width: auto" alt="2dsrw">
+            <div class="latex-caption">A map of the occupation times of a 2D simple random walk run for \(10^7\) steps.
+            Points that were visited more often are colored darker. </div>
+        </div>
+
+    </div>
+
+    <div class="block-container">
         <div class="pj">Permuted Random Walk</div>
-
+        <div class="math">
             A huge body of probability literature is devoted to studying random walks on graphs that are modified in some way,
             often with the goal of decreasing the mixing time. In this work we considered permuted random walk, a process
             alternates taking random walk steps, and moving according to a permutation on the vertices. On a regular tree,
             the permuted random walk always moves away from the origin faster than the usual random walk. In what generality does this
             hold -- for other random walks, or other graphs?
+        </div>
 
         <div class="pub">
             <p><a href="https://arxiv.org/abs/2302.00760">Random walks on regular trees can not be slowed down</a>, with O. Angel, Y. Spinka and A. Yehudayoff. Published in EJP, 2024.</p>
         </div>
-
-        <div class="pj">Counting clusters in 2D percolation</div>
-
-            Consider independent site percolation on a finite graph, like a subset of Z^d or the hexagonal lattice.
-            How many open clusters are there? For example, what is the expected number of clusters? For lattices, it is
-            easy to see that the number of clusters is on the same order as the volume of the set you percolate. Can one establish
-            a law of large numbers for the cluster count, and compute the limiting constant? In fact, A5 problem from the 2004 Putnam exam
-            asked to prove a lower bound on this constant! But exactly determining it is a difficult problem.
-
-        <div class="pub">
-        <p><a href="https://math.dartmouth.edu/theses/undergrad/2014/Richey-thesis.pdf"><em>Counting clusters on a finite grid.</em></a> My undergraduate thesis (2014), advised by Pete Winkler. </p>
-        <p><a href="https://sites.math.washington.edu/~reu/papers/2015/natalie/natalie.pdf"><em>Number of Pieces in Percolated Hexagonal Grids.</em></a> <a href="https://sites.math.washington.edu//~reu/index.html">REU</a> project at the University of Washington (2015), advised by Me.</p>
-        </div>
-
-        <div class="pj">Stochastic geometry</div>
-
-            Consider an iid sequence of random sets, or a Poisson point process of hyperplanes or sets in a metric space.
-            One can ask many natural questions related to the 'coverage' of such a family of sets: what is their union?
-            What is the distribution of the random field counting how many times each point is covered by the union?
-            If the sequence is confined, what is the intersection of the sets? A canonical limit object, called the Crofton
-            cell, arises as the scaling limit of the region containing the origin in a standard hyperplane tesselation of R^d.
-
-        <div class="pub">
-            <p><a href="https://arxiv.org/abs/2006.01323">Intersections of random sets</a>, with A. Sarkar. Published in the Journal of Applied Probability, 2022.</p>
-        </div>
-
-        <div class="pj">Combinatorial stochastic processes</div>
-
-            I am fascinated by random combinatorial objects: markov chains, fragmentation/coagulation processes,
-            interacting particle systems, random number theory. Proving limit theorems, describing stationary
-            configurations or evolutions, or studying mean field behavior of these systems, to name a few objectives,
-            often leads to cutting edge ideas and unsolved problems.
-
-        <div class="pub">
-            <p>Continuously evolving draft: <a href="pagedocs/combinatorial_processes.pdf">Combinatorial stochastic processes</a></p>
-            <p></p>Random 'sumset' problems for real numbers, related to the 'Bernoulli factory' problem: <a href="pagedocs/sum_constructions.pdf">Sum constructions</a></p>
-            <p>Writeup of a coupon-collector type problem: <a href="pagedocs/geo_coupons23.pdf">Geometric coupons</a></p>
-        </div>
-
-
-
     </div>
+
+    <div class="block-container split-block">
+        <div class="text-part">
+            <div class="pj">Counting clusters in 2D percolation</div>
+            <div class="math">
+                Consider independent site percolation on a finite graph, like a subset of \(\mathbb{Z}^d\) or the hexagonal lattice.
+                How many open clusters are there? For example, what is the expected number of clusters? For lattices, it is
+                easy to see that the number of clusters is on the same order as the volume of the set you percolate. Can one establish
+                a law of large numbers for the cluster count, and compute the limiting constant? The <a href="https://kskedlaya.org/putnam-archive/2004.pdf">A5 problem</a> from the 2004 Putnam exam
+                asked to prove a lower bound on this constant. But exactly determining it is a difficult problem.
+            </div>
+
+            <div class="pub">
+            <p><a href="https://math.dartmouth.edu/theses/undergrad/2014/Richey-thesis.pdf"><em>Counting clusters on a finite grid.</em></a> My undergraduate thesis (2014), advised by Pete Winkler. </p>
+            <p><a href="https://sites.math.washington.edu/~reu/papers/2015/natalie/natalie.pdf"><em>Number of Pieces in Percolated Hexagonal Grids.</em></a> <a href="https://sites.math.washington.edu//~reu/index.html">REU</a> project at the University of Washington (2015), advised by Me.</p>
+            </div>
+        </div>
+        <div class="image-part">
+            <img src="math_images/2dperc_loopcount.png" style="max-height: 280px; width: auto" alt="perc_loopex">
+            <div class="latex-caption">A figure from my undergraduate thesis. To estimate the number of open clusters, the idea is to build a large configuration
+            by appending a few columns at a time, and systematically counting how the number of clusters changes. </div>
+        </div>
+    </div>
+
+    <div class="block-container split-block">
+        <div class="text-part">
+            <div class="pj">Stochastic geometry</div>
+            <div class="math">
+                Consider an iid sequence of random sets, or a Poisson point process of hyperplanes or sets in a metric space.
+                One can ask many natural questions related to the <em>coverage</em> of such a family of sets: what is their union?
+                What is the distribution of the random field counting how many times each point is covered by the union?
+                If the sequence is confined to a compact set, what is the intersection of the sets? A canonical limit object, called the Crofton
+                cell, often arises in connection with these questions, appearing (for example) as the scaling limit of the region containing the
+                origin in a standard hyperplane tesselation of \(\mathbb{R}^d\). 
+            </div>
+
+            <div class="pub">
+                <p><a href="https://arxiv.org/abs/2006.01323">Intersections of random sets</a>, with A. Sarkar. Published in the Journal of Applied Probability, 2022.</p>
+            </div>
+        </div>
+
+        <div class="image-part">
+            <img src="math_images/cts_coupon_.0008.png" style="max-width: 650px; height: auto" alt="continuous coupon collector">
+            <div class="latex-caption">Sample iid arcs of length \(\theta\) at uniform random locations on the circle of
+            circumference one, and stop when the union of the arcs covers the circle. This is a plot of the Lebesgue measure of the union of
+            the arcs with \(\theta = 8\times 10^{-4}\), after centering (subtracting the mean) and scaling time by \(\theta^{-1} \log \theta\). </div>
+        </div>
+</div>
+
+
+
 
 </body>
 </html>

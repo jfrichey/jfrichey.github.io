@@ -1,0 +1,69 @@
+/* Research page */
+.pub {
+    line-height: 1.1;
+    margin-left: 20px;
+    clear: both;
+}
+
+.titles {
+    text-align: center;
+    font-size: 40px;
+    padding: 30px
+}
+
+.pj {
+    padding: 10px;
+    font-size: 29px;
+    color: #00368c;
+    font-weight: bold;
+}
+
+.math {
+    line-height: 1.5;
+    font-size: 17px;
+    font-family: "Georgia", Times, serif;
+    margin-left: 15px;
+    clear: both;
+    width: 97%;
+}
+
+/* General container for the blocks */
+.block-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Style for blocks with both text and image */
+.split-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+/* Left part for text */
+.text-part {
+  width: 1000vw;
+  padding-right: 2%;
+}
+
+/*Right part for images*/
+.image-part {
+    height: auto;
+}
+
+/* Ensure images are responsive */
+.image-part img {
+  align: right;
+  padding-top: 7%;
+  padding-right: 4%;
+}
+
+/* LaTeX caption styling */
+.latex-caption {
+  font-size: 1em;
+  font-family: "Georgia", Times, sans-serif;
+  text-align: left;
+  margin-top: 5px;
+  padding-right: 4%;
+}
