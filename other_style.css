@@ -1,0 +1,26 @@
+/* Teaching page */
+
+.titles {
+    text-align: center;
+    font-size: 40px;
+    padding: 30px
+}
+
+.pj {
+    padding: 10px;
+    font-size: 29px;
+    color: #00368c;
+    font-weight: bold;
+}
+
+.extra {
+    line-height: 1.5;
+    font-size: 17px;
+    font-family: "Georgia", Times, serif;
+    margin-left: 30px;
+}
+
+ul {
+    list-style-type: square;
+    margin-left: 10px;
+}

@@ -1,0 +1,14 @@
+/* Teaching page */
+
+.titles {
+    text-align: center;
+    font-size: 40px;
+    padding: 30px
+}
+
+.pj {
+    padding: 10px;
+    font-size: 29px;
+    color: #00368c;
+    font-weight: bold;
+}
