@@ -32,18 +32,22 @@
 
     <div class="titles">Research projects & open problems</div>
 
+<!--SFT-->
     <div class="block-container split-block">
         <div class="text-part">
             <div class="pj">Shifts of finite type</div>
             <div class="math">
-                Fix a set a set of <em>forbidden</em> patterns on a transitive graph, i.e. a finite set of colorings of
-                some finite subgraphs. Consider an iid coloring the full graph conditioned to avoid all of the forbidden patterns.
+                Fix a family of <em>forbidden</em> patterns on a transitive graph, i.e. some colorings of
+                some finite subgraphs. Consider an iid coloring on the full graph (or a finite subset) conditioned to avoid
+                all the forbidden patterns.
                 What does a typical configuration look like, and what statistical properties does it have? This model originated
                 in ergodic theory and symbolic dynamics, and lies at the intersection of probability, combinatorics, dynamics, and statistical physics.
                 Many interesting questions arise already in the one dimensional setting. For example: consider bi-infinite binary words, and
                 forbid a single binary pattern. The entropy of the resulting shift space (i.e. the exponential growth rate
                 of the number of allowable words) is described by a simple combinatorial statistic, the auto-correlation polynomial
-                of the forbidden word. Another natural object is the asymptotic density of 1s, or of another fixed (allowable) pattern. Is there a
+                of the forbidden word. In higher dimensions, computing the entropy or establishing mixing properties
+                is much more challenging; and in the non-amenable setting, a nice notion of entropy is still not known.
+                Another natural object is the asymptotic density of 1s, or of another fixed (allowable) pattern. Is there a
                 similar combinatorial statistic that describes these densities?
             </div>
 
@@ -54,14 +58,15 @@
             </div>
         </div>
         <div class="image-part">
-            <img src="math_images/monosquares_weighted.png" style="max-width: 30vw; height: auto" alt="2dsft_example">
+            <img src="math_images/monosquares_weighted.png" style="max-width: 45vw; height: auto" alt="2dsft_example">
             <div class="latex-caption">Fix \(\beta \in \mathbb{R}\), and put a Gibbs measure \(\mu_\beta(x)\) on configurations
-            of Red/Green/Blue on a compact subset of a discrete 2D lattice with \(\mu_\beta(x) \sim \exp(\beta N(x))\), where
-            \(x\) is a configuration of R/G/B, and \(N(x)\) is the number of monocolored \(2 \times 2\) squares in \(x\). These images are sampled from
+            of Red/Green/Blue on a subset of a discrete 2D lattice with \(\mu_\beta(x) \sim \exp(\beta N(x))\), where
+            \(x\) is a configuration of R/G/B, and \(N(x)\) is the number of mono-colored \(2 \times 2\) squares in \(x\). These images are sampled from
             Glauber dynamics w.r.t. \(\mu\) on a large 2D torus: from left to right, \(\beta = -2, 1,\) and \(9/4\). </div>
         </div>
     </div>
 
+<!--ARW/SSM-->
     <div class="block-container split-block">
         <div class="text-part">
             <div class="pj">Self organized criticality for abelian particle systems</div>
@@ -86,12 +91,13 @@
             </div>
         </div>
         <div class="image-part">
-            <img src="math_images/ava_combo.png" style="max-width: 30vw; height: auto" alt="avalanche_combo">
+            <img src="math_images/ava_combo.png" style="max-width: 45vw; height: auto" alt="avalanche_combo">
             <div class="latex-caption">Two avalanches, at different scales, in the stochastic sandpile on a \(200 \times 200\) torus at
             (approximately) the critical state. Sites colored brighter were toppled more times during the avalanche.  </div>
         </div>
     </div>
 
+<!--Combinatorial processes-->
     <div class="block-container split-block">
         <div class="text-part">
             <div class="pj">Combinatorial stochastic processes</div>
@@ -113,7 +119,7 @@
         </div>
 
         <div class="image-part">
-            <img src="math_images/candidates_hist.png" style="align: right; max-width: 550px; height: auto" alt="candidates">
+            <img src="math_images/candidates_hist.png" style="max-width: 45vw; height: auto" alt="candidates">
             <div class="latex-caption">Sample \(n\) iid Uniform\((0,1)\) random variables, or <em>candidates</em>. Each candidate has
             a block of voters, which is their Voronoi cell in the unit interval. In each step, the candidate with the smallest cell
             is removed. Eventually, one candidate remains. This is a histogram of the distribution of the location of the election winner
@@ -122,6 +128,7 @@
         </div>
     </div>
 
+<!--Geometry detection-->
     <div class="block-container">
         <div class="pj">Geometry detection in random graphs</div>
         <div class="math">
@@ -139,6 +146,7 @@
         </div>
     </div>
 
+<!--Source detection-->
     <div class="block-container split-block">
         <div class="text-part">
             <div class="pj">Finding the source</div>
@@ -164,6 +172,7 @@
 
     </div>
 
+<!--PermRW-->
     <div class="block-container">
         <div class="pj">Permuted Random Walk</div>
         <div class="math">
@@ -179,6 +188,7 @@
         </div>
     </div>
 
+<!--Perc-->
     <div class="block-container split-block">
         <div class="text-part">
             <div class="pj">Counting clusters in 2D percolation</div>
@@ -202,6 +212,7 @@
         </div>
     </div>
 
+<!--Stoc geom-->
     <div class="block-container split-block">
         <div class="text-part">
             <div class="pj">Stochastic geometry</div>
@@ -223,7 +234,7 @@
             <img src="math_images/cts_coupon_.0008.png" style="max-width: 650px; height: auto" alt="continuous coupon collector">
             <div class="latex-caption">Sample iid arcs of length \(\theta\) at uniform random locations on the circle of
             circumference one, and stop when the union of the arcs covers the circle. This is a plot of the Lebesgue measure of the union of
-            the arcs with \(\theta = 8\times 10^{-4}\), after centering (subtracting the mean) and scaling time by \(\theta^{-1} \log \theta\). </div>
+            the arcs with \(\theta = 8\times 10^{-4}\), after centering (subtracting the mean) and scaling time by \(\theta^{-1} \log \theta^{-1}\). </div>
         </div>
 </div>
 
