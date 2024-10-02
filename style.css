@@ -9,6 +9,15 @@ body {
   font-family: "Verdana", Verdana, sans-serif;
 }
 
+.bio {
+    line-height: 1.5;
+    font-size: 19px;
+    padding: 30px;
+    font-family: "Georgia", Times, serif;
+    margin-left: 10%;
+    width: 90vw;
+}
+
 .header {
   overflow: hidden;
   background-color: #68a8fc;
@@ -101,12 +110,5 @@ figure {
     object-fit: contain; /* Ensures images fit within their container while preserving aspect ratio */
 }
 
-.bio {
-    line-height: 1.5;
-    font-size: 19px;
-    padding: 30px;
-    font-family: "Georgia", Times, serif;
-    margin-left: 10%;
-    width: 90vw;
-}
+
 

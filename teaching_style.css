@@ -1,5 +1,14 @@
 /* Teaching page */
 
+.teach {
+    line-height: 1.5;
+    font-size: 19px;
+    padding: 30px;
+    font-family: "Georgia", Times, serif;
+    width: 60vw;
+    margin-left: 20vw
+}
+
 .titles {
     text-align: center;
     font-size: 40px;
@@ -12,3 +21,4 @@
     color: #00368c;
     font-weight: bold;
 }
+
