@@ -1,0 +1,133 @@
+\documentclass[12 pt]{report}
+
+\usepackage{epsfig}
+\usepackage[in,empty]{myfullpage}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+
+\unitlength = .5cm 
+
+\baselineskip=20pt
+
+\begin{document}
+
+\noindent \vfill \noindent \large
+
+\centerline{Math 324 A  - Spring 2017}
+
+\centerline{Midterm exam 2}
+
+\centerline{Friday, May 12th, 2017}
+
+\normalsize
+
+\vfill
+\medskip
+Name: \rule{10cm}{1pt}
+
+\bigskip
+
+\vfill
+\begin{center}
+{\large
+\begin{tabular}{||c|c|r||}
+\hline Problem 1 & 12 & \hspace{10mm} \hfill \\
+\hline Problem 2 & 12  & \hspace{10mm} \hfill \\
+\hline Problem 3 & 14 & \hspace{10mm} \hfill \\
+\hline Problem 4 & 12  & \hspace{10mm} \hfill \\
+\hline Total & 50 & \hspace{10mm} \hfill \\
+\hline
+\end{tabular}
+}
+\end{center}
+\vfill
+\begin{itemize}
+\item There are 4 questions on this exam. Make sure you have all four.
+\item You must show your work on all problems.  The correct answer
+with no supporting work may result in no credit. \textbf{Put a box
+around your FINAL ANSWER for each problem and cross out any work
+that you don't want to be graded.} 
+\item Give exact answers, and simplify as much as possible. 
+For example, $\frac{\pi}{\sqrt{2}}$ is acceptable, but $3/4 + 1/2$
+should be reduced to $5/4$.   
+
+\item If you need more room, use the backs
+of the pages and indicate to the grader that you have done so.
+\item Raise your hand if you have a question.
+\item Any student found engaging in academic misconduct will receive
+a score of 0 on this exam.
+\item You have 50 minutes to complete the exam.  Budget your time wisely! \\
+\end{itemize}
+\vfill
+\begin{center}GOOD LUCK!\end{center}
+
+\newpage
+\begin{enumerate}
+
+\item (12 pts) Consider the function $f(x,y,z) = \frac{1}{3}x^2 \sin(y) - 2xz.$ 
+
+
+\begin{enumerate} \item[a.] Find $\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}$ and $\frac{\partial f}{\partial z}$.
+
+\item[b.] Let $v$ be the unit vector with tail at the origin in $\mathbb{R}^3$ and tip at the point $(1, \frac{\pi}{3}, \frac{\pi}{2})$ in spherical coordinates $(\rho, \theta, \phi)$. Find the value of the directional derivative $D_vf(x,y,z)$ at the point $(x,y,z) = (3, -\pi ,1)$. 
+
+\item[c.] Give the unit vector $u$ that maximizes $D_uf(3,-\pi,1)$.  
+
+\item[d.] Let $F$ be the gradient vector field of $f$, so $F = \nabla f$. Find the curl and divergence of $F$.
+
+\end{enumerate} 
+
+\newpage
+
+\item[2a.] (4 pts) Let $f(x,y) = \frac{1}{2}(x^2 + y^2)$. Write down a formula for $\nabla f(x,y)$, and draw the vector $\nabla f(x,y)$ at each of the three points $(1,0), (-2,1)$ and $(2,-2)$.  
+
+\vspace{1cm}
+
+\begin{picture}(10.5,10.5)(-5,-5)
+  {\color{gray}
+  \thinlines
+  \multiput(-5,-4)(0,1){9}{\line(1,0){10}}
+  \multiput(-4,-5)(1,0){9}{\line(0,1){10}}
+  }
+  \thicklines
+  \put(-5,0){\vector(1,0){10.2}}
+  \put(0,-5){\vector(0,1){10.2}}
+  \put(5.3,0){\makebox(1,0)[l]{$x$}}
+  \put(0,5.3){\makebox(0,1)[b]{$y$}}
+\end{picture}
+
+\vspace{1cm}
+
+\item[2b.] (4 pts) Define what it means for a vector field $F$ defined on an \emph{arbitrary domain} $D$ in the plane to be conservative. (You may give any definition equivalent to the one we used in class.)
+
+\vspace{4cm}
+
+\item[2c.] (4 pts) Consider the vector field $F(x,y) = \langle y^3 \cos(x), - 3y^2 \sin(x) \rangle$. Is $F$ conservative? If so, give a potential function; if not, explain how you know it isn't conservative. 
+
+\newpage
+
+\item[3a.] (7 pts) State the fundamental theorem for line integrals, and use it to compute 
+
+$$\int_C \sin(y) e^{x \sin(y)} dx + x \cos(y) e^{x \sin(y)} dy,$$
+
+where $C$ is the line segment from $(1,\pi)$ to $(2,\pi)$ followed by the line segment from $(2,\pi)$ to $(2,2 \pi)$. 
+
+\vspace{7cm}  
+
+\item[3b.] (7 pts) Let $F$ denote the force field $F(x,y,z) = \langle 3z^2 \ln (2xy-1), x^2+(z+1)y^{-2}, xz-1 \rangle$. Find the work done by $F$ on a particle that travels along the path $r(t) = (t, t^{-1}, 3), 1 \leq t \leq 2$. 
+
+
+\newpage
+
+\item[4.] (12 pts) Let $C$ denote the triangle with vertices $(-2,-1), (2,-1)$, and $(0,6)$, oriented counter clockwise. Let $G$ be the vector field $G(x,y) = \langle 3xy^2, x+y \rangle.$ Evaluate
+
+\[
+\int_C G \cdot \, dr.
+\]
+
+[Hint: apply a theorem, then use symmetry to simplify the integral.]
+
+\end{enumerate}
+
+\end{document}

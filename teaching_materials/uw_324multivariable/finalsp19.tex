@@ -1,0 +1,161 @@
+\documentclass[12 pt]{report}
+
+\usepackage{epsfig}
+\usepackage[in,empty]{myfullpage}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\baselineskip=20pt
+
+\begin{document}
+
+\noindent \vfill \noindent \large
+
+\centerline{Math 324 C  - Spring 2019}
+
+\centerline{Final exam}
+
+\centerline{Monday, June 10, 2019}
+
+\normalsize
+
+\vfill
+\medskip
+Name: \rule{10cm}{1pt}
+
+\bigskip
+
+\vfill
+\begin{center}
+{\large
+\begin{tabular}{||c|c|r||}
+\hline Problem 1 & 4 & \hspace{10mm} \hfill \\
+\hline Problem 2 & 5  & \hspace{10mm} \hfill \\
+\hline Problem 3 & 5 & \hspace{10mm} \hfill \\
+\hline Problem 4 & 5  & \hspace{10mm} \hfill \\
+\hline Problem 5 & 3  & \hspace{10mm} \hfill \\
+\hline Problem 6 & 3 & \hspace{10mm} \hfill \\
+\hline Total & 25 & \hspace{10mm} \hfill \\
+\hline
+\end{tabular}
+}
+\end{center}
+\vfill
+\begin{itemize}
+\item There are 5 questions on this exam. Make sure you have all five.
+\item \textbf{You must show your work on all problems.}  The correct answer
+with no supporting work may result in no credit. Put a box
+around your FINAL ANSWER for each problem and cross out any work
+that you don't want to be graded.
+\item Give exact answers, and simplify as much as possible. 
+\item Use the backs of pages \textit{for scratch work only}.
+\item Raise your hand if you have a question.
+\item Any student found engaging in academic misconduct will receive
+a score of 0 on this exam.
+\item You have 110 minutes to complete the exam.  Budget your time wisely! \\
+\end{itemize}
+\vfill
+\begin{center}GOOD LUCK!\end{center}
+
+\newpage
+\begin{enumerate}
+
+\item Let $S$ be the boundary surface of the cone region $x^2+y^2 \leq z^2 \leq 1$, so $S$ consists of the cone $x^2+y^2 = z^2$ for $0 \leq z \leq 1$ and the disk $x^2+y^2 \leq 1$ in the plane $z=1$. Equip $S$ with the outward pointing normal (normal points away from the cone). Use the divergence theorem to evaluate the surface integral
+
+$$\iint_S \langle 5, xy^2z, -xyz^2 \rangle \cdot d \bold{S}.$$
+\newpage
+
+\item[2a.] Show that $\nabla \times \langle 3y, -2yz, \log z \rangle = \langle 2y, 0, -3 \rangle$.
+
+\vspace{5cm} 
+
+\item[2b.] Let $S$ be the part of the ellipsoid $x^2+\frac{y^2}{9}+\frac{z^2}{4} = 5$ lying above the plane $z = 2$ oriented downward. Use Stokes' theorem and the first part of this problem to evaluate 
+
+$$\iint_S \langle 2y, 0, -3 \rangle \cdot d\bold{S}.$$
+ 
+\newpage
+
+\item[3.] Let $F = \langle xy^2, x+y \rangle$ be a vector field in the $xy$-plane, and let $C$ denote the upper half of the unit circle $x^2+y^2 = 1, y \geq 0$ oriented counter-clockwise. Also, let $D$ be the upper half of the unit disk $x^2 + y^2 \leq 1, y \geq 0$. 
+\begin{enumerate}
+\item[a.] Draw a picture of $D$ and $C$, and evaluate $\int_C F \cdot d\bold{r}$. 
+
+\vspace{7cm}
+
+\item[b.] Henry, Jacob's evil twin brother, claims he is able to use Green's theorem to solve part $a$. He reasons as follows: ``The curve $C$ bounds the region $D$ with the positive orientation, so by Green's theorem, 
+
+$$\int_C F \cdot d\bold{r} = \iint_D \Big(\frac{d}{dx}(x+y) - \frac{d}{dy}(xy^2) \Big) \, dA = \int_0^\pi \int_0^1 (1-2 r^2 \sin\theta \cos\theta) r dr d\theta = \frac{\pi}{2}."$$
+
+What is wrong with Henry's argument?   
+
+\vspace{3cm} 
+
+\item[c.] Use Green's theorem correctly to relate a double integral over $D$ to a line integral. Explain why Henry got the right answer, even though his reasoning is flawed. 
+
+
+
+\end{enumerate} 
+
+\newpage
+
+\item[4a.] Show that $\nabla \cdot (\nabla \times F) = 0$ for any smooth vector field $F = \langle P, Q, R \rangle$ on $\mathbb{R}^3$.  
+
+\vspace{10cm}
+
+\item[4b.] Use the result from part $a$ to show that 
+
+$$\iint_S \text{curl}(F) \cdot d\bold{S} = 0$$ 
+
+where $S$ is the surface $x^2 + (y-1)^2 + (z+1)^2 = 3$, and $F = \langle 9y^2 x^3+3z^4, 2xz^2, z^5 \rangle$. [If you don't know how to use the result from part a, but have some other way of showing this fact, you can receive partial credit on this problem.]
+
+\newpage
+
+\item[5.] For each of the statements below, circle \textbf{True} if you think it is true, and circle \textbf{False} if you think it is false. You may use the space to do scratch work, but no partial credit will be awarded on this question. 
+
+\begin{enumerate} 
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{10pt} The vector field $G(x,y,z) = \langle 3x - 2y e^x, ye^y+z, 3x \rangle$ satisfies 
+
+\[
+\nabla \cdot (\nabla \times (\nabla \times \nabla(\nabla \cdot G))) = -2ye^x+e^y.
+\]
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{10pt} Any surface $S \subset \mathbb{R}^3$ can be given an orientation (i.e. continuous choice of normal vector $\hat{n}$) so that the integral 
+
+\[
+\iint_S F \cdot d\bold{S} = \iint_S F \cdot \hat{n} \, dS
+\]
+
+exists.
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{10pt} There exists a function $h(x,y,z)$ and a closed loop $C$ in $\mathbb{R}^3$ (same starting and ending point) so that 
+
+\[
+\int_C h \cdot ds \neq 0.
+\]
+
+\vfill
+
+\end{enumerate}
+
+\newpage
+
+\item[6.] Let $C$ be the cylinder $x^2 + y^2 \leq 1$ for $0 \leq z \leq 1$, and let $S$ be the boundary surface of $C$, oriented outward, so $S$ consists of the cylinder for $0 < z < 1$ and the disks of radius 1 in the planes $z = 0$ and $z = 1$. Without using the divergence theorem or evaluating any integrals, explain the following two (true) equalities:
+
+\[
+\iint_S z\hat{k} \cdot d\bold{S} = \pi,
+\]
+
+and
+
+\[
+\iint_S |x| \hat{i} \cdot d\bold{S} = 0.
+\]
+
+\vfill
+
+\end{enumerate}
+
+\end{document}

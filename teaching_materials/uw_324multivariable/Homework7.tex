@@ -1,0 +1,56 @@
+\documentclass[11 pt]{report}
+
+\usepackage{myfullpage}
+\usepackage{amssymb}
+\usepackage{esint}
+
+\pagestyle{empty}
+
+\baselineskip=20pt
+
+\newcommand{\pp}{\par \noindent}
+\begin{document}
+
+\centerline{\bf Math 324, Homework 7}
+
+%\begin{center} Due Wednesday, May 24th, at the start of class. \end{center}
+
+\vspace{.2cm}
+
+\begin{enumerate} \item[1.] Give a parametric description of the plane that contains the point $(-1, 0, 0)$ and is normal to the vector $\langle 3, 1, -1 \rangle$. 
+
+\item[2.] Let $S$ be the part of the surface of the  unit sphere that lies above the cone $z = \sqrt{x^2+y^2}$. Give a parametric description of $S$, and find the surface area of $S$ by integrating the function $1$ over $S$. 
+
+\item[3.] Find the area of the part of the surface $z = x^2 + 2y$ that lies above the triangle with vertices $(0,0), (1,0), (1,2)$. 
+
+\item[] For problems 4-6, compute the surface integral $\iint_S f \, dS$ for the given surface $S$ and function $f$. 
+
+\item[4.] $f(x,y,z) = z$; $S$ is the part of the plane $x+y+z = 1$ where $x,y,z \geq 0$. 
+
+\item[5.] $f(x,y,z) = y$; $S$ is the surface $x^2+y^2+z^2 = 4$, for $0 \leq y \leq 1$. 
+
+\item[6.] $f(x,y,z) = x^2+y^2+z^2$; $S$ is the part of the cylinder $x^2+y^2 = 9$ between $z=0$ and $z=2$, together with the top and bottom disks. 
+
+For problems 4-6, evaluate the surface integral $\iint_S F \cdot \, dS$ for the given vector field $F$ and oriented surface $S$. 
+
+\item[7.] $F(x,y,z) = \langle 0, y, -z \rangle$; $S$ consists of the parabloid $y = x^2+z^2, 0 \leq y \leq 1$, and the disk $x^2+z^2 \leq 1, y = 1$ with the outward pointing normal. 
+
+\item[8.] $F(x,y,z) = \langle x,y,z \rangle;$ $S$ is the part of the unit sphere where $\frac{1}{2} \leq z \leq \frac{\sqrt{3}}{2}$ with the inward pointing normal. 
+
+\item[9.] $F(x,y,z) = \langle 0, 0, e^{y+z} \rangle;$ $S$ is the boundary of the unit cube $0 \leq x,y,z \leq 1$ with the outward pointing normal. 
+
+%\item[10.] Use Stokes' Theorem to compute the flux of curl$F$ through the upper hemisphere $x^2+y^2+z^2 = 1, z \geq 0$ with the outward pointing normal, where $F(x,y,z) = \langle e^{z^2}-y, e^{z^3}+x, \cos(xz) \rangle$. 
+%
+%\item[] For problems 10 and 11, verify Stokes' theorem for the vector field and surface, oriented with the upward pointing normal. 
+%
+%\item[11.] $F = \langle 2xy, x, y+z \rangle$; $S$ is the surface $z=1-x^2-y^2$ for $x^2+y^2 \leq 1$. 
+%
+%\item[12.] $F = \langle yz, 0, x \rangle$; $S$ is the part of the plane $x/2+y/3+z = 1$, where $x,y,z \geq 0$. 
+%
+%\item[13.] Evaluate 
+%
+%$$\int_C (y+\sin(x)) \, dx + (z^2+\cos(y)) \, +x^3 \, dz, $$
+%
+%where $C$ is the curve $r(t) = \langle \sin(t), \cos(t), \sin(2t) \rangle, 0 \leq t \leq 2\pi$. [Hint: Observe that $C$ lies on the surface $z = 2xy$.]
+\end{enumerate}
+\end{document}

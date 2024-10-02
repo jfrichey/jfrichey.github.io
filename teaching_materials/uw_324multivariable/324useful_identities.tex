@@ -1,0 +1,146 @@
+\documentclass[11 pt]{report}
+
+\usepackage{myfullpage}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{esint}
+
+\pagestyle{empty}
+
+\baselineskip=20pt
+
+\newcommand{\pp}{\par \noindent}
+\begin{document}
+
+\begin{Large} Formulas you should know \end{Large}
+
+\vspace{5pt}
+
+\large{Math 324} 
+
+\begin{enumerate} \item[] \textbf{Change of variables}
+
+To change to polar coordinates, we have the identities $r^2 = x^2+y^2, x = r \cos \theta, y = r \sin \theta$, and the determinant of the change of coordinate map from cartesian to polar is $r$. That is, 
+
+$$\iint_R f(x,y) \, dx\, dy = \iint_S f(r, \theta) r \, dr \, d\theta,$$
+
+where $S$ is the image of $R$ under the polar coordinate change. 
+
+In general, given a change of coordinates $x = g(u,v), y = h(u,v)$, we have
+
+$$\iint_R f(x,y) \, dx \, dy = \iint_S f(u,v) \Bigl| \text{det} \Bigl( \begin{array}{cc} dx/du & dx/dv \\ dy/du & dy/dv \end{array} \Bigr) \Bigr| \, du \, dv,$$
+
+where $S$ is the image of $R$ under the coordinate change. 
+
+For spherical coordinates, we have
+
+$$\iiint_E f(x,y,z) \, dx \, dy \, dz = \iiint_G f(\rho, \theta, \phi) \rho^2 \sin \phi \, d\rho\, d\theta \, d\phi,$$
+
+where $G$ is the image of $E$ under the coordinate change. 
+
+\vspace{10pt}
+
+Similarly, for cylindrical coordinates, we have
+
+$$\iiint_E f(x,y,z)  \, dx \, dy \, dz = \iiint_G f(r, \theta, z) r \, dr \, d \theta \, dz,$$
+
+where $G$ is the image of $E$ under the coordinate change. 
+\end{enumerate}
+
+\textbf{Integral formulas}
+
+\begin{enumerate} 
+
+\item[] \textit{(Surface area)} For a surface $S$ defined by a function $z = f(x,y)$, where $(x,y) \in D$ is the parameterization domain, the surface area of $S$ is given by 
+
+$$\iint_D \sqrt{1+\Bigl(\frac{d f}{dx}\Bigr)^2 + \Bigl(\frac{d f}{dy} \Bigr)^2} dA.$$
+
+In general, if $S$ is parameterized by $r(u,v) = \langle x(u,v), y(u,v), z(u,v) \rangle$ for $(u,v) \in D$, the surface area of $S$ is given by the formula
+
+$$\iint_D |r_u \times r_v| dA,$$
+
+where $r_u$ and $r_v$ are the vector fields $r_u = \langle \frac{dx}{du}, \frac{dy}{du}, \frac{dz}{du} \rangle,$ and $r_v = \langle \frac{dx}{dv}, \frac{dy}{dv}, \frac{dz}{dv} \rangle.$
+
+\item[]\textit{(Green's Theorem)} For a curve $C$ bounding a region $D$ with the positive orientation (region on the left), and a vector field $F = \langle P, Q \rangle$, 
+
+$$\int_C F \cdot \, d\bold{r} = \iint_D \Bigl(\frac{d Q}{dx} - \frac{dP}{dy}\Bigr) \, dA.$$
+
+\item[] \textit{(Stokes' Theorem)} For a curve $C$ bounding an oriented surface $S$ with the positive orientation, and a vector field $F$, 
+
+$$\int_C F \cdot \, d\bold{r} = \iint_S \text{curl}(F) \cdot \, d\bold{S}.$$
+
+\item[] \textit{(Divergence Theorem)} For a surface $S$ bounding a region $E$ with the outward pointing normal orientation, and a vector field $F$, 
+
+$$\iint_S F \cdot \, d\bold{S} = \iiint_E \text{div}(F) \, dV.$$
+
+\item[] For a surface $z = g(x,y)$ over a domain $D$ in the $xy-$plane, an oriented surface $S$ with the positive orientation (positive $z$ direction) and a vector field $F = \langle P, Q, R \rangle$, 
+
+$$\iint_S F \cdot \, d\bold{S} = \iint_D (-P \frac{d g}{dx} - Q \frac{dg}{dy}+R) \, dA.$$
+
+
+
+\vspace{10pt} 
+
+\item[] \textbf{Trig Identities} 
+
+$\tan \theta = \frac{\sin \theta}{\cos \theta}.$
+
+\vspace{5pt}
+
+$\sin \theta = \cos(\frac{\pi}{2} - \theta)$. 
+
+\vspace{5pt}
+
+$\sin^2 \theta+\cos^2 \theta = 1.$
+\vspace{5pt}
+
+$\tan^2\theta+1 = \sec^2 \theta.$
+\vspace{5pt}
+
+$1+ \cot^2 \theta = \csc^2 \theta$. 
+\vspace{5pt}
+
+$\sin(a+b) = \sin(a)\cos(b) + \cos(a)\sin(b)$: a useful special case is $\sin(2\theta) = 2\sin\theta\cos\theta$.
+\vspace{5pt}
+
+$\cos(a+b) = \cos(a)\cos(b) - \sin(a) \sin(b)$: a useful special case is $\cos(2\theta) = \cos^2\theta -\sin^2\theta$. 
+\vspace{5pt}
+
+$\sin^2 \theta = \frac{1}{2}(1-\cos(2\theta))$.
+\vspace{5pt}
+
+$\cos^2 \theta = \frac{1}{2}(1+\cos(2\theta))$. 
+
+\vspace{10pt} 
+
+\item[] \textbf{Integral formulas} 
+
+$\int x^r \, dx  = \frac{1}{r+1} x^{r+1} + C,$ if $r \neq -1$. 
+\vspace{5pt}
+
+$\int \frac{1}{x} \, dx = \ln | x| + C$
+\vspace{5pt}
+
+$\int \sin x \, dx = -\cos x + C$
+\vspace{5pt}
+
+$\int \cos x \, dx = \sin x + C$
+\vspace{5pt}
+
+$\int \frac{1}{1+x^2} \, dx = \arctan x + C$
+\vspace{5pt}
+
+$\int \sec^2 x \, dx = \tan x + C$
+\vspace{5pt}
+
+$\int \sec x \tan x \, dx = \sec x + C$
+\vspace{5pt}
+
+$\int \csc^2 x \, dx = - \cot x + C$
+
+
+\end{enumerate}
+
+
+
+\end{document}

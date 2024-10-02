@@ -1,0 +1,142 @@
+\documentclass[12 pt]{report}
+
+\usepackage{epsfig}
+\usepackage[in,empty]{myfullpage}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\baselineskip=20pt
+
+\begin{document}
+
+\noindent \vfill \noindent \large
+
+\centerline{Math 324 E  - Spring 2019}
+
+\centerline{Midterm exam 2}
+
+\centerline{Friday, May 24th, 2019}
+
+\normalsize
+
+\vfill
+\medskip
+Name: \rule{10cm}{1pt}
+
+\bigskip
+
+\vfill
+\begin{center}
+{\large
+\begin{tabular}{||c|c|r||}
+\hline Problem 1 & 3 & \hspace{10mm} \hfill \\
+\hline Problem 2 & 4 & \hspace{10mm} \hfill \\
+\hline Problem 3 & 4 & \hspace{10mm} \hfill \\
+\hline Problem 4 & 5 & \hspace{10mm} \hfill \\
+\hline Problem 5 & 4 & \hspace{10mm} \hfill \\
+\hline Total & 20 & \hspace{10mm} \hfill \\
+\hline
+\end{tabular}
+}
+\end{center}
+\vfill
+\begin{itemize}
+\item There are 5 questions on this exam. Make sure you have all five.
+\item \textbf{You must show your work on all problems.}  The correct answer
+with no supporting work may result in no credit. Put a box
+around your FINAL ANSWER for each problem and cross out any work
+that you don't want to be graded.
+\item Give exact answers, and simplify as much as possible. 
+\item Use the backs of pages \textit{for scratch work only}.
+\item Raise your hand if you have a question.
+\item Any student found engaging in academic misconduct will receive
+a score of 0 on this exam.
+\item You have 50 minutes to complete the exam.  Budget your time wisely! \\
+\end{itemize}
+\vfill
+\begin{center}GOOD LUCK!\end{center}
+
+\newpage
+\begin{enumerate}
+
+\item Let $f(x,y,z) = xz^2 - 2yz$. 
+
+\begin{enumerate} \item[a)] Compute the directional derivative of $f$ at the point $(-1,0,2)$ in the direction $u = \frac{1}{\sqrt{3}} (\hat{i} + \hat{j} + \hat{k})$. 
+
+\vfill 
+
+\item[b)] What is the maximum value of directional derivative $D_u f(-1,0,2)$ as $u$ ranges over all unit vectors in $\mathbb{R}^3$? What is the unit vector $u$ for which the maximum is attained?
+
+\vfill
+
+\end{enumerate}
+
+\newpage
+
+\item For each pair of conservative vector field $F$ and curve $C$, first find a potential function for $F$, and then use the fundamental theorem of line integrals to evaluate $\int_C F \cdot dr$. 
+
+\begin{enumerate} \item[a)] $F(x,y) = xy \hat{i} + \frac{1}{2}x^2 \hat{j}$, and $C$ is the part of the hyperbola $y = \frac{3}{x}$ between the points $(1,3)$ and $(3,1)$, traversed from left to right. 
+
+\vfill
+
+\item[b)] $F(x,y,z) = z\cos(x) \hat{i} - \hat{j} + \sin(x) \hat{k},$ and $C$ is the curve parameterized by $r(t) = (t, t, -1)$, for $0 \leq t \leq \pi/2$. 
+
+\vfill
+
+\end{enumerate}
+
+\newpage
+
+
+\item For each of the statements below, circle \textbf{True} if you think it is true, and circle \textbf{False} if you think it is false. You may use the space to do scratch work, but no partial credit will be awarded on this question. 
+
+\begin{enumerate} 
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{10pt} The function $f(x,y) = e^{x^2-2y^2}$ satisfies $\nabla f = 2x f(x,y) \hat{i} - 4y f(x,y)$.
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{10pt} The vector field $F = \frac{-y \hat{i} + x \hat{j}}{x^2+y^2}$ satisfies $\int_C F \cdot dr = 0$ where $C$ is the unit circle traversed counter clockwise. 
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{10pt} Let $G(x,y) = (9x + 2x^2 y^2) \hat{i} + x^3 y \hat{j}$. $G$ is a conservative vector field. 
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{10pt} Let $F$ be a vector field defined on all of $\mathbb{R}^2$, and let $C$ be a curve starting at $(-3,1)$ and ending at $(2,2)$. Let $T$ denote the unit tangent vector field to $C$. Suppose that $F \cdot T < 0$ at every point on $C$. Then 
+
+\[
+\int_C F \cdot \, dr < 0.
+\]
+
+\vfill
+
+\end{enumerate}
+
+\newpage
+
+
+\item Let $F(x,y) = 2x^2y \hat{i} - 3x \hat{j}$, and let $C$ denote the curve defined by the ellipse $x^2 + \frac{y^2}{9} = 1$, traversed clockwise. Use Green's theorem to evaluate $\int_C F \cdot dr$. 
+
+
+\newpage
+
+\item Let $f(x,y,z) = x^2 + z^2$, and consider the 3D region $E$ of points $(x,y,z)$ satisfying 
+
+\[
+z \geq 0 \text{ and } 4 \leq x^2+y^2+z^2 \leq 9 \text{ and } x^2 + y^2 \leq 4.
+\]
+
+Use cylindrical coordinates to set up the integral
+
+\[
+\iiint_E f \, dV.
+\]
+
+\textbf{You don't have to evaluate it.}
+
+
+\end{enumerate}
+
+
+\end{document}

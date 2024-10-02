@@ -1,0 +1,222 @@
+\documentclass[12 pt]{report}
+
+\usepackage{epsfig}
+\usepackage[in,empty]{myfullpage}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\baselineskip=20pt
+
+\begin{document}
+
+\noindent \vfill \noindent \large
+
+\centerline{Math 324 B  - Winter 2017}
+
+\centerline{Final exam}
+
+\centerline{Monday, March 13th, 2017}
+
+\normalsize
+
+\vfill
+\medskip
+Name: \rule{10cm}{1pt}
+
+\bigskip
+
+\vfill
+\begin{center}
+{\large
+\begin{tabular}{||c|c|r||}
+\hline Problem 1 & 20 & \hspace{10mm} \hfill \\
+\hline Problem 2 & 15 & \hspace{10mm} \hfill \\
+\hline Problem 3 & 15 & \hspace{10mm} \hfill \\
+\hline Problem 4 & 20  & \hspace{10mm} \hfill \\
+\hline Problem 5 & 15  & \hspace{10mm} \hfill \\
+\hline Problem 6 & 15  & \hspace{10mm} \hfill \\
+\hline Total & 100 & \hspace{10mm} \hfill \\
+\hline
+\end{tabular}
+}
+\end{center}
+\vfill
+\begin{itemize}
+\item There are 6 problems (7 pages) in this exam. Make sure you have them all. 
+\item You must show your work on all problems.  The correct answer
+with no supporting work may result in no credit. \textbf{Put a box
+around your FINAL ANSWER for each problem and cross out any work
+that you don't want to be graded.} 
+\item Give exact answers, and simplify as much as possible. 
+For example, $\frac{\pi}{\sqrt{2}}$ is acceptable, but $\frac{1}{2} + \frac{3}{4}$
+should be simplified to $\frac{5}{4}$.   
+
+\item If you need more room, use the backs
+of the pages and indicate to the grader that you have done so.
+\item Raise your hand if you have a question.
+\item Any student found engaging in academic misconduct will receive
+a score of 0 on this exam.
+\item You have 2 hours to complete the exam.  Budget your time wisely! \\
+\end{itemize}
+\vfill
+\begin{center}GOOD LUCK!\end{center}
+
+\newpage
+\begin{enumerate}
+
+\item (20 pts) Let $S$ be the cylinder $y^2+z^2 = 9$ for $-1 \leq x \leq 2$, oriented inward (i.e. toward the $x-$axis). Use Stokes' theorem to evaluate
+
+\[
+\iint_S \nabla \times \langle z^2, 0, 1+xy \rangle \, \cdot dS.
+\]
+
+Make sure to indicate how you are orienting the boundary curves. 
+
+\vfill
+
+\newpage \item (15 pts) Evaluate the surface integral
+
+\[
+\iint_S \langle 4xy, -2z, z^2 \rangle \, \cdot dS,
+\]
+
+where $S$ is the boundary of the hemisphere region $E = \{(x,y,z): x^2 + y^2 + z^2 \leq 25, y \leq 0 \}$, oriented inward, i.e. towards $E$. 
+
+\vfill
+
+\newpage \item (15 pts) Let $P$ be the ellipsoid defined by the equation $x^2 + \frac{y^2}{4} + z^2 = 1$. 
+
+\begin{enumerate} \item (5 pts) Give a parameterization $r = r(\phi, \theta)$ of $P$ in terms of the angle coordinates $\phi$ and $\theta$ that we usually use for spherical coordinates.
+
+\vspace{4cm}
+
+\item (5 pts) Compute $r_\phi \times r_\theta$. 
+
+\vfill
+
+\item (5 pts) Find a vector that is normal to $P$ at the point $(x,y,z) = (1/4, \sqrt{3}, \sqrt{3}/4)$. 
+
+\vfill
+
+\end{enumerate}
+
+\newpage \item (20 pts; 4 pts each) For each of the statements below, circle \textbf{True} if you think it is true and \textbf{False} if you think it is false. 
+
+\begin{enumerate} \item \textbf{True}\hspace{5pt} \textbf{False} \hspace{5pt} Let $C$ be the curve $r(t) = \langle 2 + 3 \sin(2t), \cos^3(6t), 2 \cos(2 t) \rangle$ for $0 \leq t \leq \pi/2$. For any conservative vector field $F$,  
+
+\[
+\int_C F \, \cdot dr = 0.
+\]
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} Let $S$ denote the surface of the sphere of radius $3$ centered at $(1,0, \sqrt{2})$, oriented outward. For any vector field $F$, 
+
+\[ 
+\iint_S \nabla \times F \, \cdot dS = 0.
+\]
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} If $G$ is a vector field, and $\nabla \cdot G \neq 0$, then $G$ is not conservative. 
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} If $S$ is an oriented surface whose normal vector $n$ always has negative entries (i.e. $n \cdot \hat{i}, n \cdot \hat{j},$ and $n \cdot \hat{k}$ are always negative), then
+
+\[
+\iint_S \langle 1+\cos(x), y^2 + z^2, e^x  \rangle \, \cdot dS \leq 0.
+\]
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} If $r(u,v)$ and $s(u,v)$ are any two parameterizations of the same surface $S$, over possibly different parameterization domains $D, D'$ in the $u$-$v$ plane, then 
+
+\[ 
+\iint_D (5u^2 - \sin(\pi u v)) |r_u \times r_v| dA = \iint_{D'} (5u^2 - \sin(\pi u v)) |s_u \times s_v| dA.
+\]
+
+\vfill
+
+
+\end{enumerate}
+
+%\newpage
+%
+%\item (20 pts) Let $E$ denote the unit cube in $\mathbb{R}^3$, $E = \{(x,y,z): 0 \leq x, y, z \leq 1\}$. Let $S = \partial E$ be the boundary of the cube, with the outward pointing orientation (away from $E$). Use the divergence theorem to evaluate 
+%
+%\[
+%\iint_{\partial E} \langle 0, 0, e^{y+z} \rangle \cdot dS.
+%\]
+
+% \item (20 pts) Consider the radial vector field $F = \frac{1}{|r|^4} r$, where $r = \langle x, y, z \rangle.$ 
+%
+%\begin{enumerate} \item (5 pts) Find the divergence of $F$: write your final answer in terms of $r$. 
+%
+%\vfill
+%
+%\item (7 pts) Let $E_R$ be the spherical region $\{(\rho, \theta, \phi): 1 \leq \rho \leq R\}$, where $R > 1$ is a fixed number. Evaluate the volume integral
+%
+%\[
+%\iiint_{E_R} \nabla \cdot F \, dV.
+%\]
+%
+%\vfill
+%
+%\newpage
+%
+%\item (5 pts) Let $S_1$ denote the surface of the sphere of radius $1$ oriented toward the origin, and let $S_R$ denote the surface of the sphere of radius $R$ oriented away from the origin. According to the divergence theorem, 
+%
+%\[
+%\iint_{S_1} F \cdot dS + \iint_{S_R} F \cdot dS = \iiint_{E_R} \nabla \cdot F \, \cdot dS.
+%\]
+%
+%You found the value of the right hand side of this equation in part b: compute one of the integrals on the left hand side, and use your answer to find the value of the other integral. 
+%
+%\vfill 
+%
+%\item (3 pts) What happens to the values of the three integrals from part $c$ when $R \to \infty$?
+%
+%\vfill
+%
+%\end{enumerate}
+%
+
+\newpage
+
+\item (15 pts) Consider the curve $C$ parameterized by $r(t) = \langle t^2, t, \ln(t) \rangle$ for $0 < t < 1$. Evaluate the line integral (with respect to arclength)
+
+\[
+\int_C x \sqrt{4e^{4z} + y^2 + 1} \, ds.
+\]
+
+\newpage
+
+\item (15 pts) Let $D$ denote the unit square in $\mathbb{R}^2$, so $D = \{(x,y): 0 \leq x \leq 1, 0 \leq y \leq 1\}$. Consider the change of coordinates $x = u - v, y = uv$. 
+
+\begin{enumerate} \item (8 pts) What region $R$ in the right half of the $u$-$v$ plane $\{(u,v): u \geq 0\}$ corresponds to $D$ under this transformation? Draw a picture of the image region, and explain how you know that $T(u,v) = \langle u - v, uv \rangle$ actually has domain $R$ and image $D$. 
+
+\vspace{10cm}
+
+\item (7 pts) Use the change of coordinates formula to re-write the double integral 
+
+\[ 
+\iint_D (x^2 + 4y^2) \, dA
+\]
+
+in $u-v$ coordinates, i.e. as an integral over the region $R$. Your answer should look like 
+
+\[ 
+\iint_R g(u,v) \, dA
+\]
+
+for some function $g$.  
+
+\vfill
+
+\end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}

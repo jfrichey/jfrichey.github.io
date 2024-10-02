@@ -1,0 +1,51 @@
+\documentclass[11 pt]{report}
+
+\usepackage{myfullpage}
+\usepackage{amssymb}
+\usepackage{esint}
+
+\pagestyle{empty}
+
+\baselineskip=20pt
+
+\newcommand{\pp}{\par \noindent}
+\begin{document}
+
+\centerline{\bf Math 324, Homework 8}
+
+%\begin{center} Due Friday, June 2nd, at the start of class. \end{center}
+
+\vspace{.2cm}
+
+\noindent For problems 1-4, verify Stokes' theorem for the given oriented surface and vector field. That is, show that $\int_C F \cdot dr = \iint_S \nabla \times F \cdot dS$ where $C = \partial S$ is the boundary curve of $S$. You may use whatever orientation you like, but be sure to specify which orientation you are using. 
+
+\begin{enumerate} \item $F = \langle 2xy, x, y+z \rangle$, $S$ is the surface $z = 1-x^2-y^2$ for $x^2 + y^2 \leq 1$. 
+
+\item $F = \langle yz, 0, x \rangle$, $S$ is the portion of the plane $x/2 + y/3 + z = 1$ where $x, y ,z \geq 0$. 
+
+\item $F = \langle e^{y-z}, 0, 0\rangle$, $S$ is the square with vertices $(1,0,1), (1,1,1), (0,1,1),$ and $(0,0,1)$. 
+
+\item $F = \langle yz^2, 0,0 \rangle$, $S$ is the surface of the cylinder $x^2 + y^2$ of radius 2 for $1 \leq z \leq 6$ (not including the top and bottom disks). 
+
+\item Use Stokes' theorem to evaluate 
+
+$$\iint_S \nabla \times \langle 0, x, xz \rangle \cdot dS,$$
+
+\vspace{5pt} \noindent where $S$ is the spherical cap $x^2+y^2+z^2 = 1$ for $z \geq 1/2$ oriented towards the positive $z$-axis. 
+
+\end{enumerate}
+
+\noindent For problems 6-7, verify the divergence theorem for the given vector field $F$ and region $E$. That is, show that $\iint_S F \cdot dS = \iiint_E \nabla \cdot F dV$ where $S = \partial E$ is the boundary surface of $E$ oriented outward. 
+
+\begin{enumerate} \item[6.] $F = \langle y, x, z \rangle,$ $E$ is the interior of the sphere of radius $2$. 
+
+\item[7.] $F = \langle x, y^2, z + y \rangle$, $E$ is the region bounded by the cylinder $x^2+y^2 = 4$ and the planes $z = x, z = 8$. 
+
+\item[8.] Suppose $E$ is a region in $\mathbb{R}^3$ such that 
+
+$$\iint_{\partial E} \langle x + 2xy + z, e^x - 3z^2 - y^2, 4z \rangle \cdot dS = 85,$$
+
+where $\partial E$ is the boundary of $E$ oriented outward. Find the volume of $E$. 
+
+\end{enumerate}
+\end{document}

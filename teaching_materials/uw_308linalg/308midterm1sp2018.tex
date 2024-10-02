@@ -1,0 +1,146 @@
+\documentclass[12 pt]{report}
+
+\usepackage{epsfig}
+\usepackage[in,empty]{myfullpage}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\baselineskip=20pt
+
+\begin{document}
+
+\noindent \vfill \noindent \large
+
+\centerline{Math 308 E - Spring 2018}
+
+\centerline{Midterm exam 1}
+
+\centerline{Friday, April 20th, 2018}
+
+\normalsize
+
+\vfill
+\medskip
+Name: \rule{10cm}{1pt}
+
+\bigskip
+
+\vfill
+\begin{center}
+{\large
+\begin{tabular}{||c|c|r||}
+\hline Problem 1 & 15 & \hspace{10mm} \hfill \\
+\hline Problem 2 & 10 & \hspace{10mm} \hfill \\
+\hline Problem 3 & 15 & \hspace{10mm} \hfill \\
+\hline Problem 4 & 10 & \hspace{10mm} \hfill \\
+\hline Total & 50 & \hspace{10mm} \hfill \\
+\hline
+\end{tabular}
+}
+\end{center}
+\vfill
+\begin{itemize}
+\item There are 4 questions on this exam. Make sure you have all four.
+\item \textbf{You must show your work on all problems.}  The correct answer
+with no supporting work may result in no credit. Put a box
+around your FINAL ANSWER for each problem and cross out any work
+that you don't want to be graded.
+\item Give exact answers, and simplify as much as possible. 
+\item If you need more room, use the backs
+of the pages and indicate to the grader that you have done so.
+\item Raise your hand if you have a question.
+\item Any student found engaging in academic misconduct will receive
+a score of 0 on this exam.
+\item You have 50 minutes to complete the exam.  Budget your time wisely! \\
+\end{itemize}
+\vfill
+\begin{center}GOOD LUCK!\end{center}
+
+\newpage
+
+\begin{enumerate}
+
+\item (15 points) Consider the function $T: \mathbb{R}^4 \to \mathbb{R}^2$ given by 
+
+\[
+T\Big( \begin{bmatrix} x \\ y \\ z \\ w \end{bmatrix} \Big) = \begin{bmatrix} x-2z + w \\ y + w \end{bmatrix}.
+\]
+
+\begin{enumerate} \item (5 points) Find a matrix $A$ such that $T(v) = A \cdot v$ for all $v \in \mathbb{R}^4$. 
+
+\vfill 
+
+\item (5 points) Is $T$ onto? Why or why not?
+
+\vfill
+
+\item (5 points) Is $T$ one-to-one? Why or why not?
+
+\vfill
+
+\end{enumerate} 
+
+\newpage
+
+\item (10 points) Consider the vectors $v, u, w, z \in \mathbb{R}^4$ given by 
+
+\[
+u = \begin{bmatrix} -1 \\ 1 \\ 0 \\ 2 \end{bmatrix}, \, v = \begin{bmatrix} 0 \\ -1 \\ 3 \\ 0 \end{bmatrix}, \, w = \begin{bmatrix} 0 \\ 0 \\ -1 \\ -1 \end{bmatrix}, \, z = \begin{bmatrix} 2 \\ 1 \\ -1 \\ 4 \end{bmatrix}
+\]
+
+\begin{enumerate} \item (5 points) Is $z \in span\{u, v ,w \}$? If so, find numbers $x_1, x_2, x_3$ such that $x_1 u + x_2 v + x_3 w = z$. 
+
+\vfill 
+
+\item (5 points) Is $\{u, v, w\}$ linearly independent? Why or why not? (Hint: use your calculation from part $a$.)
+
+\vfill
+
+\end{enumerate} 
+
+\newpage
+
+\item (15 points) Circle \textbf{True} or \textbf{False} for each of the statements below. No justification is needed. 
+
+\begin{enumerate} \item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} There exist six vectors in $\mathbb{R}^5$ that are linearly independent.
+
+\vfill 
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} A function $f: \mathbb{R} \to \mathbb{R}$ is a linear transformation if and only if $f(x) = cx$ for some $c \in \mathbb{R}$. 
+
+\vfill 
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} A homogeneous system of equations may have infinitely many solutions. 
+
+\vfill 
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} The matrix below is in eschelon form, and has a pivot in every column. 
+
+\[
+\begin{bmatrix} -1 && 0 && 0 \\ 0 && 1 && -1 \\ 0 && 0 && 1 \\ 0 && 0 && 0 \end{bmatrix}
+\]
+
+\vfill 
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} There exist three vectors in $\mathbb{R}^4$ that are linearly dependent. 
+
+\vfill 
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} There exists a $3 \times 7$ matrix $A$ and a vector $b \in \mathbb{R}^3$ such that the equation $Ax = b$ has exactly three solutions for $x \in \mathbb{R}^7$. 
+
+\vfill 
+
+\end{enumerate}
+
+\newpage
+
+\item (10 points) Find an example of a matrix $A$ such that the linear transformation $T: \mathbb{R}^2 \to \mathbb{R}^3$ given by $T(v) = A \cdot v$ satisfies 
+
+\[
+T\Big( \begin{bmatrix} -1 \\ 1 \end{bmatrix}\Big) = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, \, T\Big( \begin{bmatrix} 1 \\ 2 \end{bmatrix}\Big) = \begin{bmatrix} 1 \\ 0 \\ -1 \end{bmatrix}.
+\]
+
+How many different transformations $T$ are there that satisfy these conditions? Explain. 
+\end{enumerate}
+
+\end{document}

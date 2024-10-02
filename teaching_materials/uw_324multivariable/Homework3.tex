@@ -1,0 +1,52 @@
+\documentclass[11 pt]{report}
+
+\usepackage{myfullpage}
+\usepackage{amssymb}
+\usepackage{esint}
+
+\pagestyle{empty}
+
+\baselineskip=20pt
+
+\newcommand{\pp}{\par \noindent}
+\begin{document}
+
+\centerline{\bf Math 324, Homework 3}
+
+%\begin{center} Due Friday, April 14, at the start of class. \end{center}
+
+\vspace{.2cm}
+
+\begin{enumerate} \item[] For problems 1-3, use cylindrical coordinates to evaluate $\displaystyle \iiint_E f(x,y,z)\, dV$ for the given function and region.
+
+\item[1.] $f(x,y,z) = x,$ and $E$ is the region enclosed by the planes $z = 0, z = x+y+5$ and the cylinders $x^2+y^2 = 4, x^2 + y^2 = 9$. 
+ 
+\item[2.] $f(x,y,z) = z \sqrt{x^2+y^2}$ over the region $x^2+y^2 \leq z \leq 8 - (x^2+y^2)$. 
+
+\item[3.] $f(x,y,z) = z$ over the region $0 \leq z \leq x^2+y^2 \leq 9$. 
+
+\end{enumerate}
+
+\begin{enumerate} \item[4.] Express this triple integral in cylindrical coordinates: $\displaystyle \int_0^1 \int_0^{\sqrt{2x-x^2}} \int_0^{\sqrt{x^2+y^2}} f(x,y,z) \, dz dy dx.$ \end{enumerate}
+
+\begin{enumerate} \item[] For problems 5-8, use spherical coordinates to evaluate $\displaystyle \iiint_E f(x,y,z)\, dV$ for the given function and region. 
+
+\item[5.] $f(x,y,z) = x^2 + y^2$ over the region $4 \leq x^2+y^2+z^2 \leq 9.$ 
+
+\item[6.] $f(x,y,z) = \sqrt{x^2+y^2+z^2},$ over the region $x^2+y^2+z^2 \leq 2z$. 
+
+\item[7.] $f(x,y,z) = (1+x^2+y^2+z^2)^{-2}$, over all of $\mathbb{R}^3$. [Do the integral on the ball of radius $R$, and then take the limit $R \to \infty$.]
+
+\item[8.] $f(x,y,z) = x e^{x^2+y^2+z^2}$ over the part of the unit ball $x^2+y^2+z^2 \leq 1$ that lies in the octant $x \leq 0, z \leq 0,$ and $ y \geq 0$. 
+\end{enumerate} 
+
+\begin{enumerate} \item[9.] (Stewart 15.10.12) Find equations for a transformation $T$ that maps a rectangular region $S$ in the $u-v$ plane onto the parallelogram $R$ in the $x-y$ plane with vertices $(0,0), (4,3), (2,4), (-2,1)$. 
+
+\item[10.] (15.10.15) Evaluate the integral $\displaystyle \iint_R (x-3y) \, dA$, where $R$ is the triangle with vertices $(0,0), (1,2), (2,1)$, by using the transformation $x = 2u+v, y = u+2v$. 
+
+\item[11.] (Stewart 15.10.27) Evaluate $\displaystyle \iint_R e^{x+y} \, dA$, where $R$ is the region $\{(x,y): |x|+|y| \leq 1\}$. 
+
+
+\end{enumerate}
+
+\end{document}

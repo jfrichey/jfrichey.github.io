@@ -1,0 +1,149 @@
+\documentclass[12 pt]{report}
+
+\usepackage{epsfig}
+\usepackage[in,empty]{myfullpage}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\baselineskip=20pt
+
+\begin{document}
+
+\noindent \vfill \noindent \large
+
+\centerline{Math 324 E}
+
+\centerline{Final exam}
+
+\centerline{Tuesday, December 10, 2019}
+
+\normalsize
+
+\vfill
+\medskip
+Name: \rule{10cm}{1pt}
+
+\bigskip
+
+\vfill
+\begin{center}
+{\large
+\begin{tabular}{||c|c|r||}
+\hline Problem 1 & 12 & \hspace{10mm} \hfill \\
+\hline Problem 2 & 12  & \hspace{10mm} \hfill \\
+\hline Problem 3 & 12 & \hspace{10mm} \hfill \\
+\hline Problem 4 & 12  & \hspace{10mm} \hfill \\
+\hline Problem 5 & 12  & \hspace{10mm} \hfill \\
+\hline Total & 60 & \hspace{10mm} \hfill \\
+\hline
+\end{tabular}
+}
+\end{center}
+\vfill
+\begin{itemize}
+\item There are 5 questions on this exam. Make sure you have all five.
+\item \textbf{You must show your work on all problems.}  The correct answer
+with no supporting work may result in no credit. Put a box
+around your FINAL ANSWER for each problem and cross out any work
+that you don't want to be graded.
+\item Give exact answers, and simplify as much as possible. 
+\item Use the backs of pages \textit{for scratch work only}.
+\item Raise your hand if you have a question.
+\item Any student found engaging in academic misconduct will receive
+a score of 0 on this exam.
+\item You have 110 minutes to complete the exam.  Budget your time wisely! \\
+\end{itemize}
+\vfill
+\begin{center}GOOD LUCK!\end{center}
+
+\newpage
+\begin{enumerate}
+
+\item Let $E$ be the region in $\mathbb{R}^3$ given by 
+
+\begin{equation*}
+E = \{(x,y,z):  x^2 + z^2 \leq y \leq 4 - x^2 - z^2 \text{ and } x > 0 \}.
+\end{equation*}
+
+Use the divergence theorem to evaluate the surface integral
+
+$$\iint_{\partial E} \left( yz^2\hat{i} +x^2 y \hat{j} + \frac{1}{3}z^3 \hat{k} \right) \cdot d \bold{S},$$
+
+where $\partial E$ denotes the boundary surface of $E$, oriented outward (normal points away from $E$). 
+\newpage
+
+\item Let $F = x^2 \hat{i} - xyz^2 \hat{j} + y^4 \hat{k}.$ 
+
+\begin{enumerate} \item Find $\nabla \cdot F, \nabla \times F$, and grad$($div$(F))$.
+
+\vfill
+
+\item Is $F$ conservative? Why or why not?
+
+\vfill 
+
+\item Is grad$($div$(F))$ conservative? Why or why not?
+
+\vfill
+
+\item What is $\nabla \times (\nabla \times( \nabla \times (\nabla \times (\nabla \times F))))$? Explain your reasoning. 
+
+\vfill
+
+\end{enumerate} 
+ 
+\newpage
+
+\item Let $F = x \hat{i} - 2z \hat{j} + \hat{k}$, and let $S$ be the part of the plane $x - y + z = 3$ where $0 \leq y \leq 3$ and $-1 \leq z \leq 1$, oriented with the unit normal vector 
+
+$$\hat{n} = \frac{1}{\sqrt{3}}\left(-\hat{i} + \hat{j} - \hat{k}\right).$$
+
+Evaluate the surface integral 
+
+\begin{equation*}
+\iint_S F \cdot \, d\bold{S}.
+\end{equation*}
+
+
+\newpage
+
+\item For each of the statements below, circle \textbf{True} if you think it is true, and circle \textbf{False} if you think it is false. You may use the space to do scratch work, but no partial credit will be awarded on this question. 
+
+\begin{enumerate} 
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{10pt} Suppose $F$ and $G$ are two vector fields such that 
+
+$$\iint_S F \cdot \, d\bold{S} = \iint_S G \cdot \, d\bold{S}$$
+
+where $S$ is the unit sphere, oriented outward. Then $F = G$ on $S$. 
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{10pt} If $H$ is a vector field satisfying $\nabla \cdot H = 0$, then 
+
+$$\iint_S H \cdot \, d\bold{S} = 0$$
+
+for any oriented surface $S$. 
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{10pt} $\nabla \cdot( \nabla f) = 0$ for any function $f: \mathbb{R}^3 \to \mathbb{R}$. 
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{10pt} If $F, G: \mathbb{R}^3 \to \mathbb{R}$ are vector fields satisfying $F \cdot \hat{k} = 0$ and $G \cdot \hat{k} = 0$, then 
+
+$$(F \times G) \cdot \hat{i} = (F \times G) \cdot \hat{j} =  0.$$  
+
+\vfill
+
+\end{enumerate}
+
+\newpage
+
+\item Let $S$ be the bottom half of the unit sphere $x^2 + y^2 + z^2 = 1, z \leq 0$, oriented inward (normal points toward the origin). Also, let $C$ denote the boundary curve of $S$, i.e. the circle $x^2 + y^2 = 1$, oriented clockwise (when looking down from the positive $z$ axis). Use Stokes' theorem to evaluate the line integral
+
+$$\int_C \left( 3y \hat{i} + x \hat{j} + 2x \hat{k} \right) \cdot  \, d\bold{r}.$$
+
+\end{enumerate}
+
+\end{document}

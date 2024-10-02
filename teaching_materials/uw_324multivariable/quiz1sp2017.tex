@@ -1,0 +1,54 @@
+\documentclass{exam}
+\usepackage[utf8]{inputenc}
+\usepackage{epsfig}
+\usepackage[in,empty]{myfullpage}
+\usepackage{amssymb}
+\usepackage{amsmath}
+ 
+\begin{document}
+ 
+\begin{center} \begin{Large} Math 324 A, Spring 2017, pop quiz! \end{Large}
+\end{center} 
+
+\vspace{5mm}
+
+\begin{center}
+\fbox{\fbox{\parbox{5.5in}{You have 10 minutes to complete the quiz. Make sure to explain your reasoning. \linebreak
+This quiz is out of 5 points. Your score will be added to your second midterm grade.}}}
+\end{center}
+
+\vspace{1cm}
+ 
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{1cm}
+
+\begin{questions}
+\question (For all the marbles.) Let $S$ denote the upper hemisphere of the sphere of radius $1$ centered at the origin, i.e. the points $(x,y,z)$ satisfying $x^2 + y^2 + z^2 = 1$ and $z \geq 0$. Also, let $E$ be the inside of the top hemisphere, i.e. all $(x,y,z)$ with $x^2 + y^2 + z^2 \leq 1$ and $z \geq 0$. Give $S$ the outward orientation, so the normal vector $\widehat{n}$ to $S$ has positive $z$ component. Consider the vector field $F = x^2 y z \hat{i} + (x+2) \sin(z)\hat{j} - xyz^2 \hat{k}$. Suppose we want to compute the flux of $F$ through $S$. 
+
+\vspace{2mm}
+
+Henry, Jacob's evil twin brother, reasons as follows. Note that 
+
+\begin{equation}
+\nabla \cdot F = \frac{d}{d x} x^2 y z + \frac{d}{dy} (x+2) \sin(z) - \frac{d}{d z} xy z^2 = 2xyz +0 - 2xyz = 0,\nonumber
+\end{equation}
+
+so by the divergence theorem,
+
+\begin{equation} 
+\iint_S F \cdot dS = \iiint_E \nabla \cdot F \, dV = \iiint_E 0 \, dV = 0. \nonumber
+\end{equation}
+
+It happens to be true that 
+
+\begin{equation}
+\iint_S F \cdot dS = 0, \nonumber
+\end{equation}
+
+but Henry's reasoning is flawed. Explain where Henry went wrong, and why he got the right answer anyway.
+
+[Hint: what is $\partial E$?]
+
+\end{questions}
+\end{document}

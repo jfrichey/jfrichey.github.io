@@ -1,0 +1,192 @@
+\documentclass[12 pt]{report}
+
+\usepackage{epsfig}
+\usepackage[in,empty]{myfullpage}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\baselineskip=20pt
+
+\begin{document}
+
+\noindent \vfill \noindent \large
+
+\centerline{Math 308 E - Spring 2018}
+
+\centerline{Final exam}
+
+\centerline{Thursday, June 7th, 2018}
+
+\normalsize
+
+\vfill
+\medskip
+Name: \rule{10cm}{1pt}
+
+\bigskip
+
+\vfill
+\begin{center}
+{\large
+\begin{tabular}{||c|c|r||}
+\hline Problem 1 & 15 & \hspace{10mm} \hfill \\
+\hline Problem 2 & 15 & \hspace{10mm} \hfill \\
+\hline Problem 3 & 20 & \hspace{10mm} \hfill \\
+\hline Problem 4 & 15 & \hspace{10mm} \hfill \\
+\hline Problem 5 & 15 & \hspace{10mm} \hfill \\
+\hline Problem 6 & 20 & \hspace{10mm} \hfill \\
+\hline Total & 100 & \hspace{10mm} \hfill \\
+\hline
+\end{tabular}
+}
+\end{center}
+\vfill
+\begin{itemize}
+\item There are 6 questions on this exam. Make sure you have all six.
+\item Always explain your reasoning clearly and concisely. 
+\item Any student found engaging in academic misconduct will receive
+a score of 0 on this exam.
+\item You have 110 minutes to complete the exam. \\
+\end{itemize}
+\vfill
+\begin{center}GOOD LUCK!\end{center}
+
+\newpage
+
+\begin{enumerate}
+
+\item (15 points) Let $\mathcal{B} = \{u_1, u_2, u_3, u_4\} \subset \mathbb{R}^4$ be a basis for $\mathbb{R}^4$, and let $T: \mathbb{R}^4 \to \mathbb{R}^4$ be a linear transformation satisfying
+
+\[
+T(u_1) = T(u_3) = T(u_4) = 0, T(u_2) \neq 0.
+\]
+
+\begin{enumerate} \item Find a basis for Ker$(T)$ .
+
+\vfill
+
+\item Is $S=\{v \in \mathbb{R}^4: T(v) \neq \vec{0}\} \cup \{ \vec{0} \}$ a subspace of $\mathbb{R}^4$? (In words, $S$ is the set of four-dimensional vectors $v$ such that either $T(v) \neq 0$ or $v = 0$.) Justify your answer. 
+
+\vfill
+
+\item Is $T$ one-to-one/onto/invertible? Justify your answer. 
+
+\vfill
+
+\end{enumerate} 
+
+\newpage
+
+\item(15 points) Let $A$ be any square matrix, and let $n$ be any positive integer.
+
+\begin{enumerate}\item Simplify the matrix product 
+
+\[
+(A-I)(A^{n-1}+A^{n-2} + \cdots + A + I).
+\]
+
+\vfill
+
+\item Assuming that $A^{n-1}+A^{n-2}+\cdots+A+I$ is not invertible, use your result from part $(a)$ to show that $1$ is an eigenvalue of $A^n$. 
+
+\vfill
+\end{enumerate}
+
+\newpage
+
+\item(20 points) Consider the subspace of $\mathbb{R}^3$ given by 
+
+\[
+S = \text{ span}\Big\{ \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ -1 \end{bmatrix} \Big\}.
+\]
+
+\begin{enumerate} \item Find a basis for $\mathbb{R}^3$ that contains the two given vectors above. 
+
+\vfill
+
+\item Find the change of basis matrix $U$ from your basis to the standard basis on $\mathbb{R}^3$. 
+
+\vfill
+
+\item Use your results from part $(a)$ and $(b)$ to construct a $3 \times 3$ matrix $A$ such that Null$(A) = S$. (Hint: $A$ can be written as $B \cdot U$ for some matrix $B$.)
+
+\vfill
+
+
+\end{enumerate}
+
+\newpage
+
+\item(15 points) For each matrix below, diagonalize it or explain why it is not diagonalizable. 
+
+\begin{enumerate} \item $A = \begin{bmatrix} 0 && 0 && 1 \\ 2 && 0 &&1 \\ 0 && 0 && 0 \end{bmatrix} $
+
+\vfill
+
+\item $B = \begin{bmatrix} 1 && 0 && 1 \\ 1 && 1 && 0 \\ 1 && 0 && 1 \end{bmatrix}$
+\vfill
+\end{enumerate}
+
+\newpage
+
+\item(15 points) Suppose $A$ is a $3 \times 3$ matrix with eigenvalues $-1$ and $4$, and corresponding eigenvectors 
+
+\[
+v_{-1} = \begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix}, v_{4} = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, w_4 = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}.
+\]
+
+(The vector $v_1$ is an eigenvector for the eigenvalue $\lambda = -1$, and $v_4, w_4$ are both eigenvectors for the eigenvalue $\lambda = 4$.)
+
+\begin{enumerate} \item Find $A^7 \cdot (-2 v_{-1})$, $A^3 \cdot (w_4+v_4)$, and $A\cdot(v_{-1}-2w_4).$ 
+
+\vfill
+
+\item Show that $A$ is invertible, and find $A^{-1}\cdot w_4. $
+
+\vfill
+
+\item What is the rank of $A - I_3$?
+\vspace{4cm}
+\end{enumerate}
+
+\newpage 
+
+\item(20 points) Consider two `probability vectors' $p = \begin{bmatrix} p_1 \\ p_2 \end{bmatrix}$ and $q = \begin{bmatrix} q_1 \\ q_2 \end{bmatrix}$, where the entries satisfy
+
+\[
+p_1+p_2 = q_1+q_2 = 1, \text{ and } 0 \leq p_1, p_2, q_1, q_2 \leq 1.
+\]
+
+Suppose that we have two biased coins, where one coin is heads with probability $p_1$ and tails with probability $p_2$, and the second coin is heads with probability $q_1$ and tails with probability $q_2$. 
+
+\begin{enumerate} \item Assume that the probability that both coins have the same result (both heads or both tails) is $1/2$, and so is the probability of the coins having different results (one heads and the other tails). This is the same as saying 
+
+\[
+p_1 q_1 + p_2 q_2 = \frac{1}{2}
+\]
+and
+\[
+p_2 q_1 + p_1 q_2 = \frac{1}{2}
+\]
+
+Now suppose $p_1$ and $p_2$ are fixed numbers, and $q_1, q_2$ are variables. Find a matrix $A$ made up of $p_1$'s and $p_2$'s so that the above equations are equivalent to the matrix equation $A \cdot q = \begin{bmatrix} 1/2 \\ 1/2 \end{bmatrix}.$ 
+
+\vfill
+
+\item Show that your matrix $A$ is invertible if $p_1 \neq p_2$, and find the inverse matrix. 
+
+\vfill
+
+\item Solve the equation $A \cdot q = \begin{bmatrix} 1/2 \\ 1/2 \end{bmatrix}$ for $q$ by multiplying both sides by $A^{-1}$. 
+
+\vfill
+
+\item What can you conclude about the second coin?
+
+\vspace{2cm}
+\end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}

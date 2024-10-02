@@ -1,0 +1,113 @@
+\documentclass[11 pt]{report}
+
+\usepackage{myfullpage}
+\usepackage{amssymb, amsmath}
+\usepackage{esint}
+
+\pagestyle{empty}
+
+\baselineskip=20pt
+
+\newcommand{\pp}{\par \noindent}
+\begin{document}
+
+\centerline{\bf Math 324 Homework 6}
+
+%\begin{center} Due Friday, May 12th, at the start of class. \end{center}
+
+\vspace{.2cm}
+
+\begin{enumerate} \item[] For problems 1-2, use Green's theorem to evaluate $\int_C F \cdot dr$ for the given $F$ and $C$.
+
+\item[1.] $F(x,y) = \langle x - y, x + y \rangle$, $C$ is the triangle with vertices $(0,1), (1,0),$ and $(-1,0)$, oriented counter-clockwise. 
+
+\item[2.] $F(x,y) = \langle x + y, x^2 - y\rangle,$ $C$ is the boundary of the region enclosed by $y = x^2$ and $y = \sqrt{x}$ for $x \in (0,1)$, oriented counter-clockwise. 
+
+\item[3.] Let $f: [0,1] \to [0,1]$ be a differentiable function. \begin{enumerate} \item[a.] Suppose $f(0) = f(1) = 0$. Let $C$ be the graph of $f$ oriented from $(1,0)$ to $(0,0)$. Use Green's theorem to show that 
+
+$$\int_C x dy = \int_0^1 f(x) dx.$$
+
+(Hint: draw a picture.)
+
+\item[b.] Suppose instead that $f(0) = 0, f(1) = 1$, and let $C$ be the graph of $f$, oriented from $(0,0)$ to $(1,1)$. Use Green's theorem to show that
+
+$$\int_C y dx = \int_0^1 f(x) dx.$$
+
+\end{enumerate}
+
+\item[4.] Use Green's theorem to show that for any curve $C$ enclosing the origin, 
+
+\[
+\int_C \frac{x dy - y dx}{x^2 + y^2} \, \cdot dr = 2\pi.
+\]
+
+[Hint: recall that we verified this in chapter 16.2 for $C = $ any circle centered at the origin. For an arbitrary $C$, apply Green's theorem to the region between $C$ and a small circle centered at the origin.]
+
+\item[] For problems 4-6, compute the curl and divergence of the given vector field.
+
+\item[5.] $F(x,y,z) = \langle x+yz, y+xz, z+xy \rangle$
+
+\item[6.] $F(x,y,z) = \langle y/x, y/z, z/x \rangle$
+
+\item[7.] $F(x,y, z) = \langle \frac{x}{x^2+y^2}, \frac{-y}{x^2+y^2}, 0 \rangle $
+
+\item[8.] Show that for a vector field $F = \langle P, Q, R\rangle$ and a function $f$, div$(f F) = f$ div$( F) + F \cdot \nabla f.$ Here $fF$ is the vector field $\langle fP, fQ, fR \rangle$. 
+
+For problems 6-7, determine whether or not the vector field is conservative, and if it is, find a potential function. 
+
+\item[9.] $F(x,y,z) = \langle xyz^2, x^2 y z^2, x^2y^2z \rangle. $
+
+\item[10.] $F(x,y,z) = \langle 1, \sin z, y \cos z \rangle.$
+
+\item[11.] Is there a vector field $G$ on $\mathbb{R}^3$ such that curl$(G) = \langle x \sin y, \cos y, z - xy \rangle$? Explain. 
+
+\end{enumerate}
+
+
+
+%\item[10.] In this problem, you will investigate the gradient using polar coordinates. So far, we've been working with the formula for the gradient $\nabla f = \langle \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}\rangle$ in Cartesian coordinates. Using the chain rule, we can write the gradient in polar coordinates. To start, for a function $f(r, \theta)$, 
+%
+%$$\frac{\partial f}{\partial x} = \frac{\partial f}{d r} \frac{\partial r}{\partial x} + \frac{\partial f}{\partial \theta} \frac{\partial \theta}{\partial x}.$$
+%
+%We know $r^2 = x^2 + y^2$ and $\tan \theta = \frac{y}{x}$, so differentiating implicitly gives
+%
+%$$2r \frac{\partial r}{\partial x} = 2x, \text{ or } \frac{\partial r}{d x} = \frac{x}{r} = \cos \theta,$$
+%
+%and 
+%
+%$$\sec^2 \theta \frac{\partial \theta}{\partial x} = -\frac{y}{x^2}, \text{ or } \frac{\partial \theta}{\partial x} = - \frac{r \sin \theta \cos^2\theta}{r^2 \cos^2 \theta} = - \frac{1}{r} \sin \theta.$$
+%
+%In other words, 
+%
+%$$\frac{\partial f}{\partial x} = \cos \theta \frac{\partial f}{\partial r} - \frac{1}{r} \sin \theta \frac{\partial f}{\partial \theta}.$$
+%
+%\begin{enumerate} \item[a.] Use the chain rule the same way to derive a similar equation for $\frac{\partial f}{\partial y}$ in terms of $r$'s and $\theta$'s. 
+%
+%\item[b.] Give a formula for $\nabla f(r, \theta) = \langle \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \rangle$ in polar coordinates using your result from part a.
+%
+%\item[c.] Use the vectors $\hat{r} = \langle \cos \theta, \sin \theta \rangle$ and $\hat{\theta} = \langle -\sin \theta, \cos \theta \rangle$ to write your formula from $b$ for $\nabla f$ as 
+%
+%$$\nabla f = \hat{r} \frac{\partial f}{\partial r} + \hat{\theta} \frac{1}{r} \frac{\partial f}{\partial \theta}.$$
+%
+%The unit vectors $\hat{r}$ and $\hat{\theta}$ represent the radial and angular directions on $\mathbb{R}^2$: $\hat{r}$ points radially outward, and $\hat{\theta}$ is normal to $\hat{r}$, pointing in the counter-clockwise direction. Think of them as the unit vectors corresponding to $\hat{i}$ and $\hat{j}$, but in polar-land. (The vectors $\hat{r}$ and $\hat{\theta}$ are an orthonormal basis for $\mathbb{R}^2$ at each point.)
+%
+%\item[d.] Let $f(r, \theta) = r^2$, and $g(r, \theta) = r \sin \theta$: find $\nabla f$ and $\nabla g$ in polar coordinates using the formula above. 
+%
+%\item[e.] Recall the vector field $F = \langle \frac{-y}{x^2 + y^2}, \frac{x}{x^2+y^2} \rangle$ from the previous HW. Write $F$ in polar coordinates, i.e. in terms of $\hat{r}, \hat{\theta}, r$ and $\theta$. 
+%
+%\item[f.] Let $h(r, \theta) = \theta$, defined on the `slit plane' $\{(r, \theta): \theta \neq 0\}$, so $h$ is continuous. Find $\nabla h$ in polar coordinates: use this to show that $F$ is conservative on the slit plane.
+%
+%\item[g.] We have shown that the vector field $F$ from part $e$ is not conservative on the plane minus the origin, by looking at its line integral around a closed curve. Relate this to your findings from parts $e$ and $f$. [Hint: the argument from part f works for showing $F$ is conservative only on regions where $h(r, \theta) = \theta$ is continuous. On what type of region is $h$ is continuous?]
+%
+%
+%
+%\end{enumerate} 
+%
+%\item[11.] The \emph{Laplace operator} $\nabla^2$ is a differential operator acting on functions $f: \mathbb{R}^3 \to \mathbb{R}$ via 
+%
+%$$ \nabla^2 f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2} .$$
+%
+%Use the chain rule to write $\nabla^2 f$ in spherical coordinates. 
+
+
+\end{document}

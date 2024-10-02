@@ -1,0 +1,95 @@
+\documentclass[11 pt]{report}
+
+\usepackage{myfullpage}
+\usepackage{amssymb, amsmath}
+\usepackage{esint}
+
+\pagestyle{empty}
+
+\baselineskip=20pt
+
+\newcommand{\pp}{\par \noindent}
+\begin{document}
+
+\centerline{\bf Vector fields and gradients (MATH 324, 5/17/19)}
+
+\begin{enumerate}  \item Consider the vector field 
+
+$$F(x,y) = \langle P(x,y), Q(x,y) \rangle = \frac{\langle -y, x\rangle}{x^2+y^2}.$$
+
+Note that $F$ is defined everywhere except at $(0,0)$. 
+
+\begin{itemize} \item[a.] Suppose $D$ is any simply connected region that does not contain $(0,0)$. Show that $F$ is conservative as a vector field on $D$ by checking that $\frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}$. 
+
+\item[b.] Let $C$ be the unit circle, oriented counter-clockwise. Compute $\int_C F \cdot dr$, and use this to show that $F$ is not conservative on $\mathbb{R}^2 \setminus \{(0,0)\}$. 
+
+\item[c.] Compute $F(x,y)$ at the points $(1,0), (0,1), (-1,0), (0,-1), (1,1), $ and $(-1,1)$, and draw those vectors in $\mathbb{R}^2$. How would you describe $F$ in words? 
+
+\item[d.] Suppose $F$ describes the flow of water at each point in a pond. If a boat was dropped in the pond with no initial velocity, and was taken by the current of $F$, what path would the boat take?
+
+\newpage
+
+
+\end{itemize}
+
+
+
+\item In this problem, you will investigate the gradient using polar coordinates. So far, we've been working with the formula for the gradient $\nabla f = \langle \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}\rangle$ in Cartesian coordinates. Using the chain rule, we can write the gradient in polar coordinates. To start, for a function $f(r, \theta)$, 
+
+$$\frac{\partial f}{\partial x} = \frac{\partial f}{d r} \frac{\partial r}{\partial x} + \frac{\partial f}{\partial \theta} \frac{\partial \theta}{\partial x}.$$
+
+We know $r^2 = x^2 + y^2$ and $\tan \theta = \frac{y}{x}$, so differentiating implicitly gives
+
+$$2r \frac{\partial r}{\partial x} = 2x, \text{ or } \frac{\partial r}{d x} = \frac{x}{r} = \cos \theta,$$
+
+and 
+
+$$\sec^2 \theta \frac{\partial \theta}{\partial x} = -\frac{y}{x^2}, \text{ or } \frac{\partial \theta}{\partial x} = - \frac{r \sin \theta \cos^2\theta}{r^2 \cos^2 \theta} = - \frac{1}{r} \sin \theta.$$
+
+In other words, 
+
+$$\frac{\partial f}{\partial x} = \cos \theta \frac{\partial f}{\partial r} - \frac{1}{r} \sin \theta \frac{\partial f}{\partial \theta}.$$
+
+\begin{enumerate} \item[a.] Use the chain rule the same way to derive a similar equation for $\frac{\partial f}{\partial y}$ in terms of $r$'s and $\theta$'s. 
+
+\item[b.] Give a formula for $\nabla f(r, \theta) = \langle \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \rangle$ in polar coordinates using your result from part a.
+
+\item[c.] Use the vectors $\hat{r} = \langle \cos \theta, \sin \theta \rangle$ and $\hat{\theta} = \langle -\sin \theta, \cos \theta \rangle$ to write your formula from $b$ for $\nabla f$ as 
+
+$$\nabla f = \hat{r} \frac{\partial f}{\partial r} + \hat{\theta} \frac{1}{r} \frac{\partial f}{\partial \theta}.$$
+
+The unit vectors $\hat{r}$ and $\hat{\theta}$ represent the radial and angular directions on $\mathbb{R}^2$: $\hat{r}$ points radially outward, and $\hat{\theta}$ is normal to $\hat{r}$, pointing in the counter-clockwise direction. Think of them as the unit vectors corresponding to $\hat{i}$ and $\hat{j}$, but in polar-land. (The vectors $\hat{r}$ and $\hat{\theta}$ are an orthonormal basis for $\mathbb{R}^2$ at each point.)
+
+\item[d.] Let $f(r, \theta) = r^2$, and $g(r, \theta) = r \sin \theta$: find $\nabla f$ and $\nabla g$ in polar coordinates using the formula above. Find $f(x,y)$ and $g(x,y)$, and check that the usual gradient formula agrees with your result. 
+
+\item[e.] Recall the vector field from problem 1, i.e. 
+
+\[
+F(x,y) = \frac{\langle -y, x \rangle}{x^2+y^2}.
+\]
+
+Write $F$ in polar coordinates. That is, find functions $u(r,\theta)$ and $v(r, \theta)$ such that
+
+\[
+F(r \cos \theta, r \sin \theta) = u(r,\theta) \hat{r} + v(r,\theta) \hat{\theta}.
+\]
+
+\item[f.] Find a potential function for $F$ in polar coordinates. That is, find a function $h = h(r, \theta)$ such that $\nabla h = F$. Use this to explain why $F$ is not conservative. 
+
+\end{enumerate}
+
+%\item Suppose $U: \mathbb{R}^+ \to \mathbb{R}$ is any function with derivative $U' = u$, and consider the differential equation 
+%
+%\[
+%\nabla f(x,y) = \frac{u\left(\sqrt{x^2 + y^2}\right)}{\sqrt{x^2 + y^2}} \langle x,y \rangle,
+%\]
+%
+%where $f: \mathbb{R}^2 \to \mathbb{R}$. Use the polar description of the gradient to give a class of solutions to this equation (i.e. find possible functions $f$ that solve the equation, for fixed $u$). \textit{Hint: just assume $f$ doesn't depend on $\theta$.}
+
+%\item Consider the function $h(x,y) = x^2 - xy$, defined on the unit disk $D = \{(x,y): x^2 + y^2 \leq 1\} u\subset \mathbb{R}^2$. Suppose $h$ represents the altitude in miles at each point on a hill lying above $D$. Use polar coordinates to find the steepest point on the hill. \textit{Hint: start by maximizing $D_u h$ at a fixed point $(r, \theta)$.}
+
+\end{enumerate} 
+
+
+
+\end{document} 

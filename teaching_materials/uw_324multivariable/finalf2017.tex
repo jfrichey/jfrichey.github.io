@@ -1,0 +1,214 @@
+\documentclass[12 pt]{report}
+
+\usepackage{epsfig}
+\usepackage[in,empty]{myfullpage}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\baselineskip=20pt
+
+\begin{document}
+
+\noindent \vfill \noindent \large
+
+\centerline{Math 324 E  - Autumn 2017}
+
+\centerline{Final exam}
+
+\centerline{Monday, December 11th, 2017}
+
+\normalsize
+
+\vfill
+\medskip
+Name: \rule{10cm}{1pt}
+
+\bigskip
+
+\vfill
+\begin{center}
+{\large
+\begin{tabular}{||c|c|r||}
+\hline Problem 1 & 15 & \hspace{10mm} \hfill \\
+\hline Problem 2 & 15 & \hspace{10mm} \hfill \\
+\hline Problem 3 & 19 & \hspace{10mm} \hfill \\
+\hline Problem 4 & 16  & \hspace{10mm} \hfill \\
+\hline Problem 5 & 20  & \hspace{10mm} \hfill \\
+\hline Problem 6 &  15 & \hspace{10mm} \hfill \\
+\hline Total & 100 & \hspace{10mm} \hfill \\
+\hline
+\end{tabular}
+}
+\end{center}
+\vfill
+\begin{itemize}
+\item There are 6 problems (8 pages) in this exam. Make sure you have them all. 
+\item You must show your work on all problems.  The correct answer
+with no supporting work may result in no credit. \textbf{Put a box
+around your FINAL ANSWER for each problem and cross out any work
+that you don't want to be graded.} 
+\item Give exact answers, and simplify as much as possible. 
+For example, $\frac{\pi}{\sqrt{2}}$ is acceptable, but $\frac{1}{2} + \frac{3}{4}$
+should be simplified to $\frac{5}{4}$.   
+
+\item If you need more room, use the backs
+of the pages and indicate to the grader that you have done so.
+\item Raise your hand if you have a question.
+\item Any student found engaging in academic misconduct will receive
+a score of 0 on this exam.
+\item You have 2 hours to complete the exam.  Budget your time wisely! \\
+\end{itemize}
+\vfill
+\begin{center}GOOD LUCK!\end{center}
+
+\newpage
+\begin{enumerate}
+
+\item (15 pts) Let $C$ be the cylinder $x^2+z^2 = 4$ for $-1 \leq y \leq 6$, oriented inward (i.e. normal points toward the $y$-axis). Use Stokes' theorem to evaluate
+
+\[
+\iint_C \nabla \times \langle yz^2, 0, 0 \rangle \, \cdot dS.
+\]
+
+Make sure to indicate how you are orienting the boundary. 
+
+\vfill
+
+\newpage \item (15 pts) Evaluate the surface integral
+
+\[
+\iint_S \langle x+y, z, z-x \rangle \, \cdot dS,
+\]
+
+where $S$ is the boundary of the region between the paraboloid $z = 9-x^2-y^2$ and the $xy$-plane, oriented inward.
+
+\vfill
+
+\newpage \item (19 pts) Consider a uniform magnetic field $B$ with constant strength $b > 0$ in the $z$-direction, i.e. $B$ is the vector field $B = b \hat{k}$.
+
+\begin{enumerate} \item (5 pts) Let $r$ be the vector field $r = x \hat{i} + y \hat{j}$. Verify that $A = \frac{1}{2} B \times r$ is a `vector potential' for $B$, i.e. $\nabla \times A = B$. 
+
+\vfill
+
+\item (6 pts) Calculate the flux of $B$ through the disk $x^2 + y^2 \leq 1$ in the plane $z = 1$, oriented upward. 
+
+\vspace{4cm}
+
+\item (8 pts) Use the result from part $(a)$ and Stokes' theorem to calculate the flux of $B$ through the disk bounded by the curve $s(t) = \cos t \hat{i} + \frac{\sqrt{2}}{2} \sin t \hat{j} - \frac{\sqrt{2}}{2} \sin t \hat{k}$ for $0 \leq t \leq 2\pi$. 
+
+\vfill
+
+\end{enumerate}
+
+\newpage \item (16 pts; 4 pts each) For each of the statements below, circle \textbf{True} if you think it is true and \textbf{False} if you think it is false. 
+
+\begin{enumerate} \item \textbf{True}\hspace{5pt} \textbf{False} \hspace{5pt} If $S$ is any closed surface enclosing the origin, oriented towards the origin, then 
+
+\[
+\iint_S \frac{r}{|r|^2} \cdot dS = -4\pi,
+\]
+
+where $r = \langle x, y, z \rangle$. 
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} Suppose $F$ and $G$ are vector fields with $\nabla \times F = G$. Then there exists a vector field $H$ which is different from $F$ and satisfies $\nabla \times H = G$. 
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} If $G$ is a vector field and $\nabla \cdot G = 0$, then 
+
+\[
+\iint_S G \cdot dS = 0
+\]
+
+for any oriented surface $S$. 
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} For any vector field $F$, 
+
+\[
+\nabla \Big(\nabla \cdot \Big(\nabla \times \nabla\Big( \nabla \cdot F\Big)\Big)\Big) = 0.
+\]
+
+\vfill
+
+\end{enumerate}
+
+%\newpage
+%
+%\item (20 pts) Let $E$ denote the unit cube in $\mathbb{R}^3$, $E = \{(x,y,z): 0 \leq x, y, z \leq 1\}$. Let $S = \partial E$ be the boundary of the cube, with the outward pointing orientation (away from $E$). Use the divergence theorem to evaluate 
+%
+%\[
+%\iint_{\partial E} \langle 0, 0, e^{y+z} \rangle \cdot dS.
+%\]
+
+\newpage
+
+ \item (20 pts) Consider the radial vector field $F = \frac{1}{\rho^4} \vec{\rho}$, where $\vec{\rho} = \langle x, y, z \rangle$ and $\rho = |\vec{\rho}| = \sqrt{x^2+y^2+z^2}$.  
+
+\begin{enumerate} \item (5 pts) Find the divergence of $F$ for $\rho > 0$, and write your final answer in terms of $\rho$. You may use the formula 
+
+\[
+\nabla \cdot G = \frac{1}{\rho^2} \frac{\partial }{\partial \rho} \Big( \rho^3 g(\rho) \Big)
+\]
+
+for radial vector fields $G = g(\rho) \vec{\rho}$. 
+
+\vfill
+
+\item (7 pts) Let $E_R$ be the spherical region $\{(\rho, \theta, \phi): 1 \leq \rho \leq R\}$, where $R > 1$ is a fixed number. Evaluate the volume integral
+
+\[
+\iiint_{E_R} \nabla \cdot F \, dV.
+\]
+
+\vfill
+
+\newpage
+
+\item (5 pts) Let $S_1$ denote the surface of the sphere of radius $1$ oriented toward the origin, and let $S_R$ denote the surface of the sphere of radius $R$ oriented away from the origin. According to the divergence theorem, 
+
+\[
+\iint_{S_1} F \cdot dS + \iint_{S_R} F \cdot dS = \iiint_{E_R} \nabla \cdot F \, \cdot dS.
+\]
+
+You found the value of the right hand side of this equation in part b: compute one of the integrals on the left hand side, and use your answer to find the value of the other integral. 
+
+\vfill 
+
+\item (3 pts) What happens to the values of the three integrals from part $c$ when $R \to \infty$?
+
+\vfill
+
+\end{enumerate}
+
+
+\newpage
+
+\item (15 pts) Let $F = \langle xy^2, x+y \rangle$ be a vector field in the $xy-$plane, and let $C$ denote the upper half of the unit circle $x^2+y^2 = 1, y \geq 0$ oriented counter-clockwise. Also, let $D$ be the upper half of the unit disk $x^2 + y^2 \leq 1, y \geq 0$. 
+\begin{enumerate}
+\item (6 pts) Draw a picture of $D$ and $C$, and evaluate $\int_C F \cdot d\bold{r}$. 
+
+\vspace{7cm}
+
+\item (4 pts) Henry, Jacob's evil twin brother, claims he is able to use Green's theorem to solve part $a$. He reasons as follows: ``The curve $C$ bounds the region $D$ with the positive orientation, so by Green's theorem, 
+
+$$\int_C F \cdot d\bold{r} = \iint_D \Big(\frac{d}{dx}(x+y) - \frac{d}{dy}(xy^2) \Big) \, dA = \int_0^\pi \int_0^1 (1-2r^2 \sin\theta \cos\theta) r dr d\theta = \frac{\pi}{2}."$$
+
+What is wrong with Henry's argument?   
+
+\vspace{3cm} 
+
+\item (5 pts) Use Green's theorem correctly to relate a double integral over $D$ to a line integral. Explain why Henry got the right answer, even though his reasoning is flawed. 
+
+
+
+\end{enumerate} 
+
+
+\end{enumerate}
+
+
+\end{document}

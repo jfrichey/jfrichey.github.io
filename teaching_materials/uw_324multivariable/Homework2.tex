@@ -1,0 +1,53 @@
+\documentclass[11 pt]{report}
+
+\usepackage{myfullpage}
+\usepackage{amssymb, amsmath}
+\usepackage{esint}
+
+\pagestyle{empty}
+
+\baselineskip=20pt
+
+\newcommand{\pp}{\par \noindent}
+\begin{document}
+
+\centerline{\bf Math 324, Homework 2}
+
+%\begin{center} Due Friday, April 7, at the start of class. \end{center}
+
+\begin{enumerate}
+
+\item Use polar coordinates to parameterize the integral $\iint_D (x y - 1) \, dA$, where $D$ is the interior of the circle of radius $1$ centered at $(1,1)$. You don't need to evaluate it. 
+
+\item Let $P$ be the region in $\mathbb{R}^2$ bounded by the polar curves $r = 2 \cos \theta$ and $r = 1 + \cos \theta$. Find the area of $P$. (Hint: you will need to split $P$ up into smaller regions.)
+
+\item (Stewart 15.6 $\# 5$) Find the surface area of the part of the cylinder $y^2+z^2 = 9$ that lies above the rectangle with vertices $(0,0), (4,0), (0,2)$ and $(4,2)$. 
+
+\item Use the formula for surface area to verify that the surface area of the sphere of radius $R$ is $4 \pi R^2$. 
+
+\item (Stewart 15.7 $\# 9$) Evaluate the triple integral $\iiint_E y \, dV$, where $E$ is the set of points $(x,y,z)$ satisfying:
+
+\[
+\begin{split}
+0 &\leq x \leq 3 \\ 
+0 &\leq y \leq x \\
+x-y &\leq z \leq x+y
+\end{split}
+\]
+
+\item (Stewart 15.7 $\# 13$) Evaluate $\iiint_E 6xy \,dV,$ where $E$ lies under the plane $z = 1+x+y$ and above the region in the $xy-$plane bounded by the curves $y = \sqrt{x}, y=0, x=1$. 
+
+\item (Stewart 15.7 $\# 19$) Use a triple integral to find the volume of the tetrahedron enclosed by the coordinate planes, i.e. $x =0, y=0, z=0$, and the plane $2x+y+z = 4$. 
+
+\item (Stewart 15.7 $\# 37$) Use symmetry to evaluate the integral $\iiint_C (4 + 5x^2yz^2) \,dV$ where $C$ is the cylindrical region $x^2 + y^2 \leq 4, -2 \leq z \leq 2$. 
+
+\item Let $W \subset \mathbb{R}^3$ be the region bounded by $z = 4 - y^2, y = 2x, z = 0$ and $x = 0$. Draw a picture of $W$, and parameterize the triple integral
+
+\[
+\iiint_W xyz \, dV
+\]
+
+with three different orders of integration: $dz \, dy \, dx, dx \, dz \, dy,$ and $dy \, dz \, dx$. 
+
+\end{enumerate}
+\end{document}

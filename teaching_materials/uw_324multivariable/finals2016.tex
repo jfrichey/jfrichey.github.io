@@ -1,0 +1,122 @@
+\documentclass[12 pt]{report}
+
+\usepackage{epsfig}
+\usepackage[in,empty]{myfullpage}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\baselineskip=20pt
+
+\begin{document}
+
+\noindent \vfill \noindent \large
+
+\centerline{Math 324 C  - Summer 2016}
+
+\centerline{Final exam}
+
+\centerline{Friday, August 19th, 2016}
+
+\normalsize
+
+\vfill
+\medskip
+Name: \rule{10cm}{1pt}
+
+\bigskip
+
+\vfill
+\begin{center}
+{\large
+\begin{tabular}{||c|c|r||}
+\hline Problem 1 & 10 & \hspace{10mm} \hfill \\
+\hline Problem 2 & 10  & \hspace{10mm} \hfill \\
+\hline Problem 3 & 10 & \hspace{10mm} \hfill \\
+\hline Problem 4 & 10  & \hspace{10mm} \hfill \\
+\hline Problem 5 & 10  & \hspace{10mm} \hfill \\
+\hline Total & 50 & \hspace{10mm} \hfill \\
+\hline
+\end{tabular}
+}
+\end{center}
+\vfill
+\begin{itemize}
+\item There are 5 questions on this exam. Make sure you have all five.
+\item You must show your work on all problems.  The correct answer
+with no supporting work may result in no credit. \textbf{Put a box
+around your FINAL ANSWER for each problem and cross out any work
+that you don't want to be graded.} 
+\item Give exact answers, and simplify as much as possible. 
+For example, $\frac{\pi}{\sqrt{2}}$ is acceptable, but $3\sqrt{3}+\frac{1}{\sqrt{3}}$
+should be reduced to $\frac{10\sqrt{3}}{3}$.   
+
+\item If you need more room, use the backs
+of the pages and indicate to the grader that you have done so.
+\item Raise your hand if you have a question.
+\item Any student found engaging in academic misconduct will receive
+a score of 0 on this exam.
+\item You have 60 minutes to complete the exam.  Budget your time wisely! \\
+\end{itemize}
+\vfill
+\begin{center}GOOD LUCK!\end{center}
+
+\newpage
+\begin{enumerate}
+
+\item (10 pts) Let $S$ be the boundary surface of the cone region $x^2+y^2 \leq z^2 \leq 1$, so $S$ consists of the cone $x^2+y^2 = z^2$ for $0 \leq z \leq 1$ and the disk $x^2+y^2 \leq 1$ in the plane $z=1$. Equip $S$ with the positive orientation, i.e. the outward pointing normal. Use the divergence theorem to evaluate the surface integral
+
+$$\iint_S \langle x^3, xy^2z, -xyz^2 \rangle \cdot d \bold{S}.$$
+\newpage
+
+\item[2a.] (3 pts) Show that $\nabla \times \langle 3y, -2yz, \log z \rangle = \langle 2y, 0, -3 \rangle$.
+
+\vspace{5cm} 
+
+\item[2b.] (7 pts) Let $S$ be the part of the ellipsoid $x^2+\frac{y^2}{9}+\frac{z^2}{4} = 5$ lying above the plane $z = 2$ oriented downward. Use Stokes' theorem and the first part of this problem to evaluate 
+
+$$\iint_S \langle 2y, 0, -3 \rangle \cdot d\bold{S}.$$
+ 
+\newpage
+
+\item[3.] Let $F = \langle xy^2, x+y \rangle$ be a vector field in the $xy$-plane, and let $C$ denote the upper half of the unit circle $x^2+y^2 = 1, y \geq 0$ oriented counter-clockwise. Also, let $D$ be the upper half of the unit disk $x^2 + y^2 \leq 1, y \geq 0$. 
+\begin{enumerate}
+\item[a.] (4 pts) Draw a picture of $D$ and $C$, and evaluate $\int_C F \cdot d\bold{r}$. 
+
+\vspace{7cm}
+
+\item[b.] (2 pts) Henry, Jacob's evil twin brother, claims he is able to use Green's theorem to solve part $a$. He reasons as follows: ``The curve $C$ bounds the region $D$ with the positive orientation, so by Green's theorem, 
+
+$$\int_C F \cdot d\bold{r} = \iint_D \Big(\frac{d}{dx}(x+y) - \frac{d}{dy}(xy^2) \Big) \, dA = \int_0^\pi \int_0^1 (1-2 r^2 \sin\theta \cos\theta) r dr d\theta = \frac{\pi}{2}."$$
+
+What is wrong with Henry's argument?   
+
+\vspace{3cm} 
+
+\item[c.] (4 pts) Use Green's theorem correctly to relate a double integral over $D$ to a line integral. Explain why Henry got the right answer, even though his reasoning is flawed. 
+
+
+
+\end{enumerate} 
+
+\newpage
+
+\item[4a.] (5 pts) Show that $\nabla \cdot (\nabla \times F) = 0$ for any smooth vector field $F$ on $\mathbb{R}^3$.  
+
+\vspace{10cm}
+
+\item[4b.] (5 pts) Use the result from part $a$ to show that for any oriented surface $S$ enclosing a region $E$,
+
+$$\iint_S \text{curl}(F) \cdot d\bold{S} = 0.$$ 
+
+[If you don't know how to use the result from part a, but have some other way of showing this fact, you can receive partial credit on this problem.]
+
+\newpage
+
+\item[5.] (10 pts) Let $S$ be the surface parameterized by 
+
+$$r(\phi, \theta) = \sin^2 \phi \cos^2 \theta \hat{i} + \frac{1}{2} \sin^2 \phi \sin^2\theta \hat{j}-\cos^2\phi\hat{k}$$
+
+for $0 \leq \phi \leq \frac{\pi}{2}, 0 \leq \theta \leq \frac{\pi}{2}$. Describe the surface $S$, and find the surface area of $S$. [Hint: try to write down a linear equation $ax+by+cz = d$ relating the $x,y$ and $z$ components of the parameterization.]
+\end{enumerate}
+
+\end{document}

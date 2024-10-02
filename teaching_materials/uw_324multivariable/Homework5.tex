@@ -1,0 +1,87 @@
+\documentclass[11 pt]{report}
+
+\usepackage{myfullpage}
+\usepackage{amssymb, amsmath, amsfonts}
+\usepackage{esint}
+
+\pagestyle{empty}
+
+\baselineskip=20pt
+
+\newcommand{\pp}{\par \noindent}
+\begin{document}
+
+\centerline{\bf Math 324 Homework 5}
+
+%\begin{center} Due Friday, May 5th, at the start of class. \end{center}
+
+\vspace{.2cm}
+
+\begin{enumerate} \item[] For problems 1-3, use the definition of the line integral to evaluate $\int_C F \cdot dr$. 
+
+\item[1.] $F(x,y) = \langle x^2, xy \rangle, $ $ C = $ the line segment from $(0,0)$ to $(2,2)$. 
+
+\item[2.] $F(x,y) = \langle x^2, xy \rangle, $ $C = $ part of the circle $x^2 +y^2 = 9$ in the second quadrant $x \leq 0, y \geq 0$, oriented clockwise. 
+
+\item[3.] $F(x,y,z) = \langle \frac{1}{y^3+1}, \frac{1}{z+1}, 1 \rangle$ over the curve $r(t) = \langle t^3, 2, t^2 \rangle$, for $0 \leq t \leq 1$. 
+
+\vspace{10pt}
+
+\item[4.] In this problem, you will explore the vector field given by 
+
+$$\vec{F}(x,y) = \Big\langle \frac{-y}{x^2+y^2}, \frac{x}{x^2+y^2} \Big \rangle = P \hat{i} + Q \hat{j}, \text{ where } P(x,y) =  \frac{-y}{x^2+y^2}, \hspace{5pt} Q(x,y) = \frac{x}{x^2+y^2},$$
+
+which is defined on the plane $\mathbb{R}^2$ minus the origin $(0,0)$.
+
+\begin{enumerate} \item Show that $\displaystyle{\frac{dP}{dy} = \frac{dQ}{dx}}$ where $P$ and $Q$ are defined. 
+
+\item Does this imply $F$ is conservative? 
+
+\item Evaluate the integral 
+
+$$\int_C F \cdot dr = \int_C Pdx + Qdy = \int_C \frac{x\,dy - y \,dx}{x^2+y^2}$$
+
+over two different curves $C$: first, where $C$ is the part of the unit circle in the first quadrant (that is, $0 \leq \theta \leq \pi/2$) oriented from $(1,0)$ to $(0,1)$; then, where $C$ is the rest of the same circle $-$ that is, the part of $x^2+y^2 = 1$ not in the first quadrant ($\pi/2 \leq \theta \leq 2\pi$) $-$ oriented also from $(1,0)$ to $(0,1)$. 
+
+\item Does this example violate independence of path for conservative vector fields? Why or why not?
+
+\end{enumerate}
+
+\item[5.] (Stewart 16.3.29) Show that 
+
+$$\int_C \frac{x\,dy - y \,dx}{x^2+y^2} = 0$$
+
+for any closed curve $C$ that does not pass through or enclose the origin. 
+
+\vspace{10pt}
+
+\item[6.] Let $f(x,y,z) = xy \sin (yz)$, and $F = \nabla f$. Evaluate $\int_C F \cdot dr$, where $C$ is any path from $(0,0,0)$ to $(1,1,\pi)$. 
+
+\vspace{10pt} 
+
+\item[] For problems 7 and 8, determine whether or not the vector field is conservative; if it is, give the corresponding potential function. 
+
+\item[7.] $F(x,y) = \langle 2xy+y^3, x^2+3xy^2+2y \rangle$. 
+
+\item[8.] $F(x,y,z) = \langle y, x, z^3 \rangle$. 
+
+\item[9.] Use Green's theorem to find the area of the ellipse given by $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$, where $a$ and $ b $ are nonzero. 
+
+\item[10.] Use Green's theorem to evaluate the line integral
+
+$$\int_C e^{2x+y} dx + e^{-y} dy,$$
+
+where $C$ is the triangle with vertices $(0,0), (1,0)$ and $(1,1)$ oriented counter clockwise. 
+
+\item[11.] (Stewart 16.4.13) Use Green's theorem to evaluate 
+
+$$\int_C F \cdot dr,$$
+
+where $F(x,y) = \langle y- \cos(y), x \sin (y) \rangle$, and $C$ is the circle $(x-3)^2 + (y+4)^2 = 4$ oriented clockwise. 
+
+
+
+
+
+\end{enumerate}
+\end{document}

@@ -1,0 +1,223 @@
+\documentclass[12 pt]{report}
+
+\usepackage{epsfig}
+\usepackage[in,empty]{myfullpage}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\baselineskip=20pt
+
+\begin{document}
+
+\noindent \vfill \noindent \large
+
+\centerline{Math 324 B  - Spring 2017}
+
+\centerline{Final exam}
+
+\centerline{Wednesday, June 7th, 2017}
+
+\normalsize
+
+\vfill
+\medskip
+Name: \rule{10cm}{1pt}
+
+\bigskip
+
+\vfill
+\begin{center}
+{\large
+\begin{tabular}{||c|c|r||}
+\hline Problem 1 & 15 & \hspace{10mm} \hfill \\
+\hline Problem 2 & 15 & \hspace{10mm} \hfill \\
+\hline Problem 3 & 14 & \hspace{10mm} \hfill \\
+\hline Problem 4 & 16  & \hspace{10mm} \hfill \\
+\hline Problem 5 & 15  & \hspace{10mm} \hfill \\
+\hline Problem 6 &  15 & \hspace{10mm} \hfill \\
+\hline Problem 7 & 10 & \hspace{10mm} \hfill \\
+\hline Total & 100 & \hspace{10mm} \hfill \\
+\hline
+\end{tabular}
+}
+\end{center}
+\vfill
+\begin{itemize}
+\item There are 7 problems (8 pages) in this exam. Make sure you have them all. 
+\item You must show your work on all problems.  The correct answer
+with no supporting work may result in no credit. \textbf{Put a box
+around your FINAL ANSWER for each problem and cross out any work
+that you don't want to be graded.} 
+\item Give exact answers, and simplify as much as possible. 
+For example, $\frac{\pi}{\sqrt{2}}$ is acceptable, but $\frac{1}{2} + \frac{3}{4}$
+should be simplified to $\frac{5}{4}$.   
+
+\item If you need more room, use the backs
+of the pages and indicate to the grader that you have done so.
+\item Raise your hand if you have a question.
+\item Any student found engaging in academic misconduct will receive
+a score of 0 on this exam.
+\item You have 2 hours to complete the exam.  Budget your time wisely! \\
+\end{itemize}
+\vfill
+\begin{center}GOOD LUCK!\end{center}
+
+\newpage
+\begin{enumerate}
+
+\item (15 pts) Let $C$ be the cone $4y^2+4z^2 = x^2$ for $0 \leq x \leq 4$, oriented inward (i.e. normal points toward the positive $x-$axis). Use Stokes' theorem to evaluate
+
+\[
+\iint_C \nabla \times \langle z^2, 0, 1+xy \rangle \, \cdot dS.
+\]
+
+Make sure to indicate how you are orienting the boundary. 
+
+\vfill
+
+\newpage \item (15 pts) Evaluate the surface integral
+
+\[
+\iint_S \langle x^2, 2z, y^2 \rangle \, \cdot dS,
+\]
+
+where $S$ is the boundary of the quarter sphere region $E = \{(x,y,z): x^2 + y^2 + z^2 \leq 9, x, y \leq 0 \}$ oriented inward, i.e. towards $E$. 
+
+\vfill
+
+\newpage \item (14 pts) Let $D$ be the ellipsoidal cylinder defined by the equation $x^2 + 3z^2 = 4,$ for any $-1 \leq y \leq 1$. 
+
+\begin{enumerate} \item (5 pts) Give a parameterization of $D$ in terms of the coordinates $\theta$ and $y$. 
+
+\vspace{4cm}
+
+\item (4 pts) Compute $r_\theta \times r_y$. 
+
+\vfill
+
+\item (5 pts) Find a vector that is normal to $D$ at the point $(x,y,z) = (1, \sqrt{3}/2, 1)$. 
+
+\vfill
+
+\end{enumerate}
+
+\newpage \item (16 pts; 4 pts each) For each of the statements below, circle \textbf{True} if you think it is true and \textbf{False} if you think it is false. 
+
+\begin{enumerate} \item \textbf{True}\hspace{5pt} \textbf{False} \hspace{5pt} If $F$ is a conservative vector field and $C$ is any curve, then 
+
+\[
+\int_C F \, \cdot dr = 0.
+\]
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} Let $S$ denote the surface of the sphere of radius $17$ centered at $(1,0, \sqrt{2})$, oriented inward. For any vector field $F$, 
+
+\[ 
+\iint_S \nabla \times F \, \cdot dS = 0.
+\]
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} For any vector field $G$, $\nabla \times (\nabla \times G) = 0$. 
+
+\vfill
+
+\item \textbf{True} \hspace{5pt} \textbf{False} \hspace{5pt} If $R \subset \mathbb{R}^3$ is a region in space, and $S = \partial R$ is the boundary surface of $S$, then 
+
+\[
+\iiint_R (2z + 2y) \, dV = \iint_S (2xz + y^2 - 3) \, dS.
+\]
+\vfill
+
+
+\end{enumerate}
+
+%\newpage
+%
+%\item (20 pts) Let $E$ denote the unit cube in $\mathbb{R}^3$, $E = \{(x,y,z): 0 \leq x, y, z \leq 1\}$. Let $S = \partial E$ be the boundary of the cube, with the outward pointing orientation (away from $E$). Use the divergence theorem to evaluate 
+%
+%\[
+%\iint_{\partial E} \langle 0, 0, e^{y+z} \rangle \cdot dS.
+%\]
+
+% \item (20 pts) Consider the radial vector field $F = \frac{1}{|r|^4} r$, where $r = \langle x, y, z \rangle.$ 
+%
+%\begin{enumerate} \item (5 pts) Find the divergence of $F$: write your final answer in terms of $r$. 
+%
+%\vfill
+%
+%\item (7 pts) Let $E_R$ be the spherical region $\{(\rho, \theta, \phi): 1 \leq \rho \leq R\}$, where $R > 1$ is a fixed number. Evaluate the volume integral
+%
+%\[
+%\iiint_{E_R} \nabla \cdot F \, dV.
+%\]
+%
+%\vfill
+%
+%\newpage
+%
+%\item (5 pts) Let $S_1$ denote the surface of the sphere of radius $1$ oriented toward the origin, and let $S_R$ denote the surface of the sphere of radius $R$ oriented away from the origin. According to the divergence theorem, 
+%
+%\[
+%\iint_{S_1} F \cdot dS + \iint_{S_R} F \cdot dS = \iiint_{E_R} \nabla \cdot F \, \cdot dS.
+%\]
+%
+%You found the value of the right hand side of this equation in part b: compute one of the integrals on the left hand side, and use your answer to find the value of the other integral. 
+%
+%\vfill 
+%
+%\item (3 pts) What happens to the values of the three integrals from part $c$ when $R \to \infty$?
+%
+%\vfill
+%
+%\end{enumerate}
+%
+
+\newpage
+
+\item (12 pts; 4pts each) Consider the vector field $F = \langle 2y + 1, x+y, 0 \rangle$ defined on all of $\mathbb{R}^3$. 
+
+\begin{enumerate} \item Use Green's theorem to compute $\int_C F \cdot dr$, where $C$ is the curve in $\mathbb{R}^3$ parameterized by $r(t) = \cos(t) \hat{i} + \sin(t)\hat{j}$ for $t \in [0,2\pi]$. 
+
+\vfill 
+
+\item Find $\nabla \cdot F$ and $\nabla \times F$. 
+
+\vfill
+
+\item Let $S$ be the surface of the box $[0,3] \times [2,3] \times [-1,1] \subset \mathbb{R}^3$, oriented outward: that is, $S$ is the boundary of the region $\{(x,y,z): 0 \leq x \leq 3, 2 \leq y \leq 3, -1 \leq z \leq 1\}.$ What is $\iint_S F \cdot dS$?
+
+\vfill
+
+\end{enumerate}
+
+\newpage
+
+Let $S$ denote the parabaloid $2x^2 + y + z^2 = 1$. Both problems 6 and 7 are about the surface $S$.
+
+\item (15 pts) Find a point $(x,y,z)$ where the normal vector to $S$ at $(x,y,z)$ is parallel to the vector $\langle 4,1,2 \rangle$. Are there other points where the normal vector is parallel to $\langle 4,1,2 \rangle$? Explain. 
+
+\vfill
+
+\newpage
+
+\item (10 pts) Suppose $S$ represents an infinitely large sheet of charged material, with charge density 
+
+\[
+f(x,y,z) = \frac{1}{4\pi \epsilon_0} \frac{e^{-x^2-z^2}}{\sqrt{1+16x^2+4z^2}},
+\]
+
+where $\epsilon_0$ is a constant. Compute the total charge in the plate $S$ by evaluating the integral
+
+\[
+\iint_S f(x,y,z) \, dS.
+\]
+
+\vfill
+
+
+\end{enumerate}
+
+
+\end{document}
