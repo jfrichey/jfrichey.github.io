@@ -1,0 +1,31 @@
+Probability topics course
+
+Short description
+This course will survey results and theories related to fundamental models originating in pure probability and physics, with a focus on simple random walks, percolation theory, and first passage percolation. Questions and ideas related to these models have guided research advances throughout the 20th century, and recent international prizes have been awarded to scholars who touched these problems, including Duminil-Copin, Furstenberg, Kesten, Lawler, and Talagrand. The product has been new and elegant mathematics -- including potential theory, correlation inequalities, and Busemann functions, to name a few -- though many challenges still remain today. Students will have a chance to contribute by choosing special topics and presenting solutions to exercises and ideas from research papers. We will build the mathematical tools needed as we go along: these will primarily be methods from classical probability and ergodic theory, plus a variety of modern analytical methods. Knowledge of basic facts from calculus and probability will be assumed. 
+
+Syllabus (possible topics)
+Simple random walks 
+	Polya's theorem
+	Local central limit theorem
+	Potential theory, hitting times
+	Loop erased random walk
+	Intersections of random walks
+	Cut times 
+	
+Percolation theory
+	Correlation inequalities
+	Phase transition in Z^d
+	Uniqueness of the infinite cluster
+	Russo formula
+	Critical value in Z^2
+	Crossing probabilities, critical exponents
+	Dynamical percolation
+
+First passage percolation
+	Subadditivity and LLN
+	Shape theorem
+	Existence and properties of geodesics
+	Busemann functions
+	Variance and fluctuations of passage times
+	Dynamical FPP
+	
