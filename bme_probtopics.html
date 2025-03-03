@@ -1,4 +1,5 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>Teaching</title>
 <style>
 body {font-family: sans-serif;}
@@ -10,6 +11,7 @@ th, td {
     padding: 8px;
 }
 </style>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body>
@@ -44,18 +46,26 @@ For each topic, we will start by reviewing classical results and methods, and th
 Here are the papers I suggest for presentations. Your presentation should consist roughly of two parts: describing the
 general structure of the paper or or of one of its theorems (~5-10 minutes), and a deep dive into a proof of one lemma or fact
 (~20-25 minutes).
+
+<h3>SRW</h3>
 <ul>
     <li>LLN for the size of the range of 2D simple random walk: <a href="https://www.renyi.hu/~p_erdos/1951-14.pdf">Dvoretzky and Erdos</a>, or <a href="https://projecteuclid.org/proceedings/berkeley-symposium-on-mathematical-statistics-and-probability/Proceedings-of-the-Sixth-Berkeley-Symposium-on-Mathematical-Statistics-and/Chapter/The-range-of-random-walk/bsmsp/1200514331">Jain and Pruitt</a>
         , or <a href="https://www2.math.upenn.edu/~pemantle/papers/Student-theses/Masters/Jiao140506.pdf">Jiao (Master's thesis, Advisor: Pemantle)</a></li>
     <li>Local times for 2D random walk: <a href="https://www.sciencedirect.com/science/article/pii/S0304414906001207">Cerny</a></li>
     <li>Coupling of two SRWs so they don't intersect: <a href="https://arxiv.org/abs/2412.16600">Benjamini and Kozma</a> </li>
     <li>Exponents for cut times of simple random walk: <a href="https://projecteuclid.org/journals/electronic-journal-of-probability/volume-1/issue-none/Cut-Times-for-Simple-Random-Walk/10.1214/EJP.v1-13.full">Lawler</a></li>
-    <li>Capacity of the range of random walk on Z^4: <a href="https://arxiv.org/abs/1611.04567">Asselah, Schapira and Sousi</a></li>
+    <li>Capacity of the range of random walk on \(\mathbb{Z}^4\): <a href="https://arxiv.org/abs/1611.04567">Asselah, Schapira and Sousi</a></li>
 </ul>
 
-<b><h3>Schedule</h3></b>
+<h3>Percolation</h3>
+<ul>
+    <li>Percolation on \(\mathbb{Z}^2\) with random diagonal edges: <a href="https://www.ime.usp.br/~leorolla/papers/randomsquare.pdf">Rolla</a></li>
+    <li>Uniqueness of the infinite cluster: <a href="https://projecteuclid.org/journals/communications-in-mathematical-physics/volume-121/issue-3/Density-and-uniqueness-in-percolation/cmp/1104178143.full">Burton and Keane</a></li>
+</ul>
 
-<table style="width:40%">
+<b><h2>Schedule</h2></b>
+
+<table style="width:80%">
   <tr>
     <th>Date</th>
     <th>Topics</th>
@@ -74,13 +84,21 @@ general structure of the paper or or of one of its theorems (~5-10 minutes), and
     <td>Feb 20</td>
     <td>LCLT, Ornstein coupling, RW proof of Liouville theorem</td>
     <td><b>D</b> Theorem 3.5.2</td>
-    <td>Show that two simple random walks in Z^d can be coupled so that they are eventually equal. (Hint: use the Ornstein
+    <td>Show that two simple random walks in \(\mathbb{Z}^d\) can be coupled so that they are eventually equal. (Hint: use the Ornstein
         coupling idea in each dimension separately.) And: <b>(RW2)</b> Exercises 2.4, 2.6</td>
   </tr>
 
   <tr>
     <td>Feb 27</td>
-    <td>Green's function, capacity, last exit decomposition</td>
+    <td>Green's function (transient case)</td>
+    <td><b>I</b> Chapter 2, <b>RW</b> Chapters 4, 6</td>
+    <td>Let \(z = (1,0, \ldots, 0) \in \mathbb{Z}^d\). Show that the probability that a SRW \(S\) ever visits \(z\) is \(p = 1-G(0,0)^{-1}\). Let \(T\)
+        be the first return time of \(S\) to the set \(\{0, z\}\). Show that \(\mathbb{P}(S_T = 0) = \mathbb{P}(S_T = z) = \frac{p}{1+p}\). And: <b>(RW)</b> Exercises 4.1, 4.6, 4.7</td>
+
+
+  <tr>
+    <td>Mar 6</td>
+    <td>Last exit decomposition, capacity, Wiener's test, potential kernel in \(\mathbb{Z}^2\)</td>
     <td><b>I</b> Chapter 2, <b>RW</b> Chapters 4, 6</td>
     <td></td>
   </tr>
