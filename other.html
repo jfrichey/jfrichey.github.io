@@ -1,58 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Jacob Richey's personal page</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <link rel="stylesheet" href="other_style.css" type="text/css">
-</head>
+<html lang="en" class="snap-scroll">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Other interests · Jacob Richey</title>
+    <meta name="description" content="Bridge guides, card-play essays, and favorite riddles from Jacob Richey.">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="site.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KNCG5G8RV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8KNCG5G8RV');
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="index.html">Jacob Richey</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="index.html">About</a>
+        <a href="research.html">Research</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="#top" aria-current="page">Other</a>
+        <a href="pagedocs/jacob_richey_cv.pdf">CV</a>
+      </nav>
+    </header>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8KNCG5G8RV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <aside class="rail" aria-label="Other interests">
+      <a href="#bridge" aria-label="Bridge">01</a>
+      <a href="#techniques" aria-label="Card-play techniques">02</a>
+      <a href="#favorites" aria-label="Favorites">03</a>
+    </aside>
 
-  gtag('config', 'G-8KNCG5G8RV');
-</script>
-
-<body>
-    <div class="header">
-        <a href="index.html" class="logo">Jacob Richey</a>
-        <div class="header-right">
-            <a href="pagedocs/jacob_richey_cv.pdf">CV</a>
-            <a href="research.html">Research</a>
-            <a href="teaching.html">Teaching</a>
-            <a href="other.html">Extra</a>
+    <main id="main">
+      <section class="page-hero plum" id="top">
+        <div>
+          <p class="eyebrow">Cards · puzzles · recreational detours</p>
+          <h1 class="display-title">The non-math<br><em>wing of the site.</em></h1>
+          <p class="lede">
+            I am a recovering bridge addict. I played for Dartmouth and the University of Washington, and wrote a basic
+            guide to help friends and family enter the game. A collection of short articles explores the kind of rare,
+            satisfying card-play techniques that keep bridge lodged permanently in the brain.
+          </p>
+          <div class="actions">
+            <a class="button" href="#bridge">Deal the cards <span>↓</span></a>
+            <a class="text-link" href="pagedocs/bridge/Natural_Bridge_Bidding.pdf">Basic bridge guide ↗</a>
+          </div>
         </div>
-    </div>
+        <div class="bridge-table" role="img" aria-label="Three playing cards on a green bridge table">
+          <div class="playing-card c1 red-card">A<span>♥</span></div>
+          <div class="playing-card c2">K<span>♠</span></div>
+          <div class="playing-card c3 red-card">Q<span>♦</span></div>
+          <div class="bridge-note">Plan the whole hand before playing to trick one.</div>
+        </div>
+        <p class="scroll-cue">Scroll for bridge and favorite puzzles</p>
+      </section>
 
-    <div class="extra">
-        <div class="pj">Bridge</div>
-        I am a recovering bridge addict. I was once was a member of the Dartmouth team (2012-2014), and also the UW team (2014-2016).
-        <p></p>
+      <section class="story-panel plum" id="bridge">
+        <div class="story-grid">
+          <div class="story-copy">
+            <span class="big-no">01</span>
+            <p class="eyebrow">A game worth learning</p>
+            <h2>Bridge</h2>
+            <div class="summary">
+              <p>
+                I was once a member of the Dartmouth team (2012–2014) and then the University of Washington team
+                (2014–2016). Bridge combines an auction, imperfect information, partnership communication, probability,
+                and the occasional opportunity to execute something absurdly elegant.
+              </p>
+              <p>
+                The basic guide below is a short overview of bidding and card-play strategy written for friends and
+                family. It includes an explicit decision tree for Standard American, one of the most common bidding
+                systems.
+              </p>
+            </div>
+            <div class="actions">
+              <a class="button" href="pagedocs/bridge/Natural_Bridge_Bidding.pdf">Read the basic guide <span>↗</span></a>
+            </div>
+          </div>
+          <div class="story-visual chalkboard" role="img" aria-label="A bridge bidding sequence written on a board">
+            North &nbsp;&nbsp;&nbsp; East &nbsp;&nbsp;&nbsp; South &nbsp;&nbsp;&nbsp; West
+            <span class="equation">1♠ &nbsp;&nbsp;&nbsp; Pass &nbsp;&nbsp;&nbsp; 2♥ &nbsp;&nbsp;&nbsp; Pass</span>
+            What has partner promised?<br>Which contracts are still possible?<br>What will the opening lead tell you?
+            <span class="circle-note">count points<br>count shape</span>
+          </div>
+        </div>
+      </section>
 
-        <a href="pagedocs/bridge/Natural_Bridge_Bidding.pdf">Basic bridge guide.</a> A short overview of basic bridge strategy
-        I wrote to teach friends and family about the game. Contains an explicit decision tree for for Standard American,
-        one of the most common bidding systems.
-        <p></p>
-        Some short, comedic articles I wrote to teach rare declarer and defense plays:
-        <ul class="a">
-            <li><a href="pagedocs/bridge/Dummy_reversal.pdf"<a>Dummy reversal</a></li>
-            <li><a href="pagedocs/bridge/simple_endplay.pdf"<a>Simple endplay</a></li>
-            <li><a href="pagedocs/bridge/strip squeeze.pdf"<a>Strip squeeze</a></li>
-            <li><a href="pagedocs/bridge/trump coup.pdf"<a>Trump Coup</a></li>
-            <li><a href="pagedocs/bridge/trump uppercut.pdf"<a>Trump uppercut</a></li>
-            <li><a href="pagedocs/bridge/two suit squeeze.pdf"<a>Two suit squeeze</a></li>
-        </ul>
+      <section class="story-panel clay reverse" id="techniques">
+        <div class="story-grid">
+          <div class="story-copy">
+            <span class="big-no">02</span>
+            <p class="eyebrow">Short, mildly comedic explanations</p>
+            <h2>Rare card-play techniques</h2>
+            <div class="summary">
+              <p>
+                These essays were written to teach declarer and defensive plays that sound like moves from an especially
+                baroque chess variant. Each technique is real; several are even useful more than once in a lifetime.
+              </p>
+              <p>
+                Start with the simple endplay or dummy reversal. Save the trump coup and two-suit squeeze for the moment
+                when ordinary hobbies no longer provide enough terminology.
+              </p>
+            </div>
+          </div>
+          <div class="story-visual bridge-links">
+            <a href="pagedocs/bridge/Dummy_reversal.pdf"><small>Declarer play</small><strong>Dummy reversal</strong></a>
+            <a href="pagedocs/bridge/simple_endplay.pdf"><small>Declarer play</small><strong>Simple endplay</strong></a>
+            <a href="pagedocs/bridge/strip%20squeeze.pdf"><small>Squeeze play</small><strong>Strip squeeze</strong></a>
+            <a href="pagedocs/bridge/trump%20coup.pdf"><small>Trump control</small><strong>Trump coup</strong></a>
+            <a href="pagedocs/bridge/trump%20uppercut.pdf"><small>Defensive play</small><strong>Trump uppercut</strong></a>
+            <a href="pagedocs/bridge/two%20suit%20squeeze.pdf"><small>Squeeze play</small><strong>Two-suit squeeze</strong></a>
+          </div>
+        </div>
+      </section>
 
-        <div class="pj">Favorites</div>
-        <ul class="a">
-            <li><a href="https://web.archive.org/web/20221219123950/https://www.ocf.berkeley.edu/~wwu/riddles/intro.shtml">Wu Riddles</a>, on the web archive.</li>
+      <section class="story-panel blue" id="favorites">
+        <div class="story-grid">
+          <div class="story-copy">
+            <span class="big-no">03</span>
+            <p class="eyebrow">Favorites</p>
+            <h2>Wu riddles</h2>
+            <div class="summary">
+              <p>
+                Wei-Hwa Huang and friends assembled a legendary collection of puzzles, lateral-thinking questions, and
+                mathematical riddles. The original site has disappeared, but the archive remains an excellent place to
+                lose an afternoon.
+              </p>
+              <p>
+                The best riddles have a solution that feels impossible until the instant it feels inevitable. They are
+                also good training for research: identify the assumption everybody silently imported, and then remove it.
+              </p>
+            </div>
+            <div class="actions">
+              <a class="button" href="https://web.archive.org/web/20221219123950/https://www.ocf.berkeley.edu/~wwu/riddles/intro.shtml">Enter the archive <span>↗</span></a>
+            </div>
+          </div>
+          <div class="story-visual riddle-wall" role="img" aria-label="Two overlapping riddle cards">
+            <div class="riddle-paper"><b>A useful question</b>What fact in the problem have you accepted without checking whether it was actually stated?</div>
+            <div class="riddle-paper"><b>A useful warning</b>If every attempt fails for the same reason, the reason may be the real object of study.</div>
+          </div>
+        </div>
+      </section>
 
-        </ul>
-
-    </div>
-</body>
+      <footer class="site-footer">
+        <div><p class="eyebrow">Enough detouring?</p><h2>Back to probability.</h2></div>
+        <div class="footer-links">
+          <a href="research.html">Research <span>→</span></a>
+          <a href="index.html">Home <span>→</span></a>
+          <a href="#top">Back to top <span>↑</span></a>
+        </div>
+        <p class="fine">Jacob Richey · Bridge, riddles, and other interests</p>
+      </footer>
+    </main>
+  </body>
 </html>

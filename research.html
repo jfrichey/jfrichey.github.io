@@ -1,246 +1,343 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Jacob Richey's personal page</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <link rel="stylesheet" href="research_style.css" type="text/css">
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-</head>
+<html lang="en" class="snap-scroll">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Research · Jacob Richey</title>
+    <meta
+      name="description"
+      content="Research in activated random walk, shifts of finite type, random matrices, stochastic processes, and random walks."
+    >
+    <link rel="stylesheet" href="style.css">
+    <script defer src="site.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KNCG5G8RV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8KNCG5G8RV');
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="index.html">Jacob Richey</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="index.html">About</a>
+        <a href="#top" aria-current="page">Research</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="other.html">Other</a>
+        <a href="pagedocs/jacob_richey_cv.pdf">CV</a>
+      </nav>
+    </header>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8KNCG5G8RV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <aside class="rail" aria-label="Research areas">
+      <a href="#arw" aria-label="Activated random walk">01</a>
+      <a href="#patterns" aria-label="Shifts of finite type and patterns">02</a>
+      <a href="#matrices" aria-label="Random matrices">03</a>
+      <a href="#processes" aria-label="Combinatorial stochastic processes">04</a>
+      <a href="#random-walks" aria-label="Random walks">05</a>
+    </aside>
 
-  gtag('config', 'G-8KNCG5G8RV');
-</script>
-
-<body>
-    <div class="header">
-        <a href="index.html" class="logo">Jacob Richey</a>
-        <div class="header-right">
-            <a href="pagedocs/jacob_richey_cv.pdf">CV</a>
-            <a href="research.html">Research</a>
-            <a href="teaching.html">Teaching</a>
-            <a href="other.html">Extra</a>
+    <main id="main">
+      <section class="page-hero" id="top">
+        <div>
+          <p class="eyebrow">Probability · combinatorics · interacting particles</p>
+          <h1 class="display-title">Random structures,<br><em>viewed in motion.</em></h1>
+          <p class="lede">
+            My research interests are in combinatorial probability and statistical physics. Most of my work falls into
+            five overlapping areas: activated random walk, shifts of finite type and pattern problems, random matrices,
+            combinatorial stochastic processes, and random walks.
+          </p>
+          <div class="actions">
+            <a class="button" href="#arw">Explore the projects <span>↓</span></a>
+            <a class="text-link" href="https://scholar.google.com/citations?user=oablNsIAAAAJ&amp;hl=en">Google Scholar ↗</a>
+          </div>
         </div>
-    </div>
+        <div class="hero-collage">
+          <figure class="hc1"><img src="math_images/ava_combo.png" alt="Critical sandpile avalanches"></figure>
+          <figure class="hc2"><img src="math_images/monosquares_weighted.png" alt="Colored lattice phases"></figure>
+          <figure class="hc3"><img src="math_images/random_walk_source.webp" alt="Random walk occupation map"></figure>
+        </div>
+        <p class="scroll-cue">Five broad areas, one scroll at a time</p>
+      </section>
 
-    <div class="titles">Research projects & open problems</div>
-
-<!--SFT-->
-    <div class="block-container split-block">
-        <div class="text-part">
-            <div class="pj">Shifts of finite type</div>
-            <div class="math">
-                Fix a family of <em>forbidden</em> patterns on a transitive graph, i.e. some colorings of
-                some finite subgraphs. Consider an iid coloring on the full graph (or a finite subset) conditioned to avoid
-                all the forbidden patterns.
-                What does a typical configuration look like, and what statistical properties does it have? This model originated
-                in ergodic theory and symbolic dynamics, and lies at the intersection of probability, combinatorics, dynamics, and statistical physics.
-                Many interesting questions arise already in the one dimensional setting. For example: consider bi-infinite binary words, and
-                forbid a single binary pattern. The entropy of the resulting shift space (i.e. the exponential growth rate
-                of the number of allowable words) is described by a simple combinatorial statistic, the auto-correlation polynomial
-                of the forbidden word. In higher dimensions, computing the entropy or establishing mixing properties
-                is much more challenging; and in the non-amenable setting, a nice notion of entropy is still not known.
-                Another natural object is the asymptotic density of 1s, or of another fixed (allowable) pattern. Is there a
-                similar combinatorial statistic that describes these densities?
+      <article class="project red" id="arw">
+        <div class="project-inner">
+          <div class="project-copy">
+            <span class="big-no">01</span>
+            <p class="eyebrow">Interacting particles · critical phenomena</p>
+            <h2>Activated random walk</h2>
+            <div class="summary">
+              <p>
+                In the 1980s, Per Bak, Chao Tang, and Kurt Wiesenfeld coined and popularized self-organized criticality
+                (SOC), a phenomenon they observed in systems like avalanches and forest fires. Energy slowly builds and
+                is released in shocks whose sizes follow a statistical power law. Their mathematical models include the
+                abelian sandpile, a precursor to activated random walk (ARW).
+              </p>
+              <p>
+                Simulations suggest that ARW has a robust critical limiting state, but a mathematical description of
+                exactly how SOC arises is still missing. The two-dimensional case is especially compelling; one
+                dimension, trees, and mean field provide more tractable laboratories that are not yet fully solved.
+              </p>
             </div>
-
-            <div class="pub">
-                <p><a href="pagedocs/sfttalk_halloween.pdf">Talk slides</a></p>
-                <p>Continuously-evolving draft: <a href="pagedocs/sft_patterns.pdf">SFT Patterns</a></p>
-                <p><a href="https://arxiv.org/abs/2409.09024"><em>Shifts of finite type with a single forbidden word</em></a>, with N. Chandgotia, B. Marcus, C. Wu. In preparation.</p>
-                <p><a href="https://arxiv.org/abs/2409.19195"><em>Bias, length, and symmetry in Penney's ante</em></a>, with M. Drexel, A. Ju, P. Peng. Undergraduate research. In preparation.</p>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2605.06887"><small>Preprint · 2026</small><strong>Law of large numbers for ARW on villages</strong><span>↗</span></a>
+              <a href="https://arxiv.org/abs/2601.07816"><small>Preprint · 2026</small><strong>Local density of activated random walk</strong><span>↗</span></a>
+              <a href="https://arxiv.org/abs/2601.03411"><small>Preprint · 2026</small><strong>Explosivity in one-dimensional ARW</strong><span>↗</span></a>
+              <a href="https://arxiv.org/abs/2510.05514"><small>Preprint · 2025</small><strong>The odometer in subcritical ARW</strong><span>↗</span></a>
+              <a href="https://arxiv.org/abs/2212.08293"><small>Preprint</small><strong>Stochastic sandpile on ℤ</strong><span>↗</span></a>
+              <a href="https://arxiv.org/abs/2009.09491"><small>CMP · 2023</small><strong>Activated random walk on ℤ</strong><span>↗</span></a>
+              <a href="https://arxiv.org/abs/1709.09163"><small>AIHP · 2019</small><strong>Activated random walk on a cycle</strong><span>↗</span></a>
+              <a href="pagedocs/kutszem_SSM_talk.pdf"><small>Slides</small><strong>Sandpiles and active matter</strong><span>↗</span></a>
             </div>
+          </div>
+          <figure class="project-figure">
+            <div class="figure-frame"><img src="math_images/ava_combo.png" alt="Two colored stochastic sandpile avalanche heat maps"></div>
+            <figcaption><b>Figure 01</b><span>Two large avalanches in a critical stochastic sandpile on a 200 × 200 torus. Brighter sites toppled more often.</span></figcaption>
+          </figure>
         </div>
-        <div class="image-part">
-            <img src="math_images/monosquares_weighted.png" style="max-width: 45vw; height: auto" alt="2dsft_example">
-            <div class="latex-caption">Fix \(\beta \in \mathbb{R}\), and put a Gibbs measure \(\mu_\beta(x)\) on configurations
-            of Red/Green/Blue on a subset of a discrete 2D lattice with \(\mu_\beta(x) \sim \exp(\beta N(x))\), where
-            \(x\) is a configuration of R/G/B, and \(N(x)\) is the number of mono-colored \(2 \times 2\) squares in \(x\). These images are sampled from
-            Glauber dynamics w.r.t. \(\mu\) on a large 2D torus: from left to right, \(\beta = -2, 1,\) and \(9/4\). </div>
-        </div>
-    </div>
+      </article>
 
-<!--ARW/SSM-->
-    <div class="block-container split-block">
-        <div class="text-part">
-            <div class="pj">Self organized criticality for abelian particle systems</div>
-            <div class="math">
-                In the 1980s physicists Per Bak, Chao Tang and Kurt Wiesenfeld coined and popularized the idea of <em>self organized criticality</em> (SOC),
-                a phenomenon they observed in real-world systems like avalanches and forest fires. In these systems, energy slowly builds up over time,
-                and is released in shocks with sizes that follow a statistical power law. They proposed a number of simple
-                but mathematically challenging models to study SOC, including the abelian sandpile model, a precursor to <em>activated random walk</em> (ARW).
-                Deepak Dhar later proved that the sandpile has a certain abelian property, which is shared by activated random walk.
-
-                Simulations suggest that ARW has a critical limiting state that exhibits SOC in a robust way, with little dependence on the exact setup
-                of the model. Research on ARW has recently gained traction, and many results on the critical density are now available. Still,
-                we lack a mathematical description of exactly how SOC arises for ARW. While the two-dimensional case is of particular practical interest,
-                ARW in one dimension, on a tree, or in the mean field (on the complete graph) are more tractable, and are not yet fully solved.
+      <article class="project blue reverse" id="patterns">
+        <div class="project-inner">
+          <div class="project-copy">
+            <span class="big-no">02</span>
+            <p class="eyebrow">Symbolic dynamics · pattern avoidance</p>
+            <h2>Shifts of finite type &amp; patterns</h2>
+            <div class="summary">
+              <p>
+                Fix a family of forbidden patterns on a transitive graph: some colorings of some finite subgraphs.
+                Consider an iid coloring on the full graph, or a finite subset, conditioned to avoid every forbidden
+                pattern. What does a typical configuration look like, and what statistical properties does it have?
+              </p>
+              <p>
+                Many interesting questions arise already in one dimension. The entropy after forbidding a single binary
+                word is described by its autocorrelation polynomial. In higher dimensions, computing entropy or
+                establishing mixing is much harder; another natural problem is to understand the density of a fixed
+                allowable pattern.
+              </p>
             </div>
-
-            <div class="pub">
-                <p><a href="pagedocs/kutszem_SSM_talk.pdf">Talk slides</a></p>
-                <p><a href="https://arxiv.org/abs/2212.08293"><em>Active phase for the stochastic sandpile on \(\mathbb{Z}\)</em></a>, with C. Hoffman, Y. Hu, and D. Rizzolo. Submitted to CPAM, 2023</p>
-                <p><a href="https://arxiv.org/abs/2009.09491"><em>Active phase for activated random walk on \(\mathbb{Z}\)</em></a>, with C. Hoffman and L. Rolla. Published in CMP, 2022.</p>
-                <p><a href="https://arxiv.org/abs/1709.09163"><em>Activated random walk on a cycle</em></a>, with R. Basu, S. Ganguly, and C. Hoffman. Published in AIHP, 2019.</p>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2606.06655"><small>Preprint · 2026</small><strong>Letter frequency with one forbidden word</strong><span>↗</span></a>
+              <a href="https://arxiv.org/abs/2409.09024"><small>DCDS · 2026</small><strong>Forbidding a single pattern</strong><span>↗</span></a>
+              <a href="https://www.combinatorics.org/ojs/index.php/eljc/article/view/v32i4p57"><small>EJC · 2025</small><strong>Word length, bias and bijections in Penney’s ante</strong><span>↗</span></a>
+              <a href="pagedocs/sft_patterns.pdf"><small>Living notes</small><strong>Patterns in SFTs</strong><span>↗</span></a>
             </div>
-        </div>
-        <div class="image-part">
-            <img src="math_images/ava_combo.png" style="max-width: 45vw; height: auto" alt="avalanche_combo">
-            <div class="latex-caption">Two avalanches, at different scales, in the stochastic sandpile on a \(200 \times 200\) torus at
-            (approximately) the critical state. Sites colored brighter were toppled more times during the avalanche.  </div>
-        </div>
-    </div>
-
-<!--Combinatorial processes-->
-    <div class="block-container split-block">
-        <div class="text-part">
-            <div class="pj">Combinatorial stochastic processes</div>
-            <div class="math">
-                I am often drawn to questions about random combinatorial objects: markov chains, fragmentation/coagulation processes,
-                interacting particle systems, renewal processes, random number theory. Proving limit theorems, describing stationary
-                configurations or evolutions, or studying mean field behavior of these systems, to name a few objectives,
-                often leads to cutting edge ideas and unsolved problems.
+          </div>
+          <figure class="project-figure">
+            <div class="figure-frame">
+              <img src="math_images/monosquares_weighted.png" alt="Three red, green, and blue lattice configurations">
             </div>
+            <figcaption><b>Figure 02</b><span>Three phases of a lattice coloring model. Monochromatic 2 × 2 squares are discouraged, mildly rewarded, then strongly rewarded.</span></figcaption>
+          </figure>
+        </div>
+      </article>
 
-            <div class="pub">
-                <p>Continuously evolving draft: <a href="pagedocs/combinatorial_processes.pdf">Combinatorial stochastic processes</a></p>
-                <p></p>Random 'sumset' problems for real numbers, related to the 'Bernoulli factory' problem: <a href="pagedocs/sum_constructions.pdf">Sum constructions</a></p>
-                <p>Writeup of a coupon-collector type problem: <a href="pagedocs/geo_coupons23.pdf">Geometric coupons</a></p>
-                <p><a href="pagedocs/rw_collisions.pdf">Random walk collisions</a>. A survey I wrote as a graduate student on collisions among random walkers. Contains some original hitting time
-                calculations for random walk on a discrete cycle and on \(\mathbb{Z}\). </p>
+      <article class="project green" id="matrices">
+        <div class="project-inner">
+          <div class="project-copy">
+            <span class="big-no">03</span>
+            <p class="eyebrow">Random matrices · statistical inference</p>
+            <h2>Random matrices</h2>
+            <div class="summary">
+              <p>
+                A recurring theme in the study of large finite graphs is to describe hidden geometric features. A random
+                graph ensemble has geometry if it can be roughly embedded in a low-dimensional metric space. For Wishart
+                matrices—random graphs embedded in a sphere—one can characterize a transition between detectable
+                geometry and apparent noise.
+              </p>
+              <p>
+                Random intersection graphs share essentially the same transition. This suggests a universal phenomenon:
+                can one characterize a broad class of random graphs that lose geometry at the same threshold?
+              </p>
             </div>
-
-        </div>
-
-        <div class="image-part">
-            <img src="math_images/candidates_hist.png" style="max-width: 45vw; height: auto" alt="candidates">
-            <div class="latex-caption">Sample \(n\) iid Uniform\((0,1)\) random variables, or <em>candidates</em>. Each candidate has
-            a block of voters, which is their Voronoi cell in the unit interval. In each step, the candidate with the smallest cell
-            is removed. Eventually, one candidate remains. This is a histogram of the distribution of the location of the election winner
-            with \(n = 51\). One can easily show that the distribution is supported on \((\frac{1}{4}, \frac{3}{4})\). Proving that it is bimodal
-            for any \(n\) is open. (I heard this question from Omer Angel.)</div>
-        </div>
-    </div>
-
-<!--Geometry detection-->
-    <div class="block-container">
-        <div class="pj">Geometry detection in random graphs</div>
-        <div class="math">
-            A recurring theme in the study of large finite graphs is to describe hidden geometric features. For a given measure on random graphs,
-            i.e. a random matrix ensemble, we can say it has <em>geometry</em> if it can be roughly-isometrically embedded in a low-dimensional metric space.
-            For Wishart matrices, aka random graphs embedded in a sphere, one can exactly characterize the phase transition, depending on the underlying
-            dimension, between geometry and no geometry. Another combinatorial graph model, called the random intersection graph, shares the same phase transition,
-            at essentially the same critical value. This suggests a universal phenomenon: is it possible to characterize a large class of
-            random graphs that undergo exhibit the same phase transition?
-        </div>
-
-        <div class="pub">
-            <p><a href="https://arxiv.org/abs/1611.05838"><em>A smooth transition from Wishart to GOE</em></a>, with M. Racz. Published in JTP, 2018.</p>
-            <p><em>When random intersection graphs lose geometry</em>, with S. Bubeck and M. Racz. In preperation.</p>
-        </div>
-    </div>
-
-<!--Source detection-->
-    <div class="block-container split-block">
-        <div class="text-part">
-            <div class="pj">Finding the source</div>
-            <div class="math">
-                Run a random growth model or diffusion on a graph up to a fixed time. Given only a snapshot of the set of
-                sites visited by the process, what information can be determined about the process? Can you guess the starting point,
-                the ending point, most visited point, or the distribution of the process? These kinds of questions arise in
-                applied computer science, for example in infection spread through a social network. Giving a precise answer
-                for simple random walk in \(\mathbb{Z}^d\) is already a difficult problem.
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/1611.05838"><small>JTP · 2019</small><strong>A smooth transition from Wishart to GOE</strong><span>↗</span></a>
+              <div><small>In preparation</small><strong>When intersection graphs lose geometry</strong></div>
             </div>
-
-            <div class="pub">
-                <p><a href="pagedocs/cornell_sourcefind.pdf">Talk slides</a></p>
-                <p><a href="https://arxiv.org/abs/2006.11211"><em>Rumor source detection with multiple observations under adaptive diffusions</em></a>, with M. Racz. Published in IEEE, 2020. </p>
+          </div>
+          <figure class="project-figure">
+            <div class="figure-frame">
+              <div class="interactive-card matrix-lab" data-matrix-lab>
+                <div class="lab-toolbar">
+                  <span class="lab-title">The matrices themselves</span>
+                  <button class="lab-action" type="button" data-matrix-rerun>New pair</button>
+                </div>
+                <div class="matrix-stage">
+                  <canvas data-matrix="wishart" role="img" aria-label="Wishart random matrix heat map"></canvas>
+                  <canvas data-matrix="goe" role="img" aria-label="GOE random matrix heat map"></canvas>
+                </div>
+                <div class="matrix-key"><span><strong>Wishart:</strong> correlations retain a low-dimensional geometric signal.</span><span><strong>GOE:</strong> symmetric noise with no latent geometry.</span></div>
+              </div>
             </div>
+            <figcaption><b>Figure 03</b><span>Fresh samples from a low-dimensional Wishart ensemble and GOE. Both look noisy entry-by-entry; their global laws tell different stories.</span></figcaption>
+          </figure>
         </div>
+      </article>
 
-        <div class="image-part">
-            <img src="math_images/srwocc_10mil.png" style="max-height: 400px; width: auto" alt="2dsrw">
-            <div class="latex-caption">A map of the occupation times of a 2D simple random walk run for \(10^7\) steps.
-            Points that were visited more often are colored darker. </div>
-        </div>
-
-    </div>
-
-<!--PermRW-->
-    <div class="block-container">
-        <div class="pj">Permuted Random Walk</div>
-        <div class="math">
-            A huge body of probability literature is devoted to studying random walks on graphs that are modified in some way,
-            often with the goal of decreasing the mixing time. In this work we considered permuted random walk, a process
-            alternates taking random walk steps, and moving according to a permutation on the vertices. On a regular tree,
-            the permuted random walk always moves away from the origin faster than the usual random walk. In what generality does this
-            hold -- for other random walks, or other graphs?
-        </div>
-
-        <div class="pub">
-            <p><a href="https://arxiv.org/abs/2302.00760">Random walks on regular trees can not be slowed down</a>, with O. Angel, Y. Spinka and A. Yehudayoff. Published in EJP, 2024.</p>
-        </div>
-    </div>
-
-<!--Perc-->
-    <div class="block-container split-block">
-        <div class="text-part">
-            <div class="pj">Counting clusters in 2D percolation</div>
-            <div class="math">
-                Consider independent site percolation on a finite graph, like a subset of \(\mathbb{Z}^d\) or the hexagonal lattice.
-                How many open clusters are there? For example, what is the expected number of clusters? For lattices, it is
-                easy to see that the number of clusters is on the same order as the volume of the set you percolate. Can one establish
-                a law of large numbers for the cluster count, and compute the limiting constant? The <a href="https://kskedlaya.org/putnam-archive/2004.pdf">A5 problem</a> from the 2004 Putnam exam
-                asked to prove a lower bound on this constant. But exactly determining it is a difficult problem.
+      <article class="project plum reverse" id="processes">
+        <div class="project-inner">
+          <div class="project-copy">
+            <span class="big-no">04</span>
+            <p class="eyebrow">Random algorithms · percolation · random sets</p>
+            <h2>Combinatorial stochastic processes</h2>
+            <div class="summary">
+              <p>
+                I am often drawn to questions about random combinatorial objects: Markov chains,
+                fragmentation/coagulation processes, renewal processes, random number theory, and random algorithms.
+                Proving limit theorems, describing stationary configurations or evolutions, or studying mean-field
+                behavior often leads to cutting-edge ideas and unsolved problems.
+              </p>
+              <p>
+                This is intentionally the broad shelf: elimination elections, random sum constructions, geometric
+                coupons, cluster counts in percolation, and coverage or intersection problems for random sets. The tabs
+                at right collect three visual examples without turning each one into its own research category.
+              </p>
             </div>
-
-            <div class="pub">
-            <p><a href="https://math.dartmouth.edu/theses/undergrad/2014/Richey-thesis.pdf"><em>Counting clusters on a finite grid.</em></a> My undergraduate thesis (2014), advised by Pete Winkler. </p>
-            <p><a href="https://sites.math.washington.edu/~reu/papers/2015/natalie/natalie.pdf"><em>Number of Pieces in Percolated Hexagonal Grids.</em></a> <a href="https://sites.math.washington.edu//~reu/index.html">REU</a> project at the University of Washington (2015), advised by Me.</p>
+            <div class="paper-links">
+              <a href="pagedocs/combinatorial_processes.pdf"><small>Living notes</small><strong>Combinatorial processes</strong><span>↗</span></a>
+              <a href="pagedocs/sum_constructions.pdf"><small>Notes</small><strong>Random sum constructions</strong><span>↗</span></a>
+              <a href="pagedocs/geo_coupons23.pdf"><small>Writeup</small><strong>Geometric coupons</strong><span>↗</span></a>
+              <a href="https://arxiv.org/abs/2006.01323"><small>JAP · 2022</small><strong>Intersections of random sets</strong><span>↗</span></a>
+              <a href="https://math.dartmouth.edu/theses/undergrad/2014/Richey-thesis.pdf"><small>Undergraduate thesis</small><strong>Counting clusters on a finite grid</strong><span>↗</span></a>
+              <a href="https://sites.math.washington.edu/~reu/papers/2015/natalie/natalie.pdf"><small>REU paper</small><strong>Pieces in percolated hexagonal grids</strong><span>↗</span></a>
             </div>
-        </div>
-        <div class="image-part">
-            <img src="math_images/2dperc_loopcount.png" style="max-height: 280px; width: auto" alt="perc_loopex">
-            <div class="latex-caption">A figure from my undergraduate thesis. To estimate the number of open connected components, the idea is to build a large configuration
-            by appending a few columns at a time, and systematically counting how the number of clusters changes. </div>
-        </div>
-    </div>
+          </div>
+          <figure class="project-figure">
+            <div class="figure-frame deck-frame">
+              <div class="research-deck" data-figure-deck>
+                <div class="deck-tabs" role="tablist" aria-label="Stochastic process visualizations">
+                  <button type="button" role="tab" aria-selected="true" data-deck-tab="election">Election</button>
+                  <button type="button" role="tab" aria-selected="false" data-deck-tab="clusters">Clusters</button>
+                  <button type="button" role="tab" aria-selected="false" data-deck-tab="coverage">Coverage</button>
+                </div>
 
-<!--Stoc geom-->
-    <div class="block-container split-block">
-        <div class="text-part">
-            <div class="pj">Stochastic geometry</div>
-            <div class="math">
-                Consider an iid sequence of random sets, or a Poisson point process of hyperplanes or sets in a metric space.
-                One can ask many natural questions related to the <em>coverage</em> of such a family of sets: what is their union?
-                What is the distribution of the random field counting how many times each point is covered by the union?
-                If the sequence is confined to a compact set, what is the intersection of the sets? A canonical limit object, called the Crofton
-                cell, often arises in connection with these questions, appearing (for example) as the scaling limit of the region containing the
-                origin in a standard hyperplane tesselation of \(\mathbb{R}^d\).
+                <div class="deck-panel" role="tabpanel" data-deck-panel="election">
+                  <div class="interactive-card" data-election-lab>
+                    <div class="lab-toolbar">
+                      <span class="lab-title">Elimination election</span>
+                      <div class="segmented" role="group" aria-label="Election dimension">
+                        <button type="button" data-election-mode="1d" aria-pressed="true">1D</button>
+                        <button type="button" data-election-mode="2d" aria-pressed="false">2D</button>
+                      </div>
+                      <button class="lab-action" type="button" data-election-rerun>New sample</button>
+                    </div>
+                    <div class="canvas-wrap"><canvas role="img" aria-label="A simulated Voronoi elimination election"></canvas></div>
+                  </div>
+                </div>
+
+                <div class="deck-panel" role="tabpanel" data-deck-panel="clusters" hidden>
+                  <div class="loop-diagram" role="img" aria-label="A schematic loop case and non-loop case in a percolation transfer calculation">
+                    <div class="loop-case">
+                      <h3>Loop case · one component closes</h3>
+                      <svg viewBox="0 0 230 215" aria-hidden="true">
+                        <rect width="230" height="215" fill="#7b4638"/>
+                        <g fill="#f4f0e8">
+                          <rect class="cell" x="22" y="28" width="38" height="38"/><rect class="cell" x="60" y="28" width="38" height="38"/><rect class="cell boundary" x="98" y="28" width="38" height="38"/>
+                          <rect class="cell" x="22" y="66" width="38" height="38"/><rect class="cell" x="98" y="66" width="38" height="38"/>
+                          <rect class="cell" x="22" y="104" width="38" height="38"/><rect class="cell" x="98" y="104" width="38" height="38"/>
+                          <rect class="cell" x="22" y="142" width="38" height="38"/><rect class="cell" x="60" y="142" width="38" height="38"/><rect class="cell boundary" x="98" y="142" width="38" height="38"/>
+                        </g>
+                        <path class="path" d="M117 47 C177 47 183 161 117 161"/><line x1="164" y1="20" x2="164" y2="192" stroke="#fff" stroke-dasharray="5 6"/>
+                        <text x="172" y="108" fill="#fff" font-size="12">new column</text>
+                      </svg>
+                    </div>
+                    <div class="loop-case simple">
+                      <h3>Non-loop case · connectivity stays open</h3>
+                      <svg viewBox="0 0 230 215" aria-hidden="true">
+                        <rect width="230" height="215" fill="#7b4638"/>
+                        <g fill="#f4f0e8">
+                          <rect class="cell" x="22" y="28" width="38" height="38"/><rect class="cell" x="60" y="28" width="38" height="38"/><rect class="cell boundary" x="98" y="28" width="38" height="38"/>
+                          <rect class="cell" x="22" y="66" width="38" height="38"/><rect class="cell" x="98" y="66" width="38" height="38"/>
+                          <rect class="cell boundary" x="98" y="142" width="38" height="38"/>
+                        </g>
+                        <path class="path" d="M117 47 C151 47 155 20 199 20 M117 161 C151 161 157 194 207 194"/><line x1="164" y1="20" x2="164" y2="192" stroke="#fff" stroke-dasharray="5 6"/>
+                        <text x="172" y="108" fill="#fff" font-size="12">new column</text>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="deck-panel" role="tabpanel" data-deck-panel="coverage" hidden>
+                  <div class="coverage-visual" role="img" aria-label="Overlapping random arcs nearly covering a circle">
+                    <svg viewBox="0 0 560 430" aria-hidden="true">
+                      <circle cx="218" cy="215" r="142" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="18"/>
+                      <path class="arc" stroke="#ffe57f" d="M99 138 A142 142 0 0 1 258 79"/>
+                      <path class="arc" stroke="#ff9b73" d="M259 79 A142 142 0 0 1 351 184"/>
+                      <path class="arc" stroke="#8ee2bd" d="M352 184 A142 142 0 0 1 306 326"/>
+                      <path class="arc" stroke="#9eb9ff" d="M306 326 A142 142 0 0 1 140 335"/>
+                      <path class="arc" stroke="#e5a7ef" d="M140 335 A142 142 0 0 1 78 209"/>
+                      <path class="arc" stroke="#fff1b4" d="M78 209 A142 142 0 0 1 99 138"/>
+                      <path d="M160 98 A142 142 0 0 1 177 86" fill="none" stroke="#171817" stroke-width="7" stroke-linecap="round"/>
+                      <text x="136" y="66" fill="#fff" font-family="Georgia" font-size="17">last uncovered gap</text>
+                      <line x1="174" y1="75" x2="166" y2="94" stroke="#fff" stroke-width="1.5"/>
+                      <g transform="translate(390 132)">
+                        <ellipse cx="62" cy="83" rx="62" ry="83" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="2"/>
+                        <path d="M15 51 Q62 18 110 52" fill="none" stroke="#ffe57f" stroke-width="12" stroke-linecap="round"/>
+                        <path d="M7 91 Q62 122 116 91" fill="none" stroke="#8ee2bd" stroke-width="12" stroke-linecap="round"/>
+                        <path d="M31 145 Q64 163 93 143" fill="none" stroke="#9eb9ff" stroke-width="12" stroke-linecap="round"/>
+                        <text x="4" y="199" fill="rgba(255,255,255,.82)" font-family="Helvetica" font-size="12">caps on a sphere</text>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+              </div>
             </div>
+            <figcaption><b>Figure 04</b><span>Three smaller projects share one visual notebook: an elimination election, percolation boundary bookkeeping, and random coverage.</span></figcaption>
+          </figure>
+        </div>
+      </article>
 
-            <div class="pub">
-                <p><a href="https://arxiv.org/abs/2006.01323">Intersections of random sets</a>, with A. Sarkar. Published in the Journal of Applied Probability, 2022.</p>
+      <article class="project ink" id="random-walks">
+        <div class="project-inner">
+          <div class="project-copy">
+            <span class="big-no">05</span>
+            <p class="eyebrow">Inverse problems · perturbations · interacting paths</p>
+            <h2>Random walks</h2>
+            <div class="summary">
+              <p>
+                Random walks recur throughout my work in several different guises. Given only a trace, can one recover
+                where a walk began? What happens when ordinary random steps alternate with a fixed permutation of the
+                vertices? How do systems of walkers collide, coalesce, or annihilate?
+              </p>
+              <p>
+                On a regular tree, a permuted random walk cannot be slowed down. In source detection, even the apparently
+                basic problem on ℤ<sup>d</sup> remains difficult. The occupation map at right hides one piece of information
+                on purpose—make a guess before clicking.
+              </p>
             </div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2305.19333"><small>EJP · 2025</small><strong>Diffusion-limited annihilating-coalescing systems</strong><span>↗</span></a>
+              <a href="https://arxiv.org/abs/2302.00760"><small>EJP · 2024</small><strong>Random walks on regular trees cannot be slowed down</strong><span>↗</span></a>
+              <a href="pagedocs/cornell_sourcefind.pdf"><small>Slides</small><strong>Finding a source from its trace</strong><span>↗</span></a>
+              <a href="https://arxiv.org/abs/2006.11211"><small>IEEE · 2020</small><strong>Rumor source detection</strong><span>↗</span></a>
+              <a href="pagedocs/rw_collisions.pdf"><small>Survey &amp; calculations</small><strong>Random walk collisions</strong><span>↗</span></a>
+            </div>
+          </div>
+          <figure class="project-figure">
+            <div class="figure-frame">
+              <button class="source-guess" type="button" data-source-guess aria-pressed="false">
+                <img src="math_images/random_walk_source.webp" alt="Occupation heat map of a four-million-step planar random walk">
+                <span class="source-star" aria-hidden="true">★</span>
+                <span class="guess-prompt">Where did the walker start? Click to reveal</span>
+              </button>
+            </div>
+            <figcaption><b>Figure 05</b><span>Occupation times of a planar simple random walk after four million steps. Brightness records repeated visits; the star reveals the exact starting site.</span></figcaption>
+          </figure>
         </div>
+      </article>
 
-        <div class="image-part">
-            <img src="math_images/cts_coupon_.0008.png" style="max-width: 650px; height: auto" alt="continuous coupon collector">
-            <div class="latex-caption">Sample iid arcs of length \(\theta\) at uniform random locations on the circle of
-            circumference one, and stop when the union of the arcs covers the circle. This is a plot of the Lebesgue measure of the union of
-            the arcs with \(\theta = 8\times 10^{-4}\), after centering (subtracting the mean) and scaling time by \(\theta^{-1} \log \theta^{-1}\). </div>
+      <footer class="site-footer">
+        <div><p class="eyebrow">Still curious?</p><h2>Let’s talk mathematics.</h2></div>
+        <div class="footer-links">
+          <a href="mailto:jrichey@renyi.hu">Email <span>↗</span></a>
+          <a href="https://scholar.google.com/citations?user=oablNsIAAAAJ&amp;hl=en">Google Scholar <span>↗</span></a>
+          <a href="#top">Back to top <span>↑</span></a>
         </div>
-</div>
-
-
-
-
-</body>
+        <p class="fine">Jacob Richey · Probability &amp; combinatorics</p>
+      </footer>
+    </main>
+  </body>
 </html>

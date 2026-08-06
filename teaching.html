@@ -1,56 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Jacob Richey's personal page</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <link rel="stylesheet" href="teaching_style.css" type="text/css">
-</head>
+<html lang="en" class="snap-scroll">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Teaching · Jacob Richey</title>
+    <meta name="description" content="Teaching, mentoring, and course materials from Jacob Richey.">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="site.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KNCG5G8RV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8KNCG5G8RV');
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="index.html">Jacob Richey</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="index.html">About</a>
+        <a href="research.html">Research</a>
+        <a href="#top" aria-current="page">Teaching</a>
+        <a href="other.html">Other</a>
+        <a href="pagedocs/jacob_richey_cv.pdf">CV</a>
+      </nav>
+    </header>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8KNCG5G8RV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <aside class="rail" aria-label="Teaching sections">
+      <a href="#beginning" aria-label="HCSSiM">01</a>
+      <a href="#courses" aria-label="University courses">02</a>
+      <a href="#circle" aria-label="Math Circle">03</a>
+      <a href="#mentoring" aria-label="Mentoring">04</a>
+    </aside>
 
-  gtag('config', 'G-8KNCG5G8RV');
-</script>
-
-<body>
-    <div class="header">
-        <a href="index.html" class="logo">Jacob Richey</a>
-        <div class="header-right">
-            <a href="pagedocs/jacob_richey_cv.pdf">CV</a>
-            <a href="research.html">Research</a>
-            <a href="teaching.html">Teaching</a>
-            <a href="other.html">Extra</a>
+    <main id="main">
+      <section class="page-hero green" id="top">
+        <div>
+          <p class="eyebrow">Teaching · mentoring · mathematical community</p>
+          <h1 class="display-title">Learning by<br><em>doing mathematics.</em></h1>
+          <p class="lede">
+            My teaching has ranged from undergraduate probability, linear algebra, and calculus to middle-school math
+            circles and undergraduate research. The common goal is to make serious mathematics feel like something
+            students can enter, experiment with, and eventually own.
+          </p>
+          <div class="actions">
+            <a class="button" href="#beginning">Teaching history <span>↓</span></a>
+            <a class="text-link" href="bme_probtopics.html">Current course page ↗</a>
+          </div>
         </div>
-    </div>
+        <figure class="blackboard-card">
+          <img src="pagedocs/me.jpg" alt="Jacob Richey speaking beside a blackboard">
+          <figcaption>Explaining a parking model—apparently with several competing exponents.</figcaption>
+        </figure>
+        <p class="scroll-cue">Scroll through teaching and mentoring</p>
+      </section>
 
-    <div class="math">
-        <div class="titles">Teaching</div>
-    </div>
-    <div class="teach">
-        My formal teaching career started in 2015, when I served as junior staff at <a href="http://www.hcssim.org/">HCSSiM</a>,
-        6 years after I had attended as a student, in 2009! I was young, nervous, and constantly both excited and exhausted. It was a rewarding and formative experience.
-        (The same adjectives apply to my summers as a student and as a staffer.) You can contribute financial aid for students of the program by making a donation <a href="https://hcssim.org/online-giving/">here</a>.
-        <p></p>
-        As a grad student and postdoc I have been the lead instructor for 15+ undergraduate courses in probability, linear algebra, and multivariable calculus. Repository with materials from some past undergraduate courses: <a href="https://github.com/jfrichey/jfrichey.github.io/tree/a24e74440bcdd172b0093a8c1a7550ed916bc78b/teaching_materials">link</a>.
-        <p></p>
-        From 2016-2020 I led the 2nd year of the <a href="https://sites.math.washington.edu/~mathcircle/circle/">UW Math Circle</a>.
-        <a href="https://lucasvanmeter.github.io/">Lucas van Meter</a> and I ran weekly 2-3 hour sessions with a diverse group of 7th-8th grade students.
-        We cooked up our own lesson plans in game theory, group theory, probability, and geometry, and experimented constantly with material and teaching methods.
+      <section class="story-panel green" id="beginning">
+        <div class="story-grid">
+          <div class="story-copy">
+            <span class="big-no">01</span>
+            <p class="eyebrow">Where it started</p>
+            <h2>HCSSiM</h2>
+            <div class="summary">
+              <p>
+                My formal teaching career started in 2015, when I served as junior staff at
+                <a class="text-link" href="http://www.hcssim.org/">HCSSiM</a>, six years after I had attended as a
+                student. I was young, nervous, and constantly both excited and exhausted. It was a rewarding and
+                formative experience. The same adjectives apply to my summers as a student and as a staffer.
+              </p>
+              <p>
+                HCSSiM treats mathematics as a living culture rather than a sequence of prerequisites. Students spend
+                six weeks arguing, experimenting, writing, and learning how much more there is to ask.
+              </p>
+            </div>
+            <div class="actions">
+              <a class="button" href="https://hcssim.org/online-giving/">Support student financial aid <span>↗</span></a>
+            </div>
+          </div>
+          <div class="story-visual chalkboard" role="img" aria-label="A chalkboard of exploratory mathematical questions">
+            Suppose a process grows one step at a time…
+            <span class="equation">E[X<sub>n+1</sub> − X<sub>n</sub> | X<sub>n</sub>] = ?</span>
+            What should be simulated first?<br>What pattern would count as evidence?<br>Which assumption is actually doing the work?
+            <span class="circle-note">try a smaller case</span>
+          </div>
+        </div>
+      </section>
 
-        <p></p>
-        I mentored multiple groups of undergraduates in math research projects as part of <a href="https://wxml.math.washington.edu/">WXML</a> at
-        the UW and <a href="https://www.uroubc.com/rex/">REX</a> at UBC. In 2014 I gave a talk at UW's <a href="https://www.math.washington.edu/~reu/index.html">REU</a>,
-        and mentored a student project in percolation that resulted in a publication: <a href="https://www.math.washington.edu/~reu/papers/2015/natalie/natalie.pdf">link</a>.
-    </div>
+      <section class="story-panel sky reverse" id="courses">
+        <div class="story-grid">
+          <div class="story-copy">
+            <span class="big-no">02</span>
+            <p class="eyebrow">University teaching</p>
+            <h2>Courses and materials</h2>
+            <div class="summary">
+              <p>
+                As a graduate student and postdoc, I have been the lead instructor for more than fifteen undergraduate
+                courses in probability, linear algebra, and multivariable calculus. The materials repository includes
+                problem sets, quizzes, examinations, and solutions from several past courses.
+              </p>
+              <p>
+                My current course page is Probability Topics at the Budapest University of Technology and Economics: a
+                walk through random walk, percolation, and first-passage percolation, with student presentations of
+                research papers.
+              </p>
+            </div>
+          </div>
+          <div class="story-visual course-shelf">
+            <a class="course-card" href="bme_probtopics.html"><small>BME · advanced topics</small><strong>Probability Topics: A Walk in the Random Park</strong><span>Open course page ↗</span></a>
+            <a class="course-card" href="https://github.com/jfrichey/jfrichey.github.io/tree/master/teaching_materials/ubc_302introprob"><small>UBC · Math 302</small><strong>Introduction to Probability</strong><span>Browse materials ↗</span></a>
+            <a class="course-card" href="https://github.com/jfrichey/jfrichey.github.io/tree/master/teaching_materials/uw_308linalg"><small>UW · Math 308</small><strong>Linear Algebra with Applications</strong><span>Browse materials ↗</span></a>
+            <a class="course-card" href="https://github.com/jfrichey/jfrichey.github.io/tree/master/teaching_materials"><small>Repository</small><strong>All archived teaching materials</strong><span>View on GitHub ↗</span></a>
+          </div>
+        </div>
+      </section>
 
-    <p></p>
+      <section class="story-panel plum" id="circle">
+        <div class="story-grid">
+          <div class="story-copy">
+            <span class="big-no">03</span>
+            <p class="eyebrow">2016–2020 · informal mathematics</p>
+            <h2>UW Math Circle</h2>
+            <div class="summary">
+              <p>
+                From 2016–2020, I led the second year of the
+                <a class="text-link" href="https://sites.math.washington.edu/~mathcircle/circle/">UW Math Circle</a>.
+                <a class="text-link" href="https://lucasvanmeter.github.io/">Lucas van Meter</a> and I ran weekly two-
+                to three-hour sessions with a diverse group of seventh- and eighth-grade students.
+              </p>
+              <p>
+                We cooked up our own lesson plans in game theory, group theory, probability, and geometry, and
+                experimented constantly with both the material and our teaching methods. The best sessions usually
+                began with a concrete puzzle and ended somewhere nobody had predicted.
+              </p>
+            </div>
+          </div>
+          <div class="story-visual riddle-wall" role="img" aria-label="Two overlapping mathematical puzzle sheets">
+            <div class="riddle-paper"><b>Start with a game</b>There are 21 stones. Two players alternately remove 1, 2, or 3. What changes if the final stone loses?</div>
+            <div class="riddle-paper"><b>End with structure</b>Which positions are winning? What is the invariant? Can the strategy survive a different move set?</div>
+          </div>
+        </div>
+      </section>
 
-    <span style="font-size: 20px; margin-left: 40px;">Current teaching: <a href = "bme_probtopics.html">Probability Topics</a> at BME (Budapest University of Technology and Economics)</span>
+      <section class="story-panel clay reverse" id="mentoring">
+        <div class="story-grid">
+          <div class="story-copy">
+            <span class="big-no">04</span>
+            <p class="eyebrow">Undergraduate research</p>
+            <h2>Mentoring</h2>
+            <div class="summary">
+              <p>
+                I mentored multiple groups of undergraduates in mathematical research through WXML at the University of
+                Washington and REX at UBC. In 2014 I gave a talk at UW’s REU, and later mentored a student project in
+                percolation that resulted in a publication.
+              </p>
+              <p>
+                Undergraduate research works best when the question is real, the experiments are honest, and the student
+                has room to discover that the first plausible conjecture is rarely the final one.
+              </p>
+            </div>
+          </div>
+          <div class="story-visual resource-grid">
+            <a class="resource-card" href="https://wxml.math.washington.edu/"><small>University of Washington</small><strong>WXML research groups</strong><span>Visit program ↗</span></a>
+            <a class="resource-card" href="https://www.uroubc.com/rex/"><small>University of British Columbia</small><strong>REX undergraduate research</strong><span>Visit program ↗</span></a>
+            <a class="resource-card" href="pagedocs/dartmouth_sourcefind.pdf"><small>Expository talk</small><strong>Finding the source of a diffusion</strong><span>View slides ↗</span></a>
+            <a class="resource-card" href="https://sites.math.washington.edu/~reu/papers/2015/natalie/natalie.pdf"><small>Student publication</small><strong>Pieces in percolated hexagonal grids</strong><span>Read paper ↗</span></a>
+          </div>
+        </div>
+      </section>
 
-</body>
+      <footer class="site-footer">
+        <div><p class="eyebrow">Questions about a course?</p><h2>Come talk mathematics.</h2></div>
+        <div class="footer-links">
+          <a href="mailto:jrichey@renyi.hu">Email <span>↗</span></a>
+          <a href="index.html">Home <span>→</span></a>
+          <a href="#top">Back to top <span>↑</span></a>
+        </div>
+        <p class="fine">Jacob Richey · Teaching &amp; mentoring</p>
+      </footer>
+    </main>
+  </body>
 </html>
