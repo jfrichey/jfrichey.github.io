@@ -10,6 +10,7 @@
     >
     <link rel="stylesheet" href="style.css">
     <script defer src="site.js"></script>
+    <script defer src="home-visuals.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KNCG5G8RV"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -99,12 +100,23 @@
             </div>
           </div>
           <div class="home-visual home-collage">
-            <figure class="main">
-              <img src="math_images/ava_combo.png" alt="Two stochastic sandpile avalanches">
-              <figcaption>Critical avalanches</figcaption>
+            <figure class="main home-soc-card" data-home-soc-lab>
+              <div class="home-soc-head">
+                <div>
+                  <span>Stochastic sandpile</span>
+                  <strong>One spark, three densities</strong>
+                </div>
+                <button type="button" data-home-soc-toggle aria-pressed="true">Pause</button>
+              </div>
+              <canvas
+                data-home-soc-canvas
+                role="img"
+                aria-label="Animated stochastic sandpile at subcritical, near-critical, and supercritical densities"
+              ></canvas>
+              <figcaption>Activity dies, avalanches, or persists</figcaption>
             </figure>
             <figure class="top">
-              <img src="math_images/monosquares_weighted.png" alt="Three lattice coloring phases">
+              <img src="math_images/monosquares_v2.webp" alt="Three phases of a random lattice coloring">
               <figcaption>Local constraints</figcaption>
             </figure>
             <figure class="bottom">

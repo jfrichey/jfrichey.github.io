@@ -418,10 +418,10 @@ button {
 
 .home-collage .main {
   z-index: 2;
-  width: 68%;
-  height: 56%;
+  width: 74%;
+  height: 62%;
   left: 0;
-  top: 20%;
+  top: 19%;
   transform: rotate(-1.5deg);
 }
 
@@ -440,6 +440,85 @@ button {
 .home-collage .bottom {
   bottom: 0;
   transform: rotate(1deg);
+}
+
+.home-collage .top img,
+.hero-collage .hc2 img {
+  object-position: 88% center;
+}
+
+.hero-collage .hc1 img {
+  object-position: 24% center;
+}
+
+.home-collage .home-soc-card {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  border: 7px solid white;
+  background: #0a141a;
+}
+
+.home-soc-head {
+  position: relative;
+  z-index: 2;
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 9px 8px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+  background: #111c22;
+  color: #f4f0e8;
+}
+
+.home-soc-head > div {
+  display: grid;
+  gap: 2px;
+}
+
+.home-soc-head span {
+  color: #df8169;
+  font-size: 0.46rem;
+  font-weight: 790;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.home-soc-head strong {
+  font: 600 0.72rem/1.1 var(--serif);
+}
+
+.home-soc-head button {
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  font-size: 0.52rem;
+  font-weight: 730;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.home-soc-head button:hover,
+.home-soc-head button:focus-visible {
+  border-color: #ffcf72;
+  color: #ffcf72;
+}
+
+.home-soc-card canvas {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  cursor: pointer;
+}
+
+.home-collage .home-soc-card figcaption {
+  left: 14px;
+  bottom: 12px;
+  background: rgba(10, 20, 26, 0.82);
+  color: rgba(255, 255, 255, 0.86);
 }
 
 .blackboard-card {
@@ -1788,8 +1867,8 @@ a.resource-card:hover small {
 
   .home-collage .main,
   .hero-collage .hc1 {
-    width: 76%;
-    height: 54%;
+    width: 82%;
+    height: 59%;
   }
 
   .home-collage .top,
