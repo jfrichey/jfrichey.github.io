@@ -1382,6 +1382,209 @@ a.resource-card:hover small {
   text-transform: uppercase;
 }
 
+/* Mathematical play collage */
+
+.math-play-collage {
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.08), transparent 24%),
+    radial-gradient(circle at 82% 78%, rgba(255, 255, 255, 0.07), transparent 26%),
+    #25324d;
+  box-shadow: 0 22px 60px rgba(31, 43, 70, 0.2);
+}
+
+.math-play-collage::before {
+  content: "";
+  position: absolute;
+  inset: 6%;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.play-card {
+  position: absolute;
+  margin: 0;
+  padding: 13px 13px 11px;
+  background: #fffdf5;
+  color: var(--ink);
+  box-shadow: 0 16px 34px rgba(4, 9, 20, 0.33);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.play-card:hover {
+  z-index: 5;
+  box-shadow: 0 22px 46px rgba(4, 9, 20, 0.42);
+}
+
+.play-card svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.play-card figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(23, 24, 23, 0.13);
+}
+
+.play-card figcaption b {
+  font: 650 0.92rem/1 var(--serif);
+}
+
+.play-card figcaption span {
+  color: #777870;
+  font-size: 0.51rem;
+  font-weight: 760;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hackenbush-card {
+  z-index: 3;
+  left: 6%;
+  top: 8%;
+  width: 47%;
+  transform: rotate(-3deg);
+}
+
+.hackenbush-card:hover { transform: rotate(-1deg) translateY(-5px); }
+
+.dots-card {
+  z-index: 2;
+  right: 6%;
+  top: 14%;
+  width: 43%;
+  transform: rotate(3.2deg);
+}
+
+.dots-card:hover { transform: rotate(1deg) translateY(-5px); }
+
+.belt-card {
+  z-index: 4;
+  left: 24%;
+  bottom: 6%;
+  width: 57%;
+  transform: rotate(-0.8deg);
+}
+
+.belt-card:hover { transform: rotate(0deg) translateY(-5px); }
+
+.hackenbush-card .ground {
+  fill: none;
+  stroke: #3b3d38;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.hackenbush-card .edge {
+  fill: none;
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hackenbush-card .green-edge { stroke: #56866e; }
+.hackenbush-card .blue-edge { stroke: #315fa3; }
+.hackenbush-card .red-edge { stroke: #c45443; }
+.hackenbush-card .hacken-nodes { fill: #242622; }
+
+.dots-card .box-lines {
+  fill: none;
+  stroke: #30322f;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.dots-card .dot-grid { fill: #272925; }
+
+.dots-card .claimed-boxes rect:first-child { fill: rgba(49, 95, 163, 0.18); }
+.dots-card .claimed-boxes rect:nth-child(2) { fill: rgba(196, 84, 67, 0.18); }
+
+.dots-card .claimed-boxes text {
+  fill: #52544f;
+  font: 600 21px Georgia, serif;
+  text-anchor: middle;
+}
+
+.dots-card .next-move {
+  fill: none;
+  stroke: #c45443;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-dasharray: 12 9;
+  animation: boxes-hint 1.5s linear infinite;
+}
+
+@keyframes boxes-hint {
+  to { stroke-dashoffset: -21; }
+}
+
+.belt-card .belt-anchor {
+  fill: #4c4e49;
+  stroke: #242622;
+  stroke-width: 2;
+}
+
+.belt-card .belt-shadow,
+.belt-card .belt-ribbon,
+.belt-card .belt-stitch {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.belt-card .belt-shadow {
+  stroke: rgba(16, 17, 18, 0.18);
+  stroke-width: 33;
+  transform: translateY(5px);
+}
+
+.belt-card .belt-ribbon {
+  stroke: url(#belt-gradient);
+  stroke-width: 27;
+}
+
+.belt-card .belt-stitch {
+  stroke: rgba(255, 255, 255, 0.76);
+  stroke-width: 2;
+  stroke-dasharray: 7 8;
+  animation: belt-flow 4s linear infinite;
+}
+
+@keyframes belt-flow {
+  to { stroke-dashoffset: -90; }
+}
+
+.belt-cube path {
+  fill: #e5b867;
+  stroke: #32342f;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.belt-cube path:nth-child(2) { fill: #c9944b; }
+.belt-cube path:nth-child(3) { fill: #f0cb83; }
+
+.belt-cube .cube-axis,
+.belt-cube .cube-arrow,
+.belt-cube .arrowhead {
+  fill: none;
+  stroke: #704c92;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.belt-cube .arrowhead { stroke-linejoin: round; }
+
+.belt-card .turn-label {
+  fill: #704c92;
+  font: italic 700 25px Georgia, serif;
+}
+
 /* Footer */
 
 .site-footer {
@@ -1656,9 +1859,15 @@ a.resource-card:hover small {
   }
 
   .chalkboard,
-  .riddle-wall {
+  .riddle-wall,
+  .math-play-collage {
     min-height: 430px;
   }
+
+  .math-play-collage { min-height: 500px; }
+  .hackenbush-card { width: 56%; }
+  .dots-card { width: 50%; }
+  .belt-card { left: 15%; width: 70%; }
 
   .riddle-paper {
     width: 72%;
