@@ -109,7 +109,7 @@
     const gridHeight = 100;
     const specs = [
       { density: 0.58, label: "subcritical", rho: "ρ = 0.58", budget: 1, seeds: [33013, 55109, 81001] },
-      { density: 0.705, label: "critical window", rho: "ρ ≈ ρc", budget: 5, seeds: [45131, 67357, 90281] },
+      { density: 0.705, label: "critical window", rho: "ρ ≈ ρ", rhoSubscript: "c", budget: 5, seeds: [45131, 67357, 90281] },
       { density: 0.78, label: "supercritical", rho: "ρ = 0.78", budget: 10, seeds: [14981, 28099, 71339] },
     ];
     const imageCanvases = specs.map(() => {
@@ -197,7 +197,13 @@
         context.fillText(specs[index].label.toUpperCase(), left + 16, 21);
         context.fillStyle = index === 1 ? "#ffd36e" : "rgba(255,255,255,.92)";
         context.font = "italic 12px Georgia, serif";
-        context.fillText(specs[index].rho, left + 16, 37);
+        const rhoX = left + 16;
+        context.fillText(specs[index].rho, rhoX, 37);
+        if (specs[index].rhoSubscript) {
+          const rhoWidth = context.measureText(specs[index].rho).width;
+          context.font = "italic 8px Georgia, serif";
+          context.fillText(specs[index].rhoSubscript, rhoX + rhoWidth + 1, 41);
+        }
 
         if (model.settled && index < 2) {
           context.fillStyle = "rgba(5, 12, 18, .72)";
