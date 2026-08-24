@@ -661,6 +661,10 @@ button {
   margin: auto;
 }
 
+#patterns .project-inner {
+  grid-template-columns: minmax(500px, 1.16fr) minmax(340px, 0.84fr);
+}
+
 .project.reverse .project-copy {
   order: 2;
 }
@@ -898,11 +902,29 @@ button {
   background: rgba(248, 251, 254, 0.58);
 }
 
-.sft-triptych img {
+.sft-sample {
+  position: relative;
+  min-width: 0;
+}
+
+.sft-sample img {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
   box-shadow: none;
+}
+
+.sft-sample-label {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  padding: 4px 7px;
+  border-radius: 4px;
+  background: rgba(18, 24, 40, 0.74);
+  color: rgba(255, 255, 255, 0.94);
+  font: italic 0.7rem/1 var(--serif);
+  white-space: nowrap;
+  backdrop-filter: blur(3px);
 }
 
 .slideshow-frame {
@@ -1513,6 +1535,7 @@ a.resource-card:hover small {
   .home-grid,
   .page-hero,
   .project-inner,
+  #patterns .project-inner,
   .story-grid,
   .other-directory-grid {
     grid-template-columns: 1fr;
@@ -1544,6 +1567,10 @@ a.resource-card:hover small {
 
   .figure-frame {
     min-height: 450px;
+  }
+
+  .sft-frame {
+    min-height: 0;
   }
 
   .scroll-cue {

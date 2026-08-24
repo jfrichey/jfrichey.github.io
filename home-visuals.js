@@ -103,15 +103,15 @@
   }
 
   function cellColor(odometer, particles) {
-    if (!odometer) return particles ? [22, 42, 56] : [230, 240, 246];
+    if (!odometer) return particles ? [34, 57, 70] : [178, 205, 217];
     const heat = clamp(Math.log1p(odometer) / Math.log(82), 0, 1);
     let color;
     if (heat < 0.34) color = mix([189, 218, 230], [91, 157, 181], heat / 0.34);
     else if (heat < 0.64) color = mix([91, 157, 181], [104, 113, 166], (heat - 0.34) / 0.3);
     else if (heat < 0.84) color = mix([104, 113, 166], [224, 133, 108], (heat - 0.64) / 0.2);
     else color = mix([224, 133, 108], [244, 194, 103], (heat - 0.84) / 0.16);
-    if (!particles) return mix(color, [246, 250, 252], 0.18);
-    return mix(color, particles > 1 ? [6, 17, 25] : [18, 34, 46], 0.58);
+    if (!particles) return mix(color, [222, 235, 241], 0.12);
+    return mix(color, particles > 1 ? [9, 23, 31] : [28, 48, 60], 0.5);
   }
 
   document.querySelectorAll("[data-regime-visual]").forEach((visual, visualIndex) => {

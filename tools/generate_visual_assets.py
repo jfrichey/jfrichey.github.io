@@ -114,23 +114,6 @@ def generate_sft() -> None:
     for (beta, seed, schedule), filename in zip(specs, filenames, strict=True):
         grid = sample_sft_phase((rows, cols), beta, seed, schedule)
         panel = Image.fromarray(palette[grid], "RGB")
-        draw = ImageDraw.Draw(panel, "RGBA")
-        label = f"β = {beta:g}"
-        label_font = font(19, True)
-        text_box = draw.textbbox((0, 0), label, font=label_font)
-        text_width = text_box[2] - text_box[0]
-        text_height = text_box[3] - text_box[1]
-        pad_x, pad_y = 11, 8
-        left, top = 16, 16
-        right = left + text_width + 2 * pad_x
-        bottom = top + text_height + 2 * pad_y
-        draw.rounded_rectangle((left, top, right, bottom), radius=7, fill=(18, 24, 40, 178))
-        draw.text(
-            (left + pad_x, top + pad_y - text_box[1]),
-            label,
-            font=label_font,
-            fill=(255, 255, 255, 238),
-        )
         panel.save(OUT / filename, "WEBP", quality=96, method=6)
         panels.append(panel)
 
