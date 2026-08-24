@@ -56,11 +56,46 @@
             <a class="text-link" href="https://scholar.google.com/citations?user=oablNsIAAAAJ&amp;hl=en">Google Scholar ↗</a>
           </div>
         </div>
-        <div class="hero-collage">
-          <figure class="hc1"><img src="math_images/soc_avalanches.webp" alt="Two near-critical stochastic sandpile avalanches"></figure>
-          <figure class="hc2"><img src="math_images/sft_phases_2d.webp" alt="Three phases of a two-dimensional lattice coloring model"></figure>
-          <figure class="hc3"><img src="math_images/random_walk_source.webp" alt="Random walk occupation map"></figure>
-        </div>
+        <figure class="figure-slideshow home-slideshow research-hero-slideshow" data-slideshow>
+          <div class="slideshow-stage">
+            <div
+              class="slideshow-slide regime-visual"
+              data-slide
+              data-title="Three density regimes"
+              data-caption="The same stochastic toppling rule below, near, and above its critical density."
+              data-regime-visual
+            >
+              <canvas
+                role="img"
+                aria-label="A slow animation comparing subcritical, near-critical, and supercritical stochastic sandpiles"
+              ></canvas>
+            </div>
+            <div
+              class="slideshow-slide"
+              data-slide
+              data-title="Local rules, global phases"
+              data-caption="A two-dimensional coloring model at three sharply separated interaction strengths."
+              hidden
+            >
+              <img src="math_images/sft_phases_2d.webp" alt="Three large samples from a two-dimensional lattice coloring model">
+            </div>
+            <div
+              class="slideshow-slide"
+              data-slide
+              data-title="Where did the walk begin?"
+              data-caption="Four million steps of a planar random walk, colored by occupation time."
+              hidden
+            >
+              <img src="math_images/random_walk_source.webp" alt="Occupation map of a four-million-step planar random walk">
+            </div>
+          </div>
+          <figcaption class="slideshow-footer">
+            <button class="slideshow-arrow" type="button" data-slide-prev aria-label="Previous research image">←</button>
+            <span class="slideshow-copy"><strong data-slide-title>Three density regimes</strong><span data-slide-caption>The same stochastic toppling rule below, near, and above its critical density.</span></span>
+            <span class="slideshow-count" data-slide-counter>1 / 3</span>
+            <button class="slideshow-arrow" type="button" data-slide-next aria-label="Next research image">→</button>
+          </figcaption>
+        </figure>
         <p class="scroll-cue">Five broad areas, one scroll at a time</p>
       </section>
 
@@ -135,7 +170,7 @@
             <div class="figure-frame sft-frame">
               <img src="math_images/sft_phases_2d.webp" alt="Three large two-dimensional samples from a red, green, and blue lattice coloring model">
             </div>
-            <figcaption><b>Figure 02</b><span>Three 720 × 426 samples from a two-dimensional Gibbs field. From left to right, monochromatic 2 × 2 squares are discouraged (β = −1.80), mildly rewarded (β = 0.95), and strongly rewarded (β = 1.28).</span></figcaption>
+            <figcaption><b>Figure 02</b><span>Three 720 × 426 samples from a two-dimensional Gibbs field. From left to right, monochromatic 2 × 2 squares are discouraged (β = −1), rewarded (β = 1.25), and strongly rewarded (β = 3).</span></figcaption>
           </figure>
         </div>
       </article>

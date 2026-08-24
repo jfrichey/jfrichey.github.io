@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">The five-card trick</title>
+  <desc id="desc">Five face-up cards become one hidden card and four ordered cards that encode it.</desc>
+  <defs>
+    <style>.card{fill:#fffdf8;stroke:#202321;stroke-width:6}.rank{font:700 47px Georgia,serif}.suit{font:700 70px Georgia,serif}</style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="10" markerHeight="10" orient="auto"><path d="M0 0 10 5 0 10z" fill="#f4d66d"/></marker>
+    <pattern id="back" width="22" height="22" patternUnits="userSpaceOnUse"><rect width="22" height="22" fill="#315f9c"/><path d="M0 11 11 0m0 22 11-11M0 0l22 22" stroke="#d9e4f4" stroke-width="2" opacity=".72"/></pattern>
+  </defs>
+  <rect width="1200" height="900" fill="#244c3c"/>
+  <rect x="54" y="54" width="1092" height="792" rx="28" fill="none" stroke="#fff" stroke-opacity=".15" stroke-width="3"/>
+  <g transform="translate(106 120)">
+    <g><rect class="card" width="160" height="226" rx="15"/><text class="rank" x="20" y="58">A</text><text class="suit" x="80" y="145" text-anchor="middle" fill="#222">♣</text></g>
+    <g transform="translate(207)"><rect class="card" width="160" height="226" rx="15"/><text class="rank" x="20" y="58" fill="#b33d3a">7</text><text class="suit" x="80" y="145" text-anchor="middle" fill="#b33d3a">♥</text></g>
+    <g transform="translate(414)"><rect class="card" width="160" height="226" rx="15"/><text class="rank" x="17" y="58">Q</text><text class="suit" x="80" y="145" text-anchor="middle" fill="#222">♠</text></g>
+    <g transform="translate(621)"><rect class="card" width="160" height="226" rx="15"/><text class="rank" x="20" y="58" fill="#b33d3a">3</text><text class="suit" x="80" y="145" text-anchor="middle" fill="#b33d3a">♦</text></g>
+    <g transform="translate(828)"><rect class="card" width="160" height="226" rx="15"/><text class="rank" x="20" y="58">9</text><text class="suit" x="80" y="145" text-anchor="middle" fill="#222">♣</text></g>
+  </g>
+  <path d="M600 384v80" fill="none" stroke="#f4d66d" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <g transform="translate(125 525)">
+    <rect x="0" width="160" height="226" rx="15" fill="url(#back)" stroke="#fffdf8" stroke-width="8"/>
+    <path d="M196 113h66" fill="none" stroke="#d8e3da" stroke-width="7" stroke-linecap="round"/>
+    <g transform="translate(300)"><rect class="card" width="135" height="226" rx="15"/><text class="suit" x="67" y="139" text-anchor="middle" fill="#b33d3a">♥</text></g>
+    <g transform="translate(450)"><rect class="card" width="135" height="226" rx="15"/><text class="suit" x="67" y="139" text-anchor="middle" fill="#222">♠</text></g>
+    <g transform="translate(600)"><rect class="card" width="135" height="226" rx="15"/><text class="suit" x="67" y="139" text-anchor="middle" fill="#b33d3a">♦</text></g>
+    <g transform="translate(750)"><rect class="card" width="135" height="226" rx="15"/><text class="suit" x="67" y="139" text-anchor="middle" fill="#222">♣</text></g>
+  </g>
+</svg>

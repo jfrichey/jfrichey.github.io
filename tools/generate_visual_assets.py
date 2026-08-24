@@ -94,9 +94,9 @@ def generate_sft() -> None:
     # there is no browser-side enlargement of a small lattice.
     rows, cols = 720, 426
     specs = [
-        (-1.8, 14011, [(-0.5, 35), (-1.1, 55), (-1.8, 180)]),
-        (0.95, 24017, [(0.25, 30), (0.55, 50), (0.76, 70), (0.95, 200)]),
-        (1.28, 39019, [(0.25, 35), (0.55, 55), (0.82, 80), (1.04, 110), (1.28, 260)]),
+        (-1.0, 14011, [(-0.35, 35), (-0.7, 60), (-1.0, 210)]),
+        (1.25, 24017, [(0.25, 35), (0.55, 55), (0.82, 80), (1.05, 120), (1.25, 280)]),
+        (3.0, 39019, [(0.35, 30), (0.75, 50), (1.15, 80), (1.6, 110), (2.2, 150), (3.0, 230)]),
     ]
     palette = np.asarray(
         [
@@ -111,7 +111,7 @@ def generate_sft() -> None:
         grid = sample_sft_phase((rows, cols), beta, seed, schedule)
         panel = Image.fromarray(palette[grid], "RGB")
         draw = ImageDraw.Draw(panel, "RGBA")
-        label = f"beta = {beta:+.2f}"
+        label = f"β = {beta:g}"
         draw.rounded_rectangle((16, 15, 154, 55), radius=7, fill=(8, 16, 25, 188))
         draw.text((28, 24), label, font=font(19, True), fill=(255, 255, 255, 235))
         panels.append(panel)
@@ -273,12 +273,19 @@ def render_voronoi_frame(
     owners: np.ndarray,
     count: int,
 ) -> Image.Image:
-    rgb = colors[active][owners]
+    # Render the tessellation at its final display resolution.  Earlier
+    # versions enlarged a 200 x 150 ownership grid with nearest-neighbor
+    # sampling, which made the boundaries look needlessly stair-stepped.
+    rgb = colors[active][owners].copy()
     boundary = np.zeros(owners.shape, dtype=bool)
-    boundary[:, 1:] |= owners[:, 1:] != owners[:, :-1]
-    boundary[1:, :] |= owners[1:, :] != owners[:-1, :]
-    rgb[boundary] = np.array([18, 20, 27], dtype=np.uint8)
-    image = Image.fromarray(rgb, "RGB").resize((900, 675), Image.Resampling.NEAREST)
+    horizontal = owners[:, 1:] != owners[:, :-1]
+    vertical = owners[1:, :] != owners[:-1, :]
+    boundary[:, 1:] |= horizontal
+    boundary[:, :-1] |= horizontal
+    boundary[1:, :] |= vertical
+    boundary[:-1, :] |= vertical
+    rgb[boundary] = np.array([241, 237, 227], dtype=np.uint8)
+    image = Image.fromarray(rgb, "RGB")
     draw = ImageDraw.Draw(image, "RGBA")
     point_radius = 1 if count > 450 else 2 if count > 90 else 4 if count > 15 else 7
     for point in points[active]:
@@ -286,8 +293,8 @@ def render_voronoi_frame(
         y = int(point[1] * image.height)
         draw.ellipse(
             (x - point_radius, y - point_radius, x + point_radius, y + point_radius),
-            fill=(255, 252, 238, 235),
-            outline=(18, 20, 27, 170),
+            fill=(23, 26, 34, 225),
+            outline=(255, 253, 246, 220),
             width=1,
         )
     label = f"{count:,} candidate" + ("s" if count != 1 else "")
@@ -308,10 +315,14 @@ def one_voronoi_movie(seed: int = 115249) -> None:
         (grid_height, grid_width),
         captures_wanted,
     )
+    render_width, render_height = 900, 675
+    render_voters = voter_grid(render_width, render_height)
     frames = []
     durations = []
     for count in sorted(captures, reverse=True):
-        active, owners = captures[count]
+        active, _ = captures[count]
+        owners = cKDTree(points[active]).query(render_voters, k=1)[1]
+        owners = owners.reshape((render_height, render_width))
         frames.append(render_voronoi_frame(points, colors, active, owners, count))
         durations.append(950 if count in (1000, 1) else 520)
     frames[0].save(

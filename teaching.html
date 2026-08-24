@@ -80,12 +80,10 @@
               <a class="button" href="https://hcssim.org/online-giving/">Support student financial aid <span>↗</span></a>
             </div>
           </div>
-          <div class="story-visual chalkboard" role="img" aria-label="A chalkboard of exploratory mathematical questions">
-            Suppose a process grows one step at a time…
-            <span class="equation">E[X<sub>n+1</sub> − X<sub>n</sub> | X<sub>n</sub>] = ?</span>
-            What should be simulated first?<br>What pattern would count as evidence?<br>Which assumption is actually doing the work?
-            <span class="circle-note">try a smaller case</span>
-          </div>
+          <figure class="story-visual flat-illustration">
+            <img src="math_images/problem_session.svg" alt="A collaborative problem session around a shared graph puzzle">
+            <figcaption>Start with a concrete case. Put it in the middle of the table.</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -137,83 +135,13 @@
               </p>
             </div>
           </div>
-          <div
-            class="story-visual math-play-collage"
-            role="img"
-            aria-label="A collage of Hackenbush, dots and boxes, and the quaternion belt trick"
-          >
-            <figure class="play-card hackenbush-card">
-              <svg viewBox="0 0 320 245" aria-hidden="true">
-                <path class="ground" d="M24 220 H296 M38 220 l-11 13 M62 220 l-11 13 M86 220 l-11 13 M110 220 l-11 13 M134 220 l-11 13 M158 220 l-11 13 M182 220 l-11 13 M206 220 l-11 13 M230 220 l-11 13 M254 220 l-11 13 M278 220 l-11 13"/>
-                <g class="hacken-edges">
-                  <path class="edge green-edge" d="M89 220 L111 169 L76 127 L103 83"/>
-                  <path class="edge blue-edge" d="M111 169 L157 132 L188 87"/>
-                  <path class="edge red-edge" d="M157 132 L140 77 L165 37"/>
-                  <path class="edge blue-edge" d="M157 132 L218 144 L250 105"/>
-                  <path class="edge green-edge" d="M218 144 L235 191 L276 172"/>
-                  <path class="edge red-edge" d="M76 127 L43 86"/>
-                  <path class="edge green-edge" d="M188 87 L230 53"/>
-                </g>
-                <g class="hacken-nodes">
-                  <circle cx="89" cy="220" r="5"/><circle cx="111" cy="169" r="5"/><circle cx="76" cy="127" r="5"/>
-                  <circle cx="103" cy="83" r="5"/><circle cx="157" cy="132" r="5"/><circle cx="188" cy="87" r="5"/>
-                  <circle cx="140" cy="77" r="5"/><circle cx="165" cy="37" r="5"/><circle cx="218" cy="144" r="5"/>
-                  <circle cx="250" cy="105" r="5"/><circle cx="235" cy="191" r="5"/><circle cx="276" cy="172" r="5"/>
-                  <circle cx="43" cy="86" r="5"/><circle cx="230" cy="53" r="5"/>
-                </g>
-              </svg>
-              <figcaption><b>Hackenbush</b><span>cut an edge</span></figcaption>
-            </figure>
-
-            <figure class="play-card dots-card">
-              <svg viewBox="0 0 300 245" aria-hidden="true">
-                <g class="claimed-boxes">
-                  <rect x="72" y="62" width="52" height="52"/><rect x="124" y="114" width="52" height="52"/>
-                  <text x="98" y="95">A</text><text x="150" y="147">B</text>
-                </g>
-                <g class="box-lines">
-                  <path d="M20 62 H280 M20 114 H228 M72 166 H280 M20 218 H176"/>
-                  <path d="M72 10 V218 M124 10 V166 M176 62 V218 M228 10 V166"/>
-                </g>
-                <path class="next-move" d="M20 10 H72"/>
-                <g class="dot-grid">
-                  <circle cx="20" cy="10" r="5"/><circle cx="72" cy="10" r="5"/><circle cx="124" cy="10" r="5"/><circle cx="176" cy="10" r="5"/><circle cx="228" cy="10" r="5"/><circle cx="280" cy="10" r="5"/>
-                  <circle cx="20" cy="62" r="5"/><circle cx="72" cy="62" r="5"/><circle cx="124" cy="62" r="5"/><circle cx="176" cy="62" r="5"/><circle cx="228" cy="62" r="5"/><circle cx="280" cy="62" r="5"/>
-                  <circle cx="20" cy="114" r="5"/><circle cx="72" cy="114" r="5"/><circle cx="124" cy="114" r="5"/><circle cx="176" cy="114" r="5"/><circle cx="228" cy="114" r="5"/><circle cx="280" cy="114" r="5"/>
-                  <circle cx="20" cy="166" r="5"/><circle cx="72" cy="166" r="5"/><circle cx="124" cy="166" r="5"/><circle cx="176" cy="166" r="5"/><circle cx="228" cy="166" r="5"/><circle cx="280" cy="166" r="5"/>
-                  <circle cx="20" cy="218" r="5"/><circle cx="72" cy="218" r="5"/><circle cx="124" cy="218" r="5"/><circle cx="176" cy="218" r="5"/><circle cx="228" cy="218" r="5"/><circle cx="280" cy="218" r="5"/>
-                </g>
-              </svg>
-              <figcaption><b>Dots &amp; boxes</b><span>find the sacrifice</span></figcaption>
-            </figure>
-
-            <figure class="play-card belt-card">
-              <svg viewBox="0 0 340 245" aria-hidden="true">
-                <defs>
-                  <linearGradient id="belt-gradient" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#e9a9f0"/><stop offset="0.48" stop-color="#7258b6"/><stop offset="1" stop-color="#315f9c"/>
-                  </linearGradient>
-                </defs>
-                <g class="belt-anchor">
-                  <rect x="18" y="87" width="20" height="74" rx="4"/>
-                  <circle cx="28" cy="124" r="5"/>
-                </g>
-                <path class="belt-shadow" d="M38 105 C82 105 75 174 119 174 C159 174 149 72 199 72 C249 72 246 156 294 156"/>
-                <path class="belt-ribbon" d="M38 105 C82 105 75 174 119 174 C159 174 149 72 199 72 C249 72 246 156 294 156"/>
-                <path class="belt-stitch" d="M38 105 C82 105 75 174 119 174 C159 174 149 72 199 72 C249 72 246 156 294 156"/>
-                <g class="belt-cube" transform="translate(291 123)">
-                  <path d="M0 0 L25 -14 L50 0 L25 15 Z"/>
-                  <path d="M0 0 V31 L25 47 V15 Z"/>
-                  <path d="M25 15 L50 0 V31 L25 47 Z"/>
-                  <path class="cube-axis" d="M25 15 V-42"/>
-                  <path class="cube-arrow" d="M9 -34 C20 -50 42 -46 46 -28"/>
-                  <path class="arrowhead" d="M40 -32 L47 -27 L49 -36"/>
-                </g>
-                <text class="turn-label" x="226" y="36">4π</text>
-              </svg>
-              <figcaption><b>The belt trick</b><span>two turns come home</span></figcaption>
-            </figure>
-          </div>
+          <figure class="story-visual flat-illustration">
+            <img
+              src="math_images/math_play_four.svg"
+              alt="Four playful mathematics visuals: the five-card trick, a logic circuit, Hackenbush, and Tangloids"
+            >
+            <figcaption>Simple rules, surprising behavior: four invitations to start experimenting.</figcaption>
+          </figure>
         </div>
       </section>
 

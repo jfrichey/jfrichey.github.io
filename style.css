@@ -259,6 +259,13 @@ button {
   font-weight: 680;
 }
 
+.lede .text-link,
+.summary .text-link {
+  padding: 0 0 1px;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
 .scroll-cue {
   position: absolute;
   left: var(--page-pad);
@@ -381,14 +388,6 @@ button {
   padding: 11px 3px 0;
   color: var(--muted);
   font: 400 0.72rem/1.4 var(--serif);
-}
-
-.hero-collage .hc2 img {
-  object-position: 88% center;
-}
-
-.hero-collage .hc1 img {
-  object-position: 24% center;
 }
 
 /* Click-through figure stories */
@@ -546,10 +545,10 @@ button {
 }
 
 .playing-card {
-  --turn: 0deg;
   position: absolute;
   z-index: 2;
-  width: clamp(82px, 10vw, 132px);
+  top: 50%;
+  width: clamp(78px, 9vw, 118px);
   aspect-ratio: 0.7;
   padding: 10px;
   border-radius: 8px;
@@ -557,7 +556,7 @@ button {
   color: #171817;
   box-shadow: 0 9px 24px rgba(0, 0, 0, 0.24);
   font: 700 clamp(1.15rem, 2vw, 1.7rem) / 1 var(--serif);
-  transform: rotate(var(--turn));
+  transform: translateY(-50%);
 }
 
 .playing-card.red-card {
@@ -571,35 +570,16 @@ button {
 }
 
 .playing-card.c1 {
-  --turn: -8deg;
-  left: 22%;
-  top: 18%;
+  left: 17%;
 }
 
 .playing-card.c2 {
-  --turn: 5deg;
-  left: 41%;
-  top: 31%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .playing-card.c3 {
-  --turn: -2deg;
-  right: 21%;
-  bottom: 17%;
-}
-
-.bridge-note {
-  position: absolute;
-  z-index: 3;
-  right: 7%;
-  top: 9%;
-  max-width: 190px;
-  padding: 14px;
-  background: #fff1a9;
-  color: #3f3721;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.17);
-  font: 600 0.76rem/1.42 var(--serif);
-  transform: rotate(3deg);
+  right: 17%;
 }
 
 /* Subpage heroes and project sections */
@@ -622,52 +602,6 @@ button {
   margin: auto;
   padding: calc(var(--head) + 48px) var(--page-pad) 72px;
   overflow: hidden;
-}
-
-.hero-collage {
-  position: relative;
-  min-height: min(68vh, 670px);
-}
-
-.hero-collage figure {
-  position: absolute;
-  margin: 0;
-  overflow: hidden;
-  border: 8px solid white;
-  background: white;
-  box-shadow: 0 20px 55px rgba(31, 32, 34, 0.15);
-}
-
-.hero-collage img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-collage .hc1 {
-  z-index: 2;
-  width: 68%;
-  height: 57%;
-  left: 0;
-  top: 19%;
-  transform: rotate(-1.4deg);
-}
-
-.hero-collage .hc2,
-.hero-collage .hc3 {
-  width: 46%;
-  height: 37%;
-  right: 0;
-}
-
-.hero-collage .hc2 {
-  top: 0;
-  transform: rotate(2.6deg);
-}
-
-.hero-collage .hc3 {
-  bottom: 0;
-  transform: rotate(1deg);
 }
 
 .project {
@@ -1287,50 +1221,6 @@ a.resource-card:hover small {
   font: 600 1.18rem/1.16 var(--serif);
 }
 
-.chalkboard {
-  position: relative;
-  min-height: 480px;
-  padding: 34px;
-  overflow: hidden;
-  border: 13px solid #7e6648;
-  background: #24433d;
-  color: rgba(255, 255, 255, 0.84);
-  box-shadow: inset 0 0 48px rgba(0, 0, 0, 0.22), 0 22px 55px rgba(23, 55, 44, 0.18);
-  font: 400 clamp(1.05rem, 1.7vw, 1.55rem) / 1.45 "Comic Sans MS", "Bradley Hand", cursive;
-}
-
-.chalkboard::after {
-  content: "";
-  position: absolute;
-  left: -1%;
-  right: -1%;
-  bottom: -7px;
-  height: 14px;
-  background: #9b7d57;
-}
-
-.chalkboard .equation {
-  display: block;
-  margin: 23px 0;
-  color: #fff4ad;
-  font-size: 1.22em;
-  transform: rotate(-1deg);
-}
-
-.chalkboard .circle-note {
-  position: absolute;
-  right: 8%;
-  bottom: 13%;
-  width: 150px;
-  height: 78px;
-  display: grid;
-  place-items: center;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  border-radius: 50%;
-  font-size: 0.78em;
-  transform: rotate(4deg);
-}
-
 .bridge-links {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1370,246 +1260,31 @@ a.resource-card:hover small {
   font: 600 1rem/1.2 var(--serif);
 }
 
-.riddle-wall {
-  position: relative;
-  min-height: 500px;
+/* Flat, reusable visual cards */
+
+.flat-illustration {
+  margin: 0;
+  overflow: hidden;
   background: #25324d;
   box-shadow: 0 22px 60px rgba(31, 43, 70, 0.2);
 }
 
-.riddle-paper {
-  position: absolute;
-  width: 57%;
-  min-height: 235px;
-  padding: 24px;
-  background: #fffdf3;
-  color: #2b2b28;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
-  font: 400 1rem/1.55 var(--serif);
-}
-
-.riddle-paper:first-child {
-  left: 8%;
-  top: 10%;
-  transform: rotate(-3deg);
-}
-
-.riddle-paper:last-child {
-  right: 7%;
-  bottom: 8%;
-  transform: rotate(3deg);
-}
-
-.riddle-paper b {
-  display: block;
-  margin-bottom: 11px;
-  color: var(--accent);
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* Mathematical play collage */
-
-.math-play-collage {
-  position: relative;
-  min-height: 560px;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.08), transparent 24%),
-    radial-gradient(circle at 82% 78%, rgba(255, 255, 255, 0.07), transparent 26%),
-    #25324d;
-  box-shadow: 0 22px 60px rgba(31, 43, 70, 0.2);
-}
-
-.math-play-collage::before {
-  content: "";
-  position: absolute;
-  inset: 6%;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-}
-
-.play-card {
-  position: absolute;
-  margin: 0;
-  padding: 13px 13px 11px;
-  background: #fffdf5;
-  color: var(--ink);
-  box-shadow: 0 16px 34px rgba(4, 9, 20, 0.33);
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
-}
-
-.play-card:hover {
-  z-index: 5;
-  box-shadow: 0 22px 46px rgba(4, 9, 20, 0.42);
-}
-
-.play-card svg {
+.flat-illustration img {
   width: 100%;
-  height: auto;
-  overflow: visible;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
 }
 
-.play-card figcaption {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  padding-top: 8px;
-  border-top: 1px solid rgba(23, 24, 23, 0.13);
+.flat-illustration figcaption {
+  padding: 11px 14px 12px;
+  border-top: 1px solid rgba(23, 24, 23, 0.14);
+  background: #fffdf8;
+  color: #4e504c;
+  font: 400 0.71rem/1.4 var(--serif);
 }
 
-.play-card figcaption b {
-  font: 650 0.92rem/1 var(--serif);
-}
-
-.play-card figcaption span {
-  color: #777870;
-  font-size: 0.51rem;
-  font-weight: 760;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.hackenbush-card {
-  z-index: 3;
-  left: 6%;
-  top: 8%;
-  width: 47%;
-  transform: rotate(-3deg);
-}
-
-.hackenbush-card:hover { transform: rotate(-1deg) translateY(-5px); }
-
-.dots-card {
-  z-index: 2;
-  right: 6%;
-  top: 14%;
-  width: 43%;
-  transform: rotate(3.2deg);
-}
-
-.dots-card:hover { transform: rotate(1deg) translateY(-5px); }
-
-.belt-card {
-  z-index: 4;
-  left: 24%;
-  bottom: 6%;
-  width: 57%;
-  transform: rotate(-0.8deg);
-}
-
-.belt-card:hover { transform: rotate(0deg) translateY(-5px); }
-
-.hackenbush-card .ground {
-  fill: none;
-  stroke: #3b3d38;
-  stroke-width: 5;
-  stroke-linecap: round;
-}
-
-.hackenbush-card .edge {
-  fill: none;
-  stroke-width: 9;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.hackenbush-card .green-edge { stroke: #56866e; }
-.hackenbush-card .blue-edge { stroke: #315fa3; }
-.hackenbush-card .red-edge { stroke: #c45443; }
-.hackenbush-card .hacken-nodes { fill: #242622; }
-
-.dots-card .box-lines {
-  fill: none;
-  stroke: #30322f;
-  stroke-width: 5;
-  stroke-linecap: round;
-}
-
-.dots-card .dot-grid { fill: #272925; }
-
-.dots-card .claimed-boxes rect:first-child { fill: rgba(49, 95, 163, 0.18); }
-.dots-card .claimed-boxes rect:nth-child(2) { fill: rgba(196, 84, 67, 0.18); }
-
-.dots-card .claimed-boxes text {
-  fill: #52544f;
-  font: 600 21px Georgia, serif;
-  text-anchor: middle;
-}
-
-.dots-card .next-move {
-  fill: none;
-  stroke: #c45443;
-  stroke-width: 7;
-  stroke-linecap: round;
-  stroke-dasharray: 12 9;
-  animation: boxes-hint 1.5s linear infinite;
-}
-
-@keyframes boxes-hint {
-  to { stroke-dashoffset: -21; }
-}
-
-.belt-card .belt-anchor {
-  fill: #4c4e49;
-  stroke: #242622;
-  stroke-width: 2;
-}
-
-.belt-card .belt-shadow,
-.belt-card .belt-ribbon,
-.belt-card .belt-stitch {
-  fill: none;
-  stroke-linecap: round;
-}
-
-.belt-card .belt-shadow {
-  stroke: rgba(16, 17, 18, 0.18);
-  stroke-width: 33;
-  transform: translateY(5px);
-}
-
-.belt-card .belt-ribbon {
-  stroke: url(#belt-gradient);
-  stroke-width: 27;
-}
-
-.belt-card .belt-stitch {
-  stroke: rgba(255, 255, 255, 0.76);
-  stroke-width: 2;
-  stroke-dasharray: 7 8;
-  animation: belt-flow 4s linear infinite;
-}
-
-@keyframes belt-flow {
-  to { stroke-dashoffset: -90; }
-}
-
-.belt-cube path {
-  fill: #e5b867;
-  stroke: #32342f;
-  stroke-width: 2;
-  stroke-linejoin: round;
-}
-
-.belt-cube path:nth-child(2) { fill: #c9944b; }
-.belt-cube path:nth-child(3) { fill: #f0cb83; }
-
-.belt-cube .cube-axis,
-.belt-cube .cube-arrow,
-.belt-cube .arrowhead {
-  fill: none;
-  stroke: #704c92;
-  stroke-width: 4;
-  stroke-linecap: round;
-}
-
-.belt-cube .arrowhead { stroke-linejoin: round; }
-
-.belt-card .turn-label {
-  fill: #704c92;
-  font: italic 700 25px Georgia, serif;
+.five-card-feature {
+  max-width: 760px;
 }
 
 /* Footer */
@@ -1717,10 +1392,6 @@ a.resource-card:hover small {
     max-width: 780px;
   }
 
-  .hero-collage {
-    min-height: 560px;
-  }
-
   .portrait-card {
     margin: 0;
   }
@@ -1807,21 +1478,6 @@ a.resource-card:hover small {
     gap: 13px;
   }
 
-  .hero-collage {
-    min-height: 405px;
-  }
-
-  .hero-collage .hc1 {
-    width: 82%;
-    height: 59%;
-  }
-
-  .hero-collage .hc2,
-  .hero-collage .hc3 {
-    width: 48%;
-    height: 34%;
-  }
-
   .portrait-card img,
   .blackboard-card img {
     height: 430px;
@@ -1829,11 +1485,6 @@ a.resource-card:hover small {
 
   .bridge-table {
     min-height: 430px;
-  }
-
-  .bridge-note {
-    max-width: 150px;
-    font-size: 0.68rem;
   }
 
   .project h2,
@@ -1893,24 +1544,6 @@ a.resource-card:hover small {
 
   .slideshow-copy > span {
     white-space: normal;
-  }
-
-  .chalkboard,
-  .riddle-wall,
-  .math-play-collage {
-    min-height: 430px;
-  }
-
-  .math-play-collage { min-height: 500px; }
-  .hackenbush-card { width: 56%; }
-  .dots-card { width: 50%; }
-  .belt-card { left: 15%; width: 70%; }
-
-  .riddle-paper {
-    width: 72%;
-    min-height: 205px;
-    padding: 19px;
-    font-size: 0.88rem;
   }
 
   .site-footer {

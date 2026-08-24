@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Four pieces of playful mathematics</title>
+  <desc id="desc">The five-card trick, a Boolean circuit, a Hackenbush position, and the three-string tangloids demonstration.</desc>
+  <defs>
+    <style>
+      .tile{fill:#fffdf8;stroke:#d8d3c8;stroke-width:2}.label{font:700 20px Helvetica,Arial,sans-serif;letter-spacing:3px;fill:#545750}.card{fill:#fff;stroke:#242725;stroke-width:3}.wire{fill:none;stroke:#52667e;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}.gate{fill:#edf0eb;stroke:#252a29;stroke-width:5}.ground{fill:none;stroke:#373b38;stroke-width:8;stroke-linecap:round}.edge{fill:none;stroke-width:15;stroke-linecap:round;stroke-linejoin:round}.node{fill:#252925}.board{fill:#d9b179;stroke:#604f3b;stroke-width:5}.string{fill:none;stroke-width:10;stroke-linecap:round}.small{font:700 22px Helvetica,Arial,sans-serif;fill:#343734}.suit{font:700 25px Georgia,serif}.rank{font:700 24px Georgia,serif}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10z" fill="#6d4a78"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="900" fill="#25324d"/>
+  <rect class="tile" x="34" y="34" width="558" height="399" rx="8"/>
+  <rect class="tile" x="608" y="34" width="558" height="399" rx="8"/>
+  <rect class="tile" x="34" y="467" width="558" height="399" rx="8"/>
+  <rect class="tile" x="608" y="467" width="558" height="399" rx="8"/>
+
+  <!-- Five cards become one hidden card plus a four-card message. -->
+  <g aria-label="Five-card trick">
+    <text class="label" x="68" y="82">FIVE CARDS</text>
+    <g transform="translate(76 112)">
+      <g transform="translate(0)"><rect class="card" width="72" height="102" rx="7"/><text class="rank" x="11" y="30">A</text><text class="suit" x="36" y="71" text-anchor="middle" fill="#222">♣</text></g>
+      <g transform="translate(91)"><rect class="card" width="72" height="102" rx="7"/><text class="rank" x="11" y="30" fill="#b43c38">7</text><text class="suit" x="36" y="71" text-anchor="middle" fill="#b43c38">♥</text></g>
+      <g transform="translate(182)"><rect class="card" width="72" height="102" rx="7"/><text class="rank" x="10" y="30">Q</text><text class="suit" x="36" y="71" text-anchor="middle" fill="#222">♠</text></g>
+      <g transform="translate(273)"><rect class="card" width="72" height="102" rx="7"/><text class="rank" x="11" y="30" fill="#b43c38">3</text><text class="suit" x="36" y="71" text-anchor="middle" fill="#b43c38">♦</text></g>
+      <g transform="translate(364)"><rect class="card" width="72" height="102" rx="7"/><text class="rank" x="11" y="30">9</text><text class="suit" x="36" y="71" text-anchor="middle" fill="#222">♣</text></g>
+    </g>
+    <path d="M313 231v42" fill="none" stroke="#6d4a78" stroke-width="5" marker-end="url(#arrow)"/>
+    <g transform="translate(85 291)">
+      <g><rect x="0" width="72" height="102" rx="7" fill="#315f9c" stroke="#242725" stroke-width="3"/><path d="M10 12h52v78H10zM15 20l42 62M57 20 15 82" fill="none" stroke="#dce6f6" stroke-width="3" opacity=".75"/></g>
+      <path d="M91 51h37" fill="none" stroke="#90948d" stroke-width="4" stroke-linecap="round"/>
+      <g transform="translate(145)"><rect class="card" width="62" height="102" rx="7"/><text class="suit" x="31" y="64" text-anchor="middle" fill="#b43c38">♥</text></g>
+      <g transform="translate(219)"><rect class="card" width="62" height="102" rx="7"/><text class="suit" x="31" y="64" text-anchor="middle" fill="#222">♠</text></g>
+      <g transform="translate(293)"><rect class="card" width="62" height="102" rx="7"/><text class="suit" x="31" y="64" text-anchor="middle" fill="#b43c38">♦</text></g>
+      <g transform="translate(367)"><rect class="card" width="62" height="102" rx="7"/><text class="suit" x="31" y="64" text-anchor="middle" fill="#222">♣</text></g>
+    </g>
+  </g>
+
+  <!-- A small network of AND/OR gates. -->
+  <g aria-label="Boolean circuit">
+    <text class="label" x="642" y="82">LOGIC</text>
+    <g>
+      <circle cx="664" cy="139" r="10" fill="#315fa3"/><circle cx="664" cy="207" r="10" fill="#c45443"/>
+      <circle cx="664" cy="275" r="10" fill="#56866e"/><circle cx="664" cy="343" r="10" fill="#d89b30"/>
+      <path class="wire" d="M674 139H760M674 207H760M674 275H756M674 343H756"/>
+      <path class="gate" d="M760 111h48a48 48 0 0 1 0 124h-48z"/>
+      <text class="small" x="799" y="181" text-anchor="middle">∧</text>
+      <path class="gate" d="M756 248q31 62 0 124h38q75 0 97-62-22-62-97-62z"/>
+      <path d="M756 248q40 62 0 124" fill="none" stroke="#252a29" stroke-width="5"/>
+      <text class="small" x="813" y="318" text-anchor="middle">∨</text>
+      <path class="wire" d="M856 173h58v64M891 310h23v-73h62"/>
+      <path class="gate" d="M976 202h48a48 48 0 0 1 0 124h-48z"/>
+      <text class="small" x="1015" y="272" text-anchor="middle">∧</text>
+      <path class="wire" d="M1072 264h42"/>
+      <circle cx="1125" cy="264" r="16" fill="#f2c95c" stroke="#8f7021" stroke-width="4"/>
+    </g>
+  </g>
+
+  <!-- Hackenbush. -->
+  <g aria-label="Hackenbush position">
+    <text class="label" x="68" y="515">HACKENBUSH</text>
+    <path class="ground" d="M78 814h463M100 814l-18 23m58-23-18 23m58-23-18 23m58-23-18 23m58-23-18 23m58-23-18 23m58-23-18 23m58-23-18 23m58-23-18 23m58-23-18 23"/>
+    <g>
+      <path class="edge" d="M172 814l40-84-54-67 45-74" stroke="#56866e"/>
+      <path class="edge" d="M212 730l78-57 48-79" stroke="#315fa3"/>
+      <path class="edge" d="M290 673l-27-88 43-67" stroke="#c45443"/>
+      <path class="edge" d="M290 673l99 24 60-60" stroke="#315fa3"/>
+      <path class="edge" d="M389 697l28 77 72-34" stroke="#56866e"/>
+      <path class="edge" d="M158 663l-52-68" stroke="#c45443"/>
+      <path class="edge" d="M338 594l69-49" stroke="#56866e"/>
+    </g>
+    <g class="node">
+      <circle cx="172" cy="814" r="8"/><circle cx="212" cy="730" r="8"/><circle cx="158" cy="663" r="8"/><circle cx="203" cy="589" r="8"/>
+      <circle cx="290" cy="673" r="8"/><circle cx="338" cy="594" r="8"/><circle cx="263" cy="585" r="8"/><circle cx="306" cy="518" r="8"/>
+      <circle cx="389" cy="697" r="8"/><circle cx="449" cy="637" r="8"/><circle cx="417" cy="774" r="8"/><circle cx="489" cy="740" r="8"/>
+      <circle cx="106" cy="595" r="8"/><circle cx="407" cy="545" r="8"/>
+    </g>
+  </g>
+
+  <!-- Tangloids / the three-string version of the belt trick. -->
+  <g aria-label="Tangloids string demonstration">
+    <text class="label" x="642" y="515">TWO TURNS</text>
+    <rect class="board" x="677" y="579" width="55" height="201" rx="9"/>
+    <rect class="board" x="1038" y="579" width="55" height="201" rx="9"/>
+    <g fill="#554532"><circle cx="705" cy="626" r="9"/><circle cx="705" cy="680" r="9"/><circle cx="705" cy="734" r="9"/><circle cx="1065" cy="626" r="9"/><circle cx="1065" cy="680" r="9"/><circle cx="1065" cy="734" r="9"/></g>
+    <path class="string" d="M714 626c88-2 104 107 177 105 70-2 80-105 165-105" stroke="#c45443"/>
+    <path class="string" d="M714 680c83 113 176-112 250 0 25 38 53 44 92 0" stroke="#315fa3"/>
+    <path class="string" d="M714 734c103 3 132-102 209-100 64 2 72 100 133 100" stroke="#56866e"/>
+    <path d="M1019 567c45-39 107-20 123 28 14 42-7 82-42 99" fill="none" stroke="#6d4a78" stroke-width="8" stroke-linecap="round" marker-end="url(#arrow)"/>
+    <text x="1111" y="752" font-family="Georgia,serif" font-size="38" font-style="italic" fill="#6d4a78">4π</text>
+  </g>
+</svg>
