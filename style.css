@@ -451,70 +451,62 @@ button {
   object-position: 24% center;
 }
 
-.home-collage .home-soc-card {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
+.home-collage .home-arw-card {
+  position: absolute;
   border: 7px solid white;
   background: #0a141a;
 }
 
-.home-soc-head {
-  position: relative;
-  z-index: 2;
-  min-height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 8px 9px 8px 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
-  background: #111c22;
-  color: #f4f0e8;
-}
-
-.home-soc-head > div {
-  display: grid;
-  gap: 2px;
-}
-
-.home-soc-head span {
-  color: #df8169;
-  font-size: 0.46rem;
-  font-weight: 790;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.home-soc-head strong {
-  font: 600 0.72rem/1.1 var(--serif);
-}
-
-.home-soc-head button {
-  padding: 6px 8px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: transparent;
-  color: rgba(255, 255, 255, 0.8);
-  cursor: pointer;
-  font-size: 0.52rem;
-  font-weight: 730;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-}
-
-.home-soc-head button:hover,
-.home-soc-head button:focus-visible {
-  border-color: #ffcf72;
-  color: #ffcf72;
-}
-
-.home-soc-card canvas {
+.home-arw-card canvas {
+  display: block;
   width: 100%;
   height: 100%;
   min-height: 0;
-  cursor: pointer;
 }
 
-.home-collage .home-soc-card figcaption {
+.home-arw-key {
+  position: absolute;
+  top: 11px;
+  left: 12px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 6px 8px;
+  background: rgba(8, 17, 23, 0.72);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.48rem;
+  font-weight: 760;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+.home-arw-key span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.home-arw-key span::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.home-arw-key .active::before {
+  background: #ffd36e;
+  color: #ffd36e;
+}
+
+.home-arw-key .sleeping::before {
+  background: #69b6ca;
+  color: #69b6ca;
+}
+
+.home-collage .home-arw-card figcaption {
   left: 14px;
   bottom: 12px;
   background: rgba(10, 20, 26, 0.82);

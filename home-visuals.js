@@ -12,146 +12,179 @@
     };
   }
 
+  function clamp(value, low, high) {
+    return Math.max(low, Math.min(high, value));
+  }
+
   function mix(a, b, amount) {
-    const t = Math.max(0, Math.min(1, amount));
+    const t = clamp(amount, 0, 1);
     return a.map((value, index) => Math.round(value + (b[index] - value) * t));
   }
 
-  function makeSandpile(n, density, seed, addedParticles = 10) {
+  function poisson(random, mean) {
+    if (mean <= 0) return 0;
+    const threshold = Math.exp(-mean);
+    let product = 1;
+    let count = 0;
+    do {
+      count += 1;
+      product *= random();
+    } while (product > threshold);
+    return count - 1;
+  }
+
+  function makeModel(size, seed) {
+    const count = size * size;
+    const center = Math.floor(size / 2);
     const random = mulberry32(seed);
-    const count = n * n;
-    const height = new Uint16Array(count);
+    const active = new Uint16Array(count);
+    const sleeping = new Uint8Array(count);
     const odometer = new Uint32Array(count);
     const queued = new Uint8Array(count);
-    const stack = new Int32Array(count);
+    const radii = new Uint8Array(count);
+    const maxRadius = Math.ceil(Math.SQRT2 * center);
+    const buckets = Array.from({ length: maxRadius + 1 }, () => []);
+    let outerBucket = 0;
+    let activeParticles = 0;
+    let sleepingParticles = 0;
+    let events = 0;
 
-    for (let index = 0; index < count; index += 1) {
-      height[index] = random() < density ? 1 : 0;
+    for (let y = 0; y < size; y += 1) {
+      for (let x = 0; x < size; x += 1) {
+        const index = y * size + x;
+        radii[index] = Math.min(
+          maxRadius,
+          Math.floor(Math.hypot(x - center, y - center)),
+        );
+      }
     }
 
-    const center = Math.floor(n / 2) * n + Math.floor(n / 2);
-    height[center] += addedParticles;
-    stack[0] = center;
-    queued[center] = 1;
+    function enqueue(index) {
+      if (!active[index] || queued[index]) return;
+      const radius = radii[index];
+      buckets[radius].push(index);
+      queued[index] = 1;
+      outerBucket = Math.max(outerBucket, radius);
+    }
 
+    function initializeMound() {
+      const moundRadius = size * 0.16;
+      for (let y = 1; y < size - 1; y += 1) {
+        for (let x = 1; x < size - 1; x += 1) {
+          const distance = Math.hypot(x - center, y - center);
+          if (distance > moundRadius) continue;
+          const profile = 1 - (distance / moundRadius) ** 2;
+          const mean = 0.14 + 7.2 * profile ** 1.55;
+          const particles = poisson(random, mean);
+          if (!particles) continue;
+          const index = y * size + x;
+          active[index] = particles;
+          activeParticles += particles;
+          enqueue(index);
+        }
+      }
+    }
+
+    function popOutermost() {
+      while (outerBucket >= 0) {
+        const bucket = buckets[outerBucket];
+        while (bucket.length) {
+          const index = bucket.pop();
+          queued[index] = 0;
+          if (active[index]) return index;
+        }
+        outerBucket -= 1;
+      }
+      return -1;
+    }
+
+    function step() {
+      if (!activeParticles) return false;
+      const source = popOutermost();
+      if (source < 0) return false;
+
+      // A legal, frontier-first stabilization schedule for ARW: isolated
+      // particles may sleep; otherwise one active particle makes a nearest-
+      // neighbor step. The schedule changes the movie, not the final state.
+      if (active[source] === 1 && random() < 0.42) {
+        active[source] = 0;
+        sleeping[source] = 1;
+        activeParticles -= 1;
+        sleepingParticles += 1;
+        events += 1;
+        return true;
+      }
+
+      const x = source % size;
+      const y = Math.floor(source / size);
+      const direction = Math.floor(random() * 4);
+      const nx = direction === 0 ? x + 1 : direction === 1 ? x - 1 : x;
+      const ny = direction === 2 ? y + 1 : direction === 3 ? y - 1 : y;
+
+      active[source] -= 1;
+      odometer[source] += 1;
+      events += 1;
+      enqueue(source);
+
+      if (nx <= 0 || nx >= size - 1 || ny <= 0 || ny >= size - 1) {
+        activeParticles -= 1;
+        return true;
+      }
+
+      const destination = ny * size + nx;
+      if (sleeping[destination]) {
+        sleeping[destination] = 0;
+        sleepingParticles -= 1;
+        active[destination] += 2;
+        activeParticles += 1;
+      } else {
+        active[destination] += 1;
+      }
+      enqueue(destination);
+      return true;
+    }
+
+    initializeMound();
     return {
-      n,
-      density,
-      random,
-      height,
+      active,
+      sleeping,
       odometer,
-      queued,
-      stack,
-      stackSize: 1,
-      topplings: 0,
-      center,
-      settled: false,
+      get activeParticles() {
+        return activeParticles;
+      },
+      get sleepingParticles() {
+        return sleepingParticles;
+      },
+      get events() {
+        return events;
+      },
+      step,
     };
   }
 
-  function pushIfActive(model, index) {
-    if (model.height[index] < 2 || model.queued[index]) return;
-    model.queued[index] = 1;
-    model.stack[model.stackSize] = index;
-    model.stackSize += 1;
-  }
-
-  function topple(model) {
-    if (!model.stackSize) {
-      model.settled = true;
-      return false;
-    }
-
-    model.stackSize -= 1;
-    const index = model.stack[model.stackSize];
-    model.queued[index] = 0;
-    if (model.height[index] < 2) return true;
-
-    model.height[index] -= 2;
-    model.odometer[index] += 1;
-    model.topplings += 1;
-    pushIfActive(model, index);
-
-    const x = index % model.n;
-    const y = Math.floor(index / model.n);
-    for (let particle = 0; particle < 2; particle += 1) {
-      const direction = Math.floor(model.random() * 4);
-      let destination;
-      if (direction === 0) destination = y * model.n + (x + 1 === model.n ? 0 : x + 1);
-      else if (direction === 1) destination = y * model.n + (x === 0 ? model.n - 1 : x - 1);
-      else if (direction === 2) destination = (y + 1 === model.n ? 0 : y + 1) * model.n + x;
-      else destination = (y === 0 ? model.n - 1 : y - 1) * model.n + x;
-
-      model.height[destination] += 1;
-      pushIfActive(model, destination);
-    }
-    return true;
-  }
-
-  function advance(model, budget) {
-    for (let step = 0; step < budget; step += 1) {
-      if (!topple(model)) break;
-    }
-  }
-
-  function traceColor(odometer, height, maximum) {
-    if (!odometer) return height ? [19, 34, 41] : [10, 20, 26];
-    const t = Math.log1p(odometer) / Math.max(1, Math.log1p(maximum));
-    if (t < 0.48) return mix([38, 72, 119], [108, 73, 128], t / 0.48);
-    if (t < 0.78) return mix([108, 73, 128], [202, 77, 48], (t - 0.48) / 0.3);
-    return mix([202, 77, 48], [255, 224, 126], (t - 0.78) / 0.22);
-  }
-
-  document.querySelectorAll("[data-home-soc-lab]").forEach((lab) => {
-    const canvas = lab.querySelector("[data-home-soc-canvas]");
-    const toggle = lab.querySelector("[data-home-soc-toggle]");
+  document.querySelectorAll("[data-home-arw]").forEach((figure, figureIndex) => {
+    const canvas = figure.querySelector("[data-home-arw-canvas]");
     const context = canvas.getContext("2d");
-    const n = 51;
-    const panelSpecs = [
-      {
-        density: 0.55,
-        seeds: [254589, 464047, 778234],
-        label: "subcritical",
-        rho: "ρ = 0.55",
-        budget: 4,
-      },
-      {
-        density: 0.7,
-        seeds: [45131, 359318, 464047, 673505, 778234],
-        label: "critical window",
-        rho: "ρ ≈ ρc",
-        budget: 20,
-      },
-      {
-        density: 0.76,
-        seeds: [149860, 254589, 359318],
-        label: "supercritical",
-        rho: "ρ = 0.76",
-        budget: 34,
-      },
-    ];
-    const imageCanvases = panelSpecs.map(() => {
-      const imageCanvas = document.createElement("canvas");
-      imageCanvas.width = n;
-      imageCanvas.height = n;
-      return imageCanvas;
-    });
-    let models = [];
-    let playing = !reducedMotion;
-    let visible = true;
-    let startedAt = performance.now();
-    let lastFrame = 0;
-    let run = 0;
+    const size = 69;
+    const imageCanvas = document.createElement("canvas");
+    const imageContext = imageCanvas.getContext("2d");
+    imageCanvas.width = size;
+    imageCanvas.height = size;
 
-    function reset() {
-      models = panelSpecs.map((spec) =>
-        makeSandpile(n, spec.density, spec.seeds[run % spec.seeds.length]),
-      );
-      startedAt = performance.now();
+    let run = 0;
+    let model;
+    let visible = true;
+    let phaseStarted = performance.now();
+    let settledAt = 0;
+    let lastFrame = 0;
+
+    function reset(now = performance.now()) {
+      const seeds = [31091, 77237, 126271, 208049];
+      model = makeModel(size, seeds[(run + figureIndex) % seeds.length]);
+      phaseStarted = now;
+      settledAt = 0;
       if (reducedMotion) {
-        advance(models[0], 340);
-        advance(models[1], 5200);
-        advance(models[2], 7600);
+        while (model.activeParticles && model.events < 500000) model.step();
       }
       draw();
     }
@@ -159,7 +192,7 @@
     function fitCanvas() {
       const box = canvas.getBoundingClientRect();
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      const width = Math.max(330, box.width);
+      const width = Math.max(320, box.width);
       const height = Math.max(230, box.height);
       const pixelWidth = Math.round(width * ratio);
       const pixelHeight = Math.round(height * ratio);
@@ -171,111 +204,104 @@
       return { width, height };
     }
 
-    function paintModel(model, imageCanvas) {
-      const imageContext = imageCanvas.getContext("2d");
-      const image = imageContext.createImageData(n, n);
+    function cellColor(index, maximum) {
+      const active = model.active[index];
+      if (active) {
+        const heat = clamp(Math.log1p(active) / Math.log(8), 0, 1);
+        return mix([255, 213, 104], [239, 93, 66], heat);
+      }
+      if (model.sleeping[index]) return [87, 166, 188];
+      const visits = model.odometer[index];
+      if (!visits) return [8, 17, 23];
+      const trace = Math.log1p(visits) / Math.log1p(maximum);
+      if (trace < 0.62) {
+        return mix([15, 29, 42], [62, 55, 92], trace / 0.62);
+      }
+      return mix([62, 55, 92], [119, 62, 93], (trace - 0.62) / 0.38);
+    }
+
+    function draw() {
+      const { width, height } = fitCanvas();
+      context.fillStyle = "#081117";
+      context.fillRect(0, 0, width, height);
+
       let maximum = 1;
       for (let index = 0; index < model.odometer.length; index += 1) {
         maximum = Math.max(maximum, model.odometer[index]);
       }
+      const image = imageContext.createImageData(size, size);
       for (let index = 0; index < model.odometer.length; index += 1) {
-        const active = model.height[index] >= 2;
-        const color = active
-          ? [255, 242, 166]
-          : traceColor(model.odometer[index], model.height[index], maximum);
+        const color = cellColor(index, maximum);
         image.data[index * 4] = color[0];
         image.data[index * 4 + 1] = color[1];
         image.data[index * 4 + 2] = color[2];
         image.data[index * 4 + 3] = 255;
       }
       imageContext.putImageData(image, 0, 0);
+
+      const side = Math.min(width, height) * 0.96;
+      const left = (width - side) / 2;
+      const top = (height - side) / 2;
+      context.imageSmoothingEnabled = false;
+      context.drawImage(imageCanvas, left, top, side, side);
+
+      const vignette = context.createRadialGradient(
+        width / 2,
+        height / 2,
+        side * 0.18,
+        width / 2,
+        height / 2,
+        side * 0.72,
+      );
+      vignette.addColorStop(0, "rgba(4, 10, 14, 0)");
+      vignette.addColorStop(1, "rgba(4, 10, 14, .28)");
+      context.fillStyle = vignette;
+      context.fillRect(left, top, side, side);
     }
 
-    function draw() {
-      const { width, height } = fitCanvas();
-      context.fillStyle = "#0a141a";
-      context.fillRect(0, 0, width, height);
-
-      const outer = Math.max(9, width * 0.018);
-      const gap = Math.max(5, width * 0.009);
-      const labelHeight = 43;
-      const panelWidth = (width - outer * 2 - gap * 2) / 3;
-      const side = Math.min(panelWidth, height - labelHeight - outer * 1.35);
-      const top = labelHeight;
-
-      models.forEach((model, index) => {
-        paintModel(model, imageCanvases[index]);
-        const left = outer + index * (panelWidth + gap) + (panelWidth - side) / 2;
-        context.imageSmoothingEnabled = false;
-        context.drawImage(imageCanvases[index], left, top, side, side);
-
-        context.strokeStyle = "rgba(255, 255, 255, .16)";
-        context.lineWidth = 1;
-        context.strokeRect(left + 0.5, top + 0.5, side - 1, side - 1);
-
-        context.fillStyle = "rgba(244, 240, 232, .62)";
-        context.font = "600 9px Helvetica Neue, Arial, sans-serif";
-        context.textAlign = "left";
-        context.textBaseline = "middle";
-        context.fillText(panelSpecs[index].label.toUpperCase(), left, 16);
-        context.fillStyle = index === 1 ? "#ffcf72" : "rgba(244, 240, 232, .88)";
-        context.font = "italic 13px Georgia, serif";
-        context.fillText(panelSpecs[index].rho, left, 31);
-
-        if (model.settled) {
-          context.fillStyle = "rgba(8, 16, 21, .68)";
-          context.fillRect(left, top + side - 20, side, 20);
-          context.fillStyle = "rgba(244, 240, 232, .78)";
-          context.font = "600 8px Helvetica Neue, Arial, sans-serif";
-          context.textAlign = "center";
-          context.fillText("SETTLED", left + side / 2, top + side - 10);
-        }
-      });
-      context.textAlign = "left";
+    function advance(budget) {
+      for (let step = 0; step < budget; step += 1) {
+        if (!model.step()) break;
+      }
     }
 
     function frame(now) {
-      if (playing && visible && now - lastFrame >= 31) {
+      if (visible && !reducedMotion && now - lastFrame >= 32) {
         lastFrame = now;
-        models.forEach((model, index) => advance(model, panelSpecs[index].budget));
-        draw();
-        if (now - startedAt > 14500) {
+        if (now - phaseStarted > 850 && model.activeParticles) {
+          const budget = clamp(
+            Math.round(650 + model.activeParticles * 1.45),
+            850,
+            2300,
+          );
+          advance(budget);
+          draw();
+        }
+        if (!model.activeParticles) {
+          if (!settledAt) settledAt = now;
+          if (now - settledAt > 3600) {
+            run += 1;
+            reset(now);
+          }
+        } else if (now - phaseStarted > 19000 || model.events >= 500000) {
           run += 1;
-          reset();
+          reset(now);
         }
       }
       requestAnimationFrame(frame);
     }
 
-    toggle.addEventListener("click", () => {
-      if (reducedMotion) {
-        run += 1;
-        reset();
-        toggle.textContent = "New run";
-        return;
-      }
-      playing = !playing;
-      toggle.setAttribute("aria-pressed", String(playing));
-      toggle.textContent = playing ? "Pause" : "Play";
-    });
-
-    canvas.addEventListener("click", () => {
-      run += 1;
-      reset();
-    });
-
     if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver((entries) => {
-        visible = entries[0].isIntersecting;
-      }, { threshold: 0.05 });
-      observer.observe(lab);
+      const observer = new IntersectionObserver(
+        (entries) => {
+          visible = entries[0].isIntersecting;
+        },
+        { threshold: 0.05 },
+      );
+      observer.observe(figure);
     }
 
     window.addEventListener("resize", draw, { passive: true });
-    if (reducedMotion) {
-      toggle.setAttribute("aria-pressed", "false");
-      toggle.textContent = "New run";
-    }
     reset();
     requestAnimationFrame(frame);
   });
