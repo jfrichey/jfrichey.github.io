@@ -34,11 +34,11 @@
     </header>
 
     <aside class="rail" aria-label="Research areas">
-      <a href="#arw" aria-label="Activated random walk">01</a>
-      <a href="#patterns" aria-label="Shifts of finite type and patterns">02</a>
-      <a href="#matrices" aria-label="Random matrices">03</a>
-      <a href="#processes" aria-label="Combinatorial stochastic processes">04</a>
-      <a href="#random-walks" aria-label="Random walks">05</a>
+      <a href="#arw" aria-label="Activated random walk"></a>
+      <a href="#patterns" aria-label="Shifts of finite type and patterns"></a>
+      <a href="#matrices" aria-label="Random matrices"></a>
+      <a href="#processes" aria-label="Combinatorial stochastic processes"></a>
+      <a href="#random-walks" aria-label="Random walks"></a>
     </aside>
 
     <main id="main">
@@ -63,7 +63,7 @@
           >
           <figcaption class="avalanche-caption">
             <span><strong>Subcritical</strong><i>ρ = 0.58</i></span>
-            <span><strong>Critical window</strong><i>ρ ≈ ρ<sub>c</sub></i></span>
+            <span><strong>Critical window</strong><i>ρ ≈ ρ<sub>c</sub>(ℤ<sup>2</sup>) ≈ 0.72</i></span>
             <span><strong>Supercritical</strong><i>ρ = 0.78</i></span>
             <small>Logarithmic toppling heat maps on three 426 × 720 periodic lattices.</small>
           </figcaption>
@@ -74,7 +74,6 @@
       <article class="project red" id="arw">
         <div class="project-inner">
           <div class="project-copy">
-            <span class="big-no">01</span>
             <p class="eyebrow">Interacting particles · critical phenomena</p>
             <h2>Activated random walk</h2>
             <div class="summary">
@@ -105,6 +104,7 @@
             <div class="figure-frame regime-frame">
               <div class="regime-visual" data-regime-visual>
                 <canvas role="img" aria-label="A slow animation comparing subcritical, near-critical, and supercritical stochastic sandpiles"></canvas>
+                <button class="regime-rerun" type="button" data-regime-rerun>New experiment <span aria-hidden="true">↻</span></button>
               </div>
             </div>
             <figcaption><b>Figure 01</b><span>The same local toppling rule in three density regimes. Below criticality the avalanche dies; near the transition it spreads much farther; above it, activity persists.</span></figcaption>
@@ -115,7 +115,6 @@
       <article class="project blue reverse" id="patterns">
         <div class="project-inner">
           <div class="project-copy">
-            <span class="big-no">02</span>
             <p class="eyebrow">Symbolic dynamics · pattern avoidance</p>
             <h2>Shifts of finite type &amp; patterns</h2>
             <div class="summary">
@@ -140,9 +139,13 @@
           </div>
           <figure class="project-figure">
             <div class="figure-frame sft-frame">
-              <img src="math_images/sft_phases_2d.webp" alt="Three large two-dimensional samples from a red, green, and blue lattice coloring model">
+              <div class="sft-triptych" role="group" aria-label="Three square samples from a three-color lattice model">
+                <img src="math_images/sft_phase_beta_neg1.webp" alt="Square lattice sample at beta minus one, where monochromatic two-by-two squares are discouraged">
+                <img src="math_images/sft_phase_beta_1_25.webp" alt="Square lattice sample at beta one point two five, where monochromatic two-by-two squares are rewarded">
+                <img src="math_images/sft_phase_beta_3.webp" alt="Square lattice sample at beta three, where large monochromatic blocks emerge">
+              </div>
             </div>
-            <figcaption><b>Figure 02</b><span>Three 720 × 426 samples from a two-dimensional Gibbs field. From left to right, monochromatic 2 × 2 squares are discouraged (β = −1), rewarded (β = 1.25), and strongly rewarded (β = 3).</span></figcaption>
+            <figcaption><b>Figure 02</b><span>Three 640 × 640 samples from a two-dimensional Gibbs field. From left to right, monochromatic 2 × 2 squares are discouraged (β = −1), rewarded (β = 1.25), and strongly rewarded (β = 3).</span></figcaption>
           </figure>
         </div>
       </article>
@@ -150,7 +153,6 @@
       <article class="project green" id="matrices">
         <div class="project-inner">
           <div class="project-copy">
-            <span class="big-no">03</span>
             <p class="eyebrow">Random matrices · statistical inference</p>
             <h2>Random matrices</h2>
             <div class="summary">
@@ -193,7 +195,6 @@
       <article class="project plum reverse" id="processes">
         <div class="project-inner">
           <div class="project-copy">
-            <span class="big-no">04</span>
             <p class="eyebrow">Random algorithms · percolation · random sets</p>
             <h2>Combinatorial stochastic processes</h2>
             <div class="summary">
@@ -256,7 +257,6 @@
       <article class="project ink" id="random-walks">
         <div class="project-inner">
           <div class="project-copy">
-            <span class="big-no">05</span>
             <p class="eyebrow">Inverse problems · perturbations · interacting paths</p>
             <h2>Random walks</h2>
             <div class="summary">
@@ -283,14 +283,14 @@
             <div class="figure-frame">
               <div class="source-lab" data-source-guess>
                 <button class="source-map" type="button" data-source-map aria-pressed="false">
-                  <img src="math_images/random_walk_source.webp" alt="Occupation heat map of a four-million-step planar random walk">
+                  <canvas data-source-canvas role="img" aria-label="A newly simulated planar random-walk occupation heat map"></canvas>
                   <span class="source-star" aria-hidden="true">★</span>
                   <span class="guess-prompt">Where did the walker start? Click to reveal</span>
                 </button>
                 <button class="source-rerun" type="button" data-source-rerun>New walk <span aria-hidden="true">↻</span></button>
               </div>
             </div>
-            <figcaption><b>Figure 05</b><span>Occupation times of a planar simple random walk after four million steps. Brightness records repeated visits; the star reveals the exact starting site.</span></figcaption>
+            <figcaption><b>Figure 05</b><span>Occupation times from a freshly generated million-step planar simple random walk. Brightness records repeated visits; the star reveals the exact starting site.</span></figcaption>
           </figure>
         </div>
       </article>

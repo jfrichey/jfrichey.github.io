@@ -89,10 +89,9 @@ def sample_sft_phase(
 
 
 def generate_sft() -> None:
-    # Three tall panels make a crisp 16:9 triptych on both the homepage and
-    # research page.  The underlying field is sampled at full resolution;
-    # there is no browser-side enlargement of a small lattice.
-    rows, cols = 720, 426
+    # Keep each sample genuinely square.  The page lays the three files out as
+    # a horizontal triptych on wide screens and stacks them on small screens.
+    rows = cols = 640
     specs = [
         (-1.0, 14011, [(-0.35, 35), (-0.7, 60), (-1.0, 210)]),
         (1.25, 24017, [(0.25, 35), (0.55, 55), (0.82, 80), (1.05, 120), (1.25, 280)]),
@@ -100,20 +99,39 @@ def generate_sft() -> None:
     ]
     palette = np.asarray(
         [
-            [42, 92, 181],
-            [231, 83, 66],
-            [68, 174, 130],
+            [82, 98, 143],   # dusk blue
+            [218, 121, 113], # muted coral
+            [232, 183, 108], # sunset gold
         ],
         dtype=np.uint8,
     )
     panels = []
-    for beta, seed, schedule in specs:
+    filenames = (
+        "sft_phase_beta_neg1.webp",
+        "sft_phase_beta_1_25.webp",
+        "sft_phase_beta_3.webp",
+    )
+    for (beta, seed, schedule), filename in zip(specs, filenames, strict=True):
         grid = sample_sft_phase((rows, cols), beta, seed, schedule)
         panel = Image.fromarray(palette[grid], "RGB")
         draw = ImageDraw.Draw(panel, "RGBA")
         label = f"β = {beta:g}"
-        draw.rounded_rectangle((16, 15, 154, 55), radius=7, fill=(8, 16, 25, 188))
-        draw.text((28, 24), label, font=font(19, True), fill=(255, 255, 255, 235))
+        label_font = font(19, True)
+        text_box = draw.textbbox((0, 0), label, font=label_font)
+        text_width = text_box[2] - text_box[0]
+        text_height = text_box[3] - text_box[1]
+        pad_x, pad_y = 11, 8
+        left, top = 16, 16
+        right = left + text_width + 2 * pad_x
+        bottom = top + text_height + 2 * pad_y
+        draw.rounded_rectangle((left, top, right, bottom), radius=7, fill=(18, 24, 40, 178))
+        draw.text(
+            (left + pad_x, top + pad_y - text_box[1]),
+            label,
+            font=label_font,
+            fill=(255, 255, 255, 238),
+        )
+        panel.save(OUT / filename, "WEBP", quality=96, method=6)
         panels.append(panel)
 
     combined = Image.new("RGB", (cols * 3, rows), (9, 16, 24))

@@ -157,7 +157,7 @@ button {
   transform: translateY(-45%);
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 
 .rail a {
@@ -166,16 +166,31 @@ button {
   width: 35px;
   height: 29px;
   border-radius: 999px;
-  color: rgba(23, 24, 23, 0.43);
-  font: 650 0.59rem/1 "SFMono-Regular", Consolas, monospace;
   transition: 0.16s ease;
+}
+
+.rail a::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border: 1px solid color-mix(in srgb, var(--ink) 50%, transparent);
+  border-radius: 50%;
+  background: transparent;
+  transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease;
 }
 
 .rail a:hover,
 .rail a:focus-visible,
 .rail a.is-current {
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.68);
+  background: transparent;
+}
+
+.rail a:hover::before,
+.rail a:focus-visible::before,
+.rail a.is-current::before {
+  border-color: var(--ink);
+  background: var(--ink);
+  transform: scale(1.45);
 }
 
 .eyebrow {
@@ -545,6 +560,12 @@ button {
   font: italic 0.78rem/1.1 var(--serif);
 }
 
+.avalanche-caption sub,
+.avalanche-caption sup {
+  font-size: 0.7em;
+  line-height: 0;
+}
+
 .avalanche-caption small {
   grid-column: 1 / -1;
   padding: 9px 13px 10px;
@@ -650,15 +671,6 @@ button {
 
 .project-copy {
   position: relative;
-}
-
-.big-no {
-  position: absolute;
-  z-index: -1;
-  left: -0.08em;
-  top: -0.65em;
-  color: color-mix(in srgb, var(--accent) 10%, transparent);
-  font: 400 clamp(7rem, 12vw, 12rem) / 1 var(--serif);
 }
 
 .project h2,
@@ -833,18 +845,62 @@ button {
   text-transform: uppercase;
 }
 
-.regime-frame,
-.sft-frame {
+.regime-frame {
   min-height: 0;
   aspect-ratio: 16 / 9;
   padding: 0;
 }
 
-.regime-frame .regime-visual,
-.sft-frame > img {
+.regime-frame .regime-visual {
   width: 100%;
   height: 100%;
   max-height: none;
+  box-shadow: none;
+}
+
+.regime-visual {
+  position: relative;
+}
+
+.regime-rerun {
+  position: absolute;
+  z-index: 4;
+  right: 10px;
+  bottom: 10px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  cursor: pointer;
+  background: rgba(18, 37, 50, 0.78);
+  color: white;
+  font-size: 0.62rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(6px);
+}
+
+.regime-rerun:hover,
+.regime-rerun:focus-visible {
+  background: white;
+  color: var(--ink);
+}
+
+.sft-frame {
+  min-height: 0;
+  padding: 0;
+  background: #4f5879;
+}
+
+.sft-triptych {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2px;
+  width: 100%;
+  background: rgba(248, 251, 254, 0.58);
+}
+
+.sft-triptych img {
+  width: 100%;
+  aspect-ratio: 1;
   object-fit: cover;
   box-shadow: none;
 }
@@ -857,7 +913,8 @@ button {
 .source-lab {
   position: relative;
   width: 100%;
-  min-height: min(49vh, 540px);
+  aspect-ratio: 4 / 3;
+  min-height: 0;
   overflow: hidden;
   background: #080413;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
@@ -866,7 +923,7 @@ button {
 .source-map {
   position: relative;
   width: 100%;
-  height: min(49vh, 540px);
+  height: 100%;
   display: block;
   padding: 0;
   overflow: hidden;
@@ -875,10 +932,9 @@ button {
   background: #080413;
 }
 
-.source-map img {
+.source-map canvas {
   width: 100%;
-  height: min(49vh, 540px);
-  object-fit: cover;
+  height: 100%;
 }
 
 .source-star {
@@ -943,6 +999,11 @@ button {
 .source-rerun:focus-visible {
   background: white;
   color: var(--ink);
+}
+
+.source-rerun:disabled {
+  cursor: wait;
+  opacity: 0.62;
 }
 
 .spectral-lab {
@@ -1234,6 +1295,10 @@ a.resource-card:hover small {
   display: grid;
   align-items: center;
   padding: calc(var(--head) + 55px) var(--page-pad) 70px;
+}
+
+.other-directory-section.teaching-directory-section {
+  --accent: var(--green);
 }
 
 .other-directory-section::before {
@@ -1605,11 +1670,22 @@ a.resource-card:hover small {
     grid-template-columns: 1fr;
   }
 
-  .source-lab,
+  .source-lab {
+    min-height: 0;
+  }
+
   .source-map,
-  .source-map img {
-    min-height: 340px;
-    height: 340px;
+  .source-map canvas {
+    height: 100%;
+  }
+
+  .sft-frame {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .sft-triptych {
+    grid-template-columns: 1fr;
   }
 
   .spectral-lab canvas {

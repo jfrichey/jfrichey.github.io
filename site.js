@@ -68,21 +68,149 @@
     select(selected);
   });
 
-  const walkSamples = [
-    { src: "math_images/random_walk_source.webp", x: 50.82, y: 49.232 },
-    { src: "math_images/random_walk_source_2.webp", x: 86.9716, y: 53.5623 },
-    { src: "math_images/random_walk_source_3.webp", x: 59.5638, y: 40.1547 },
-    { src: "math_images/random_walk_source_4.webp", x: 56.3241, y: 75.0575 },
+  const walkPalette = [
+    [7, 4, 19],
+    [35, 12, 86],
+    [102, 22, 127],
+    [190, 48, 112],
+    [241, 111, 91],
+    [255, 201, 106],
+    [255, 244, 186],
   ];
+
+  function randomSeed() {
+    if (window.crypto?.getRandomValues) {
+      const value = new Uint32Array(1);
+      window.crypto.getRandomValues(value);
+      return value[0];
+    }
+    return (Date.now() ^ Math.floor(Math.random() * 0xffffffff)) >>> 0;
+  }
+
+  function walkColor(intensity) {
+    const position = Math.max(0, Math.min(1, intensity)) * (walkPalette.length - 1);
+    const low = Math.floor(position);
+    const high = Math.min(low + 1, walkPalette.length - 1);
+    const amount = position - low;
+    return walkPalette[low].map((value, index) =>
+      Math.round(value + (walkPalette[high][index] - value) * amount),
+    );
+  }
+
+  function simulateWalk(canvas, star, seed, steps = 1_000_000) {
+    const random = mulberry32(seed);
+    const xPositions = new Int32Array(steps + 1);
+    const yPositions = new Int32Array(steps + 1);
+    let x = 0;
+    let y = 0;
+    let xmin = 0;
+    let xmax = 0;
+    let ymin = 0;
+    let ymax = 0;
+
+    for (let step = 1; step <= steps; step += 1) {
+      const direction = Math.floor(random() * 4);
+      if (direction === 0) x += 1;
+      else if (direction === 1) x -= 1;
+      else if (direction === 2) y += 1;
+      else y -= 1;
+      xPositions[step] = x;
+      yPositions[step] = y;
+      if (x < xmin) xmin = x;
+      else if (x > xmax) xmax = x;
+      if (y < ymin) ymin = y;
+      else if (y > ymax) ymax = y;
+    }
+
+    const padding = Math.max(20, Math.round(0.055 * Math.max(xmax - xmin, ymax - ymin)));
+    xmin -= padding;
+    xmax += padding;
+    ymin -= padding;
+    ymax += padding;
+
+    const targetRatio = 4 / 3;
+    let width = xmax - xmin + 1;
+    let height = ymax - ymin + 1;
+    if (width / height < targetRatio) {
+      const extra = Math.ceil(targetRatio * height - width);
+      xmin -= Math.floor(extra / 2);
+      xmax += Math.ceil(extra / 2);
+    } else {
+      const extra = Math.ceil(width / targetRatio - height);
+      ymin -= Math.floor(extra / 2);
+      ymax += Math.ceil(extra / 2);
+    }
+    width = xmax - xmin + 1;
+    height = ymax - ymin + 1;
+
+    const visits = new Uint32Array(width * height);
+    for (let step = 0; step <= steps; step += 1) {
+      visits[(yPositions[step] - ymin) * width + xPositions[step] - xmin] += 1;
+    }
+
+    let maximum = 0;
+    let occupied = 0;
+    for (const count of visits) {
+      if (!count) continue;
+      occupied += 1;
+      if (count > maximum) maximum = count;
+    }
+    const histogram = new Uint32Array(maximum + 1);
+    for (const count of visits) {
+      if (count) histogram[count] += 1;
+    }
+    const target = Math.floor(occupied * 0.997);
+    let cumulative = 0;
+    let ceiling = 2;
+    for (let count = 1; count < histogram.length; count += 1) {
+      cumulative += histogram[count];
+      if (cumulative >= target) {
+        ceiling = Math.max(2, count);
+        break;
+      }
+    }
+
+    const pixels = new Uint8ClampedArray(width * height * 4);
+    const logCeiling = Math.log1p(ceiling);
+    for (let index = 0; index < visits.length; index += 1) {
+      const count = visits[index];
+      const intensity = count
+        ? Math.pow(Math.min(1, Math.log1p(count) / logCeiling), 0.72)
+        : 0;
+      const color = walkColor(intensity);
+      pixels[index * 4] = color[0];
+      pixels[index * 4 + 1] = color[1];
+      pixels[index * 4 + 2] = color[2];
+      pixels[index * 4 + 3] = 255;
+    }
+
+    const sourceCanvas = document.createElement("canvas");
+    sourceCanvas.width = width;
+    sourceCanvas.height = height;
+    sourceCanvas.getContext("2d").putImageData(new ImageData(pixels, width, height), 0, 0);
+
+    canvas.width = 1200;
+    canvas.height = 900;
+    const context = canvas.getContext("2d");
+    context.imageSmoothingEnabled = true;
+    context.imageSmoothingQuality = "high";
+    context.drawImage(sourceCanvas, 0, 0, canvas.width, canvas.height);
+    star.style.left = `${(100 * (0 - xmin)) / Math.max(1, width - 1)}%`;
+    star.style.top = `${(100 * (0 - ymin)) / Math.max(1, height - 1)}%`;
+    canvas.setAttribute(
+      "aria-label",
+      `Occupation heat map of a newly simulated million-step planar random walk`,
+    );
+  }
 
   document.querySelectorAll("[data-source-guess]").forEach((lab) => {
     const map = lab.querySelector("[data-source-map]");
-    const image = lab.querySelector("img");
+    const canvas = lab.querySelector("[data-source-canvas]");
     const star = lab.querySelector(".source-star");
     const prompt = lab.querySelector(".guess-prompt");
     const rerun = lab.querySelector("[data-source-rerun]");
-    if (!map || !image || !star) return;
-    let sample = 0;
+    if (!map || !canvas || !star) return;
+    let generation = 0;
 
     const reveal = (shown) => {
       map.classList.toggle("is-revealed", shown);
@@ -94,21 +222,29 @@
       }
     };
 
-    const showSample = (index) => {
-      sample = (index + walkSamples.length) % walkSamples.length;
-      const nextSample = walkSamples[sample];
-      image.src = nextSample.src;
-      image.alt = `Occupation heat map of four-million-step planar random walk sample ${sample + 1}`;
-      star.style.left = `${nextSample.x}%`;
-      star.style.top = `${nextSample.y}%`;
+    const generate = () => {
+      generation += 1;
+      const currentGeneration = generation;
       reveal(false);
+      map.disabled = true;
+      if (rerun) rerun.disabled = true;
+      if (prompt) prompt.textContent = "Simulating a new walk…";
+      window.requestAnimationFrame(() => {
+        window.setTimeout(() => {
+          if (currentGeneration !== generation) return;
+          simulateWalk(canvas, star, randomSeed());
+          map.disabled = false;
+          if (rerun) rerun.disabled = false;
+          if (prompt) prompt.textContent = "Where did the walker start? Click to reveal";
+        }, 0);
+      });
     };
 
     map.addEventListener("click", () => {
       reveal(!map.classList.contains("is-revealed"));
     });
-    rerun?.addEventListener("click", () => showSample(sample + 1));
-    showSample(0);
+    rerun?.addEventListener("click", generate);
+    generate();
   });
 
   function mulberry32(seed) {

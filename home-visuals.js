@@ -21,6 +21,15 @@
     return a.map((value, index) => Math.round(value + (b[index] - value) * t));
   }
 
+  function randomSeed() {
+    if (window.crypto?.getRandomValues) {
+      const value = new Uint32Array(1);
+      window.crypto.getRandomValues(value);
+      return value[0];
+    }
+    return (Date.now() ^ Math.floor(Math.random() * 0xffffffff)) >>> 0;
+  }
+
   function makeSandpile(width, height, density, seed, addedParticles = 22) {
     const random = mulberry32(seed);
     const count = width * height;
@@ -94,23 +103,27 @@
   }
 
   function cellColor(odometer, particles) {
-    if (particles >= 2) return [255, 229, 139];
-    if (!odometer) return particles ? [20, 38, 48] : [7, 15, 22];
+    if (!odometer) return particles ? [22, 42, 56] : [230, 240, 246];
     const heat = clamp(Math.log1p(odometer) / Math.log(82), 0, 1);
-    if (heat < 0.46) return mix([30, 64, 111], [100, 66, 132], heat / 0.46);
-    if (heat < 0.76) return mix([100, 66, 132], [211, 77, 57], (heat - 0.46) / 0.3);
-    return mix([211, 77, 57], [255, 214, 107], (heat - 0.76) / 0.24);
+    let color;
+    if (heat < 0.34) color = mix([189, 218, 230], [91, 157, 181], heat / 0.34);
+    else if (heat < 0.64) color = mix([91, 157, 181], [104, 113, 166], (heat - 0.34) / 0.3);
+    else if (heat < 0.84) color = mix([104, 113, 166], [224, 133, 108], (heat - 0.64) / 0.2);
+    else color = mix([224, 133, 108], [244, 194, 103], (heat - 0.84) / 0.16);
+    if (!particles) return mix(color, [246, 250, 252], 0.18);
+    return mix(color, particles > 1 ? [6, 17, 25] : [18, 34, 46], 0.58);
   }
 
   document.querySelectorAll("[data-regime-visual]").forEach((visual, visualIndex) => {
     const canvas = visual.querySelector("canvas");
+    const rerunButton = visual.querySelector("[data-regime-rerun]");
     const context = canvas.getContext("2d");
     const gridWidth = 60;
     const gridHeight = 100;
     const specs = [
-      { density: 0.58, label: "subcritical", rho: "ρ = 0.58", budget: 1, seeds: [33013, 55109, 81001] },
-      { density: 0.705, label: "critical window", rho: "ρ ≈ ρ", rhoSubscript: "c", budget: 5, seeds: [45131, 67357, 90281] },
-      { density: 0.78, label: "supercritical", rho: "ρ = 0.78", budget: 10, seeds: [14981, 28099, 71339] },
+      { density: 0.58, label: "subcritical", rho: "ρ = 0.58", budget: 1 },
+      { density: 0.71, label: "critical window", rho: "ρ≈ρ", rhoSubscript: "c", rhoSuffix: "(ℤ²)≈0.72", budget: 5 },
+      { density: 0.78, label: "supercritical", rho: "ρ = 0.78", budget: 10 },
     ];
     const imageCanvases = specs.map(() => {
       const imageCanvas = document.createElement("canvas");
@@ -126,12 +139,13 @@
     let lastFrame = 0;
 
     function reset(now = performance.now()) {
+      const seed = (randomSeed() + visualIndex * 0x9e3779b9 + run * 0x85ebca6b) >>> 0;
       models = specs.map((spec, index) =>
         makeSandpile(
           gridWidth,
           gridHeight,
           spec.density,
-          spec.seeds[(run + visualIndex + index) % spec.seeds.length],
+          (seed + index * 0x27d4eb2d) >>> 0,
         ),
       );
       startedAt = now;
@@ -187,7 +201,16 @@
           context.fillStyle = "rgba(255,255,255,.2)";
           context.fillRect(left - 1, 0, 2, height);
         }
-        const labelWidth = Math.min(panelWidth - 16, 128);
+        context.font = "italic 10px Georgia, serif";
+        let rhoWidth = context.measureText(specs[index].rho).width;
+        if (specs[index].rhoSubscript) {
+          context.font = "italic 7px Georgia, serif";
+          rhoWidth += context.measureText(specs[index].rhoSubscript).width + 1;
+          context.font = "italic 10px Georgia, serif";
+          rhoWidth += context.measureText(specs[index].rhoSuffix).width + 1;
+        }
+        const headingWidth = context.measureText(specs[index].label.toUpperCase()).width;
+        const labelWidth = Math.min(panelWidth - 16, Math.max(86, rhoWidth + 16, headingWidth + 16));
         context.fillStyle = "rgba(5, 12, 18, .78)";
         context.fillRect(left + 8, 9, labelWidth, 40);
         context.fillStyle = "rgba(255,255,255,.76)";
@@ -196,13 +219,16 @@
         context.textBaseline = "middle";
         context.fillText(specs[index].label.toUpperCase(), left + 16, 21);
         context.fillStyle = index === 1 ? "#ffd36e" : "rgba(255,255,255,.92)";
-        context.font = "italic 12px Georgia, serif";
+        context.font = "italic 10px Georgia, serif";
         const rhoX = left + 16;
         context.fillText(specs[index].rho, rhoX, 37);
         if (specs[index].rhoSubscript) {
           const rhoWidth = context.measureText(specs[index].rho).width;
-          context.font = "italic 8px Georgia, serif";
+          context.font = "italic 7px Georgia, serif";
           context.fillText(specs[index].rhoSubscript, rhoX + rhoWidth + 1, 41);
+          const subscriptWidth = context.measureText(specs[index].rhoSubscript).width;
+          context.font = "italic 10px Georgia, serif";
+          context.fillText(specs[index].rhoSuffix, rhoX + rhoWidth + subscriptWidth + 2, 37);
         }
 
         if (model.settled && index < 2) {
@@ -241,6 +267,10 @@
     }
 
     window.addEventListener("resize", draw, { passive: true });
+    rerunButton?.addEventListener("click", () => {
+      run += 1;
+      reset();
+    });
     reset();
     requestAnimationFrame(frame);
   });

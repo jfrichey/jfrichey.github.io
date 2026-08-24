@@ -87,12 +87,17 @@ function interpolate(first, second, amount) {
 }
 
 function heatColor(value, ceiling, particleCount) {
-  if (!value) return particleCount ? [15, 43, 61] : [8, 27, 43];
+  // Occupancy is encoded by lightness: particles are dark, empty sites are
+  // light.  Hue still records the logarithmic toppling count.
+  if (!value) return particleCount ? [22, 42, 56] : [230, 240, 246];
   const t = Math.pow(Math.min(1, Math.log1p(value) / Math.log1p(ceiling)), 0.68);
-  if (t < 0.26) return interpolate([24, 58, 105], [43, 112, 157], t / 0.26);
-  if (t < 0.52) return interpolate([43, 112, 157], [64, 169, 174], (t - 0.26) / 0.26);
-  if (t < 0.76) return interpolate([64, 169, 174], [238, 196, 101], (t - 0.52) / 0.24);
-  return interpolate([238, 196, 101], [244, 101, 72], (t - 0.76) / 0.24);
+  let color;
+  if (t < 0.26) color = interpolate([189, 218, 230], [91, 157, 181], t / 0.26);
+  else if (t < 0.52) color = interpolate([91, 157, 181], [104, 113, 166], (t - 0.26) / 0.26);
+  else if (t < 0.76) color = interpolate([104, 113, 166], [224, 133, 108], (t - 0.52) / 0.24);
+  else color = interpolate([224, 133, 108], [244, 194, 103], (t - 0.76) / 0.24);
+  if (!particleCount) return interpolate(color, [246, 250, 252], 0.18);
+  return interpolate(color, particleCount > 1 ? [6, 17, 25] : [18, 34, 46], 0.58);
 }
 
 async function main() {
