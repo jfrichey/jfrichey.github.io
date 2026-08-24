@@ -86,26 +86,36 @@ function interpolate(first, second, amount) {
   return first.map((value, index) => Math.round(value + (second[index] - value) * t));
 }
 
-function heatColor(value, ceiling, particleCount) {
-  // Occupancy is encoded by lightness: particles are dark, empty sites are
-  // light.  Hue still records the logarithmic toppling count.
-  if (!value) return particleCount ? [34, 57, 70] : [178, 205, 217];
+function heatColor(value, ceiling, index, seed) {
+  // This figure records only the odometer. Zero-odometer sites receive a very
+  // narrow iid band of pale blues, while positive values run down a single
+  // logarithmic glacier scale. Initial and final occupancy are deliberately
+  // not encoded.
+  if (!value) {
+    const zeroColors = [
+      [211, 231, 237],
+      [215, 233, 239],
+      [218, 235, 240],
+      [208, 228, 235],
+    ];
+    let hash = Math.imul(index + seed, 0x45d9f3b);
+    hash = Math.imul(hash ^ (hash >>> 16), 0x45d9f3b);
+    hash ^= hash >>> 16;
+    return zeroColors[(hash >>> 0) % zeroColors.length];
+  }
   const t = Math.pow(Math.min(1, Math.log1p(value) / Math.log1p(ceiling)), 0.68);
-  let color;
-  if (t < 0.26) color = interpolate([189, 218, 230], [91, 157, 181], t / 0.26);
-  else if (t < 0.52) color = interpolate([91, 157, 181], [104, 113, 166], (t - 0.26) / 0.26);
-  else if (t < 0.76) color = interpolate([104, 113, 166], [224, 133, 108], (t - 0.52) / 0.24);
-  else color = interpolate([224, 133, 108], [244, 194, 103], (t - 0.76) / 0.24);
-  if (!particleCount) return interpolate(color, [222, 235, 241], 0.12);
-  return interpolate(color, particleCount > 1 ? [9, 23, 31] : [28, 48, 60], 0.5);
+  if (t < 0.25) return interpolate([190, 224, 232], [103, 177, 194], t / 0.25);
+  if (t < 0.5) return interpolate([103, 177, 194], [69, 130, 161], (t - 0.25) / 0.25);
+  if (t < 0.75) return interpolate([69, 130, 161], [55, 86, 130], (t - 0.5) / 0.25);
+  return interpolate([55, 86, 130], [34, 57, 97], (t - 0.75) / 0.25);
 }
 
 async function main() {
   // Each panel is a genuinely large periodic lattice. The same point-source
   // perturbation is used in all three backgrounds; only the density changes.
-  const width = 426;
+  const width = 720;
   const height = 720;
-  const addedParticles = 800;
+  const addedParticles = 1200;
   const specs = [
     { name: "subcritical", density: 0.58, seed: 612768, limit: 6_000_000 },
     { name: "critical", density: 0.705, seed: 3649909, limit: 24_000_000 },
@@ -123,18 +133,26 @@ async function main() {
     );
   });
 
-  const combinedWidth = width * samples.length;
+  const gap = 8;
+  const combinedWidth = width * samples.length + gap * (samples.length - 1);
   const pixels = Buffer.alloc(combinedWidth * height * 4);
+  for (let index = 0; index < combinedWidth * height; index += 1) {
+    pixels[index * 4] = 105;
+    pixels[index * 4 + 1] = 145;
+    pixels[index * 4 + 2] = 161;
+    pixels[index * 4 + 3] = 255;
+  }
   for (let panel = 0; panel < samples.length; panel += 1) {
     const sample = samples[panel];
     for (let y = 0; y < height; y += 1) {
       for (let x = 0; x < width; x += 1) {
         const sourceIndex = y * width + x;
-        const outputIndex = (y * combinedWidth + panel * width + x) * 4;
+        const outputIndex = (y * combinedWidth + panel * (width + gap) + x) * 4;
         const rgb = heatColor(
           sample.odometer[sourceIndex],
           sample.ceiling,
-          sample.particles[sourceIndex],
+          sourceIndex,
+          specs[panel].seed,
         );
         pixels[outputIndex] = rgb[0];
         pixels[outputIndex + 1] = rgb[1];
@@ -146,7 +164,6 @@ async function main() {
 
   const output = path.join(__dirname, "..", "math_images", "avalanche_regimes_torus.webp");
   await sharp(pixels, { raw: { width: combinedWidth, height, channels: 4 } })
-    .resize({ width: combinedWidth * 2, height: height * 2, kernel: "lanczos3" })
     .webp({ quality: 94, effort: 6 })
     .toFile(output);
   process.stdout.write(`${output}\n`);

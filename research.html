@@ -10,7 +10,6 @@
     >
     <link rel="stylesheet" href="style.css">
     <script defer src="site.js"></script>
-    <script defer src="home-visuals.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KNCG5G8RV"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -65,7 +64,7 @@
             <span><strong>Subcritical</strong><i>ρ = 0.58</i></span>
             <span><strong>Critical window</strong><i>ρ ≈ ρ<sub>c</sub>(ℤ<sup>2</sup>) ≈ 0.72</i></span>
             <span><strong>Supercritical</strong><i>ρ = 0.78</i></span>
-            <small>Logarithmic toppling heat maps on three 426 × 720 periodic lattices. Dark sites hold particles; light sites are empty.</small>
+            <small>Logarithmic odometer heat maps on three 720 × 720 periodic lattices. Pale sites have zero odometer; darker blue records more topplings.</small>
           </figcaption>
         </figure>
         <p class="scroll-cue">Five broad areas, one scroll at a time</p>
@@ -102,12 +101,24 @@
           </div>
           <figure class="project-figure">
             <div class="figure-frame regime-frame">
-              <div class="regime-visual" data-regime-visual>
-                <canvas role="img" aria-label="A slow animation comparing subcritical, near-critical, and supercritical stochastic sandpiles"></canvas>
-                <button class="regime-rerun" type="button" data-regime-rerun>New experiment <span aria-hidden="true">↻</span></button>
+              <div class="regime-visual regime-loop">
+                <picture>
+                  <source media="(prefers-reduced-motion: reduce)" srcset="math_images/avalanche_regimes_torus.webp">
+                  <img
+                    src="math_images/arw_regimes_glacier.gif"
+                    alt="Animated logarithmic odometers for subcritical, near-critical, and supercritical stochastic sandpiles on three square tori"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </picture>
+                <div class="regime-loop-labels" aria-hidden="true">
+                  <span><strong>Subcritical</strong><i>ρ = 0.58</i></span>
+                  <span><strong>Critical window</strong><i>ρ ≈ ρ<sub>c</sub>(ℤ<sup>2</sup>) ≈ 0.72</i></span>
+                  <span><strong>Supercritical</strong><i>ρ = 0.78</i></span>
+                </div>
               </div>
             </div>
-            <figcaption><b>Figure 01</b><span>The same local toppling rule in three density regimes. Below criticality the avalanche dies; near the transition it spreads much farther; above it, activity persists.</span></figcaption>
+            <figcaption><b>Figure 01</b><span>The same local toppling rule in three square density regimes. Below criticality the avalanche dies; near the transition it spreads much farther; above it, activity persists. Color records only the logarithmic odometer.</span></figcaption>
           </figure>
         </div>
       </article>

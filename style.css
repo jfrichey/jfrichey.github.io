@@ -516,17 +516,17 @@ button {
 
 .avalanche-card {
   width: 100%;
-  max-width: 760px;
+  max-width: 900px;
   margin: 0;
   overflow: hidden;
-  background: #081b29;
+  background: #d7eaf1;
   box-shadow: 0 22px 60px rgba(22, 49, 67, 0.2);
 }
 
 .avalanche-card > img {
+  display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  height: auto;
 }
 
 .avalanche-caption {
@@ -851,8 +851,8 @@ button {
 
 .regime-frame {
   min-height: 0;
-  aspect-ratio: 16 / 9;
   padding: 0;
+  background: #d7eaf1;
 }
 
 .regime-frame .regime-visual {
@@ -864,6 +864,60 @@ button {
 
 .regime-visual {
   position: relative;
+}
+
+.regime-loop picture,
+.regime-loop img {
+  display: block;
+  width: 100%;
+}
+
+.regime-loop img {
+  height: auto;
+}
+
+.regime-loop-labels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  background: var(--white);
+  color: var(--ink);
+}
+
+.regime-loop-labels > span {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  padding: 10px 12px 9px;
+  border-right: 1px solid var(--line);
+}
+
+.regime-loop-labels > span:last-child {
+  border-right: 0;
+}
+
+.regime-loop-labels strong {
+  overflow: hidden;
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.regime-loop-labels i {
+  overflow: hidden;
+  color: #52646f;
+  font: italic 0.7rem/1.15 var(--serif);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.regime-loop-labels sub,
+.regime-loop-labels sup {
+  font-size: 0.7em;
+  line-height: 0;
 }
 
 .regime-rerun {
@@ -1680,6 +1734,23 @@ a.resource-card:hover small {
   .figure-frame {
     min-height: 310px;
     padding: 15px;
+  }
+
+  .regime-frame {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .regime-loop-labels > span {
+    padding: 8px 6px 7px;
+  }
+
+  .regime-loop-labels strong {
+    font-size: 0.47rem;
+  }
+
+  .regime-loop-labels i {
+    font-size: 0.62rem;
   }
 
   .project-figure > figcaption {
