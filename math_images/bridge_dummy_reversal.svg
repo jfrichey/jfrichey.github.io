@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">A dummy reversal bridge problem</title>
+  <desc id="desc">Two bridge hands from Jacob Richey's dummy reversal essay, with a six hearts contract and a diamond king lead.</desc>
+  <defs>
+    <style>
+      .sans{font-family:Helvetica,Arial,sans-serif}.serif{font-family:Georgia,'Times New Roman',serif}.caps{font-family:Helvetica,Arial,sans-serif;font-weight:700;letter-spacing:4px}.hand{fill:#f9fcff;stroke:#9fb8c9;stroke-width:2}.suit{font-family:Georgia,'Times New Roman',serif;font-size:38px}.holding{font-family:Georgia,'Times New Roman',serif;font-size:38px;fill:#15242e}.minor{font-family:Helvetica,Arial,sans-serif;font-size:17px;font-weight:700;letter-spacing:3px;fill:#688397}.rule{stroke:#9fb8c9;stroke-width:2}
+    </style>
+  </defs>
+
+  <rect width="1200" height="900" fill="#dcebf5"/>
+  <rect x="52" y="48" width="1096" height="804" rx="18" fill="#17364b"/>
+
+  <text class="caps" x="98" y="104" font-size="18" fill="#9fc7df">CARD-PLAY PROBLEM</text>
+  <text class="serif" x="98" y="171" font-size="59" fill="#f8fbfd">Can you make 6<tspan fill="#e76d68">♥</tspan>?</text>
+  <text class="serif" x="1101" y="155" text-anchor="end" font-size="25" font-style="italic" fill="#b9d1df">North leads ♦K</text>
+
+  <rect class="hand" x="98" y="228" width="414" height="442" rx="12"/>
+  <rect class="hand" x="688" y="228" width="414" height="442" rx="12"/>
+
+  <text class="minor" x="132" y="274">WEST</text>
+  <line class="rule" x1="132" y1="293" x2="478" y2="293"/>
+  <text class="suit" x="135" y="358" fill="#17232b">♠</text><text class="holding" x="198" y="358">A 7 5</text>
+  <text class="suit" x="135" y="432" fill="#c8534f">♥</text><text class="holding" x="198" y="432">A K Q 10 3</text>
+  <text class="suit" x="135" y="506" fill="#c8534f">♦</text><text class="holding" x="198" y="506">2</text>
+  <text class="suit" x="135" y="580" fill="#17232b">♣</text><text class="holding" x="198" y="580">A K Q 3</text>
+
+  <text class="minor" x="722" y="274">EAST</text>
+  <line class="rule" x1="722" y1="293" x2="1068" y2="293"/>
+  <text class="suit" x="725" y="358" fill="#17232b">♠</text><text class="holding" x="788" y="358">J 8 2</text>
+  <text class="suit" x="725" y="432" fill="#c8534f">♥</text><text class="holding" x="788" y="432">J 9 8 7</text>
+  <text class="suit" x="725" y="506" fill="#c8534f">♦</text><text class="holding" x="788" y="506">A 7 4 3</text>
+  <text class="suit" x="725" y="580" fill="#17232b">♣</text><text class="holding" x="788" y="580">9 2</text>
+
+  <g aria-hidden="true">
+    <path d="M544 420h112" stroke="#7fa2b7" stroke-width="2"/>
+    <circle cx="600" cy="420" r="44" fill="#f8fbfd" stroke="#9fb8c9" stroke-width="2"/>
+    <text class="serif" x="600" y="432" text-anchor="middle" font-size="34" fill="#17364b">6<tspan fill="#c8534f">♥</tspan></text>
+  </g>
+
+  <line x1="98" y1="724" x2="1102" y2="724" stroke="#55768b" stroke-width="1"/>
+  <text class="sans" x="98" y="769" font-size="20" font-weight="700" letter-spacing="2" fill="#d7e7f0">THE DUMMY REVERSAL</text>
+  <text class="serif" x="1102" y="770" text-anchor="end" font-size="23" font-style="italic" fill="#b9d1df">from the card-play essays</text>
+</svg>

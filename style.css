@@ -1,10 +1,10 @@
 :root {
-  --paper: #f4f0e8;
-  --paper-deep: #e9e1d5;
-  --ink: #171817;
-  --muted: #5c5d58;
-  --line: rgba(23, 24, 23, 0.17);
-  --white: #fffdf8;
+  --paper: #e7f1f8;
+  --paper-deep: #d7e7f2;
+  --ink: #172129;
+  --muted: #53636d;
+  --line: rgba(23, 33, 41, 0.17);
+  --white: #f8fbfe;
   --blue: #2557c7;
   --red: #c64d32;
   --plum: #6d4a78;
@@ -93,7 +93,7 @@ button {
   justify-content: space-between;
   padding: 0 var(--page-pad);
   border-bottom: 1px solid var(--line);
-  background: rgba(244, 240, 232, 0.9);
+  background: rgba(231, 241, 248, 0.9);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
 }
@@ -114,7 +114,7 @@ button {
 .site-nav a {
   position: relative;
   padding: 10px 0 7px;
-  color: #51524f;
+  color: #48565f;
 }
 
 .site-nav a::after {
@@ -439,7 +439,7 @@ button {
   align-items: stretch;
   min-height: 68px;
   margin: 0;
-  background: #fffdf9;
+  background: var(--white);
   color: var(--ink);
 }
 
@@ -497,6 +497,66 @@ button {
   margin: 0;
 }
 
+/* Fixed, high-resolution avalanche triptych */
+
+.avalanche-card {
+  width: 100%;
+  max-width: 760px;
+  margin: 0;
+  overflow: hidden;
+  background: #081b29;
+  box-shadow: 0 22px 60px rgba(22, 49, 67, 0.2);
+}
+
+.avalanche-card > img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.avalanche-caption {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+}
+
+.avalanche-caption > span {
+  display: grid;
+  gap: 3px;
+  padding: 11px 13px 10px;
+  border-right: 1px solid var(--line);
+}
+
+.avalanche-caption > span:nth-child(3) {
+  border-right: 0;
+}
+
+.avalanche-caption strong {
+  font-size: 0.59rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.avalanche-caption i {
+  color: #52646f;
+  font: italic 0.78rem/1.1 var(--serif);
+}
+
+.avalanche-caption small {
+  grid-column: 1 / -1;
+  padding: 9px 13px 10px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font: 400 0.68rem/1.35 var(--serif);
+}
+
+.research-hero-avalanche {
+  justify-self: end;
+}
+
 .voronoi-slideshow .slideshow-stage {
   aspect-ratio: 4 / 3;
 }
@@ -521,7 +581,7 @@ button {
   position: absolute;
   inset: auto 14px 14px;
   padding: 9px 11px;
-  background: rgba(244, 240, 232, 0.91);
+  background: rgba(231, 241, 248, 0.92);
   color: #3c3d39;
   font: 400 0.7rem/1.35 var(--serif);
 }
@@ -612,7 +672,7 @@ button {
 .summary {
   max-width: 700px;
   margin-top: 24px;
-  color: #464844;
+  color: #3f4d56;
   font: 400 clamp(0.97rem, 1.15vw, 1.12rem) / 1.57 var(--serif);
 }
 
@@ -750,7 +810,7 @@ button {
   display: grid;
   grid-template-rows: auto 1fr;
   overflow: hidden;
-  background: #fbfaf6;
+  background: #f5faff;
   color: var(--ink);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16);
 }
@@ -763,7 +823,7 @@ button {
   min-height: 47px;
   padding: 8px 11px 8px 14px;
   border-bottom: 1px solid rgba(23, 24, 23, 0.12);
-  background: #fffdf9;
+  background: var(--white);
 }
 
 .lab-title {
@@ -893,7 +953,7 @@ button {
   width: 100%;
   height: 100%;
   min-height: 320px;
-  background: #ece8df;
+  background: #dfeaf2;
 }
 
 .spectral-lab output {
@@ -904,7 +964,7 @@ button {
 .spectrum-controls {
   padding: 10px 15px 13px;
   border-top: 1px solid rgba(23, 24, 23, 0.12);
-  background: #ece8df;
+  background: #dfeaf2;
 }
 
 .spectrum-controls label {
@@ -1285,9 +1345,24 @@ a.resource-card:hover small {
 .flat-illustration figcaption {
   padding: 11px 14px 12px;
   border-top: 1px solid rgba(23, 24, 23, 0.14);
-  background: #fffdf8;
-  color: #4e504c;
+  background: var(--white);
+  color: #46555e;
   font: 400 0.71rem/1.4 var(--serif);
+}
+
+.home-feature-illustration {
+  width: 100%;
+  max-width: 720px;
+  margin: 0;
+}
+
+.home-feature-illustration > a {
+  display: block;
+}
+
+.home-feature-illustration > a:focus-visible {
+  outline: 3px solid var(--accent, var(--blue));
+  outline-offset: -3px;
 }
 
 /* Footer */
@@ -1440,7 +1515,7 @@ a.resource-card:hover small {
     gap: 0;
     padding: 10px 20px 15px;
     border-bottom: 1px solid var(--line);
-    background: rgba(244, 240, 232, 0.98);
+    background: rgba(231, 241, 248, 0.98);
   }
 
   .site-header.menu-open .site-nav {
@@ -1546,6 +1621,22 @@ a.resource-card:hover small {
   }
 
   .slideshow-count {
+    display: none;
+  }
+
+  .avalanche-caption > span {
+    padding: 9px 7px 8px;
+  }
+
+  .avalanche-caption strong {
+    font-size: 0.5rem;
+  }
+
+  .avalanche-caption i {
+    font-size: 0.69rem;
+  }
+
+  .avalanche-caption small {
     display: none;
   }
 
