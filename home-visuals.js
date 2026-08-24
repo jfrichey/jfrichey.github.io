@@ -21,170 +21,124 @@
     return a.map((value, index) => Math.round(value + (b[index] - value) * t));
   }
 
-  function poisson(random, mean) {
-    if (mean <= 0) return 0;
-    const threshold = Math.exp(-mean);
-    let product = 1;
-    let count = 0;
-    do {
-      count += 1;
-      product *= random();
-    } while (product > threshold);
-    return count - 1;
-  }
-
-  function makeModel(size, seed) {
-    const count = size * size;
-    const center = Math.floor(size / 2);
+  function makeSandpile(width, height, density, seed, addedParticles = 22) {
     const random = mulberry32(seed);
-    const active = new Uint16Array(count);
-    const sleeping = new Uint8Array(count);
+    const count = width * height;
+    const particles = new Uint16Array(count);
     const odometer = new Uint32Array(count);
     const queued = new Uint8Array(count);
-    const radii = new Uint8Array(count);
-    const maxRadius = Math.ceil(Math.SQRT2 * center);
-    const buckets = Array.from({ length: maxRadius + 1 }, () => []);
-    let outerBucket = 0;
-    let activeParticles = 0;
-    let sleepingParticles = 0;
-    let events = 0;
-
-    for (let y = 0; y < size; y += 1) {
-      for (let x = 0; x < size; x += 1) {
-        const index = y * size + x;
-        radii[index] = Math.min(
-          maxRadius,
-          Math.floor(Math.hypot(x - center, y - center)),
-        );
-      }
-    }
+    const stack = new Int32Array(count);
+    let stackSize = 0;
+    let topplings = 0;
 
     function enqueue(index) {
-      if (!active[index] || queued[index]) return;
-      const radius = radii[index];
-      buckets[radius].push(index);
+      if (particles[index] < 2 || queued[index]) return;
       queued[index] = 1;
-      outerBucket = Math.max(outerBucket, radius);
+      stack[stackSize] = index;
+      stackSize += 1;
     }
 
-    function initializeMound() {
-      const moundRadius = size * 0.16;
-      for (let y = 1; y < size - 1; y += 1) {
-        for (let x = 1; x < size - 1; x += 1) {
-          const distance = Math.hypot(x - center, y - center);
-          if (distance > moundRadius) continue;
-          const profile = 1 - (distance / moundRadius) ** 2;
-          const mean = 0.14 + 7.2 * profile ** 1.55;
-          const particles = poisson(random, mean);
-          if (!particles) continue;
-          const index = y * size + x;
-          active[index] = particles;
-          activeParticles += particles;
-          enqueue(index);
-        }
-      }
+    for (let index = 0; index < count; index += 1) {
+      particles[index] = random() < density ? 1 : 0;
     }
+    const center = Math.floor(height / 2) * width + Math.floor(width / 2);
+    particles[center] += addedParticles;
+    enqueue(center);
 
-    function popOutermost() {
-      while (outerBucket >= 0) {
-        const bucket = buckets[outerBucket];
-        while (bucket.length) {
-          const index = bucket.pop();
-          queued[index] = 0;
-          if (active[index]) return index;
-        }
-        outerBucket -= 1;
-      }
-      return -1;
-    }
+    function topple() {
+      if (!stackSize) return false;
+      stackSize -= 1;
+      const source = stack[stackSize];
+      queued[source] = 0;
+      if (particles[source] < 2) return true;
 
-    function step() {
-      if (!activeParticles) return false;
-      const source = popOutermost();
-      if (source < 0) return false;
-
-      // A legal, frontier-first stabilization schedule for ARW: isolated
-      // particles may sleep; otherwise one active particle makes a nearest-
-      // neighbor step. The schedule changes the movie, not the final state.
-      if (active[source] === 1 && random() < 0.42) {
-        active[source] = 0;
-        sleeping[source] = 1;
-        activeParticles -= 1;
-        sleepingParticles += 1;
-        events += 1;
-        return true;
-      }
-
-      const x = source % size;
-      const y = Math.floor(source / size);
-      const direction = Math.floor(random() * 4);
-      const nx = direction === 0 ? x + 1 : direction === 1 ? x - 1 : x;
-      const ny = direction === 2 ? y + 1 : direction === 3 ? y - 1 : y;
-
-      active[source] -= 1;
+      particles[source] -= 2;
       odometer[source] += 1;
-      events += 1;
+      topplings += 1;
       enqueue(source);
 
-      if (nx <= 0 || nx >= size - 1 || ny <= 0 || ny >= size - 1) {
-        activeParticles -= 1;
-        return true;
+      const x = source % width;
+      const y = Math.floor(source / width);
+      for (let particle = 0; particle < 2; particle += 1) {
+        const direction = Math.floor(random() * 4);
+        let destination;
+        if (direction === 0) destination = y * width + ((x + 1) % width);
+        else if (direction === 1) destination = y * width + ((x + width - 1) % width);
+        else if (direction === 2) destination = ((y + 1) % height) * width + x;
+        else destination = ((y + height - 1) % height) * width + x;
+        particles[destination] += 1;
+        enqueue(destination);
       }
-
-      const destination = ny * size + nx;
-      if (sleeping[destination]) {
-        sleeping[destination] = 0;
-        sleepingParticles -= 1;
-        active[destination] += 2;
-        activeParticles += 1;
-      } else {
-        active[destination] += 1;
-      }
-      enqueue(destination);
       return true;
     }
 
-    initializeMound();
     return {
-      active,
-      sleeping,
+      width,
+      height,
+      particles,
       odometer,
-      get activeParticles() {
-        return activeParticles;
+      get settled() {
+        return stackSize === 0;
       },
-      get sleepingParticles() {
-        return sleepingParticles;
+      get topplings() {
+        return topplings;
       },
-      get events() {
-        return events;
-      },
-      step,
+      topple,
     };
   }
 
-  document.querySelectorAll("[data-home-arw]").forEach((figure, figureIndex) => {
-    const canvas = figure.querySelector("[data-home-arw-canvas]");
-    const context = canvas.getContext("2d");
-    const size = 69;
-    const imageCanvas = document.createElement("canvas");
-    const imageContext = imageCanvas.getContext("2d");
-    imageCanvas.width = size;
-    imageCanvas.height = size;
+  function advance(model, budget) {
+    for (let step = 0; step < budget; step += 1) {
+      if (!model.topple()) break;
+    }
+  }
 
+  function cellColor(odometer, particles) {
+    if (particles >= 2) return [255, 229, 139];
+    if (!odometer) return particles ? [20, 38, 48] : [7, 15, 22];
+    const heat = clamp(Math.log1p(odometer) / Math.log(82), 0, 1);
+    if (heat < 0.46) return mix([30, 64, 111], [100, 66, 132], heat / 0.46);
+    if (heat < 0.76) return mix([100, 66, 132], [211, 77, 57], (heat - 0.46) / 0.3);
+    return mix([211, 77, 57], [255, 214, 107], (heat - 0.76) / 0.24);
+  }
+
+  document.querySelectorAll("[data-regime-visual]").forEach((visual, visualIndex) => {
+    const canvas = visual.querySelector("canvas");
+    const context = canvas.getContext("2d");
+    const gridWidth = 60;
+    const gridHeight = 100;
+    const specs = [
+      { density: 0.58, label: "subcritical", rho: "ρ = 0.58", budget: 1, seeds: [33013, 55109, 81001] },
+      { density: 0.705, label: "critical window", rho: "ρ ≈ ρc", budget: 5, seeds: [45131, 67357, 90281] },
+      { density: 0.78, label: "supercritical", rho: "ρ = 0.78", budget: 10, seeds: [14981, 28099, 71339] },
+    ];
+    const imageCanvases = specs.map(() => {
+      const imageCanvas = document.createElement("canvas");
+      imageCanvas.width = gridWidth;
+      imageCanvas.height = gridHeight;
+      return imageCanvas;
+    });
+
+    let models = [];
     let run = 0;
-    let model;
     let visible = true;
-    let phaseStarted = performance.now();
-    let settledAt = 0;
+    let startedAt = performance.now();
     let lastFrame = 0;
 
     function reset(now = performance.now()) {
-      const seeds = [31091, 77237, 126271, 208049];
-      model = makeModel(size, seeds[(run + figureIndex) % seeds.length]);
-      phaseStarted = now;
-      settledAt = 0;
+      models = specs.map((spec, index) =>
+        makeSandpile(
+          gridWidth,
+          gridHeight,
+          spec.density,
+          spec.seeds[(run + visualIndex + index) % spec.seeds.length],
+        ),
+      );
+      startedAt = now;
       if (reducedMotion) {
-        while (model.activeParticles && model.events < 500000) model.step();
+        advance(models[0], 2200);
+        advance(models[1], 12000);
+        advance(models[2], 22000);
       }
       draw();
     }
@@ -192,8 +146,8 @@
     function fitCanvas() {
       const box = canvas.getBoundingClientRect();
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      const width = Math.max(320, box.width);
-      const height = Math.max(230, box.height);
+      const width = Math.max(330, box.width);
+      const height = Math.max(250, box.height);
       const pixelWidth = Math.round(width * ratio);
       const pixelHeight = Math.round(height * ratio);
       if (canvas.width !== pixelWidth || canvas.height !== pixelHeight) {
@@ -204,86 +158,65 @@
       return { width, height };
     }
 
-    function cellColor(index, maximum) {
-      const active = model.active[index];
-      if (active) {
-        const heat = clamp(Math.log1p(active) / Math.log(8), 0, 1);
-        return mix([255, 213, 104], [239, 93, 66], heat);
-      }
-      if (model.sleeping[index]) return [87, 166, 188];
-      const visits = model.odometer[index];
-      if (!visits) return [8, 17, 23];
-      const trace = Math.log1p(visits) / Math.log1p(maximum);
-      if (trace < 0.62) {
-        return mix([15, 29, 42], [62, 55, 92], trace / 0.62);
-      }
-      return mix([62, 55, 92], [119, 62, 93], (trace - 0.62) / 0.38);
-    }
-
-    function draw() {
-      const { width, height } = fitCanvas();
-      context.fillStyle = "#081117";
-      context.fillRect(0, 0, width, height);
-
-      let maximum = 1;
+    function paintModel(model, imageCanvas) {
+      const imageContext = imageCanvas.getContext("2d");
+      const image = imageContext.createImageData(gridWidth, gridHeight);
       for (let index = 0; index < model.odometer.length; index += 1) {
-        maximum = Math.max(maximum, model.odometer[index]);
-      }
-      const image = imageContext.createImageData(size, size);
-      for (let index = 0; index < model.odometer.length; index += 1) {
-        const color = cellColor(index, maximum);
+        const color = cellColor(model.odometer[index], model.particles[index]);
         image.data[index * 4] = color[0];
         image.data[index * 4 + 1] = color[1];
         image.data[index * 4 + 2] = color[2];
         image.data[index * 4 + 3] = 255;
       }
       imageContext.putImageData(image, 0, 0);
-
-      const side = Math.min(width, height) * 0.96;
-      const left = (width - side) / 2;
-      const top = (height - side) / 2;
-      context.imageSmoothingEnabled = false;
-      context.drawImage(imageCanvas, left, top, side, side);
-
-      const vignette = context.createRadialGradient(
-        width / 2,
-        height / 2,
-        side * 0.18,
-        width / 2,
-        height / 2,
-        side * 0.72,
-      );
-      vignette.addColorStop(0, "rgba(4, 10, 14, 0)");
-      vignette.addColorStop(1, "rgba(4, 10, 14, .28)");
-      context.fillStyle = vignette;
-      context.fillRect(left, top, side, side);
     }
 
-    function advance(budget) {
-      for (let step = 0; step < budget; step += 1) {
-        if (!model.step()) break;
-      }
+    function draw() {
+      const { width, height } = fitCanvas();
+      context.fillStyle = "#071016";
+      context.fillRect(0, 0, width, height);
+      const panelWidth = width / 3;
+
+      models.forEach((model, index) => {
+        paintModel(model, imageCanvases[index]);
+        const left = index * panelWidth;
+        context.imageSmoothingEnabled = false;
+        context.drawImage(imageCanvases[index], left, 0, panelWidth + 0.5, height);
+
+        if (index) {
+          context.fillStyle = "rgba(255,255,255,.2)";
+          context.fillRect(left - 1, 0, 2, height);
+        }
+        const labelWidth = Math.min(panelWidth - 16, 128);
+        context.fillStyle = "rgba(5, 12, 18, .78)";
+        context.fillRect(left + 8, 9, labelWidth, 40);
+        context.fillStyle = "rgba(255,255,255,.76)";
+        context.font = "700 9px Helvetica Neue, Arial, sans-serif";
+        context.textAlign = "left";
+        context.textBaseline = "middle";
+        context.fillText(specs[index].label.toUpperCase(), left + 16, 21);
+        context.fillStyle = index === 1 ? "#ffd36e" : "rgba(255,255,255,.92)";
+        context.font = "italic 12px Georgia, serif";
+        context.fillText(specs[index].rho, left + 16, 37);
+
+        if (model.settled && index < 2) {
+          context.fillStyle = "rgba(5, 12, 18, .72)";
+          context.fillRect(left + 8, height - 27, 58, 18);
+          context.fillStyle = "rgba(255,255,255,.74)";
+          context.font = "700 8px Helvetica Neue, Arial, sans-serif";
+          context.fillText("SETTLED", left + 15, height - 18);
+        }
+      });
     }
 
     function frame(now) {
-      if (visible && !reducedMotion && now - lastFrame >= 32) {
+      if (visible && !reducedMotion && now - lastFrame >= 42) {
         lastFrame = now;
-        if (now - phaseStarted > 850 && model.activeParticles) {
-          const budget = clamp(
-            Math.round(650 + model.activeParticles * 1.45),
-            850,
-            2300,
-          );
-          advance(budget);
+        if (now - startedAt > 1300) {
+          models.forEach((model, index) => advance(model, specs[index].budget));
           draw();
         }
-        if (!model.activeParticles) {
-          if (!settledAt) settledAt = now;
-          if (now - settledAt > 3600) {
-            run += 1;
-            reset(now);
-          }
-        } else if (now - phaseStarted > 19000 || model.events >= 500000) {
+        if (now - startedAt > 30000) {
           run += 1;
           reset(now);
         }
@@ -296,9 +229,9 @@
         (entries) => {
           visible = entries[0].isIntersecting;
         },
-        { threshold: 0.05 },
+        { threshold: 0.04 },
       );
-      observer.observe(figure);
+      observer.observe(visual);
     }
 
     window.addEventListener("resize", draw, { passive: true });

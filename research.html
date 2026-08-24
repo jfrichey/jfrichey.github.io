@@ -10,6 +10,7 @@
     >
     <link rel="stylesheet" href="style.css">
     <script defer src="site.js"></script>
+    <script defer src="home-visuals.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KNCG5G8RV"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -57,7 +58,7 @@
         </div>
         <div class="hero-collage">
           <figure class="hc1"><img src="math_images/soc_avalanches.webp" alt="Two near-critical stochastic sandpile avalanches"></figure>
-          <figure class="hc2"><img src="math_images/monosquares_v2.webp" alt="Colored lattice phases"></figure>
+          <figure class="hc2"><img src="math_images/sft_phases_2d.webp" alt="Three phases of a two-dimensional lattice coloring model"></figure>
           <figure class="hc3"><img src="math_images/random_walk_source.webp" alt="Random walk occupation map"></figure>
         </div>
         <p class="scroll-cue">Five broad areas, one scroll at a time</p>
@@ -94,8 +95,12 @@
             </div>
           </div>
           <figure class="project-figure">
-            <div class="figure-frame"><img src="math_images/soc_avalanches.webp" alt="Two colored stochastic sandpile avalanche heat maps"></div>
-            <figcaption><b>Figure 01</b><span>Two large finite avalanches in a near-critical stochastic sandpile on a 320 × 320 torus. Brighter sites toppled more often.</span></figcaption>
+            <div class="figure-frame regime-frame">
+              <div class="regime-visual" data-regime-visual>
+                <canvas role="img" aria-label="A slow animation comparing subcritical, near-critical, and supercritical stochastic sandpiles"></canvas>
+              </div>
+            </div>
+            <figcaption><b>Figure 01</b><span>The same local toppling rule in three density regimes. Below criticality the avalanche dies; near the transition it spreads much farther; above it, activity persists.</span></figcaption>
           </figure>
         </div>
       </article>
@@ -127,10 +132,10 @@
             </div>
           </div>
           <figure class="project-figure">
-            <div class="figure-frame">
-              <img src="math_images/monosquares_v2.webp" alt="Three red, green, and blue lattice configurations">
+            <div class="figure-frame sft-frame">
+              <img src="math_images/sft_phases_2d.webp" alt="Three large two-dimensional samples from a red, green, and blue lattice coloring model">
             </div>
-            <figcaption><b>Figure 02</b><span>Three phases of a lattice coloring model. Monochromatic 2 × 2 squares are discouraged, mildly rewarded, then strongly rewarded.</span></figcaption>
+            <figcaption><b>Figure 02</b><span>Three 720 × 426 samples from a two-dimensional Gibbs field. From left to right, monochromatic 2 × 2 squares are discouraged (β = −1.80), mildly rewarded (β = 0.95), and strongly rewarded (β = 1.28).</span></figcaption>
           </figure>
         </div>
       </article>
@@ -160,19 +165,20 @@
           </div>
           <figure class="project-figure">
             <div class="figure-frame">
-              <div class="interactive-card matrix-lab" data-matrix-lab>
+              <div class="interactive-card spectral-lab" data-spectrum-lab>
                 <div class="lab-toolbar">
-                  <span class="lab-title">The matrices themselves</span>
-                  <button class="lab-action" type="button" data-matrix-rerun>New pair</button>
+                  <span class="lab-title">Centered, scaled eigenvalues</span>
+                  <output data-spectrum-label>Different laws · d/n³ = 0.008</output>
                 </div>
-                <div class="matrix-stage">
-                  <canvas data-matrix="wishart" role="img" aria-label="Wishart random matrix heat map"></canvas>
-                  <canvas data-matrix="goe" role="img" aria-label="GOE random matrix heat map"></canvas>
+                <canvas data-spectrum-canvas role="img" aria-label="Mirrored empirical eigenvalue distributions for centered Wishart and GOE matrices"></canvas>
+                <div class="spectrum-controls">
+                  <label for="spectrum-ratio">Dimension ratio <span>d/n³</span></label>
+                  <input id="spectrum-ratio" data-spectrum-slider type="range" min="0" max="8" step="1" value="0" aria-label="Wishart dimension divided by n cubed">
+                  <div class="spectrum-endpoints" aria-hidden="true"><span>visibly different</span><span>nearly indistinguishable</span></div>
                 </div>
-                <div class="matrix-key"><span><strong>Wishart:</strong> correlations retain a low-dimensional geometric signal.</span><span><strong>GOE:</strong> symmetric noise with no latent geometry.</span></div>
               </div>
             </div>
-            <figcaption><b>Figure 03</b><span>Fresh samples from a low-dimensional Wishart ensemble and GOE. Both look noisy entry-by-entry; their global laws tell different stories.</span></figcaption>
+            <figcaption><b>Figure 03</b><span>GOE and Wishart are symmetric, so their eigenvalues lie on the real line; vertical jitter separates the samples. Move d/n³ through the transition from distinguishable matrix laws to nearly matching ones.</span></figcaption>
           </figure>
         </div>
       </article>
@@ -192,8 +198,8 @@
               </p>
               <p>
                 This is intentionally the broad shelf: elimination elections, random sum constructions, geometric
-                coupons, cluster counts in percolation, and coverage or intersection problems for random sets. The tabs
-                at right collect three visual examples without turning each one into its own research category.
+                coupons, cluster counts in percolation, and coverage or intersection problems for random sets. The
+                visualization follows one spatial elimination election, then compares winners across many games.
               </p>
             </div>
             <div class="paper-links">
@@ -206,86 +212,36 @@
             </div>
           </div>
           <figure class="project-figure">
-            <div class="figure-frame deck-frame">
-              <div class="research-deck" data-figure-deck>
-                <div class="deck-tabs" role="tablist" aria-label="Stochastic process visualizations">
-                  <button type="button" role="tab" aria-selected="true" data-deck-tab="election">Election</button>
-                  <button type="button" role="tab" aria-selected="false" data-deck-tab="clusters">Clusters</button>
-                  <button type="button" role="tab" aria-selected="false" data-deck-tab="coverage">Coverage</button>
-                </div>
-
-                <div class="deck-panel" role="tabpanel" data-deck-panel="election">
-                  <div class="interactive-card" data-election-lab>
-                    <div class="lab-toolbar">
-                      <span class="lab-title">Elimination election</span>
-                      <div class="segmented" role="group" aria-label="Election dimension">
-                        <button type="button" data-election-mode="1d" aria-pressed="true">1D</button>
-                        <button type="button" data-election-mode="2d" aria-pressed="false">2D</button>
-                      </div>
-                      <button class="lab-action" type="button" data-election-rerun>New sample</button>
-                    </div>
-                    <div class="canvas-wrap"><canvas role="img" aria-label="A simulated Voronoi elimination election"></canvas></div>
+            <div class="figure-frame slideshow-frame">
+              <div class="figure-slideshow voronoi-slideshow" data-slideshow>
+                <div class="slideshow-stage">
+                  <div
+                    class="slideshow-slide"
+                    data-slide
+                    data-title="One elimination election"
+                    data-caption="One thousand candidates repeatedly lose the smallest Voronoi constituency until one remains."
+                  >
+                    <img src="math_images/voronoi_runoff.webp" alt="Animated planar Voronoi election shrinking from one thousand candidates to one winner">
+                  </div>
+                  <div
+                    class="slideshow-slide"
+                    data-slide
+                    data-title="Where the winners land"
+                    data-caption="A smoothed heat map of the winning location across 1,200 independent games."
+                    hidden
+                  >
+                    <img src="math_images/voronoi_winner_heatmap.webp" alt="Heat map of winner locations from repeated planar Voronoi elections">
                   </div>
                 </div>
-
-                <div class="deck-panel" role="tabpanel" data-deck-panel="clusters" hidden>
-                  <div class="loop-diagram" role="img" aria-label="A schematic loop case and non-loop case in a percolation transfer calculation">
-                    <div class="loop-case">
-                      <h3>Loop case · one component closes</h3>
-                      <svg viewBox="0 0 230 215" aria-hidden="true">
-                        <rect width="230" height="215" fill="#7b4638"/>
-                        <g fill="#f4f0e8">
-                          <rect class="cell" x="22" y="28" width="38" height="38"/><rect class="cell" x="60" y="28" width="38" height="38"/><rect class="cell boundary" x="98" y="28" width="38" height="38"/>
-                          <rect class="cell" x="22" y="66" width="38" height="38"/><rect class="cell" x="98" y="66" width="38" height="38"/>
-                          <rect class="cell" x="22" y="104" width="38" height="38"/><rect class="cell" x="98" y="104" width="38" height="38"/>
-                          <rect class="cell" x="22" y="142" width="38" height="38"/><rect class="cell" x="60" y="142" width="38" height="38"/><rect class="cell boundary" x="98" y="142" width="38" height="38"/>
-                        </g>
-                        <path class="path" d="M117 47 C177 47 183 161 117 161"/><line x1="164" y1="20" x2="164" y2="192" stroke="#fff" stroke-dasharray="5 6"/>
-                        <text x="172" y="108" fill="#fff" font-size="12">new column</text>
-                      </svg>
-                    </div>
-                    <div class="loop-case simple">
-                      <h3>Non-loop case · connectivity stays open</h3>
-                      <svg viewBox="0 0 230 215" aria-hidden="true">
-                        <rect width="230" height="215" fill="#7b4638"/>
-                        <g fill="#f4f0e8">
-                          <rect class="cell" x="22" y="28" width="38" height="38"/><rect class="cell" x="60" y="28" width="38" height="38"/><rect class="cell boundary" x="98" y="28" width="38" height="38"/>
-                          <rect class="cell" x="22" y="66" width="38" height="38"/><rect class="cell" x="98" y="66" width="38" height="38"/>
-                          <rect class="cell boundary" x="98" y="142" width="38" height="38"/>
-                        </g>
-                        <path class="path" d="M117 47 C151 47 155 20 199 20 M117 161 C151 161 157 194 207 194"/><line x1="164" y1="20" x2="164" y2="192" stroke="#fff" stroke-dasharray="5 6"/>
-                        <text x="172" y="108" fill="#fff" font-size="12">new column</text>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="deck-panel" role="tabpanel" data-deck-panel="coverage" hidden>
-                  <div class="coverage-visual" role="img" aria-label="Overlapping random arcs nearly covering a circle">
-                    <svg viewBox="0 0 560 430" aria-hidden="true">
-                      <circle cx="218" cy="215" r="142" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="18"/>
-                      <path class="arc" stroke="#ffe57f" d="M99 138 A142 142 0 0 1 258 79"/>
-                      <path class="arc" stroke="#ff9b73" d="M259 79 A142 142 0 0 1 351 184"/>
-                      <path class="arc" stroke="#8ee2bd" d="M352 184 A142 142 0 0 1 306 326"/>
-                      <path class="arc" stroke="#9eb9ff" d="M306 326 A142 142 0 0 1 140 335"/>
-                      <path class="arc" stroke="#e5a7ef" d="M140 335 A142 142 0 0 1 78 209"/>
-                      <path class="arc" stroke="#fff1b4" d="M78 209 A142 142 0 0 1 99 138"/>
-                      <path d="M160 98 A142 142 0 0 1 177 86" fill="none" stroke="#171817" stroke-width="7" stroke-linecap="round"/>
-                      <text x="136" y="66" fill="#fff" font-family="Georgia" font-size="17">last uncovered gap</text>
-                      <line x1="174" y1="75" x2="166" y2="94" stroke="#fff" stroke-width="1.5"/>
-                      <g transform="translate(390 132)">
-                        <ellipse cx="62" cy="83" rx="62" ry="83" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="2"/>
-                        <path d="M15 51 Q62 18 110 52" fill="none" stroke="#ffe57f" stroke-width="12" stroke-linecap="round"/>
-                        <path d="M7 91 Q62 122 116 91" fill="none" stroke="#8ee2bd" stroke-width="12" stroke-linecap="round"/>
-                        <path d="M31 145 Q64 163 93 143" fill="none" stroke="#9eb9ff" stroke-width="12" stroke-linecap="round"/>
-                        <text x="4" y="199" fill="rgba(255,255,255,.82)" font-family="Helvetica" font-size="12">caps on a sphere</text>
-                      </g>
-                    </svg>
-                  </div>
+                <div class="slideshow-footer">
+                  <button class="slideshow-arrow" type="button" data-slide-prev aria-label="Previous election image">←</button>
+                  <span class="slideshow-copy"><strong data-slide-title>One elimination election</strong><span data-slide-caption>One thousand candidates repeatedly lose the smallest Voronoi constituency until one remains.</span></span>
+                  <span class="slideshow-count" data-slide-counter>1 / 2</span>
+                  <button class="slideshow-arrow" type="button" data-slide-next aria-label="Next election image">→</button>
                 </div>
               </div>
             </div>
-            <figcaption><b>Figure 04</b><span>Three smaller projects share one visual notebook: an elimination election, percolation boundary bookkeeping, and random coverage.</span></figcaption>
+            <figcaption><b>Figure 04</b><span>Click through one 1,000-candidate repeated runoff and the empirical winner distribution from 1,200 independent games.</span></figcaption>
           </figure>
         </div>
       </article>
@@ -305,7 +261,7 @@
               <p>
                 On a regular tree, a permuted random walk cannot be slowed down. In source detection, even the apparently
                 basic problem on ℤ<sup>d</sup> remains difficult. The occupation map at right hides one piece of information
-                on purpose—make a guess before clicking.
+                on purpose—make a guess, reveal the source, then generate another trace.
               </p>
             </div>
             <div class="paper-links">
@@ -318,11 +274,14 @@
           </div>
           <figure class="project-figure">
             <div class="figure-frame">
-              <button class="source-guess" type="button" data-source-guess aria-pressed="false">
-                <img src="math_images/random_walk_source.webp" alt="Occupation heat map of a four-million-step planar random walk">
-                <span class="source-star" aria-hidden="true">★</span>
-                <span class="guess-prompt">Where did the walker start? Click to reveal</span>
-              </button>
+              <div class="source-lab" data-source-guess>
+                <button class="source-map" type="button" data-source-map aria-pressed="false">
+                  <img src="math_images/random_walk_source.webp" alt="Occupation heat map of a four-million-step planar random walk">
+                  <span class="source-star" aria-hidden="true">★</span>
+                  <span class="guess-prompt">Where did the walker start? Click to reveal</span>
+                </button>
+                <button class="source-rerun" type="button" data-source-rerun>New walk <span aria-hidden="true">↻</span></button>
+              </div>
             </div>
             <figcaption><b>Figure 05</b><span>Occupation times of a planar simple random walk after four million steps. Brightness records repeated visits; the star reveals the exact starting site.</span></figcaption>
           </figure>
