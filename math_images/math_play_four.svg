@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
   <title id="title">Four pieces of playful mathematics</title>
-  <desc id="desc">The five-card magic trick, circuit-building logic, a Hackenbush position, and eight physical quaternion states.</desc>
+  <desc id="desc">The five-card magic trick, circuit-building logic, two Hackenbush trees, and a physical quaternion demonstration.</desc>
   <defs>
     <style>
-      .tile{fill:#fffdf8;stroke:#d8d3c8;stroke-width:2}.label{font:700 20px Helvetica,Arial,sans-serif;letter-spacing:3px;fill:#545750}.card{fill:#fff;stroke:#242725;stroke-width:3}.wire{fill:none;stroke:#52667e;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}.gate{fill:#edf0eb;stroke:#252a29;stroke-width:5}.ground{fill:none;stroke:#373b38;stroke-width:8;stroke-linecap:round}.edge{fill:none;stroke-width:15;stroke-linecap:round;stroke-linejoin:round}.node{fill:#252925}.qboard{fill:#d9b179;stroke:#604f3b;stroke-width:2}.qstring{fill:none;stroke-width:5;stroke-linecap:round}.qlabel{font:italic 22px Georgia,serif;fill:#4d514c}.small{font:700 22px Helvetica,Arial,sans-serif;fill:#343734}.suit{font:700 25px Georgia,serif}.rank{font:700 24px Georgia,serif}
+      .tile{fill:#fffdf8;stroke:#d8d3c8;stroke-width:2}.label{font:700 20px Helvetica,Arial,sans-serif;letter-spacing:3px;fill:#545750}.card{fill:#fff;stroke:#242725;stroke-width:3}.wire{fill:none;stroke:#52667e;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}.gate{fill:#edf0eb;stroke:#252a29;stroke-width:5}.ground{fill:none;stroke:#373b38;stroke-width:8;stroke-linecap:round}.edge{fill:none;stroke-width:15;stroke-linecap:round;stroke-linejoin:round}.node{fill:#252925}.inputsign{font:700 31px Helvetica,Arial,sans-serif;fill:#343734}.qboard{fill:#d9b179;stroke:#604f3b;stroke-width:4;stroke-linejoin:round}.qside{fill:#b98958;stroke:#604f3b;stroke-width:3;stroke-linejoin:round}.qstring{fill:none;stroke-width:8;stroke-linecap:round}.qgap{fill:none;stroke:#fffdf8;stroke-width:14;stroke-linecap:round}.small{font:700 22px Helvetica,Arial,sans-serif;fill:#343734}.suit{font:700 25px Georgia,serif}.rank{font:700 24px Georgia,serif}
     </style>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
       <path d="M0 0 10 5 0 10z" fill="#6d4a78"/>
     </marker>
   </defs>
@@ -26,7 +26,7 @@
       <g transform="translate(273)"><rect class="card" width="72" height="102" rx="7"/><text class="rank" x="11" y="30" fill="#b43c38">3</text><text class="suit" x="36" y="71" text-anchor="middle" fill="#b43c38">♦</text></g>
       <g transform="translate(364)"><rect class="card" width="72" height="102" rx="7"/><text class="rank" x="11" y="30">9</text><text class="suit" x="36" y="71" text-anchor="middle" fill="#222">♣</text></g>
     </g>
-    <path d="M313 231v42" fill="none" stroke="#6d4a78" stroke-width="5" marker-end="url(#arrow)"/>
+    <path d="M313 238v30" fill="none" stroke="#6d4a78" stroke-width="3" marker-end="url(#arrow)"/>
     <g transform="translate(85 291)">
       <g><rect x="0" width="72" height="102" rx="7" fill="#315f9c" stroke="#242725" stroke-width="3"/><path d="M10 12h52v78H10zM15 20l42 62M57 20 15 82" fill="none" stroke="#dce6f6" stroke-width="3" opacity=".75"/></g>
       <path d="M91 51h37" fill="none" stroke="#90948d" stroke-width="4" stroke-linecap="round"/>
@@ -41,9 +41,9 @@
   <g aria-label="Boolean circuit">
     <text class="label" x="642" y="82">CIRCUIT BUILDING LOGIC</text>
     <g>
-      <circle cx="664" cy="139" r="10" fill="#315fa3"/><circle cx="664" cy="207" r="10" fill="#c45443"/>
-      <circle cx="664" cy="275" r="10" fill="#56866e"/><circle cx="664" cy="343" r="10" fill="#d89b30"/>
-      <path class="wire" d="M674 139H760M674 207H760M674 275H756M674 343H756"/>
+      <text class="inputsign" x="664" y="149" text-anchor="middle">+</text><text class="inputsign" x="664" y="217" text-anchor="middle">−</text>
+      <text class="inputsign" x="664" y="285" text-anchor="middle">−</text><text class="inputsign" x="664" y="353" text-anchor="middle">+</text>
+      <path class="wire" d="M682 139H760M682 207H760M682 275H756M682 343H756"/>
       <path class="gate" d="M760 111h48a48 48 0 0 1 0 124h-48z"/>
       <text class="small" x="799" y="181" text-anchor="middle">∧</text>
       <path class="gate" d="M756 248q31 62 0 124h38q75 0 97-62-22-62-97-62z"/>
@@ -60,67 +60,50 @@
   <!-- Hackenbush. -->
   <g aria-label="Hackenbush position">
     <text class="label" x="68" y="515">HACKENBUSH</text>
-    <path class="ground" d="M78 814h463M100 814l-18 23m58-23-18 23m58-23-18 23m58-23-18 23m58-23-18 23m58-23-18 23m58-23-18 23m58-23-18 23m58-23-18 23m58-23-18 23"/>
+    <path class="ground" d="M78 814h463"/>
     <g>
-      <path class="edge" d="M172 814l40-84-54-67 45-74" stroke="#56866e"/>
-      <path class="edge" d="M212 730l78-57 48-79" stroke="#315fa3"/>
-      <path class="edge" d="M290 673l-27-88 43-67" stroke="#c45443"/>
-      <path class="edge" d="M290 673l99 24 60-60" stroke="#315fa3"/>
-      <path class="edge" d="M389 697l28 77 72-34" stroke="#56866e"/>
-      <path class="edge" d="M158 663l-52-68" stroke="#c45443"/>
-      <path class="edge" d="M338 594l69-49" stroke="#56866e"/>
+      <path class="edge" d="M175 814V744" stroke="#315fa3"/>
+      <path class="edge" d="M175 744l-40-69" stroke="#c45443"/>
+      <path class="edge" d="M175 744l40-69" stroke="#315fa3"/>
+      <path class="edge" d="M135 675l-30-70" stroke="#315fa3"/>
+      <path class="edge" d="M135 675l25-75" stroke="#c45443"/>
+      <path class="edge" d="M215 675l-10-80" stroke="#c45443"/>
+      <path class="edge" d="M215 675l45-55" stroke="#315fa3"/>
+
+      <path class="edge" d="M420 814l-18-66" stroke="#c45443"/>
+      <path class="edge" d="M402 748l-42-68" stroke="#315fa3"/>
+      <path class="edge" d="M402 748l48-73" stroke="#c45443"/>
+      <path class="edge" d="M360 680l-25-70" stroke="#c45443"/>
+      <path class="edge" d="M360 680l25-55" stroke="#315fa3"/>
+      <path class="edge" d="M450 675l-20-75" stroke="#315fa3"/>
+      <path class="edge" d="M450 675l40-60" stroke="#c45443"/>
     </g>
     <g class="node">
-      <circle cx="172" cy="814" r="8"/><circle cx="212" cy="730" r="8"/><circle cx="158" cy="663" r="8"/><circle cx="203" cy="589" r="8"/>
-      <circle cx="290" cy="673" r="8"/><circle cx="338" cy="594" r="8"/><circle cx="263" cy="585" r="8"/><circle cx="306" cy="518" r="8"/>
-      <circle cx="389" cy="697" r="8"/><circle cx="449" cy="637" r="8"/><circle cx="417" cy="774" r="8"/><circle cx="489" cy="740" r="8"/>
-      <circle cx="106" cy="595" r="8"/><circle cx="407" cy="545" r="8"/>
+      <circle cx="175" cy="814" r="8"/><circle cx="175" cy="744" r="8"/><circle cx="135" cy="675" r="8"/><circle cx="215" cy="675" r="8"/>
+      <circle cx="105" cy="605" r="8"/><circle cx="160" cy="600" r="8"/><circle cx="205" cy="595" r="8"/><circle cx="260" cy="620" r="8"/>
+      <circle cx="420" cy="814" r="8"/><circle cx="402" cy="748" r="8"/><circle cx="360" cy="680" r="8"/><circle cx="450" cy="675" r="8"/>
+      <circle cx="335" cy="610" r="8"/><circle cx="385" cy="625" r="8"/><circle cx="430" cy="600" r="8"/><circle cx="490" cy="615" r="8"/>
     </g>
   </g>
 
-  <!-- Eight schematic string states for the physical quaternion demonstration. -->
-  <g aria-label="Eight physical quaternion states">
+  <!-- Two parallel boards joined by three strings. -->
+  <g aria-label="Physical quaternion string demonstration">
     <text class="label" x="642" y="515">QUATERNIONS PHYSICAL DEMO</text>
+    <path class="qside" d="M684 584l14 8v220l-14-8z"/>
+    <path class="qboard" d="M684 584l54-20v220l-54 20z"/>
+    <path class="qside" d="M1036 584l14 8v220l-14-8z"/>
+    <path class="qboard" d="M1036 584l54-20v220l-54 20z"/>
 
-    <g transform="translate(665 0)">
-      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
-      <path class="qstring" d="M-13 569V783" stroke="#c45443"/><path class="qstring" d="M0 569V783" stroke="#315fa3"/><path class="qstring" d="M13 569V783" stroke="#56866e"/>
-      <text class="qlabel" x="0" y="830" text-anchor="middle">1</text>
+    <g fill="#554532">
+      <circle cx="738" cy="614" r="7"/><circle cx="738" cy="674" r="7"/><circle cx="738" cy="734" r="7"/>
+      <circle cx="1036" cy="614" r="7"/><circle cx="1036" cy="674" r="7"/><circle cx="1036" cy="734" r="7"/>
     </g>
-    <g transform="translate(733 0)">
-      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
-      <path class="qstring" d="M-13 569C34 615 34 737-13 783" stroke="#c45443"/><path class="qstring" d="M0 569C-39 624 39 728 0 783" stroke="#315fa3"/><path class="qstring" d="M13 569C-34 615-34 737 13 783" stroke="#56866e"/>
-      <text class="qlabel" x="0" y="830" text-anchor="middle">−1</text>
-    </g>
-    <g transform="translate(801 0)">
-      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
-      <path class="qstring" d="M-13 569C27 620 27 732-13 783" stroke="#c45443"/><path class="qstring" d="M0 569V783" stroke="#315fa3"/><path class="qstring" d="M13 569C-27 620-27 732 13 783" stroke="#56866e"/>
-      <text class="qlabel" x="0" y="830" text-anchor="middle">i</text>
-    </g>
-    <g transform="translate(869 0)">
-      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
-      <path class="qstring" d="M-13 569C-27 620-27 732-13 783" stroke="#c45443"/><path class="qstring" d="M0 569V783" stroke="#315fa3"/><path class="qstring" d="M13 569C27 620 27 732 13 783" stroke="#56866e"/>
-      <text class="qlabel" x="0" y="830" text-anchor="middle">−i</text>
-    </g>
-    <g transform="translate(937 0)">
-      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
-      <path class="qstring" d="M-13 569V783" stroke="#c45443"/><path class="qstring" d="M0 569C35 625 35 727 0 783" stroke="#315fa3"/><path class="qstring" d="M13 569C-22 625-22 727 13 783" stroke="#56866e"/>
-      <text class="qlabel" x="0" y="830" text-anchor="middle">j</text>
-    </g>
-    <g transform="translate(1005 0)">
-      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
-      <path class="qstring" d="M-13 569V783" stroke="#c45443"/><path class="qstring" d="M0 569C-35 625-35 727 0 783" stroke="#315fa3"/><path class="qstring" d="M13 569C35 625 35 727 13 783" stroke="#56866e"/>
-      <text class="qlabel" x="0" y="830" text-anchor="middle">−j</text>
-    </g>
-    <g transform="translate(1073 0)">
-      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
-      <path class="qstring" d="M-13 569C25 624 25 728 13 783" stroke="#c45443"/><path class="qstring" d="M0 569C-32 624-32 728-13 783" stroke="#315fa3"/><path class="qstring" d="M13 569C-4 624 4 728 0 783" stroke="#56866e"/>
-      <text class="qlabel" x="0" y="830" text-anchor="middle">k</text>
-    </g>
-    <g transform="translate(1141 0)">
-      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
-      <path class="qstring" d="M-13 569C4 624-4 728 0 783" stroke="#c45443"/><path class="qstring" d="M0 569C32 624 32 728 13 783" stroke="#315fa3"/><path class="qstring" d="M13 569C-25 624-25 728-13 783" stroke="#56866e"/>
-      <text class="qlabel" x="0" y="830" text-anchor="middle">−k</text>
-    </g>
+
+    <path class="qgap" d="M738 614c86 0 117 121 190 120 48-1 59-60 108-60"/>
+    <path class="qstring" d="M738 614c86 0 117 121 190 120 48-1 59-60 108-60" stroke="#c45443"/>
+    <path class="qgap" d="M738 674c76 112 187-109 251 0 14 24 29 41 47 60"/>
+    <path class="qstring" d="M738 674c76 112 187-109 251 0 14 24 29 41 47 60" stroke="#315fa3"/>
+    <path class="qgap" d="M738 734c78 0 115-120 190-120h108"/>
+    <path class="qstring" d="M738 734c78 0 115-120 190-120h108" stroke="#56866e"/>
   </g>
 </svg>

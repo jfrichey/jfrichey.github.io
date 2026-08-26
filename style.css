@@ -523,7 +523,9 @@ button {
   box-shadow: 0 22px 60px rgba(22, 49, 67, 0.2);
 }
 
-.avalanche-card > img {
+.avalanche-card > img,
+.avalanche-card > picture,
+.avalanche-card > picture img {
   display: block;
   width: 100%;
   height: auto;
