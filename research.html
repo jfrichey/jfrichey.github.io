@@ -8,6 +8,7 @@
       name="description"
       content="Research in activated random walk, shifts of finite type, random matrices, stochastic processes, and random walks."
     >
+    <link rel="preload" as="image" href="math_images/arw_hockey.gif" type="image/gif">
     <link rel="stylesheet" href="style.css">
     <script defer src="site.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KNCG5G8RV"></script>
@@ -57,17 +58,17 @@
         </div>
         <figure class="avalanche-card research-hero-avalanche">
           <picture>
-            <source media="(prefers-reduced-motion: reduce)" srcset="math_images/avalanche_regimes_torus.webp">
+            <source media="(prefers-reduced-motion: reduce)" srcset="math_images/arw_regimes_static.webp">
             <img
               src="math_images/arw_regimes_glacier.gif"
-              alt="Toppling-count heat maps for subcritical, near-critical, and supercritical stochastic sandpiles on a large two-dimensional torus"
+              alt="Animated odometer heat maps for point-source activated random walk in subcritical, near-critical, and supercritical sleeping backgrounds"
             >
           </picture>
           <figcaption class="avalanche-caption">
-            <span><strong>Subcritical</strong><i>ρ = 0.58</i></span>
-            <span><strong>Critical window</strong><i>ρ ≈ ρ<sub>c</sub>(ℤ<sup>2</sup>) ≈ 0.72</i></span>
-            <span><strong>Supercritical</strong><i>ρ = 0.78</i></span>
-            <small>Logarithmic odometer heat maps on three 720 × 720 periodic lattices. Pale sites have zero odometer; darker blue records more topplings.</small>
+            <span><strong>Subcritical</strong><i>ρ = 0.45</i></span>
+            <span><strong>Critical window</strong><i>ρ ≈ ρ<sub>c</sub>(ℤ<sup>2</sup>) ≈ 0.66</i></span>
+            <span><strong>Supercritical</strong><i>ρ = 0.80</i></span>
+            <small>Point-source ARW with λ = 1 on three 320 × 320 boxes with absorbing boundaries. Color records the logarithmic odometer.</small>
           </figcaption>
         </figure>
         <p class="scroll-cue">Five broad areas, one scroll at a time</p>
@@ -103,25 +104,17 @@
             </div>
           </div>
           <figure class="project-figure">
-            <div class="figure-frame regime-frame">
-              <div class="regime-visual regime-loop">
-                <picture>
-                  <source media="(prefers-reduced-motion: reduce)" srcset="math_images/avalanche_regimes_torus.webp">
-                  <img
-                    src="math_images/arw_regimes_glacier.gif"
-                    alt="Animated logarithmic odometers for subcritical, near-critical, and supercritical stochastic sandpiles on three square tori"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                </picture>
-                <div class="regime-loop-labels" aria-hidden="true">
-                  <span><strong>Subcritical</strong><i>ρ = 0.58</i></span>
-                  <span><strong>Critical window</strong><i>ρ ≈ ρ<sub>c</sub>(ℤ<sup>2</sup>) ≈ 0.72</i></span>
-                  <span><strong>Supercritical</strong><i>ρ = 0.78</i></span>
-                </div>
-              </div>
+            <div class="figure-frame hockey-frame">
+              <picture>
+                <source media="(prefers-reduced-motion: reduce)" srcset="math_images/arw_hockey_static.webp">
+                <img
+                  src="math_images/arw_hockey.gif"
+                  alt="Animated local-density heat map beside a graph of retained particle density over time for driven-dissipative activated random walk"
+                  decoding="async"
+                >
+              </picture>
             </div>
-            <figcaption><b>Figure 01</b><span>The same local toppling rule in three square density regimes. Below criticality the avalanche dies; near the transition it spreads much farther; above it, activity persists. Color records only the logarithmic odometer.</span></figcaption>
+            <figcaption><b>Figure 01</b><span>Driven-dissipative ARW in a square with absorbing boundary; darker blue means greater local particle density.</span></figcaption>
           </figure>
         </div>
       </article>

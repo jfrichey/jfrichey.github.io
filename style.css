@@ -878,6 +878,24 @@ button {
   height: auto;
 }
 
+.hockey-frame {
+  min-height: 0;
+  padding: 0;
+  background: #eaf4f8;
+}
+
+.hockey-frame picture,
+.hockey-frame img {
+  display: block;
+  width: 100%;
+}
+
+.hockey-frame img {
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+}
+
 .regime-loop-labels {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
