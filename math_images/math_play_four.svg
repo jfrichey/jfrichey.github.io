@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
   <title id="title">Four pieces of playful mathematics</title>
-  <desc id="desc">The five-card trick, a Boolean circuit, a Hackenbush position, and the three-string tangloids demonstration.</desc>
+  <desc id="desc">The five-card magic trick, circuit-building logic, a Hackenbush position, and eight physical quaternion states.</desc>
   <defs>
     <style>
-      .tile{fill:#fffdf8;stroke:#d8d3c8;stroke-width:2}.label{font:700 20px Helvetica,Arial,sans-serif;letter-spacing:3px;fill:#545750}.card{fill:#fff;stroke:#242725;stroke-width:3}.wire{fill:none;stroke:#52667e;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}.gate{fill:#edf0eb;stroke:#252a29;stroke-width:5}.ground{fill:none;stroke:#373b38;stroke-width:8;stroke-linecap:round}.edge{fill:none;stroke-width:15;stroke-linecap:round;stroke-linejoin:round}.node{fill:#252925}.board{fill:#d9b179;stroke:#604f3b;stroke-width:5}.string{fill:none;stroke-width:10;stroke-linecap:round}.small{font:700 22px Helvetica,Arial,sans-serif;fill:#343734}.suit{font:700 25px Georgia,serif}.rank{font:700 24px Georgia,serif}
+      .tile{fill:#fffdf8;stroke:#d8d3c8;stroke-width:2}.label{font:700 20px Helvetica,Arial,sans-serif;letter-spacing:3px;fill:#545750}.card{fill:#fff;stroke:#242725;stroke-width:3}.wire{fill:none;stroke:#52667e;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}.gate{fill:#edf0eb;stroke:#252a29;stroke-width:5}.ground{fill:none;stroke:#373b38;stroke-width:8;stroke-linecap:round}.edge{fill:none;stroke-width:15;stroke-linecap:round;stroke-linejoin:round}.node{fill:#252925}.qboard{fill:#d9b179;stroke:#604f3b;stroke-width:2}.qstring{fill:none;stroke-width:5;stroke-linecap:round}.qlabel{font:italic 22px Georgia,serif;fill:#4d514c}.small{font:700 22px Helvetica,Arial,sans-serif;fill:#343734}.suit{font:700 25px Georgia,serif}.rank{font:700 24px Georgia,serif}
     </style>
     <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
       <path d="M0 0 10 5 0 10z" fill="#6d4a78"/>
@@ -18,7 +18,7 @@
 
   <!-- Five cards become one hidden card plus a four-card message. -->
   <g aria-label="Five-card trick">
-    <text class="label" x="68" y="82">FIVE CARDS</text>
+    <text class="label" x="68" y="82">FIVE CARD MAGIC TRICK</text>
     <g transform="translate(76 112)">
       <g transform="translate(0)"><rect class="card" width="72" height="102" rx="7"/><text class="rank" x="11" y="30">A</text><text class="suit" x="36" y="71" text-anchor="middle" fill="#222">♣</text></g>
       <g transform="translate(91)"><rect class="card" width="72" height="102" rx="7"/><text class="rank" x="11" y="30" fill="#b43c38">7</text><text class="suit" x="36" y="71" text-anchor="middle" fill="#b43c38">♥</text></g>
@@ -39,7 +39,7 @@
 
   <!-- A small network of AND/OR gates. -->
   <g aria-label="Boolean circuit">
-    <text class="label" x="642" y="82">LOGIC</text>
+    <text class="label" x="642" y="82">CIRCUIT BUILDING LOGIC</text>
     <g>
       <circle cx="664" cy="139" r="10" fill="#315fa3"/><circle cx="664" cy="207" r="10" fill="#c45443"/>
       <circle cx="664" cy="275" r="10" fill="#56866e"/><circle cx="664" cy="343" r="10" fill="#d89b30"/>
@@ -78,16 +78,49 @@
     </g>
   </g>
 
-  <!-- Tangloids / the three-string version of the belt trick. -->
-  <g aria-label="Tangloids string demonstration">
-    <text class="label" x="642" y="515">TWO TURNS</text>
-    <rect class="board" x="677" y="579" width="55" height="201" rx="9"/>
-    <rect class="board" x="1038" y="579" width="55" height="201" rx="9"/>
-    <g fill="#554532"><circle cx="705" cy="626" r="9"/><circle cx="705" cy="680" r="9"/><circle cx="705" cy="734" r="9"/><circle cx="1065" cy="626" r="9"/><circle cx="1065" cy="680" r="9"/><circle cx="1065" cy="734" r="9"/></g>
-    <path class="string" d="M714 626c88-2 104 107 177 105 70-2 80-105 165-105" stroke="#c45443"/>
-    <path class="string" d="M714 680c83 113 176-112 250 0 25 38 53 44 92 0" stroke="#315fa3"/>
-    <path class="string" d="M714 734c103 3 132-102 209-100 64 2 72 100 133 100" stroke="#56866e"/>
-    <path d="M1019 567c45-39 107-20 123 28 14 42-7 82-42 99" fill="none" stroke="#6d4a78" stroke-width="8" stroke-linecap="round" marker-end="url(#arrow)"/>
-    <text x="1111" y="752" font-family="Georgia,serif" font-size="38" font-style="italic" fill="#6d4a78">4π</text>
+  <!-- Eight schematic string states for the physical quaternion demonstration. -->
+  <g aria-label="Eight physical quaternion states">
+    <text class="label" x="642" y="515">QUATERNIONS PHYSICAL DEMO</text>
+
+    <g transform="translate(665 0)">
+      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
+      <path class="qstring" d="M-13 569V783" stroke="#c45443"/><path class="qstring" d="M0 569V783" stroke="#315fa3"/><path class="qstring" d="M13 569V783" stroke="#56866e"/>
+      <text class="qlabel" x="0" y="830" text-anchor="middle">1</text>
+    </g>
+    <g transform="translate(733 0)">
+      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
+      <path class="qstring" d="M-13 569C34 615 34 737-13 783" stroke="#c45443"/><path class="qstring" d="M0 569C-39 624 39 728 0 783" stroke="#315fa3"/><path class="qstring" d="M13 569C-34 615-34 737 13 783" stroke="#56866e"/>
+      <text class="qlabel" x="0" y="830" text-anchor="middle">−1</text>
+    </g>
+    <g transform="translate(801 0)">
+      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
+      <path class="qstring" d="M-13 569C27 620 27 732-13 783" stroke="#c45443"/><path class="qstring" d="M0 569V783" stroke="#315fa3"/><path class="qstring" d="M13 569C-27 620-27 732 13 783" stroke="#56866e"/>
+      <text class="qlabel" x="0" y="830" text-anchor="middle">i</text>
+    </g>
+    <g transform="translate(869 0)">
+      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
+      <path class="qstring" d="M-13 569C-27 620-27 732-13 783" stroke="#c45443"/><path class="qstring" d="M0 569V783" stroke="#315fa3"/><path class="qstring" d="M13 569C27 620 27 732 13 783" stroke="#56866e"/>
+      <text class="qlabel" x="0" y="830" text-anchor="middle">−i</text>
+    </g>
+    <g transform="translate(937 0)">
+      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
+      <path class="qstring" d="M-13 569V783" stroke="#c45443"/><path class="qstring" d="M0 569C35 625 35 727 0 783" stroke="#315fa3"/><path class="qstring" d="M13 569C-22 625-22 727 13 783" stroke="#56866e"/>
+      <text class="qlabel" x="0" y="830" text-anchor="middle">j</text>
+    </g>
+    <g transform="translate(1005 0)">
+      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
+      <path class="qstring" d="M-13 569V783" stroke="#c45443"/><path class="qstring" d="M0 569C-35 625-35 727 0 783" stroke="#315fa3"/><path class="qstring" d="M13 569C35 625 35 727 13 783" stroke="#56866e"/>
+      <text class="qlabel" x="0" y="830" text-anchor="middle">−j</text>
+    </g>
+    <g transform="translate(1073 0)">
+      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
+      <path class="qstring" d="M-13 569C25 624 25 728 13 783" stroke="#c45443"/><path class="qstring" d="M0 569C-32 624-32 728-13 783" stroke="#315fa3"/><path class="qstring" d="M13 569C-4 624 4 728 0 783" stroke="#56866e"/>
+      <text class="qlabel" x="0" y="830" text-anchor="middle">k</text>
+    </g>
+    <g transform="translate(1141 0)">
+      <rect class="qboard" x="-22" y="557" width="44" height="12" rx="4"/><rect class="qboard" x="-22" y="783" width="44" height="12" rx="4"/>
+      <path class="qstring" d="M-13 569C4 624-4 728 0 783" stroke="#c45443"/><path class="qstring" d="M0 569C32 624 32 728 13 783" stroke="#315fa3"/><path class="qstring" d="M13 569C-25 624-25 728-13 783" stroke="#56866e"/>
+      <text class="qlabel" x="0" y="830" text-anchor="middle">−k</text>
+    </g>
   </g>
 </svg>
