@@ -134,12 +134,26 @@ function coarseGrainWindow(size, multiplier) {
 
 function parseArguments(argv) {
   const variantsIndex = argv.indexOf("--variants-dir");
-  if (variantsIndex < 0) return { variantsDirectory: null };
-  const requestedPath = argv[variantsIndex + 1];
-  if (!requestedPath || requestedPath.startsWith("--")) {
-    throw new Error("--variants-dir needs an output directory");
+  const sizeIndex = argv.indexOf("--size");
+  let variantsDirectory = null;
+  let size = 512;
+
+  if (variantsIndex >= 0) {
+    const requestedPath = argv[variantsIndex + 1];
+    if (!requestedPath || requestedPath.startsWith("--")) {
+      throw new Error("--variants-dir needs an output directory");
+    }
+    variantsDirectory = path.resolve(requestedPath);
   }
-  return { variantsDirectory: path.resolve(requestedPath) };
+
+  if (sizeIndex >= 0) {
+    size = Number(argv[sizeIndex + 1]);
+    if (!Number.isInteger(size) || size < 32) {
+      throw new Error("--size needs an integer of at least 32");
+    }
+  }
+
+  return { variantsDirectory, size };
 }
 
 function colorForDensity(value) {
@@ -215,7 +229,7 @@ function overlayFor(samples, sampleIndex, size, width, height) {
       <line x1="${plot.left}" y1="${plot.bottom}" x2="${plot.left}" y2="${plot.bottom - plot.height}" stroke="#171717" stroke-width="1.6"/>
       <polyline points="${line}" fill="none" stroke="#c95449" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
       <text class="axis" x="${plot.left + plot.width / 2}" y="584" text-anchor="middle">time</text>
-      <text class="axis" x="653" y="${plot.bottom - plot.height / 2}" text-anchor="middle" transform="rotate(-90 653 ${plot.bottom - plot.height / 2})">density</text>
+      <text class="axis" x="660" y="${plot.bottom - plot.height / 2}" text-anchor="middle" transform="rotate(-90 660 ${plot.bottom - plot.height / 2})">density</text>
     </svg>
   `);
 }
@@ -284,7 +298,7 @@ async function renderVariant({
 
 async function main() {
   const options = parseArguments(process.argv.slice(2));
-  const size = 256;
+  const size = options.size;
   const targetDensity = 1.5;
   const growthFrames = 120;
   const model = new DrivenDissipativeARW(size, 1, 0xa41c927);
