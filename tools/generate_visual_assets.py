@@ -4,8 +4,6 @@
 from __future__ import annotations
 
 import argparse
-import json
-import math
 from pathlib import Path
 
 import numpy as np
@@ -105,7 +103,6 @@ def generate_sft() -> None:
         ],
         dtype=np.uint8,
     )
-    panels = []
     filenames = (
         "sft_phase_beta_neg1.webp",
         "sft_phase_beta_1_25.webp",
@@ -115,96 +112,6 @@ def generate_sft() -> None:
         grid = sample_sft_phase((rows, cols), beta, seed, schedule)
         panel = Image.fromarray(palette[grid], "RGB")
         panel.save(OUT / filename, "WEBP", quality=96, method=6)
-        panels.append(panel)
-
-    combined = Image.new("RGB", (cols * 3, rows), (9, 16, 24))
-    for index, panel in enumerate(panels):
-        combined.paste(panel, (index * cols, 0))
-    combined.save(OUT / "sft_phases_2d.webp", "WEBP", quality=96, method=6)
-
-
-# ---------------------------------------------------------------------------
-# Planar simple random walk occupation maps.
-# ---------------------------------------------------------------------------
-
-
-WALK_STOPS = [
-    (7, 4, 19),
-    (35, 12, 86),
-    (102, 22, 127),
-    (190, 48, 112),
-    (241, 111, 91),
-    (255, 201, 106),
-    (255, 244, 186),
-]
-
-
-def walk_occupation(seed: int, steps: int = 4_000_000) -> tuple[Image.Image, float, float]:
-    rng = np.random.default_rng(seed)
-    directions = rng.integers(0, 4, size=steps, dtype=np.uint8)
-    dx = np.zeros(steps, dtype=np.int8)
-    dy = np.zeros(steps, dtype=np.int8)
-    dx[directions == 0] = 1
-    dx[directions == 1] = -1
-    dy[directions == 2] = 1
-    dy[directions == 3] = -1
-    x = np.empty(steps + 1, dtype=np.int32)
-    y = np.empty(steps + 1, dtype=np.int32)
-    x[0] = y[0] = 0
-    np.cumsum(dx, out=x[1:])
-    np.cumsum(dy, out=y[1:])
-
-    xmin, xmax = int(x.min()), int(x.max())
-    ymin, ymax = int(y.min()), int(y.max())
-    span_x = xmax - xmin + 1
-    span_y = ymax - ymin + 1
-    pad = max(25, int(0.055 * max(span_x, span_y)))
-    xmin -= pad
-    xmax += pad
-    ymin -= pad
-    ymax += pad
-
-    target_ratio = 4 / 3
-    width = xmax - xmin + 1
-    height = ymax - ymin + 1
-    if width / height < target_ratio:
-        add = math.ceil(target_ratio * height - width)
-        xmin -= add // 2
-        xmax += add - add // 2
-    else:
-        add = math.ceil(width / target_ratio - height)
-        ymin -= add // 2
-        ymax += add - add // 2
-
-    width = xmax - xmin + 1
-    height = ymax - ymin + 1
-    visits = np.zeros((height, width), dtype=np.uint32)
-    np.add.at(visits, (y - ymin, x - xmin), 1)
-    positive = visits[visits > 0]
-    ceiling = max(2.0, float(np.quantile(np.log1p(positive), 0.997)))
-    intensity = np.clip(np.log1p(visits) / ceiling, 0, 1)
-    intensity = intensity ** 0.72
-    rgb = colorize(intensity, WALK_STOPS)
-    image = Image.fromarray(rgb, "RGB").resize((1200, 900), Image.Resampling.LANCZOS)
-    source_x = (0 - xmin) / max(1, width - 1)
-    source_y = (0 - ymin) / max(1, height - 1)
-    return image, source_x, source_y
-
-
-def generate_walks() -> None:
-    samples = []
-    for index, seed in enumerate((48391, 77101, 126181), start=2):
-        image, source_x, source_y = walk_occupation(seed)
-        name = f"random_walk_source_{index}.webp"
-        image.save(OUT / name, "WEBP", quality=94, method=6)
-        samples.append(
-            {
-                "src": f"math_images/{name}",
-                "x": round(100 * source_x, 4),
-                "y": round(100 * source_y, 4),
-            }
-        )
-    (OUT / "random_walk_samples.json").write_text(json.dumps(samples, indent=2) + "\n")
 
 
 # ---------------------------------------------------------------------------
@@ -389,14 +296,12 @@ def generate_voronoi() -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("targets", nargs="*", choices=("sft", "walks", "voronoi"))
+    parser.add_argument("targets", nargs="*", choices=("sft", "voronoi"))
     args = parser.parse_args()
-    targets = set(args.targets or ("sft", "walks", "voronoi"))
+    targets = set(args.targets or ("sft", "voronoi"))
     OUT.mkdir(parents=True, exist_ok=True)
     if "sft" in targets:
         generate_sft()
-    if "walks" in targets:
-        generate_walks()
     if "voronoi" in targets:
         generate_voronoi()
 
