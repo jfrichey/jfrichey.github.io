@@ -135,8 +135,10 @@ function coarseGrainWindow(size, multiplier) {
 function parseArguments(argv) {
   const variantsIndex = argv.indexOf("--variants-dir");
   const sizeIndex = argv.indexOf("--size");
+  const cacheIndex = argv.indexOf("--cache-file");
   let variantsDirectory = null;
   let size = 512;
+  let cacheFile = null;
 
   if (variantsIndex >= 0) {
     const requestedPath = argv[variantsIndex + 1];
@@ -153,7 +155,15 @@ function parseArguments(argv) {
     }
   }
 
-  return { variantsDirectory, size };
+  if (cacheIndex >= 0) {
+    const requestedPath = argv[cacheIndex + 1];
+    if (!requestedPath || requestedPath.startsWith("--")) {
+      throw new Error("--cache-file needs a file path");
+    }
+    cacheFile = path.resolve(requestedPath);
+  }
+
+  return { variantsDirectory, size, cacheFile };
 }
 
 function colorForDensity(value) {
@@ -203,35 +213,164 @@ function localDensityRaster(sleeping, size, radius) {
   return pixels;
 }
 
+function niceTickStep(range, targetTickCount = 5) {
+  const roughStep = range / targetTickCount;
+  const power = 10 ** Math.floor(Math.log10(roughStep));
+  const scaled = roughStep / power;
+  const multiplier = [1, 2, 5, 10].find((candidate) => candidate >= scaled) || 10;
+  return multiplier * power;
+}
+
+function densityWindow(samples, sampleIndex, siteCount, timeMin) {
+  let firstVisible = sampleIndex;
+  while (firstVisible > 0 && samples[firstVisible - 1].added / siteCount >= timeMin) {
+    firstVisible -= 1;
+  }
+  firstVisible = Math.max(0, firstVisible - 1);
+
+  const visible = samples.slice(firstVisible, sampleIndex + 1);
+  let densityMin = Infinity;
+  let densityMax = -Infinity;
+  visible.forEach((sample) => {
+    const density = sample.retained / siteCount;
+    densityMin = Math.min(densityMin, density);
+    densityMax = Math.max(densityMax, density);
+  });
+
+  const minimumSpan = 0.006;
+  if (densityMax - densityMin < minimumSpan) {
+    const center = (densityMin + densityMax) / 2;
+    densityMin = center - minimumSpan / 2;
+    densityMax = center + minimumSpan / 2;
+  }
+
+  const padding = Math.max(0.002, 0.1 * (densityMax - densityMin));
+  densityMin = Math.max(0, densityMin - padding);
+  densityMax = Math.min(1, densityMax + padding);
+
+  const tickStep = niceTickStep(densityMax - densityMin);
+  const yMin = Math.max(0, Math.floor(densityMin / tickStep) * tickStep);
+  const yMax = Math.min(1, Math.ceil(densityMax / tickStep) * tickStep);
+  const ticks = [];
+  for (let tick = Math.ceil((yMin - 1e-12) / tickStep) * tickStep;
+    tick <= yMax + 1e-12;
+    tick += tickStep) {
+    ticks.push(Number(tick.toFixed(10)));
+  }
+
+  return { firstVisible, yMin, yMax, tickStep, ticks };
+}
+
+function formatDensityTick(value, step) {
+  if (step >= 0.1) return value.toFixed(1);
+  if (step >= 0.01) return value.toFixed(2);
+  return value.toFixed(3);
+}
+
 function plotPoint(sample, siteCount, plot) {
   return {
-    x: plot.left + (sample.added / siteCount / plot.xMax) * plot.width,
-    y: plot.bottom - (sample.retained / siteCount / plot.yMax) * plot.height,
+    x: plot.left + ((sample.added / siteCount - plot.xMin) / (plot.xMax - plot.xMin)) * plot.width,
+    y: plot.bottom - ((sample.retained / siteCount - plot.yMin) / (plot.yMax - plot.yMin)) * plot.height,
   };
 }
 
 function overlayFor(samples, sampleIndex, size, width, height) {
   const siteCount = size * size;
-  const plot = { left: 693, bottom: 544, width: 415, height: 420, xMax: 1.5, yMax: 0.82 };
-  const line = samples.slice(0, sampleIndex + 1).map((sample) => {
+  const timeWindow = 0.38;
+  const currentTime = samples[sampleIndex].added / siteCount;
+  const xMax = Math.max(timeWindow, currentTime);
+  const xMin = xMax - timeWindow;
+  const density = densityWindow(samples, sampleIndex, siteCount, xMin);
+  const plot = {
+    left: 728,
+    bottom: 544,
+    width: 388,
+    height: 420,
+    xMin,
+    xMax,
+    yMin: density.yMin,
+    yMax: density.yMax,
+  };
+  const line = samples.slice(density.firstVisible, sampleIndex + 1).map((sample) => {
     const point = plotPoint(sample, siteCount, plot);
     return `${point.x.toFixed(1)},${point.y.toFixed(1)}`;
   }).join(" ");
+  const tickMarkup = density.ticks.map((tick) => {
+    const y = plot.bottom - ((tick - plot.yMin) / (plot.yMax - plot.yMin)) * plot.height;
+    return `
+      <line class="tick-mark" x1="${plot.left - 6}" y1="${y.toFixed(1)}" x2="${plot.left}" y2="${y.toFixed(1)}"/>
+      <text class="tick" x="${plot.left - 11}" y="${(y + 5.5).toFixed(1)}" text-anchor="end">${formatDensityTick(tick, density.tickStep)}</text>`;
+  }).join("");
 
   return Buffer.from(`
     <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
       <style>
         .axis{font:400 22px Georgia,"Times New Roman","Liberation Serif",serif;fill:#171717}
+        .tick{font:400 17px Georgia,"Times New Roman","Liberation Serif",serif;fill:#303030}
+        .tick-mark{stroke:#171717;stroke-width:1.35}
       </style>
+      <defs>
+        <clipPath id="moving-plot-clip">
+          <rect x="${plot.left}" y="${plot.bottom - plot.height}" width="${plot.width}" height="${plot.height}"/>
+        </clipPath>
+      </defs>
       <rect x="45" y="67" width="536" height="536" fill="none" stroke="#171717" stroke-width="1.5"/>
       <rect x="620" y="67" width="536" height="536" fill="#f8fbfc" stroke="#171717" stroke-width="1.5"/>
       <line x1="${plot.left}" y1="${plot.bottom}" x2="${plot.left + plot.width}" y2="${plot.bottom}" stroke="#171717" stroke-width="1.6"/>
       <line x1="${plot.left}" y1="${plot.bottom}" x2="${plot.left}" y2="${plot.bottom - plot.height}" stroke="#171717" stroke-width="1.6"/>
-      <polyline points="${line}" fill="none" stroke="#c95449" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      ${tickMarkup}
+      <polyline points="${line}" clip-path="url(#moving-plot-clip)" fill="none" stroke="#c95449" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
       <text class="axis" x="${plot.left + plot.width / 2}" y="584" text-anchor="middle">time</text>
-      <text class="axis" x="660" y="${plot.bottom - plot.height / 2}" text-anchor="middle" transform="rotate(-90 660 ${plot.bottom - plot.height / 2})">density</text>
+      <text class="axis" x="655" y="${plot.bottom - plot.height / 2}" text-anchor="middle" transform="rotate(-90 655 ${plot.bottom - plot.height / 2})">density</text>
     </svg>
   `);
+}
+
+function saveSampleCache(cacheFile, samples, metadata) {
+  const header = Buffer.from(JSON.stringify(metadata), "utf8");
+  const siteCount = metadata.size * metadata.size;
+  const recordSize = 8 + siteCount;
+  const output = Buffer.alloc(12 + header.length + recordSize * samples.length);
+  output.write("ARWHKY1\0", 0, "ascii");
+  output.writeUInt32LE(header.length, 8);
+  header.copy(output, 12);
+  let offset = 12 + header.length;
+  samples.forEach((sample) => {
+    output.writeUInt32LE(sample.added, offset);
+    output.writeUInt32LE(sample.retained, offset + 4);
+    Buffer.from(sample.sleeping).copy(output, offset + 8);
+    offset += recordSize;
+  });
+  fs.mkdirSync(path.dirname(cacheFile), { recursive: true });
+  fs.writeFileSync(cacheFile, output);
+}
+
+function loadSampleCache(cacheFile, expectedMetadata) {
+  const input = fs.readFileSync(cacheFile);
+  if (input.subarray(0, 8).toString("ascii") !== "ARWHKY1\0") {
+    throw new Error(`unrecognized sample cache: ${cacheFile}`);
+  }
+  const headerLength = input.readUInt32LE(8);
+  const metadata = JSON.parse(input.subarray(12, 12 + headerLength).toString("utf8"));
+  Object.keys(expectedMetadata).forEach((key) => {
+    if (metadata[key] !== expectedMetadata[key]) {
+      throw new Error(`sample cache ${key} mismatch: expected ${expectedMetadata[key]}, found ${metadata[key]}`);
+    }
+  });
+
+  const siteCount = metadata.size * metadata.size;
+  const recordSize = 8 + siteCount;
+  const samples = [];
+  let offset = 12 + headerLength;
+  for (let index = 0; index < metadata.growthFrames; index += 1) {
+    const added = input.readUInt32LE(offset);
+    const retained = input.readUInt32LE(offset + 4);
+    const sleeping = Uint8Array.from(input.subarray(offset + 8, offset + recordSize));
+    samples.push({ added, retained, sleeping });
+    offset += recordSize;
+  }
+  if (offset !== input.length) throw new Error(`sample cache has unexpected length: ${cacheFile}`);
+  return samples;
 }
 
 async function renderVariant({
@@ -245,7 +384,7 @@ async function renderVariant({
   const windowSize = coarseGrainWindow(size, spec.multiplier);
   const radius = (windowSize - 1) / 2;
   const growthFrames = samples.length;
-  const holdFrames = 14;
+  const holdFrames = 20;
   const frameWidth = 1200;
   const frameHeight = 675;
   const heatmapSize = 520;
@@ -285,13 +424,29 @@ async function renderVariant({
 
   const encoding = spawnSync("ffmpeg", [
     "-hide_banner", "-loglevel", "error", "-y",
-    "-framerate", "10",
+    "-framerate", "15",
     "-i", path.join(directory, "frame-%03d.png"),
     "-filter_complex",
-    "fps=8,scale=896:504:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=80:stats_mode=diff[p];[s1][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle",
+    "fps=12,scale=896:504:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=80:stats_mode=diff[p];[s1][p]paletteuse=dither=bayer:bayer_scale=4",
     "-loop", "0", gifOutput,
   ], { encoding: "utf8" });
   if (encoding.status !== 0) throw new Error(encoding.stderr || "ffmpeg failed");
+
+  const expectedFrames = Math.round(((growthFrames + holdFrames) / 15) * 12);
+  const verification = spawnSync("ffprobe", [
+    "-v", "error",
+    "-select_streams", "v:0",
+    "-count_frames",
+    "-show_entries", "stream=nb_read_frames",
+    "-of", "default=nokey=1:noprint_wrappers=1",
+    gifOutput,
+  ], { encoding: "utf8" });
+  const encodedFrames = Number.parseInt(verification.stdout.trim(), 10);
+  if (verification.status !== 0 || encodedFrames !== expectedFrames) {
+    throw new Error(
+      `GIF verification failed: expected ${expectedFrames} frames, found ${encodedFrames || 0}`,
+    );
+  }
 
   return { gifOutput, stillOutput, windowSize };
 }
@@ -300,21 +455,34 @@ async function main() {
   const options = parseArguments(process.argv.slice(2));
   const size = options.size;
   const targetDensity = 1.5;
-  const growthFrames = 120;
-  const model = new DrivenDissipativeARW(size, 1, 0xa41c927);
-  const targetAdditions = Math.round(targetDensity * model.count);
-  const samples = [model.snapshot()];
+  const growthFrames = 180;
+  const lambda = 1;
+  const seed = 0xa41c927;
+  const cacheMetadata = { version: 1, size, targetDensity, growthFrames, lambda, seed };
+  let samples;
 
-  for (let frame = 1; frame < growthFrames; frame += 1) {
-    const target = Math.round((frame / (growthFrames - 1)) * targetAdditions);
-    while (model.added < target) model.addAndStabilize();
-    samples.push(model.snapshot());
-    process.stdout.write(`\rsimulating ${frame}/${growthFrames - 1}`);
+  if (options.cacheFile && fs.existsSync(options.cacheFile)) {
+    samples = loadSampleCache(options.cacheFile, cacheMetadata);
+    process.stdout.write(`loaded ${samples.length} stabilized samples from ${options.cacheFile}\n`);
+  } else {
+    const model = new DrivenDissipativeARW(size, lambda, seed);
+    const targetAdditions = Math.round(targetDensity * model.count);
+    samples = [model.snapshot()];
+    for (let frame = 1; frame < growthFrames; frame += 1) {
+      const target = Math.round((frame / (growthFrames - 1)) * targetAdditions);
+      while (model.added < target) model.addAndStabilize();
+      samples.push(model.snapshot());
+      process.stdout.write(`\rsimulating ${frame}/${growthFrames - 1}`);
+    }
+    process.stdout.write("\n");
+    if (options.cacheFile) {
+      saveSampleCache(options.cacheFile, samples, cacheMetadata);
+      process.stdout.write(`saved stabilized samples to ${options.cacheFile}\n`);
+    }
   }
-  process.stdout.write("\n");
   const finalSample = samples[samples.length - 1];
   process.stdout.write(
-    `final retained density ${(finalSample.retained / model.count).toFixed(3)}\n`,
+    `final retained density ${(finalSample.retained / (size * size)).toFixed(3)}\n`,
   );
 
   const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), "arw-hockey-"));
