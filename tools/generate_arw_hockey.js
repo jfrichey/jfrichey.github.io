@@ -119,6 +119,29 @@ const palette = [
   [1.00, [22, 31, 52]],
 ];
 
+const coarseGrainSpecs = [
+  { slug: "half_log", multiplier: 0.5, label: "1/2 log2(n)" },
+  { slug: "one_log", multiplier: 1, label: "log2(n)" },
+  { slug: "two_log", multiplier: 2, label: "2 log2(n)" },
+  { slug: "four_log", multiplier: 4, label: "4 log2(n)" },
+];
+
+function coarseGrainWindow(size, multiplier) {
+  let windowSize = Math.max(1, Math.round(multiplier * Math.log2(size)));
+  if (windowSize % 2 === 0) windowSize += 1;
+  return windowSize;
+}
+
+function parseArguments(argv) {
+  const variantsIndex = argv.indexOf("--variants-dir");
+  if (variantsIndex < 0) return { variantsDirectory: null };
+  const requestedPath = argv[variantsIndex + 1];
+  if (!requestedPath || requestedPath.startsWith("--")) {
+    throw new Error("--variants-dir needs an output directory");
+  }
+  return { variantsDirectory: path.resolve(requestedPath) };
+}
+
 function colorForDensity(value) {
   const density = Math.max(0, Math.min(1, value));
   let index = 0;
@@ -180,35 +203,90 @@ function overlayFor(samples, sampleIndex, size, width, height) {
     const point = plotPoint(sample, siteCount, plot);
     return `${point.x.toFixed(1)},${point.y.toFixed(1)}`;
   }).join(" ");
-  const horizontalRules = [0.2, 0.4, 0.6, 0.8].map((density) => {
-    const y = plot.bottom - (density / plot.yMax) * plot.height;
-    return `<line x1="${plot.left}" y1="${y}" x2="${plot.left + plot.width}" y2="${y}" class="rule"/>`;
-  }).join("");
 
   return Buffer.from(`
     <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
       <style>
-        .axis{font:600 18px Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;fill:#506a79}
-        .rule{stroke:#d5e3e9;stroke-width:1.2}
+        .axis{font:400 22px Georgia,"Times New Roman","Liberation Serif",serif;fill:#171717}
       </style>
-      <rect x="45" y="67" width="536" height="536" rx="10" fill="none" stroke="#a9c3d1" stroke-width="2"/>
-      <rect x="640" y="67" width="516" height="536" rx="10" fill="#f8fbfc" stroke="#a9c3d1" stroke-width="2"/>
-      ${horizontalRules}
-      <line x1="${plot.left}" y1="${plot.bottom}" x2="${plot.left + plot.width}" y2="${plot.bottom}" stroke="#587485" stroke-width="2"/>
-      <line x1="${plot.left}" y1="${plot.bottom}" x2="${plot.left}" y2="${plot.bottom - plot.height}" stroke="#587485" stroke-width="2"/>
+      <rect x="45" y="67" width="536" height="536" fill="none" stroke="#171717" stroke-width="1.5"/>
+      <rect x="620" y="67" width="536" height="536" fill="#f8fbfc" stroke="#171717" stroke-width="1.5"/>
+      <line x1="${plot.left}" y1="${plot.bottom}" x2="${plot.left + plot.width}" y2="${plot.bottom}" stroke="#171717" stroke-width="1.6"/>
+      <line x1="${plot.left}" y1="${plot.bottom}" x2="${plot.left}" y2="${plot.bottom - plot.height}" stroke="#171717" stroke-width="1.6"/>
       <polyline points="${line}" fill="none" stroke="#c95449" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
       <text class="axis" x="${plot.left + plot.width / 2}" y="584" text-anchor="middle">time</text>
-      <text class="axis" x="661" y="${plot.bottom - plot.height / 2}" text-anchor="middle" transform="rotate(-90 661 ${plot.bottom - plot.height / 2})">density</text>
+      <text class="axis" x="653" y="${plot.bottom - plot.height / 2}" text-anchor="middle" transform="rotate(-90 653 ${plot.bottom - plot.height / 2})">density</text>
     </svg>
   `);
 }
 
+async function renderVariant({
+  samples,
+  size,
+  spec,
+  temporaryRoot,
+  gifOutput,
+  stillOutput,
+}) {
+  const windowSize = coarseGrainWindow(size, spec.multiplier);
+  const radius = (windowSize - 1) / 2;
+  const growthFrames = samples.length;
+  const holdFrames = 14;
+  const frameWidth = 1200;
+  const frameHeight = 675;
+  const heatmapSize = 520;
+  const directory = path.join(temporaryRoot, spec.slug);
+  fs.mkdirSync(directory, { recursive: true });
+  fs.mkdirSync(path.dirname(gifOutput), { recursive: true });
+
+  let finalFrame;
+  for (let frame = 0; frame < growthFrames + holdFrames; frame += 1) {
+    const sampleIndex = Math.min(frame, growthFrames - 1);
+    const sample = samples[sampleIndex];
+    const densityPixels = localDensityRaster(sample.sleeping, size, radius);
+    const densityImage = await sharp(densityPixels, {
+      raw: { width: size, height: size, channels: 4 },
+    }).resize(heatmapSize, heatmapSize, { kernel: "cubic" }).png({ compressionLevel: 3 }).toBuffer();
+    const overlay = overlayFor(samples, sampleIndex, size, frameWidth, frameHeight);
+    const filename = path.join(directory, `frame-${String(frame).padStart(3, "0")}.png`);
+
+    await sharp({
+      create: { width: frameWidth, height: frameHeight, channels: 4, background: "#eaf4f8" },
+    }).composite([
+      { input: densityImage, left: 53, top: 75 },
+      { input: overlay, left: 0, top: 0 },
+    ]).png({ compressionLevel: 3 }).toFile(filename);
+    finalFrame = filename;
+    process.stdout.write(
+      `\r${spec.label} (${windowSize} x ${windowSize}): rendering ${frame + 1}/${growthFrames + holdFrames}`,
+    );
+  }
+  process.stdout.write("\n");
+
+  if (stillOutput) {
+    fs.mkdirSync(path.dirname(stillOutput), { recursive: true });
+    await sharp(finalFrame).resize(896, 504, { fit: "fill", kernel: "lanczos3" })
+      .webp({ quality: 88, effort: 5 }).toFile(stillOutput);
+  }
+
+  const encoding = spawnSync("ffmpeg", [
+    "-hide_banner", "-loglevel", "error", "-y",
+    "-framerate", "10",
+    "-i", path.join(directory, "frame-%03d.png"),
+    "-filter_complex",
+    "fps=8,scale=896:504:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=80:stats_mode=diff[p];[s1][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle",
+    "-loop", "0", gifOutput,
+  ], { encoding: "utf8" });
+  if (encoding.status !== 0) throw new Error(encoding.stderr || "ffmpeg failed");
+
+  return { gifOutput, stillOutput, windowSize };
+}
+
 async function main() {
-  const size = 128;
-  const radius = Math.ceil(Math.log2(size));
+  const options = parseArguments(process.argv.slice(2));
+  const size = 256;
   const targetDensity = 1.5;
   const growthFrames = 120;
-  const holdFrames = 14;
   const model = new DrivenDissipativeARW(size, 1, 0xa41c927);
   const targetAdditions = Math.round(targetDensity * model.count);
   const samples = [model.snapshot()];
@@ -222,56 +300,41 @@ async function main() {
   process.stdout.write("\n");
   const finalSample = samples[samples.length - 1];
   process.stdout.write(
-    `final retained density ${(finalSample.retained / model.count).toFixed(3)}; `
-    + `smoothing window ${2 * radius + 1} x ${2 * radius + 1}\n`,
+    `final retained density ${(finalSample.retained / model.count).toFixed(3)}\n`,
   );
 
-  const frameWidth = 1200;
-  const frameHeight = 675;
-  const heatmapSize = 520;
-  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "arw-hockey-"));
-  const outputDirectory = path.join(__dirname, "..", "math_images");
-  const gifOutput = path.join(outputDirectory, "arw_hockey.gif");
-  const stillOutput = path.join(outputDirectory, "arw_hockey_static.webp");
+  const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), "arw-hockey-"));
+  const siteOutputDirectory = path.join(__dirname, "..", "math_images");
+  const siteGifOutput = path.join(siteOutputDirectory, "arw_hockey.gif");
+  const siteStillOutput = path.join(siteOutputDirectory, "arw_hockey_static.webp");
+  const specs = options.variantsDirectory
+    ? coarseGrainSpecs
+    : coarseGrainSpecs.filter((spec) => spec.slug === "two_log");
 
   try {
-    let finalFrame;
-    for (let frame = 0; frame < growthFrames + holdFrames; frame += 1) {
-      const sampleIndex = Math.min(frame, growthFrames - 1);
-      const sample = samples[sampleIndex];
-      const densityPixels = localDensityRaster(sample.sleeping, size, radius);
-      const densityImage = await sharp(densityPixels, {
-        raw: { width: size, height: size, channels: 4 },
-      }).resize(heatmapSize, heatmapSize, { kernel: "cubic" }).png({ compressionLevel: 3 }).toBuffer();
-      const overlay = overlayFor(samples, sampleIndex, size, frameWidth, frameHeight);
-      const filename = path.join(directory, `frame-${String(frame).padStart(3, "0")}.png`);
+    for (const spec of specs) {
+      const variantPrefix = options.variantsDirectory
+        ? path.join(options.variantsDirectory, `arw_hockey_${spec.slug}`)
+        : path.join(siteOutputDirectory, "arw_hockey");
+      const result = await renderVariant({
+        samples,
+        size,
+        spec,
+        temporaryRoot,
+        gifOutput: `${variantPrefix}.gif`,
+        stillOutput: `${variantPrefix}_static.webp`,
+      });
+      process.stdout.write(
+        `${result.gifOutput}\n${result.stillOutput}\n`,
+      );
 
-      await sharp({
-        create: { width: frameWidth, height: frameHeight, channels: 4, background: "#eaf4f8" },
-      }).composite([
-        { input: densityImage, left: 53, top: 75 },
-        { input: overlay, left: 0, top: 0 },
-      ]).png({ compressionLevel: 3 }).toFile(filename);
-      finalFrame = filename;
-      process.stdout.write(`\rrendering ${frame + 1}/${growthFrames + holdFrames}`);
+      if (options.variantsDirectory && spec.slug === "two_log") {
+        fs.copyFileSync(result.gifOutput, siteGifOutput);
+        fs.copyFileSync(result.stillOutput, siteStillOutput);
+      }
     }
-    process.stdout.write("\n");
-
-    await sharp(finalFrame).resize(896, 504, { fit: "fill", kernel: "lanczos3" })
-      .webp({ quality: 88, effort: 5 }).toFile(stillOutput);
-
-    const encoding = spawnSync("ffmpeg", [
-      "-hide_banner", "-loglevel", "error", "-y",
-      "-framerate", "10",
-      "-i", path.join(directory, "frame-%03d.png"),
-      "-filter_complex",
-      "fps=8,scale=896:504:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=80:stats_mode=diff[p];[s1][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle",
-      "-loop", "0", gifOutput,
-    ], { encoding: "utf8" });
-    if (encoding.status !== 0) throw new Error(encoding.stderr || "ffmpeg failed");
-    process.stdout.write(`${gifOutput}\n${stillOutput}\n`);
   } finally {
-    fs.rmSync(directory, { recursive: true, force: true });
+    fs.rmSync(temporaryRoot, { recursive: true, force: true });
   }
 }
 
