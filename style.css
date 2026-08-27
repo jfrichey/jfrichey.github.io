@@ -385,19 +385,25 @@ button {
 .portrait-card {
   position: relative;
   width: 100%;
-  max-width: 620px;
+  max-width: 540px;
   margin-left: auto;
   overflow: hidden;
-  background: transparent;
+  border: 1px solid #111111;
+  background: var(--paper);
   box-shadow: 0 24px 65px rgba(34, 31, 27, 0.14);
 }
 
 .portrait-card img {
   width: 100%;
-  height: min(67vh, 650px);
+  height: min(58vh, 560px);
   object-fit: cover;
   object-position: 50% 38%;
   filter: saturate(0.9) contrast(1.03);
+}
+
+.portrait-card .mini-caption {
+  padding: 9px 11px 10px;
+  border-top: 1px solid #111111;
 }
 
 .mini-caption {
