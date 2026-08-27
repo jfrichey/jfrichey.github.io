@@ -20,4 +20,4 @@ Site images live in `math_images/`. Their reproducible generators live in
 - `generate_arw_animation.js` — three-regime ARW animation
 - `generate_arw_hockey.js` — driven-dissipative density animation
 - `generate_soc_stills.js` — homepage avalanche triptych
-- `generate_visual_assets.py` — SFT samples and Voronoi figures
+- `generate_visual_assets.py` — both SFT sample families and the square/disk Voronoi figures

@@ -9,7 +9,7 @@
       content="Research in activated random walk, shifts of finite type, random matrices, stochastic processes, and random walks."
     >
     <link rel="preload" as="image" href="math_images/arw_hockey.gif?v=20260826-window" type="image/gif">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20260827-research-layout">
     <script defer src="site.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KNCG5G8RV"></script>
     <script>
@@ -44,7 +44,7 @@
     <main id="main">
       <section class="page-hero" id="top">
         <div>
-          <h1 class="display-title">Combinatorial probability</em></h1>
+          <h1 class="display-title">Combinatorial probability</h1>
           <p class="lede">
             My research interests are in combinatorial probability and statistical physics. Most of my work falls into
             five overlapping areas: activated random walk, shifts of finite type and pattern problems, random matrices,
@@ -127,7 +127,7 @@
             <h2>Shifts of finite type &amp; patterns</h2>
             <div class="summary">
               <p>
-                Consider colorings of a Cayley graph, for exmaple the 2D lattice, and fix a finite family of <em> forbidden patterns</em>,
+                Consider colorings of a Cayley graph, for example the 2D lattice, and fix a finite family of <em>forbidden patterns</em>,
                 i.e. finite subsets with a fixed coloring. Any such family gives rise to the shift of finite type (SFT) 
                 consisting of all colorings of the full space which never have any translated copy of a forbidden pattern.
                 What does a typical configuration look like, and what statistical properties does it have?
@@ -149,22 +149,38 @@
           </div>
           <figure class="project-figure">
             <div class="figure-frame sft-frame">
-              <div class="sft-triptych" role="group" aria-label="Three square samples from a three-color lattice model">
-                <div class="sft-sample">
-                  <img src="math_images/sft_phase_beta_neg1.webp" alt="Square lattice sample at beta minus one, where monochromatic two-by-two squares are discouraged">
-                  <span class="sft-sample-label">β = −1</span>
+              <div class="sft-pair">
+                <div class="sft-triptych" role="group" aria-label="Three samples weighted by monochromatic two-by-two squares">
+                  <div class="sft-sample">
+                    <img src="math_images/sft_phase_beta_neg1.webp" alt="Square lattice sample at beta minus one, where monochromatic two-by-two squares are discouraged">
+                    <span class="sft-sample-label">β = −1</span>
+                  </div>
+                  <div class="sft-sample">
+                    <img src="math_images/sft_phase_beta_1_25.webp" alt="Square lattice sample at beta one point two five, where monochromatic two-by-two squares are rewarded">
+                    <span class="sft-sample-label">β = 1.25</span>
+                  </div>
+                  <div class="sft-sample">
+                    <img src="math_images/sft_phase_beta_3.webp" alt="Square lattice sample at beta three, where large monochromatic blocks emerge">
+                    <span class="sft-sample-label">β = 3</span>
+                  </div>
                 </div>
-                <div class="sft-sample">
-                  <img src="math_images/sft_phase_beta_1_25.webp" alt="Square lattice sample at beta one point two five, where monochromatic two-by-two squares are rewarded">
-                  <span class="sft-sample-label">β = 1.25</span>
-                </div>
-                <div class="sft-sample">
-                  <img src="math_images/sft_phase_beta_3.webp" alt="Square lattice sample at beta three, where large monochromatic blocks emerge">
-                  <span class="sft-sample-label">β = 3</span>
+                <div class="sft-triptych" role="group" aria-label="Three samples from a binary shift forbidding horizontal and vertical one-by-three strips of ones">
+                  <div class="sft-sample">
+                    <img src="math_images/sft_strips_beta_neg1.webp" alt="Binary strip-SFT sample at beta minus one, with ones sparsely arranged under the one-by-three exclusion rule">
+                    <span class="sft-sample-label">β = −1</span>
+                  </div>
+                  <div class="sft-sample">
+                    <img src="math_images/sft_strips_beta_1_25.webp" alt="Binary strip-SFT sample at beta one point two five, with a dense disordered tiling texture">
+                    <span class="sft-sample-label">β = 1.25</span>
+                  </div>
+                  <div class="sft-sample">
+                    <img src="math_images/sft_strips_beta_3.webp" alt="Binary strip-SFT sample at beta three, with long organized stripe and tile structures">
+                    <span class="sft-sample-label">β = 3</span>
+                  </div>
                 </div>
               </div>
             </div>
-            <figcaption><b>Figure 02</b><span>Three 640 × 640 samples from a two-dimensional Gibbs field. From left to right, monochromatic 2 × 2 squares are discouraged (β = −1), rewarded (β = 1.25), and strongly rewarded (β = 3).</span></figcaption>
+            <figcaption><b>Figure 02</b><span>Two local rules at three weights. Top: monochromatic 2 × 2 squares receive weight e<sup>β</sup>. Bottom: the binary SFT forbids 111 in every horizontal or vertical 1 × 3 strip and weights configurations by e<sup>βN₁</sup>.</span></figcaption>
           </figure>
         </div>
       </article>
@@ -225,12 +241,11 @@
                 Often, simple rules can give rise to complex systems which go beyond the scope of modern probabilistic techniques
                 or reveal new phenomena. When theory fails, computer simulations can quickly come to the rescue, and 
                 even sometimes suggest a path forward. 
+              </p>
               <p>
-                The process in Figure 04 is the following: given a set of points on a compact set, form 
-                their voronoi cells. Then repeatedly delete the point whose voronoi cell has the smallest area. The second
-                panel is a (heatmap) histogram of the final survivor's position, when the points are sampled IID. 
-                Perhaps surprisingly, the distribution is not maximized at the center, but in an annulus. 
-                
+                Figure 04 begins with IID points in either a square or a disk and repeatedly deletes the point whose Voronoi
+                cell has the smallest area. In each row, one election runs beside a heat-map histogram of the final survivor.
+                Perhaps surprisingly, the winner distribution is not maximized at the center, but along an annulus.
               </p>
             </div>
             <div class="paper-links">
@@ -243,36 +258,27 @@
             </div>
           </div>
           <figure class="project-figure">
-            <div class="figure-frame slideshow-frame">
-              <div class="figure-slideshow voronoi-slideshow" data-slideshow>
-                <div class="slideshow-stage">
-                  <div
-                    class="slideshow-slide"
-                    data-slide
-                    data-title="Minimum Voronoi Deletion Process"
-                    data-caption="A model of repeated runoff elections."
-                  >
-                    <img src="math_images/voronoi_runoff.webp" alt="Animated planar Voronoi election shrinking from one thousand candidates to one winner">
-                  </div>
-                  <div
-                    class="slideshow-slide"
-                    data-slide
-                    data-title="Final Point Position Histogram"
-                    data-caption="A smoothed heat map of the winning location across 1,200 independent games."
-                    hidden
-                  >
-                    <img src="math_images/voronoi_winner_heatmap.webp" alt="Heat map of winner locations from repeated planar Voronoi elections">
-                  </div>
+            <div class="figure-frame voronoi-frame">
+              <div class="voronoi-grid" role="group" aria-label="Voronoi deletion elections and winner histograms in a square and a disk">
+                <div class="voronoi-panel">
+                  <img src="math_images/voronoi_runoff.webp" alt="Animated Voronoi deletion election in a square shrinking from one thousand candidates to one winner">
+                  <span>Square · one election</span>
                 </div>
-                <div class="slideshow-footer">
-                  <button class="slideshow-arrow" type="button" data-slide-prev aria-label="Previous election image">←</button>
-                  <span class="slideshow-copy"><strong data-slide-title>One elimination election</strong><span data-slide-caption>One thousand candidates repeatedly lose the smallest Voronoi constituency until one remains.</span></span>
-                  <span class="slideshow-count" data-slide-counter>1 / 2</span>
-                  <button class="slideshow-arrow" type="button" data-slide-next aria-label="Next election image">→</button>
+                <div class="voronoi-panel">
+                  <img src="math_images/voronoi_winner_heatmap.webp" alt="Heat map of winner locations from repeated Voronoi deletion elections in a square">
+                  <span>Square · winner density</span>
+                </div>
+                <div class="voronoi-panel">
+                  <img src="math_images/voronoi_disk_runoff.webp" alt="Animated Voronoi deletion election in a disk shrinking from seven hundred candidates to one winner">
+                  <span>Disk · one election</span>
+                </div>
+                <div class="voronoi-panel">
+                  <img src="math_images/voronoi_disk_winner_heatmap.webp" alt="Heat map of winner locations from repeated Voronoi deletion elections in a disk">
+                  <span>Disk · winner density</span>
                 </div>
               </div>
             </div>
-            <figcaption><b>Figure 04</b><span>Simulation of the runoff election model</span></figcaption>
+            <figcaption><b>Figure 04</b><span>Minimum-cell Voronoi deletion on two domains. Each animated run ends at one survivor; each neighboring histogram combines 1,200 independent elections.</span></figcaption>
           </figure>
         </div>
       </article>
@@ -286,11 +292,12 @@
               <p>
                 Random walks are the bread and butter of my research. Here is a tantalizing inverse problem related to simple 
                 random walk: given only the trace of a 2D random walk, i.e. the set of visited sites, can one make a good guess
-                about where it began? In one dimension, one can show (though it is not trivial!) that all guesses are equally likely; 
-                in two dimensions, there should be no good way to guess, but this is not proved. 
+                about where it began? Recent work of Goenka, Keevash, and Przybyłowski proves that no method succeeds with
+                positive constant probability in dimensions one or two, while finitely many guesses suffice in dimensions at
+                least five; dimensions three and four remain open.
               </p>
               <p>
-                Below are some my other writings on random walk systems, including coalescing/annihilating walks, permuted walks,
+                Below are some of my other writings on random walk systems, including coalescing/annihilating walks, permuted walks,
                 and an expository note containing some original calculations related to collisions of multiple random walks. 
               </p>
             </div>
@@ -300,6 +307,7 @@
               <a href="pagedocs/cornell_sourcefind.pdf"><small>Slides</small><strong>Finding a source from its trace</strong><span>↗</span></a>
               <a href="https://arxiv.org/abs/2006.11211"><small>IEEE · 2020</small><strong>Rumor source detection</strong><span>↗</span></a>
               <a href="pagedocs/rw_collisions.pdf"><small>Survey &amp; calculations</small><strong>Random walk collisions</strong><span>↗</span></a>
+              <a href="https://arxiv.org/abs/2601.10624"><small>Recent result · 2026</small><strong>Source localisation in simple random walks</strong><span>↗</span></a>
             </div>
           </div>
           <figure class="project-figure">
@@ -316,17 +324,8 @@
             <figcaption><b>Figure 05</b><span>Occupation times from a freshly generated million-step planar simple random walk. Brightness records repeated visits; the star reveals the exact starting site.</span></figcaption>
           </figure>
         </div>
+        <a class="back-to-top" href="#top">Back to top <span>↑</span></a>
       </article>
-
-      <footer class="site-footer">
-        <div><p class="eyebrow">Still curious?</p><h2>Let’s talk mathematics.</h2></div>
-        <div class="footer-links">
-          <a href="mailto:jrichey@renyi.hu">Email <span>↗</span></a>
-          <a href="https://scholar.google.com/citations?user=oablNsIAAAAJ&amp;hl=en">Google Scholar <span>↗</span></a>
-          <a href="#top">Back to top <span>↑</span></a>
-        </div>
-        <p class="fine">Jacob Richey · Probability &amp; combinatorics</p>
-      </footer>
     </main>
   </body>
 </html>

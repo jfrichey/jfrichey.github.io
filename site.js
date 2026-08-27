@@ -39,35 +39,6 @@
     targets.forEach((target) => observer.observe(target));
   }
 
-  document.querySelectorAll("[data-slideshow]").forEach((slideshow) => {
-    const slides = [...slideshow.querySelectorAll("[data-slide]")];
-    const previous = slideshow.querySelector("[data-slide-prev]");
-    const next = slideshow.querySelector("[data-slide-next]");
-    const counter = slideshow.querySelector("[data-slide-counter]");
-    const title = slideshow.querySelector("[data-slide-title]");
-    const caption = slideshow.querySelector("[data-slide-caption]");
-    if (!slides.length) return;
-    let selected = Math.max(0, slides.findIndex((slide) => !slide.hidden));
-
-    const select = (index) => {
-      selected = (index + slides.length) % slides.length;
-      slides.forEach((slide, slideIndex) => {
-        const active = slideIndex === selected;
-        slide.hidden = !active;
-        slide.setAttribute("aria-hidden", String(!active));
-      });
-      const active = slides[selected];
-      if (counter) counter.textContent = `${selected + 1} / ${slides.length}`;
-      if (title) title.textContent = active.dataset.title || "";
-      if (caption) caption.textContent = active.dataset.caption || "";
-      window.dispatchEvent(new Event("resize"));
-    };
-
-    previous?.addEventListener("click", () => select(selected - 1));
-    next?.addEventListener("click", () => select(selected + 1));
-    select(selected);
-  });
-
   const walkPalette = [
     [7, 4, 19],
     [35, 12, 86],
