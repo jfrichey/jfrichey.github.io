@@ -44,12 +44,12 @@
     <main id="main">
       <section class="page-hero" id="top">
         <div>
-          <p class="eyebrow">Probability · combinatorics · interacting particles</p>
-          <h1 class="display-title">Random structures,<br><em>viewed in motion.</em></h1>
+          <h1 class="display-title">Combinatorial probability</em></h1>
           <p class="lede">
             My research interests are in combinatorial probability and statistical physics. Most of my work falls into
             five overlapping areas: activated random walk, shifts of finite type and pattern problems, random matrices,
-            combinatorial stochastic processes, and random walks.
+            combinatorial stochastic processes, and random walks. These include both theoretical and applied questions, 
+            both of which involve computer simulations to test conjectures and generate data. 
           </p>
           <div class="actions">
             <a class="button" href="#arw">Explore the projects <span>↓</span></a>
@@ -83,13 +83,14 @@
               <p>
                 In the 1980s, Per Bak, Chao Tang, and Kurt Wiesenfeld coined and popularized self-organized criticality
                 (SOC), a phenomenon they observed in systems like avalanches and forest fires. Energy slowly builds and
-                is released in shocks whose sizes follow a statistical power law. Their mathematical models include the
-                abelian sandpile, a precursor to activated random walk (ARW).
+                is released in shocks whose sizes follow a statistical power law. ARW is one such model introduced in 
+                the early 2000s. 
               </p>
               <p>
-                Simulations suggest that ARW has a robust critical limiting state, but a mathematical description of
-                exactly how SOC arises is still missing. The two-dimensional case is especially compelling; one
-                dimension, trees, and mean field provide more tractable laboratories that are not yet fully solved.
+                Simulations show that ARW has a self-organized critical limiting state, but a full mathematical description and proof
+                is still missing. While most models of SOC are beyond our current mathematical techniques, significant progress has 
+                been made recently on ARW due to newly discovered special properties that are intrinsic to the system: in addition
+                to the abelian property, ARW is believed to exhibit a new kind of monotonicity and negative association. 
               </p>
             </div>
             <div class="paper-links">
@@ -100,7 +101,7 @@
               <a href="https://arxiv.org/abs/2212.08293"><small>Preprint</small><strong>Stochastic sandpile on ℤ</strong><span>↗</span></a>
               <a href="https://arxiv.org/abs/2009.09491"><small>CMP · 2023</small><strong>Activated random walk on ℤ</strong><span>↗</span></a>
               <a href="https://arxiv.org/abs/1709.09163"><small>AIHP · 2019</small><strong>Activated random walk on a cycle</strong><span>↗</span></a>
-              <a href="pagedocs/kutszem_SSM_talk.pdf"><small>Slides</small><strong>Sandpiles and active matter</strong><span>↗</span></a>
+              <a href="pagedocs/kutszem_SSM_talk.pdf"><small>Slides</small><strong>Rényi Institute Seminar talk</strong><span>↗</span></a>
             </div>
           </div>
           <figure class="project-figure">
@@ -126,15 +127,17 @@
             <h2>Shifts of finite type &amp; patterns</h2>
             <div class="summary">
               <p>
-                Fix a family of forbidden patterns on a transitive graph: some colorings of some finite subgraphs.
-                Consider an iid coloring on the full graph, or a finite subset, conditioned to avoid every forbidden
-                pattern. What does a typical configuration look like, and what statistical properties does it have?
+                Consider colorings of a Cayley graph, for exmaple the 2D lattice, and fix a finite family of <em> forbidden patterns</em>,
+                i.e. finite subsets with a fixed coloring. Any such family gives rise to the shift of finite type (SFT) 
+                consisting of all colorings of the full space which never have any translated copy of a forbidden pattern.
+                What does a typical configuration look like, and what statistical properties does it have?
               </p>
               <p>
-                Many interesting questions arise already in one dimension. The entropy after forbidding a single binary
-                word is described by its autocorrelation polynomial. In higher dimensions, computing entropy or
-                establishing mixing is much harder; another natural problem is to understand the density of a fixed
-                allowable pattern.
+                Many interesting questions arise already in one dimension. When a single pattern is forbidden, the entropy
+                of the resulting SFT can be described by a simple probabilistic formula, and conjecturally, a similar
+                formula can be extended to arbitrary 1D SFTs. In higher dimensions, computing entropy or
+                establishing mixing is much harder, but some partial results can be obtained by comparing different
+                SFTs with explicit combinatorial maps. 
               </p>
             </div>
             <div class="paper-links">
@@ -173,14 +176,16 @@
             <h2>Random matrices</h2>
             <div class="summary">
               <p>
-                A recurring theme in the study of large finite graphs is to describe hidden geometric features. A random
-                graph ensemble has geometry if it can be roughly embedded in a low-dimensional metric space. For Wishart
+                A recurring theme in the study of large finite graphs is to describe hidden geometric features. Roughly speaking, 
+                a random graph ensemble has geometry if it can be roughly embedded in a low-dimensional metric space. For Wishart
                 matrices—random graphs embedded in a sphere—one can characterize a transition between detectable
-                geometry and apparent noise.
+                geometry, if the dimension of the sphere is relatively low compared to the size of the graph, and 
+                noise, if the dimension is relatively high. 
               </p>
               <p>
                 Random intersection graphs share essentially the same transition. This suggests a universal phenomenon:
-                can one characterize a broad class of random graphs that lose geometry at the same threshold?
+                can one characterize a broad class of random graphs that lose geometry at the same threshold? These 
+                random graph ensembles play a central role in the theory of machine learning and data science. 
               </p>
             </div>
             <div class="paper-links">
@@ -215,21 +220,23 @@
             <h2>Combinatorial stochastic processes</h2>
             <div class="summary">
               <p>
-                I am often drawn to questions about random combinatorial objects: Markov chains,
+                I am eternally drawn to problems about random combinatorial objects: Markov chains,
                 fragmentation/coagulation processes, renewal processes, random number theory, and random algorithms.
-                Proving limit theorems, describing stationary configurations or evolutions, or studying mean-field
-                behavior often leads to cutting-edge ideas and unsolved problems.
-              </p>
+                Often, simple rules can give rise to complex systems which go beyond the scope of modern probabilistic techniques
+                or reveal new phenomena. When theory fails, computer simulations can quickly come to the rescue, and 
+                even sometimes suggest a path forward. 
               <p>
-                This is intentionally the broad shelf: elimination elections, random sum constructions, geometric
-                coupons, cluster counts in percolation, and coverage or intersection problems for random sets. The
-                visualization follows one spatial elimination election, then compares winners across many games.
+                The process in Figure 04 is the following: given a set of points on a compact set, form 
+                their voronoi cells. Then repeatedly delete the point whose voronoi cell has the smallest area. The second
+                panel is a (heatmap) histogram of the final survivor's position, when the points are sampled IID. 
+                Perhaps surprisingly, the distribution is not maximized at the center, but in an annulus. 
+                
               </p>
             </div>
             <div class="paper-links">
               <a href="pagedocs/combinatorial_processes.pdf"><small>Living notes</small><strong>Combinatorial processes</strong><span>↗</span></a>
               <a href="pagedocs/sum_constructions.pdf"><small>Notes</small><strong>Random sum constructions</strong><span>↗</span></a>
-              <a href="pagedocs/geo_coupons23.pdf"><small>Writeup</small><strong>Geometric coupons</strong><span>↗</span></a>
+              <a href="pagedocs/geo_coupons23.pdf"><small>Short note</small><strong>Geometric coupons</strong><span>↗</span></a>
               <a href="https://arxiv.org/abs/2006.01323"><small>JAP · 2022</small><strong>Intersections of random sets</strong><span>↗</span></a>
               <a href="https://math.dartmouth.edu/theses/undergrad/2014/Richey-thesis.pdf"><small>Undergraduate thesis</small><strong>Counting clusters on a finite grid</strong><span>↗</span></a>
               <a href="https://sites.math.washington.edu/~reu/papers/2015/natalie/natalie.pdf"><small>REU paper</small><strong>Pieces in percolated hexagonal grids</strong><span>↗</span></a>
@@ -242,15 +249,15 @@
                   <div
                     class="slideshow-slide"
                     data-slide
-                    data-title="One elimination election"
-                    data-caption="One thousand candidates repeatedly lose the smallest Voronoi constituency until one remains."
+                    data-title="Minimum Voronoi Deletion Process"
+                    data-caption="A model of repeated runoff elections."
                   >
                     <img src="math_images/voronoi_runoff.webp" alt="Animated planar Voronoi election shrinking from one thousand candidates to one winner">
                   </div>
                   <div
                     class="slideshow-slide"
                     data-slide
-                    data-title="Where the winners land"
+                    data-title="Final Point Position Histogram"
                     data-caption="A smoothed heat map of the winning location across 1,200 independent games."
                     hidden
                   >
@@ -265,7 +272,7 @@
                 </div>
               </div>
             </div>
-            <figcaption><b>Figure 04</b><span>Click through one 1,000-candidate repeated runoff and the empirical winner distribution from 1,200 independent games.</span></figcaption>
+            <figcaption><b>Figure 04</b><span>Simulation of the runoff election model</span></figcaption>
           </figure>
         </div>
       </article>
@@ -277,14 +284,14 @@
             <h2>Random walks</h2>
             <div class="summary">
               <p>
-                Random walks recur throughout my work in several different guises. Given only a trace, can one recover
-                where a walk began? What happens when ordinary random steps alternate with a fixed permutation of the
-                vertices? How do systems of walkers collide, coalesce, or annihilate?
+                Random walks are the bread and butter of my research. Here is a tantalizing inverse problem related to simple 
+                random walk: given only the trace of a 2D random walk, i.e. the set of visited sites, can one make a good guess
+                about where it began? In one dimension, one can show (though it is not trivial!) that all guesses are equally likely; 
+                in two dimensions, there should be no good way to guess, but this is not proved. 
               </p>
               <p>
-                On a regular tree, a permuted random walk cannot be slowed down. In source detection, even the apparently
-                basic problem on ℤ<sup>d</sup> remains difficult. The occupation map at right hides one piece of information
-                on purpose—make a guess, reveal the source, then generate another trace.
+                Below are some my other writings on random walk systems, including coalescing/annihilating walks, permuted walks,
+                and an expository note containing some original calculations related to collisions of multiple random walks. 
               </p>
             </div>
             <div class="paper-links">
