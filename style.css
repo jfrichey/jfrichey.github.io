@@ -896,6 +896,7 @@ button {
 
 .sft-sample img {
   width: 100%;
+  height: auto;
   aspect-ratio: 1;
   object-fit: cover;
   box-shadow: none;
@@ -937,6 +938,7 @@ button {
 
 .voronoi-panel img {
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
@@ -1448,6 +1450,7 @@ a.resource-card:hover small {
 
 .flat-illustration img {
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
