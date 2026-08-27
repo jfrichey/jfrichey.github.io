@@ -1677,14 +1677,14 @@ a.resource-card:hover small {
   .home-panel,
   .project,
   .story-panel {
-    padding-top: calc(var(--head) + 34px);
-    padding-bottom: calc(76px + env(safe-area-inset-bottom));
+    padding-top: 36px;
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
   }
 
   /* Keep the portrait in the opening phone viewport without changing
      the desktop composition or the document's reading order. */
   .home-about {
-    padding-top: calc(var(--head) + 24px);
+    padding-top: calc(var(--head) + 22px);
   }
 
   .home-about .home-grid {
@@ -1701,9 +1701,9 @@ a.resource-card:hover small {
 
   .home-about .portrait-card {
     order: 2;
-    width: min(82vw, 320px);
-    max-width: 320px;
-    margin: 18px auto 0;
+    width: min(70vw, 270px);
+    max-width: 270px;
+    margin: 16px auto 0;
   }
 
   .home-about .lede {
@@ -1722,8 +1722,8 @@ a.resource-card:hover small {
   .home-research,
   .home-teaching,
   .home-other {
-    padding-top: 54px;
-    padding-bottom: calc(64px + env(safe-area-inset-bottom));
+    padding-top: 36px;
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
   }
 
   .home-research .home-grid {
@@ -1741,14 +1741,14 @@ a.resource-card:hover small {
   }
 
   .page-hero {
-    gap: 36px;
-    padding-top: calc(var(--head) + 42px);
-    padding-bottom: calc(70px + env(safe-area-inset-bottom));
+    gap: 32px;
+    padding-top: calc(var(--head) + 28px);
+    padding-bottom: calc(44px + env(safe-area-inset-bottom));
   }
 
   .other-directory-section {
-    padding-top: calc(var(--head) + 42px);
-    padding-bottom: calc(82px + env(safe-area-inset-bottom));
+    padding-top: calc(var(--head) + 28px);
+    padding-bottom: calc(48px + env(safe-area-inset-bottom));
   }
 
   .home-grid,
