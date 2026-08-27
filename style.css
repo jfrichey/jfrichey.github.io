@@ -1701,8 +1701,8 @@ a.resource-card:hover small {
 
   .home-about .portrait-card {
     order: 2;
-    width: min(100%, 380px);
-    max-width: 380px;
+    width: min(82vw, 320px);
+    max-width: 320px;
     margin: 18px auto 0;
   }
 
@@ -1801,7 +1801,7 @@ a.resource-card:hover small {
 
   .portrait-card img {
     height: auto;
-    aspect-ratio: 651 / 468;
+    aspect-ratio: auto;
   }
 
   .blackboard-card img {
