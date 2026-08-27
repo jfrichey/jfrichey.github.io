@@ -363,7 +363,8 @@
     const label = lab.querySelector("[data-spectrum-label]");
     if (!canvas || !slider) return;
 
-    const ratios = [0.008, 0.02, 0.05, 0.12, 0.3, 0.75, 2, 6, 20];
+    const ratioMinimum = 0.008;
+    const ratioMaximum = 20;
     const n = 14;
     const sampleCount = 36;
     const goe = [];
@@ -373,28 +374,32 @@
     }
     const wishartCache = new Map();
 
-    const wishartAt = (index) => {
-      if (wishartCache.has(index)) return wishartCache.get(index);
-      const ratio = ratios[index];
+    const ratioAt = (position) =>
+      ratioMinimum * (ratioMaximum / ratioMinimum) ** (position / Number(slider.max));
+
+    const wishartAt = (ratio) => {
       const dimension = Math.max(n + 1, Math.round(ratio * n ** 3));
-      const random = mulberry32(93811 + labIndex * 251 + index * 100003);
+      if (wishartCache.has(dimension)) return wishartCache.get(dimension);
+      // Reusing the seed couples neighboring dimensions, so dragging the
+      // slider changes the same samples gradually instead of replacing them.
+      const random = mulberry32(93811 + labIndex * 251);
       const values = [];
       for (let sample = 0; sample < sampleCount; sample += 1) {
         values.push(...wishartEigenvalues(n, dimension, random));
       }
-      wishartCache.set(index, { dimension, values });
-      return wishartCache.get(index);
+      wishartCache.set(dimension, { dimension, values });
+      return wishartCache.get(dimension);
     };
 
     const draw = () => {
-      const index = Number(slider.value);
-      const ratio = ratios[index];
-      const { dimension, values: wishart } = wishartAt(index);
+      const position = Number(slider.value);
+      const ratio = ratioAt(position);
+      const { dimension, values: wishart } = wishartAt(ratio);
       const { context, width, height } = fitDisplayCanvas(canvas);
       const left = 54;
       const right = 22;
       const top = 38;
-      const bottom = 38;
+      const bottom = 56;
       const center = (top + height - bottom) / 2;
       const xMin = -3.15;
       const xMax = 3.55;
@@ -416,7 +421,7 @@
         context.stroke();
         context.fillStyle = "#666862";
         context.textAlign = "center";
-        context.fillText(String(tick), x, height - 18);
+        context.fillText(String(tick), x, height - 32);
       }
 
       context.strokeStyle = "rgba(23,24,23,.35)";
@@ -479,7 +484,7 @@
         }
       };
       drawPoints(goe, "rgba(37,87,199,.55)", -1, 1109);
-      drawPoints(wishart, "rgba(198,77,50,.55)", 1, 2909 + index);
+      drawPoints(wishart, "rgba(198,77,50,.55)", 1, 2909);
 
       context.font = "700 11px Helvetica Neue, Arial, sans-serif";
       context.textAlign = "left";
@@ -490,18 +495,27 @@
       context.fillStyle = "#666862";
       context.font = "italic 12px Georgia, serif";
       context.textAlign = "right";
-      context.fillText("real eigenvalue", width - right, height - 18);
+      context.fillText("real eigenvalues", width - right, height - 10);
 
-      const state = index <= 2 ? "Different laws" : index <= 5 ? "Transition" : "Nearly overlapping";
-      if (label) label.textContent = `${state} · d/n³ = ${ratio}`;
+      const state = ratio <= 0.05 ? "Different laws" : ratio <= 0.75 ? "Transition" : "Nearly overlapping";
+      const ratioDisplay = ratio < 0.1 ? ratio.toFixed(3) : ratio < 10 ? ratio.toFixed(2) : ratio.toFixed(1);
+      if (label) label.textContent = `${state} · d/n³ = ${ratioDisplay}`;
       canvas.setAttribute(
         "aria-label",
-        `Empirical eigenvalue distributions for GOE and centered Wishart matrices with n ${n}, d ${dimension}, and d over n cubed ${ratio}`,
+        `Empirical eigenvalue distributions for GOE and centered Wishart matrices with n ${n}, d ${dimension}, and d over n cubed ${ratioDisplay}`,
       );
     };
 
-    slider.addEventListener("input", draw);
-    window.addEventListener("resize", draw, { passive: true });
+    let drawRequest = 0;
+    const queueDraw = () => {
+      if (drawRequest) cancelAnimationFrame(drawRequest);
+      drawRequest = requestAnimationFrame(() => {
+        drawRequest = 0;
+        draw();
+      });
+    };
+    slider.addEventListener("input", queueDraw);
+    window.addEventListener("resize", queueDraw, { passive: true });
     draw();
   });
 })();

@@ -204,6 +204,9 @@ def generate_sft_strips() -> None:
 # Repeated Voronoi elimination in the square and disk.
 # ---------------------------------------------------------------------------
 
+VORONOI_MOVIE_CANDIDATES = 800
+VORONOI_MOVIE_CAPTURES = {800, 600, 440, 320, 220, 150, 100, 60, 32, 16, 8, 4, 2, 1}
+
 
 def voter_grid(width: int, height: int) -> np.ndarray:
     x = (np.arange(width) + 0.5) / width
@@ -299,15 +302,14 @@ def render_voronoi_frame(
 
 def one_voronoi_movie(seed: int = 115249) -> None:
     rng = np.random.default_rng(seed)
-    points = rng.random((1000, 2))
+    points = rng.random((VORONOI_MOVIE_CANDIDATES, 2))
     colors = candidate_colors(points)
     grid_width, grid_height = 200, 150
-    captures_wanted = {1000, 760, 560, 400, 280, 190, 120, 70, 38, 20, 10, 5, 2, 1}
     _, captures = eliminate(
         points,
         voter_grid(grid_width, grid_height),
         (grid_height, grid_width),
-        captures_wanted,
+        VORONOI_MOVIE_CAPTURES,
     )
     render_width, render_height = 900, 675
     render_voters = voter_grid(render_width, render_height)
@@ -318,7 +320,7 @@ def one_voronoi_movie(seed: int = 115249) -> None:
         owners = cKDTree(points[active]).query(render_voters, k=1)[1]
         owners = owners.reshape((render_height, render_width))
         frames.append(render_voronoi_frame(points, colors, active, owners, count))
-        durations.append(950 if count in (1000, 1) else 520)
+        durations.append(950 if count in (VORONOI_MOVIE_CANDIDATES, 1) else 520)
     frames[0].save(
         OUT / "voronoi_runoff.webp",
         "WEBP",
@@ -469,15 +471,14 @@ def render_disk_voronoi_frame(
 
 def one_disk_voronoi_movie(seed: int = 448199) -> None:
     rng = np.random.default_rng(seed)
-    points = points_in_disk(700, rng)
+    points = points_in_disk(VORONOI_MOVIE_CANDIDATES, rng)
     colors = disk_candidate_colors(points)
-    captures_wanted = {700, 520, 380, 270, 180, 110, 65, 35, 18, 9, 4, 2, 1}
-    _, captures = eliminate_unstructured(points, disk_voters(72), captures_wanted)
+    _, captures = eliminate_unstructured(points, disk_voters(72), VORONOI_MOVIE_CAPTURES)
     frames = []
     durations = []
     for count in sorted(captures, reverse=True):
         frames.append(render_disk_voronoi_frame(points, colors, captures[count], count))
-        durations.append(950 if count in (700, 1) else 520)
+        durations.append(950 if count in (VORONOI_MOVIE_CANDIDATES, 1) else 520)
     frames[0].save(
         OUT / "voronoi_disk_runoff.webp",
         "WEBP",
