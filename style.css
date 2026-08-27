@@ -1681,6 +1681,65 @@ a.resource-card:hover small {
     padding-bottom: calc(76px + env(safe-area-inset-bottom));
   }
 
+  /* Keep the portrait in the opening phone viewport without changing
+     the desktop composition or the document's reading order. */
+  .home-about {
+    padding-top: calc(var(--head) + 24px);
+  }
+
+  .home-about .home-grid {
+    gap: 0;
+  }
+
+  .home-about .home-copy {
+    display: contents;
+  }
+
+  .home-about .display-title {
+    order: 1;
+  }
+
+  .home-about .portrait-card {
+    order: 2;
+    width: min(100%, 380px);
+    max-width: 380px;
+    margin: 18px auto 0;
+  }
+
+  .home-about .lede {
+    order: 3;
+    margin-top: 24px;
+  }
+
+  .home-about .actions {
+    order: 4;
+  }
+
+  .home-about .fact-row {
+    order: 5;
+  }
+
+  .home-research,
+  .home-teaching,
+  .home-other {
+    padding-top: 54px;
+    padding-bottom: calc(64px + env(safe-area-inset-bottom));
+  }
+
+  .home-research .home-grid {
+    gap: 28px;
+  }
+
+  .home-teaching .home-grid,
+  .home-other .home-grid {
+    gap: 0;
+  }
+
+  .home-teaching .home-feature-illustration,
+  .home-other .home-feature-illustration {
+    display: none;
+  }
+
   .page-hero {
     gap: 36px;
     padding-top: calc(var(--head) + 42px);
@@ -1741,7 +1800,8 @@ a.resource-card:hover small {
   }
 
   .portrait-card img {
-    height: clamp(340px, 112vw, 410px);
+    height: auto;
+    aspect-ratio: 651 / 468;
   }
 
   .blackboard-card img {
@@ -1886,6 +1946,30 @@ a.resource-card:hover small {
     padding: 0;
   }
 
+  .sft-triptych,
+  .voronoi-grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sft-triptych {
+    grid-auto-columns: min(78vw, 320px);
+  }
+
+  .voronoi-grid {
+    grid-auto-columns: min(84vw, 350px);
+  }
+
+  .sft-sample,
+  .voronoi-panel {
+    scroll-snap-align: start;
+  }
+
   .sft-sample-label {
     left: 4px;
     top: 4px;
@@ -1898,7 +1982,7 @@ a.resource-card:hover small {
     bottom: 4px;
     max-width: calc(100% - 8px);
     padding: 3px 4px;
-    font-size: 0.45rem;
+    font-size: 0.56rem;
     letter-spacing: 0.025em;
   }
 
