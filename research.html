@@ -2,15 +2,17 @@
 <html lang="en" class="snap-scroll">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#e7f1f8">
     <title>Research · Jacob Richey</title>
     <meta
       name="description"
       content="Research in activated random walk, shifts of finite type, random matrices, stochastic processes, and random walks."
     >
-    <link rel="preload" as="image" href="math_images/arw_hockey.gif?v=20260826-window" type="image/gif">
-    <link rel="stylesheet" href="style.css?v=20260827-scroll-fix">
-    <script defer src="site.js?v=20260827-scroll-fix"></script>
+    <link rel="preload" as="image" href="math_images/arw_hockey_static.webp?v=20260826-window" type="image/webp" media="(max-width: 720px), (prefers-reduced-motion: reduce)">
+    <link rel="preload" as="image" href="math_images/arw_hockey.gif?v=20260826-window" type="image/gif" media="(min-width: 721px) and (prefers-reduced-motion: no-preference)">
+    <link rel="stylesheet" href="style.css?v=20260827-mobile-launch">
+    <script defer src="site.js?v=20260827-mobile-launch"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KNCG5G8RV"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -60,10 +62,13 @@
         </div>
         <figure class="avalanche-card research-hero-avalanche">
           <picture>
-            <source media="(prefers-reduced-motion: reduce)" srcset="math_images/arw_regimes_static.webp">
+            <source media="(max-width: 720px), (prefers-reduced-motion: reduce)" srcset="math_images/arw_regimes_static.webp">
             <img
               src="math_images/arw_regimes_glacier.gif"
+              width="980"
+              height="320"
               alt="Animated odometer heat maps for point-source activated random walk in subcritical, near-critical, and supercritical sleeping backgrounds"
+              decoding="async"
             >
           </picture>
           <figcaption class="avalanche-caption">
@@ -109,9 +114,11 @@
           <figure class="project-figure">
             <div class="figure-frame hockey-frame">
               <picture>
-                <source media="(prefers-reduced-motion: reduce)" srcset="math_images/arw_hockey_static.webp?v=20260826-window">
+                <source media="(max-width: 720px), (prefers-reduced-motion: reduce)" srcset="math_images/arw_hockey_static.webp?v=20260826-window">
                 <img
                   src="math_images/arw_hockey.gif?v=20260826-window"
+                  width="896"
+                  height="504"
                   alt="Animated local-density heat map beside a graph of retained particle density over time for driven-dissipative activated random walk"
                   decoding="async"
                 >
@@ -154,29 +161,29 @@
               <div class="sft-pair">
                 <div class="sft-triptych" role="group" aria-label="Three samples weighted by monochromatic two-by-two squares">
                   <div class="sft-sample">
-                    <img src="math_images/sft_phase_beta_neg1.webp" alt="Square lattice sample at beta minus one, where monochromatic two-by-two squares are discouraged">
+                    <img src="math_images/sft_phase_beta_neg1.webp" width="640" height="640" alt="Square lattice sample at beta minus one, where monochromatic two-by-two squares are discouraged" loading="lazy" decoding="async">
                     <span class="sft-sample-label">β = −1</span>
                   </div>
                   <div class="sft-sample">
-                    <img src="math_images/sft_phase_beta_1_25.webp" alt="Square lattice sample at beta one point two five, where monochromatic two-by-two squares are rewarded">
+                    <img src="math_images/sft_phase_beta_1_25.webp" width="640" height="640" alt="Square lattice sample at beta one point two five, where monochromatic two-by-two squares are rewarded" loading="lazy" decoding="async">
                     <span class="sft-sample-label">β = 1.25</span>
                   </div>
                   <div class="sft-sample">
-                    <img src="math_images/sft_phase_beta_3.webp" alt="Square lattice sample at beta three, where large monochromatic blocks emerge">
+                    <img src="math_images/sft_phase_beta_3.webp" width="640" height="640" alt="Square lattice sample at beta three, where large monochromatic blocks emerge" loading="lazy" decoding="async">
                     <span class="sft-sample-label">β = 3</span>
                   </div>
                 </div>
                 <div class="sft-triptych" role="group" aria-label="Three samples from a binary shift forbidding horizontal and vertical one-by-three strips of ones">
                   <div class="sft-sample">
-                    <img src="math_images/sft_strips_beta_neg1.webp" alt="Binary strip-SFT sample at beta minus one, with ones sparsely arranged under the one-by-three exclusion rule">
+                    <img src="math_images/sft_strips_beta_neg1.webp" width="640" height="640" alt="Binary strip-SFT sample at beta minus one, with ones sparsely arranged under the one-by-three exclusion rule" loading="lazy" decoding="async">
                     <span class="sft-sample-label">β = −1</span>
                   </div>
                   <div class="sft-sample">
-                    <img src="math_images/sft_strips_beta_1_25.webp" alt="Binary strip-SFT sample at beta one point two five, with a dense disordered tiling texture">
+                    <img src="math_images/sft_strips_beta_1_25.webp" width="640" height="640" alt="Binary strip-SFT sample at beta one point two five, with a dense disordered tiling texture" loading="lazy" decoding="async">
                     <span class="sft-sample-label">β = 1.25</span>
                   </div>
                   <div class="sft-sample">
-                    <img src="math_images/sft_strips_beta_3.webp" alt="Binary strip-SFT sample at beta three, with long organized stripe and tile structures">
+                    <img src="math_images/sft_strips_beta_3.webp" width="640" height="640" alt="Binary strip-SFT sample at beta three, with long organized stripe and tile structures" loading="lazy" decoding="async">
                     <span class="sft-sample-label">β = 3</span>
                   </div>
                 </div>
@@ -263,19 +270,19 @@
             <div class="figure-frame voronoi-frame">
               <div class="voronoi-grid" role="group" aria-label="Voronoi deletion elections and winner histograms in a square and a disk">
                 <div class="voronoi-panel">
-                  <img src="math_images/voronoi_runoff.webp?v=20260827-n800" alt="Animated Voronoi deletion election in a square shrinking from eight hundred candidates to one winner">
+                  <img src="math_images/voronoi_runoff.webp?v=20260827-n800" width="900" height="675" alt="Animated Voronoi deletion election in a square shrinking from eight hundred candidates to one winner" loading="lazy" decoding="async">
                   <span>Square · one election</span>
                 </div>
                 <div class="voronoi-panel">
-                  <img src="math_images/voronoi_winner_heatmap.webp" alt="Heat map of winner locations from repeated Voronoi deletion elections in a square">
+                  <img src="math_images/voronoi_winner_heatmap.webp" width="900" height="675" alt="Heat map of winner locations from repeated Voronoi deletion elections in a square" loading="lazy" decoding="async">
                   <span>Square · winner density</span>
                 </div>
                 <div class="voronoi-panel">
-                  <img src="math_images/voronoi_disk_runoff.webp?v=20260827-n800" alt="Animated Voronoi deletion election in a disk shrinking from eight hundred candidates to one winner">
+                  <img src="math_images/voronoi_disk_runoff.webp?v=20260827-n800" width="900" height="675" alt="Animated Voronoi deletion election in a disk shrinking from eight hundred candidates to one winner" loading="lazy" decoding="async">
                   <span>Disk · one election</span>
                 </div>
                 <div class="voronoi-panel">
-                  <img src="math_images/voronoi_disk_winner_heatmap.webp" alt="Heat map of winner locations from repeated Voronoi deletion elections in a disk">
+                  <img src="math_images/voronoi_disk_winner_heatmap.webp" width="900" height="675" alt="Heat map of winner locations from repeated Voronoi deletion elections in a disk" loading="lazy" decoding="async">
                   <span>Disk · winner density</span>
                 </div>
               </div>

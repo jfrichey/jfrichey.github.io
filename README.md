@@ -14,6 +14,14 @@ Shared presentation and behavior live in `style.css` and `site.js`. Edit these
 canonical files directly; Git history and the `master` branch preserve earlier
 versions, so versioned copies such as `research-v2.html` are unnecessary.
 
+## Responsive breakpoints
+
+- Above `1080px`, the homepage and research page use pane-by-pane scrolling.
+- At `1080px` and below, sections stack and use normal document scrolling.
+- At `720px` and below, the compact menu, phone-sized type, full-width figures,
+  and static ARW fallbacks are enabled. These values are near the bottom of
+  `style.css` if you want to tune them.
+
 Site images live in `math_images/`. Their reproducible generators live in
 `tools/`:
 

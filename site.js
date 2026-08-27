@@ -4,15 +4,33 @@
   const header = document.querySelector(".site-header");
   const menuButton = document.querySelector(".menu-toggle");
   if (header && menuButton) {
-    menuButton.addEventListener("click", () => {
-      const open = header.classList.toggle("menu-open");
+    const mobileMenu = window.matchMedia("(max-width: 720px)");
+    const setMenu = (open) => {
+      header.classList.toggle("menu-open", open);
+      document.body.classList.toggle("mobile-menu-open", open && mobileMenu.matches);
       menuButton.setAttribute("aria-expanded", String(open));
+      menuButton.textContent = open ? "Close" : "Menu";
+    };
+
+    menuButton.addEventListener("click", () => {
+      setMenu(!header.classList.contains("menu-open"));
     });
     header.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        header.classList.remove("menu-open");
-        menuButton.setAttribute("aria-expanded", "false");
-      });
+      link.addEventListener("click", () => setMenu(false));
+    });
+    document.addEventListener("click", (event) => {
+      if (header.classList.contains("menu-open") && !header.contains(event.target)) {
+        setMenu(false);
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && header.classList.contains("menu-open")) {
+        setMenu(false);
+        menuButton.focus();
+      }
+    });
+    mobileMenu.addEventListener?.("change", (event) => {
+      if (!event.matches) setMenu(false);
     });
   }
 
@@ -143,6 +161,22 @@
     return (Date.now() ^ Math.floor(Math.random() * 0xffffffff)) >>> 0;
   }
 
+  function whenNearViewport(element, callback, rootMargin = "400px 0px") {
+    if (!("IntersectionObserver" in window)) {
+      callback();
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        callback();
+      },
+      { rootMargin },
+    );
+    observer.observe(element);
+  }
+
   function walkColor(intensity) {
     const position = Math.max(0, Math.min(1, intensity)) * (walkPalette.length - 1);
     const low = Math.floor(position);
@@ -245,8 +279,9 @@
     sourceCanvas.height = height;
     sourceCanvas.getContext("2d").putImageData(new ImageData(pixels, width, height), 0, 0);
 
-    canvas.width = 1200;
-    canvas.height = 900;
+    const compactCanvas = window.matchMedia("(max-width: 720px)").matches;
+    canvas.width = compactCanvas ? 800 : 1200;
+    canvas.height = compactCanvas ? 600 : 900;
     const context = canvas.getContext("2d");
     context.imageSmoothingEnabled = true;
     context.imageSmoothingQuality = "high";
@@ -267,6 +302,9 @@
     const rerun = lab.querySelector("[data-source-rerun]");
     if (!map || !canvas || !star) return;
     let generation = 0;
+    map.disabled = true;
+    if (rerun) rerun.disabled = true;
+    if (prompt) prompt.textContent = "Preparing the walk…";
 
     const reveal = (shown) => {
       map.classList.toggle("is-revealed", shown);
@@ -300,7 +338,7 @@
       reveal(!map.classList.contains("is-revealed"));
     });
     rerun?.addEventListener("click", generate);
-    generate();
+    whenNearViewport(lab, generate, "500px 0px");
   });
 
   function mulberry32(seed) {
