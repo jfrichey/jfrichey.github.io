@@ -39,6 +39,91 @@
     targets.forEach((target) => observer.observe(target));
   }
 
+  const snapRoot = document.documentElement;
+  const snapPanes = [
+    ...document.querySelectorAll(".home-panel, .page-hero, .project, .story-panel"),
+  ];
+  const desktopSnap = window.matchMedia(
+    "(min-width: 1081px) and (prefers-reduced-motion: no-preference)",
+  );
+  if (snapRoot.classList.contains("snap-scroll") && snapPanes.length > 1) {
+    const paneScrollThreshold = 24;
+    let accumulatedWheel = 0;
+    let wheelDirection = 0;
+    let scrollLocked = false;
+
+    const paneTop = (pane) => pane.getBoundingClientRect().top + window.scrollY;
+    const nextPane = (direction) => {
+      const position = window.scrollY;
+      const paneTolerance = Math.max(8, header?.offsetHeight || 0) + 8;
+      if (direction > 0) {
+        return snapPanes.find((pane) => paneTop(pane) > position + paneTolerance) || null;
+      }
+      return (
+        [...snapPanes]
+          .reverse()
+          .find((pane) => paneTop(pane) < position - paneTolerance) || null
+      );
+    };
+
+    window.addEventListener(
+      "wheel",
+      (event) => {
+        if (!desktopSnap.matches || event.ctrlKey) return;
+        if (scrollLocked) {
+          event.preventDefault();
+          return;
+        }
+
+        const direction = Math.sign(event.deltaY);
+        if (!direction) return;
+        const target = nextPane(direction);
+        if (!target) {
+          accumulatedWheel = 0;
+          wheelDirection = 0;
+          return;
+        }
+
+        event.preventDefault();
+        if (direction !== wheelDirection) accumulatedWheel = 0;
+        wheelDirection = direction;
+        const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
+        accumulatedWheel += Math.abs(event.deltaY) * unit;
+        if (accumulatedWheel < paneScrollThreshold) return;
+
+        accumulatedWheel = 0;
+        scrollLocked = true;
+        window.scrollTo({ top: paneTop(target), behavior: "smooth" });
+        window.setTimeout(() => {
+          scrollLocked = false;
+        }, 650);
+      },
+      { passive: false },
+    );
+  }
+
+  document.querySelectorAll(".back-to-top").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      snapRoot.classList.add("is-top-jump");
+      window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+      history.replaceState(null, "", link.getAttribute("href"));
+
+      const restoreSnap = () => {
+        snapRoot.classList.remove("is-top-jump");
+      };
+      if (reducedMotion) {
+        window.setTimeout(restoreSnap, 0);
+      } else if ("onscrollend" in window) {
+        window.addEventListener("scrollend", restoreSnap, { once: true });
+        window.setTimeout(restoreSnap, 2000);
+      } else {
+        window.setTimeout(restoreSnap, 1600);
+      }
+    });
+  });
+
   const walkPalette = [
     [7, 4, 19],
     [35, 12, 86],
