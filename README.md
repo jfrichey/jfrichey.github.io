@@ -8,7 +8,7 @@ The original website is preserved on the `master` branch.
 - `index.html` — homepage
 - `research.html` — research page
 - `teaching.html` — teaching page
-- `other.html` — other interests and bridge
+- `bridge.html` — bridge
 
 Shared presentation and behavior live in `style.css` and `site.js`. Edit these
 canonical files directly; Git history and the `master` branch preserve earlier
