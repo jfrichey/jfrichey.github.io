@@ -1,7 +1,8 @@
 # Website source
 
-This branch, `research-redesign`, is the complete redesigned website prototype.
-The original website is preserved on the `master` branch.
+The redesigned website is live from the `master` branch. The
+`research-redesign` branch remains the working branch for follow-up changes.
+The former site is recoverable from Git history at commit `6a0090e`.
 
 ## Canonical pages
 
@@ -11,8 +12,8 @@ The original website is preserved on the `master` branch.
 - `bridge.html` — bridge
 
 Shared presentation and behavior live in `style.css` and `site.js`. Edit these
-canonical files directly; Git history and the `master` branch preserve earlier
-versions, so versioned copies such as `research-v2.html` are unnecessary.
+canonical files directly; Git history preserves earlier versions, so versioned
+copies such as `research-v2.html` are unnecessary.
 
 ## Responsive breakpoints
 
