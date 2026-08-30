@@ -1,2 +1,19 @@
 # Local comparison renders generated while tuning the ARW animation.
 hockey_variants/
+
+# LaTeX build products; keep the source and final PDFs only.
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex
+*.synctex.gz
+*.toc
+
+# Operating-system metadata.
+.DS_Store
+Thumbs.db
+desktop.ini
