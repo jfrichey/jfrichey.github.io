@@ -1701,8 +1701,8 @@ a.resource-card:hover small {
 
   .home-about .portrait-card {
     order: 2;
-    width: min(70vw, 270px);
-    max-width: 270px;
+    width: min(58vw, 240px);
+    max-width: 240px;
     margin: 16px auto 0;
   }
 
@@ -1814,10 +1814,10 @@ a.resource-card:hover small {
 
   .home-panel:not(.home-about) .home-visual,
   .page-hero > .research-hero-avalanche {
-    width: calc(100% + var(--page-pad) + var(--page-pad));
-    max-width: none;
-    margin-left: calc(0px - var(--page-pad));
-    margin-right: calc(0px - var(--page-pad));
+    width: 100%;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .project h2,
@@ -1853,11 +1853,17 @@ a.resource-card:hover small {
     padding-bottom: 10px;
   }
 
-  .project-figure {
-    width: calc(100% + var(--page-pad) + var(--page-pad));
-    max-width: none;
-    margin-left: calc(0px - var(--page-pad));
-    margin-right: calc(0px - var(--page-pad));
+  .project .project-figure,
+  .project.reverse .project-figure {
+    order: -1;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .project-copy,
+  .project.reverse .project-copy {
+    order: 1;
   }
 
   .figure-frame {
@@ -1886,7 +1892,7 @@ a.resource-card:hover small {
   .project-figure > figcaption {
     grid-template-columns: 1fr;
     gap: 5px;
-    padding: 12px var(--page-pad) 0;
+    padding: 12px 0 0;
     font-size: 0.74rem;
   }
 
@@ -1958,11 +1964,11 @@ a.resource-card:hover small {
   }
 
   .sft-triptych {
-    grid-auto-columns: min(78vw, 320px);
+    grid-auto-columns: min(68vw, 270px);
   }
 
   .voronoi-grid {
-    grid-auto-columns: min(84vw, 350px);
+    grid-auto-columns: min(76vw, 310px);
   }
 
   .sft-sample,
