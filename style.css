@@ -1433,6 +1433,65 @@ a.resource-card:hover small {
   color: var(--accent, var(--plum));
 }
 
+.mentoring-projects {
+  margin: -1px 0 3px clamp(14px, 2vw, 24px);
+  padding: 0 0 0 15px;
+  border-left: 1px solid color-mix(in srgb, var(--accent, var(--plum)) 42%, transparent);
+  list-style: none;
+}
+
+.mentoring-projects li {
+  position: relative;
+}
+
+.mentoring-projects li::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: -18px;
+  top: 20px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent, var(--plum));
+}
+
+.interest-directory .mentoring-projects a,
+.mentoring-project-note {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  min-height: 0;
+  padding: 9px 2px 9px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
+}
+
+.interest-directory .mentoring-projects a:hover,
+.interest-directory .mentoring-projects a:focus-visible {
+  padding-left: 6px;
+}
+
+.interest-directory .mentoring-projects strong,
+.mentoring-project-note strong {
+  display: block;
+  font: 600 clamp(0.86rem, 1.08vw, 1rem) / 1.24 var(--serif);
+}
+
+.mentoring-project-note > span:first-child {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.mentoring-project-note > span:last-child {
+  color: #74756f;
+  font-size: 0.58rem;
+  font-weight: 720;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .home-interest-directory {
   width: 100%;
   max-width: 720px;
@@ -2034,6 +2093,23 @@ a.resource-card:hover small {
 
   .interest-directory a > span:last-child {
     font-size: 0.56rem;
+  }
+
+  .mentoring-projects {
+    margin-left: 10px;
+    padding-left: 12px;
+  }
+
+  .mentoring-projects li::before {
+    left: -15px;
+    top: 18px;
+  }
+
+  .interest-directory .mentoring-projects a,
+  .mentoring-project-note {
+    min-height: 0;
+    gap: 8px;
+    padding: 9px 2px 9px 0;
   }
 
   .back-to-top {
