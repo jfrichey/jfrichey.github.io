@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" role="img" aria-labelledby="ai-coupon-clocks-title ai-coupon-clocks-desc">
+<title id="ai-coupon-clocks-title">Independent discovery clocks can ring together</title>
+<desc id="ai-coupon-clocks-desc">Four chosen integer waiting times are 2, 5, 5 and 8. Clocks B and C ring together at time 5, illustrating a possible event for independent geometric clocks that cannot be two first discoveries in one coupon draw. This is a schematic, not a sampled data set.</desc>
+<rect width="640" height="480" fill="var(--figure-bg, #e8f1e5)"/>
+<text x="36" y="48" fill="var(--figure-ink, #244333)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="start">INDEPENDENT CLOCKS</text>
+<text x="58" y="121" fill="var(--figure-ink, #244333)" font-size="27" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="start">A</text>
+<line x1="110" y1="112" x2="566" y2="112" stroke="var(--figure-line, #92b89d)" stroke-width="3" />
+<line x1="110" y1="106" x2="110" y2="118" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="165" y1="106" x2="165" y2="118" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="220" y1="106" x2="220" y2="118" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="275" y1="106" x2="275" y2="118" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="330" y1="106" x2="330" y2="118" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="385" y1="106" x2="385" y2="118" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="440" y1="106" x2="440" y2="118" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="495" y1="106" x2="495" y2="118" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="550" y1="106" x2="550" y2="118" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="110" y1="112" x2="220" y2="112" stroke="var(--figure-ink, #244333)" stroke-width="5" />
+<circle cx="220" cy="112" r="13" fill="var(--figure-ink, #244333)" stroke="var(--figure-bg, #e8f1e5)" stroke-width="3"/>
+<text x="58" y="197" fill="var(--figure-ink, #244333)" font-size="27" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="start">B</text>
+<line x1="110" y1="188" x2="566" y2="188" stroke="var(--figure-line, #92b89d)" stroke-width="3" />
+<line x1="110" y1="182" x2="110" y2="194" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="165" y1="182" x2="165" y2="194" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="220" y1="182" x2="220" y2="194" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="275" y1="182" x2="275" y2="194" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="330" y1="182" x2="330" y2="194" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="385" y1="182" x2="385" y2="194" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="440" y1="182" x2="440" y2="194" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="495" y1="182" x2="495" y2="194" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="550" y1="182" x2="550" y2="194" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="110" y1="188" x2="385" y2="188" stroke="var(--figure-accent, #16763a)" stroke-width="5" />
+<circle cx="385" cy="188" r="13" fill="var(--figure-accent, #16763a)" stroke="var(--figure-bg, #e8f1e5)" stroke-width="3"/>
+<text x="58" y="273" fill="var(--figure-ink, #244333)" font-size="27" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="start">C</text>
+<line x1="110" y1="264" x2="566" y2="264" stroke="var(--figure-line, #92b89d)" stroke-width="3" />
+<line x1="110" y1="258" x2="110" y2="270" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="165" y1="258" x2="165" y2="270" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="220" y1="258" x2="220" y2="270" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="275" y1="258" x2="275" y2="270" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="330" y1="258" x2="330" y2="270" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="385" y1="258" x2="385" y2="270" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="440" y1="258" x2="440" y2="270" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="495" y1="258" x2="495" y2="270" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="550" y1="258" x2="550" y2="270" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="110" y1="264" x2="385" y2="264" stroke="var(--figure-accent, #16763a)" stroke-width="5" />
+<circle cx="385" cy="264" r="13" fill="var(--figure-accent, #16763a)" stroke="var(--figure-bg, #e8f1e5)" stroke-width="3"/>
+<text x="58" y="349" fill="var(--figure-ink, #244333)" font-size="27" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="start">D</text>
+<line x1="110" y1="340" x2="566" y2="340" stroke="var(--figure-line, #92b89d)" stroke-width="3" />
+<line x1="110" y1="334" x2="110" y2="346" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="165" y1="334" x2="165" y2="346" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="220" y1="334" x2="220" y2="346" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="275" y1="334" x2="275" y2="346" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="330" y1="334" x2="330" y2="346" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="385" y1="334" x2="385" y2="346" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="440" y1="334" x2="440" y2="346" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="495" y1="334" x2="495" y2="346" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="550" y1="334" x2="550" y2="346" stroke="var(--figure-line, #92b89d)" stroke-width="2" />
+<line x1="110" y1="340" x2="550" y2="340" stroke="var(--figure-ink, #244333)" stroke-width="5" />
+<circle cx="550" cy="340" r="13" fill="var(--figure-ink, #244333)" stroke="var(--figure-bg, #e8f1e5)" stroke-width="3"/>
+<line x1="385" y1="84" x2="385" y2="374" stroke="var(--figure-accent, #16763a)" stroke-width="2" stroke-dasharray="7 7"/>
+<text x="110" y="400" fill="var(--figure-muted, #476452)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">0</text>
+<text x="220" y="400" fill="var(--figure-muted, #476452)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">2</text>
+<text x="385" y="400" fill="var(--figure-muted, #476452)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">5</text>
+<text x="550" y="400" fill="var(--figure-muted, #476452)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">8</text>
+<text x="320" y="453" fill="var(--figure-ink, #244333)" font-size="27" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">B and C ring at t = 5</text>
+</svg>

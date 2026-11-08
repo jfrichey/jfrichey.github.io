@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" role="img" aria-labelledby="ai-balloon-collisions-title ai-balloon-collisions-desc">
+<title id="ai-balloon-collisions-title">Two collisions leave one balloon</title>
+<desc id="ai-balloon-collisions-desc">Five unit-speed growing intervals start at positions 0, 2, 7, 13 and 21 on a line, labelled A through E. A and B meet and disappear at time 1; C and D at time 3; E survives. Each row shows the remaining intervals just before its collision. This is a finite deterministic example.</desc>
+<rect width="640" height="480" fill="var(--figure-bg, #e8f1e5)"/>
+<text x="36" y="46" fill="var(--figure-ink, #244333)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="start">COLLISIONS ON A LINE</text>
+<text x="36" y="101" fill="var(--figure-ink, #244333)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="start">t = 1</text>
+<line x1="58" y1="139" x2="102" y2="139" stroke="var(--figure-accent, #16763a)" stroke-width="8" />
+<line x1="58" y1="127" x2="58" y2="151" stroke="var(--figure-accent, #16763a)" stroke-width="3" />
+<line x1="102" y1="127" x2="102" y2="151" stroke="var(--figure-accent, #16763a)" stroke-width="3" />
+<circle cx="80" cy="139" r="8" fill="var(--figure-accent, #16763a)" stroke="var(--figure-bg, #e8f1e5)" stroke-width="2"/>
+<text x="80" y="180" fill="var(--figure-ink, #244333)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">A</text>
+<line x1="102" y1="139" x2="146" y2="139" stroke="var(--figure-accent, #16763a)" stroke-width="8" />
+<line x1="102" y1="127" x2="102" y2="151" stroke="var(--figure-accent, #16763a)" stroke-width="3" />
+<line x1="146" y1="127" x2="146" y2="151" stroke="var(--figure-accent, #16763a)" stroke-width="3" />
+<circle cx="124" cy="139" r="8" fill="var(--figure-accent, #16763a)" stroke="var(--figure-bg, #e8f1e5)" stroke-width="2"/>
+<text x="124" y="180" fill="var(--figure-ink, #244333)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">B</text>
+<line x1="212" y1="139" x2="256" y2="139" stroke="var(--figure-muted, #476452)" stroke-width="8" />
+<line x1="212" y1="127" x2="212" y2="151" stroke="var(--figure-muted, #476452)" stroke-width="3" />
+<line x1="256" y1="127" x2="256" y2="151" stroke="var(--figure-muted, #476452)" stroke-width="3" />
+<circle cx="234" cy="139" r="8" fill="var(--figure-muted, #476452)" stroke="var(--figure-bg, #e8f1e5)" stroke-width="2"/>
+<text x="234" y="180" fill="var(--figure-ink, #244333)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">C</text>
+<line x1="344" y1="139" x2="388" y2="139" stroke="var(--figure-muted, #476452)" stroke-width="8" />
+<line x1="344" y1="127" x2="344" y2="151" stroke="var(--figure-muted, #476452)" stroke-width="3" />
+<line x1="388" y1="127" x2="388" y2="151" stroke="var(--figure-muted, #476452)" stroke-width="3" />
+<circle cx="366" cy="139" r="8" fill="var(--figure-muted, #476452)" stroke="var(--figure-bg, #e8f1e5)" stroke-width="2"/>
+<text x="366" y="180" fill="var(--figure-ink, #244333)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">D</text>
+<line x1="520" y1="139" x2="564" y2="139" stroke="var(--figure-muted, #476452)" stroke-width="8" />
+<line x1="520" y1="127" x2="520" y2="151" stroke="var(--figure-muted, #476452)" stroke-width="3" />
+<line x1="564" y1="127" x2="564" y2="151" stroke="var(--figure-muted, #476452)" stroke-width="3" />
+<circle cx="542" cy="139" r="8" fill="var(--figure-muted, #476452)" stroke="var(--figure-bg, #e8f1e5)" stroke-width="2"/>
+<text x="542" y="180" fill="var(--figure-ink, #244333)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">E</text>
+<circle cx="102.0" cy="139" r="18" fill="none" stroke="var(--figure-accent, #16763a)" stroke-width="3"/>
+<text x="36" y="253" fill="var(--figure-ink, #244333)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="start">t = 3</text>
+<line x1="168" y1="291" x2="300" y2="291" stroke="var(--figure-accent, #16763a)" stroke-width="8" />
+<line x1="168" y1="279" x2="168" y2="303" stroke="var(--figure-accent, #16763a)" stroke-width="3" />
+<line x1="300" y1="279" x2="300" y2="303" stroke="var(--figure-accent, #16763a)" stroke-width="3" />
+<circle cx="234" cy="291" r="8" fill="var(--figure-accent, #16763a)" stroke="var(--figure-bg, #e8f1e5)" stroke-width="2"/>
+<text x="234" y="332" fill="var(--figure-ink, #244333)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">C</text>
+<line x1="300" y1="291" x2="432" y2="291" stroke="var(--figure-accent, #16763a)" stroke-width="8" />
+<line x1="300" y1="279" x2="300" y2="303" stroke="var(--figure-accent, #16763a)" stroke-width="3" />
+<line x1="432" y1="279" x2="432" y2="303" stroke="var(--figure-accent, #16763a)" stroke-width="3" />
+<circle cx="366" cy="291" r="8" fill="var(--figure-accent, #16763a)" stroke="var(--figure-bg, #e8f1e5)" stroke-width="2"/>
+<text x="366" y="332" fill="var(--figure-ink, #244333)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">D</text>
+<line x1="476" y1="291" x2="608" y2="291" stroke="var(--figure-muted, #476452)" stroke-width="8" />
+<line x1="476" y1="279" x2="476" y2="303" stroke="var(--figure-muted, #476452)" stroke-width="3" />
+<line x1="608" y1="279" x2="608" y2="303" stroke="var(--figure-muted, #476452)" stroke-width="3" />
+<circle cx="542" cy="291" r="8" fill="var(--figure-muted, #476452)" stroke="var(--figure-bg, #e8f1e5)" stroke-width="2"/>
+<text x="542" y="332" fill="var(--figure-ink, #244333)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">E</text>
+<circle cx="300.0" cy="291" r="18" fill="none" stroke="var(--figure-accent, #16763a)" stroke-width="3"/>
+<text x="36" y="429" fill="var(--figure-ink, #244333)" font-size="29" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="start">E survives</text>
+<circle cx="542" cy="419" r="18" fill="var(--figure-accent, #16763a)" stroke="var(--figure-bg, #e8f1e5)" stroke-width="3"/>
+</svg>

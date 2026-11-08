@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" role="img" aria-labelledby="ai-pattern-overlaps-title ai-pattern-overlaps-desc">
+<title id="ai-pattern-overlaps-title">Two translated pattern supports</title>
+<desc id="ai-pattern-overlaps-desc">Two three-by-three supports differ by the lattice translation (2, 1). Their intersection consists of two sites. Solid and dashed outlines distinguish the supports; this is a geometric schematic, not a claim about compatible pattern symbols.</desc>
+<rect width="640" height="480" fill="var(--figure-bg, #e8f1e5)"/>
+<text x="36" y="52" fill="var(--figure-ink, #244333)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="start">TRANSLATED SUPPORTS</text>
+<rect x="160" y="102" width="60" height="60" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="160" y="166" width="60" height="60" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="160" y="230" width="60" height="60" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="224" y="102" width="60" height="60" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="224" y="166" width="60" height="60" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="224" y="230" width="60" height="60" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="288" y="102" width="60" height="60" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="288" y="166" width="60" height="60" fill="var(--figure-accent, #16763a)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="288" y="230" width="60" height="60" fill="var(--figure-accent, #16763a)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="288" y="294" width="60" height="60" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="352" y="166" width="60" height="60" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="352" y="230" width="60" height="60" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="352" y="294" width="60" height="60" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="416" y="166" width="60" height="60" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="416" y="230" width="60" height="60" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="416" y="294" width="60" height="60" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="1.5"/>
+<rect x="156" y="98" width="196" height="196" fill="none" stroke="var(--figure-ink, #244333)" stroke-width="4"/>
+<rect x="284" y="162" width="196" height="196" fill="none" stroke="var(--figure-accent, #16763a)" stroke-width="4" stroke-dasharray="12 7"/>
+<text x="124" y="130" fill="var(--figure-ink, #244333)" font-size="29" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">A</text>
+<text x="506" y="348" fill="var(--figure-accent, #16763a)" font-size="29" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">B</text>
+<text x="320" y="414" fill="var(--figure-ink, #244333)" font-size="29" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">shift (2, 1)</text>
+<text x="320" y="452" fill="var(--figure-muted, #476452)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">2 shared sites</text>
+</svg>

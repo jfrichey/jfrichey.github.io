@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" role="img" aria-labelledby="ai-random-release-title ai-random-release-desc">
+<title id="ai-random-release-title">A conservative release of mass</title>
+<desc id="ai-random-release-desc">A site with mass 5/4 releases 3/4, divided equally between its two neighbors. Their masses change from (1/4, 5/4, 1/4) to (5/8, 1/2, 5/8). Total mass remains 7/4. This is a chosen legal toppling, not stationary-law data.</desc>
+<rect width="640" height="480" fill="var(--figure-bg, #e8f1e5)"/>
+<text x="36" y="52" fill="var(--figure-ink, #244333)" font-size="25" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="start">RELEASE 3/4</text>
+<line x1="120" y1="142" x2="520" y2="142" stroke="var(--figure-line, #92b89d)" stroke-width="4" />
+<circle cx="120" cy="142" r="40" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="3"/>
+<text x="120" y="152" fill="var(--figure-ink, #244333)" font-size="29" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">1/4</text>
+<circle cx="320" cy="142" r="40" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-accent, #16763a)" stroke-width="3"/>
+<text x="320" y="152" fill="var(--figure-ink, #244333)" font-size="29" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">5/4</text>
+<circle cx="520" cy="142" r="40" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="3"/>
+<text x="520" y="152" fill="var(--figure-ink, #244333)" font-size="29" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">1/4</text>
+<line x1="120" y1="350" x2="520" y2="350" stroke="var(--figure-line, #92b89d)" stroke-width="4" />
+<circle cx="120" cy="350" r="40" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="3"/>
+<text x="120" y="360" fill="var(--figure-ink, #244333)" font-size="29" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">5/8</text>
+<circle cx="320" cy="350" r="40" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-accent, #16763a)" stroke-width="3"/>
+<text x="320" y="360" fill="var(--figure-ink, #244333)" font-size="29" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">1/2</text>
+<circle cx="520" cy="350" r="40" fill="var(--figure-soft, #cee8d1)" stroke="var(--figure-line, #92b89d)" stroke-width="3"/>
+<text x="520" y="360" fill="var(--figure-ink, #244333)" font-size="29" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">5/8</text>
+<line x1="286" y1="188" x2="157" y2="292" stroke="var(--figure-accent, #16763a)" stroke-width="4" />
+<path d="M 157 292 L 172.29 288.66 L 163.51 277.76 Z" fill="var(--figure-accent, #16763a)"/>
+<line x1="354" y1="188" x2="483" y2="292" stroke="var(--figure-accent, #16763a)" stroke-width="4" />
+<path d="M 483 292 L 476.49 277.76 L 467.71 288.66 Z" fill="var(--figure-accent, #16763a)"/>
+<text x="181" y="222" fill="var(--figure-accent, #16763a)" font-size="27" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">3/8</text>
+<text x="459" y="222" fill="var(--figure-accent, #16763a)" font-size="27" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">3/8</text>
+<line x1="320" y1="197" x2="320" y2="292" stroke="var(--figure-muted, #476452)" stroke-width="3" />
+<path d="M 320 292 L 327.00 278.00 L 313.00 278.00 Z" fill="var(--figure-muted, #476452)"/>
+<text x="320" y="444" fill="var(--figure-ink, #244333)" font-size="28" font-family="DejaVu Sans,Arial,sans-serif" font-weight="400" text-anchor="middle">total mass = 7/4</text>
+</svg>
