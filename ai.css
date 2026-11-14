@@ -378,6 +378,10 @@ body.ai-page {
   font: 500 0.72rem / 1.5 var(--sans);
 }
 .ai-entry .ai-entry-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px;
   margin-top: 14px;
   font: 600 0.75rem / 1.5 var(--mono);
 }
