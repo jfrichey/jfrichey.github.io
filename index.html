@@ -152,6 +152,11 @@
     #ai .zoom-details summary { color: var(--preview-accent); cursor: pointer; padding: 8px 0; width: fit-content; }
     #ai .zoom-details summary:focus-visible { outline: 2px solid var(--preview-accent); outline-offset: 3px; }
     #ai .zoom-details p { margin: 0; font: inherit; color: inherit; max-width: 55ch; }
+    @media (max-width: 720px) {
+      #ai .display-title { font-size: clamp(2.4rem, 11vw, 3.6rem); }
+      #ai .home-grid { gap: 30px; }
+      #ai .ai-topic-links { gap: 0 18px; margin-top: 16px; }
+    }
     </style>
     <script defer src="site.js?v=20260827-mobile-launch"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KNCG5G8RV"></script>
