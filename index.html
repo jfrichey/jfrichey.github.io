@@ -130,11 +130,28 @@
     #ai .balloon-buttons a { color: var(--preview-accent); font: 600 0.78rem / 1.4 var(--sans); text-underline-offset: 4px; }
     #ai .balloon-status { margin: 12px 0 0; color: var(--theme-copy); font: 400 0.78rem / 1.5 var(--sans); }
     #ai .balloon-note { margin: 6px 0 0; color: var(--theme-secondary); font: 400 0.72rem / 1.5 var(--sans); }
-    @media (max-width: 720px) {
-      #ai .display-title { font-size: clamp(2.4rem, 11vw, 3.6rem); }
-      #ai .home-grid { gap: 30px; }
-      #ai .ai-topic-links { gap: 0 18px; margin-top: 16px; }
+    #ai [data-balloon-circle-panel][hidden],
+    #ai [data-balloon-zoom-panel][hidden],
+    #ai .balloon-views[hidden] { display: none; }
+    #ai .balloon-views {
+      display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 22px;
+      padding: 5px; border: 1px solid var(--preview-line); border-radius: 10px;
+      width: fit-content;
     }
+    #ai .balloon-views button {
+      border: 0; border-radius: 6px; padding: 10px 15px; min-height: 44px;
+      background: transparent; color: var(--preview-accent);
+      font: 600 0.78rem / 1.3 var(--sans); cursor: pointer;
+    }
+    #ai .balloon-views button[aria-pressed="true"],
+    #ai .balloon-views button:hover {
+      background: var(--preview-accent); color: var(--preview-button-ink);
+    }
+    #ai .balloon-views button:focus-visible { outline: 2px solid var(--preview-accent); outline-offset: 3px; }
+    #ai .zoom-details { margin: 10px 0 0; color: var(--theme-secondary); font: 400 0.72rem / 1.5 var(--sans); }
+    #ai .zoom-details summary { color: var(--preview-accent); cursor: pointer; padding: 8px 0; width: fit-content; }
+    #ai .zoom-details summary:focus-visible { outline: 2px solid var(--preview-accent); outline-offset: 3px; }
+    #ai .zoom-details p { margin: 0; font: inherit; color: inherit; max-width: 55ch; }
     </style>
     <script defer src="site.js?v=20260827-mobile-launch"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KNCG5G8RV"></script>
@@ -273,12 +290,17 @@
               <a class="button" href="ai.html">Explore AI-generated research <span aria-hidden="true">→</span></a>
             </div>
           </div>
-          <figure class="home-visual home-ai-visual balloon-process" data-balloon-process aria-labelledby="home-balloon-title">
-            <figcaption>
+          <figure class="home-visual home-ai-visual balloon-process" data-balloon-process data-balloon-view="circle" aria-label="Two views of the balloon process">
+            <div class="balloon-views" data-balloon-views role="group" aria-label="Balloon process view" hidden>
+              <button type="button" data-balloon-circle-view aria-pressed="true" aria-controls="home-balloon-circle-panel">Circle</button>
+              <button type="button" data-balloon-zoom-view aria-pressed="false" aria-controls="home-balloon-zoom-panel">Backward zoom</button>
+            </div>
+            <div id="home-balloon-circle-panel" data-balloon-circle-panel>
+            <header>
               <h3 class="balloon-title" id="home-balloon-title">63 balloons. One survivor.</h3>
               <p class="balloon-intro">Balloons grow at the same speed along the ring.
                 Touching pairs vanish, opening space for the others.</p>
-            </figcaption>
+            </header>
             <svg xmlns="http://www.w3.org/2000/svg" id="home-balloon-picture" width="640" height="448" viewBox="0 32 640 448" role="img" aria-labelledby="home-balloon-svg-title home-balloon-svg-desc">
   <title id="home-balloon-svg-title">Growing balloons on a circle</title>
   <desc id="home-balloon-svg-desc" data-balloon-description="">A snapshot of 7 surviving balloons from 63 starting points. Each grows at the same speed along the circle. Touching pairs disappear. The inner petals record earlier moments, with time running inward.</desc>
@@ -320,6 +342,66 @@
             </div>
             <p class="balloon-status" data-balloon-status role="status" aria-live="polite" aria-atomic="true">Paused · 7 balloons remain.</p>
             <p class="balloon-note">The faint petals keep the history. Playback speeds up as the survivors grow.</p>
+          </div>
+            <div id="home-balloon-zoom-panel" data-balloon-zoom-panel hidden>
+              <header>
+                <h3 class="balloon-title">Zoom into the past.</h3>
+                <p class="balloon-intro">Each peak is a collision. As space and time shrink together,
+                  smaller, earlier collisions come into view.</p>
+              </header>
+              <svg xmlns="http://www.w3.org/2000/svg" id="home-zoom-picture" width="640" height="448" viewBox="0 0 640 448" role="img" aria-labelledby="home-zoom-svg-title home-zoom-svg-desc">
+  <title id="home-zoom-svg-title">Zooming backwards through balloon collisions</title>
+  <desc id="home-zoom-svg-desc" data-zoom-description="">Each peak marks two balloon edges meeting. Space runs horizontally; time increases upwards on a compressed scale. Zooming into time zero reveals smaller, earlier collisions.</desc>
+  <defs>
+    <clipPath id="home-zoom-clip"><path d="M36 56H604V399H36Z"/></clipPath>
+    <linearGradient id="home-zoom-aura" x1="0" x2="0" y1="1" y2="0">
+      <stop offset="0" stop-color="var(--figure-accent, #61ff8d)" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="var(--figure-accent, #61ff8d)" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path d="M36 56H604V398H36Z" fill="url(#home-zoom-aura)"/>
+  <g data-zoom-scene="" clip-path="url(#home-zoom-clip)">
+    <path data-zoom-fills="" d="" fill="var(--figure-accent, #61ff8d)" fill-opacity="0.035"/>
+    <path data-zoom-glow="" d="" fill="none" stroke="var(--figure-accent, #61ff8d)" stroke-width="7" stroke-opacity="0.10"/>
+    <path data-zoom-faint="" d="" fill="none" stroke="var(--figure-accent, #61ff8d)" stroke-width="1" stroke-opacity="0.5"/>
+    <path data-zoom-medium="" d="" fill="none" stroke="var(--figure-accent, #61ff8d)" stroke-width="1.3" stroke-opacity="0.75"/>
+    <path data-zoom-bright="" d="" fill="none" stroke="var(--figure-accent, #61ff8d)" stroke-width="1.6"/>
+    <path data-zoom-dots="" d="" fill="var(--figure-ink, #ceffdd)"/>
+  </g>
+  <path d="M36 398H604" fill="none" stroke="var(--preview-line, #365f43)" stroke-width="1"/>
+  <g font-family="sans-serif" fill="var(--figure-muted, #9ac9aa)" aria-hidden="true">
+    <text x="36" y="32" font-size="12" letter-spacing="1.4">EARLIER &amp; CLOSER</text>
+    <text data-zoom-factor="" x="604" y="34" text-anchor="end" font-size="23" fill="var(--figure-ink, #ceffdd)">1.0×</text>
+    <text x="604" y="414" text-anchor="end" font-size="11">time 0</text>
+    <text x="604" y="52" text-anchor="end" font-size="11">later</text>
+    <text data-zoom-ruler-label="" x="36" y="443" font-size="10">original ruler</text>
+    <text x="604" y="443" text-anchor="end" font-size="11" letter-spacing="1.2">SPACE</text>
+  </g>
+  <path data-zoom-ruler="" d="M36 420v6m0 -3h113.60m0 -3v6" fill="none" stroke="var(--figure-muted, #9ac9aa)" stroke-width="1"/>
+</svg>
+              <div class="balloon-controls">
+                <label class="balloon-timeline">Closer
+                  <input data-zoom-progress type="range" min="0" max="1000" step="1" value="0" aria-label="Backward zoom magnification" aria-valuetext="1 times closer" aria-controls="home-zoom-picture">
+                </label>
+                <div class="balloon-buttons">
+                  <button type="button" data-zoom-play aria-label="Play the backward zoom" aria-controls="home-zoom-picture">Play</button>
+                  <button type="button" data-zoom-new aria-controls="home-zoom-picture">New window</button>
+                  <a href="ai.html#balloon-process">The balloon project ↗</a>
+                </div>
+              </div>
+              <p class="balloon-status" data-zoom-status role="status" aria-live="polite" aria-atomic="true">Paused · drag the slider to explore earlier collisions.</p>
+              <p class="balloon-note">A 64× journey through one collision history, then a fresh window.</p>
+              <details class="zoom-details">
+                <summary>What am I looking at?</summary>
+                <p>The curves trace balloon edges as they approach a collision.
+                  Horizontal position is space; height is time, drawn on a compressed
+                  scale to bring out the finer details. We magnify physical space and time equally,
+                  looking closer to time zero. This is a finite simulation with 131,071
+                  starting points on a circle, unwrapped into a local window.
+                  It illustrates the paper’s scaling picture on the real line;
+                  it is not an exact sample of the infinite limiting process.</p>
+              </details>
+            </div>
           </figure>
         </div>
       </section>
@@ -540,7 +622,7 @@
   }
 
   function start() {
-    if (running || !visible || document.hidden) return;
+    if (running || !visible || document.hidden || root.dataset.balloonView === "zoom") return;
     if (!started || progress >= 1) progress = 0;
     started = true; running = true; last = null;
     play.textContent = "Pause";
@@ -552,7 +634,7 @@
   }
 
   function visibility() {
-    if (visible && !document.hidden && wanted) start();
+    if (visible && !document.hidden && wanted && root.dataset.balloonView !== "zoom") start();
     else if (running) pause();
   }
 
@@ -577,9 +659,289 @@
   });
   reduced.addEventListener?.("change", event => {if (event.matches) pause(true);});
   document.addEventListener("visibilitychange", visibility);
+  root.addEventListener("balloonviewchange", visibility);
   historyPath.setAttribute("d", history(model));
   pause();
   pick("[data-balloon-controls]").hidden = false;
+  if ("IntersectionObserver" in window) {
+    const observer = new window.IntersectionObserver(entries => {
+      visible = entries.some(entry => entry.isIntersecting && entry.intersectionRatio >= 0.25);
+      visibility();
+    }, {threshold: 0.25});
+    observer.observe(root);
+  } else { visible = true; visibility(); }
+})();
+    </script>
+    <script id="homepage-ai-balloon-zoom">
+(() => {
+  "use strict";
+  const ZOOM_COUNT = 131071;
+  const ZOOM_SEED = 20261118;
+  const ZOOM_DURATION = 32000;
+  const ZOOM_FACTOR = 64;
+  const START_SCALE = 0.024;
+  const LEFT = 36, RIGHT = 604, TOP = 56, BASE = 398;
+
+  function zoomSample(seed, count = ZOOM_COUNT) {
+    let state = seed >>> 0;
+    return Array.from({length: count}, () => {
+      state = (Math.imul(1664525, state) + 1013904223) >>> 0;
+      return (state + 0.5) / 4294967296;
+    }).sort((a, b) => a - b);
+  }
+
+  function denseProcess(points) {
+    // Exact finite circle process. The shortest surviving cyclic gap collides
+    // next; deleting its endpoints merges three gaps. All times are distance/2.
+    // A heap avoids constructing the quadratic all-pairs list.
+    const n = points.length;
+    const previous = new Int32Array(n), next = new Int32Array(n);
+    const alive = new Uint8Array(n).fill(1);
+    const death = new Float64Array(n).fill(Infinity);
+    const direction = new Int8Array(n);
+    const mate = new Int32Array(n).fill(-1);
+    const heap = [];
+    function push(item) {
+      let i = heap.length;
+      heap.push(item);
+      while (i > 0) {
+        const parent = (i - 1) >> 1;
+        if (heap[parent].gap <= item.gap) break;
+        heap[i] = heap[parent]; i = parent;
+      }
+      heap[i] = item;
+    }
+    function pop() {
+      const first = heap[0], last = heap.pop();
+      if (heap.length) {
+        let i = 0;
+        while (2 * i + 1 < heap.length) {
+          let child = 2 * i + 1;
+          if (child + 1 < heap.length && heap[child + 1].gap < heap[child].gap) child += 1;
+          if (heap[child].gap >= last.gap) break;
+          heap[i] = heap[child]; i = child;
+        }
+        heap[i] = last;
+      }
+      return first;
+    }
+    const gap = (a, b) => b > a ? points[b] - points[a] : 1 + points[b] - points[a];
+    for (let i = 0; i < n; i += 1) {
+      previous[i] = (i + n - 1) % n;
+      next[i] = (i + 1) % n;
+      if (n > 1) push({a: i, b: next[i], gap: gap(i, next[i])});
+    }
+    let remaining = n, collisions = 0;
+    while (remaining > 1) {
+      const event = pop(), {a, b} = event;
+      if (!alive[a] || !alive[b] || next[a] !== b) continue;
+      death[a] = death[b] = event.gap / 2;
+      direction[a] = 1; direction[b] = -1;
+      mate[a] = b; mate[b] = a;
+      alive[a] = alive[b] = 0;
+      remaining -= 2; collisions += 1;
+      if (remaining <= 1) break;
+      const before = previous[a], after = next[b];
+      next[before] = after; previous[after] = before;
+      push({a: before, b: after, gap: gap(before, after)});
+    }
+    // Range maxima make frame rendering depend on visible collisions, not N.
+    let size = 1;
+    while (size < n) size *= 2;
+    const maxima = new Float64Array(2 * size);
+    maxima.set(death, size);
+    for (let i = size - 1; i > 0; i -= 1) maxima[i] = Math.max(maxima[2 * i], maxima[2 * i + 1]);
+    return {points, death, direction, mate, collisions, size, maxima};
+  }
+
+  function lowerBound(points, value) {
+    let a = 0, b = points.length;
+    while (a < b) {
+      const m = (a + b) >>> 1;
+      if (points[m] < value) a = m + 1; else b = m;
+    }
+    return a;
+  }
+
+  function visibleSeeds(model, lo, hi, minTime) {
+    const a = lowerBound(model.points, lo), b = lowerBound(model.points, hi);
+    const result = [];
+    function visit(node, left, right) {
+      if (right <= a || left >= b || model.maxima[node] < minTime) return;
+      if (right - left === 1) { result.push(left); return; }
+      const middle = (left + right) >> 1;
+      visit(2 * node, left, middle); visit(2 * node + 1, middle, right);
+    }
+    visit(1, 0, model.size);
+    return result;
+  }
+
+  function zoomFrame(model, progress, origin = 0.5173) {
+    const magnification = Math.pow(ZOOM_FACTOR, progress);
+    const scale = START_SCALE / magnification;
+    const pixels = (RIGHT - LEFT) / (20 * scale);
+    // A fixed soft-log display of rescaled time makes the smaller generations
+    // visible. This is a drawing projection, not a different process or clock.
+    const timeAtHeight = h => 0.04 * scale * Math.expm1(h / 64);
+    const heightAtTime = t => 64 * Math.log1p(t / (0.04 * scale));
+    const maxTime = timeAtHeight(BASE - TOP);
+    const minTime = timeAtHeight(2);
+    const margin = 10 * scale + maxTime;
+    const paths = [[], [], []], dots = [], fills = [];
+    let displayed = 0;
+    const number = n => n.toFixed(2);
+    for (const shift of [-1, 0, 1]) {
+      const indices = visibleSeeds(model, origin - margin - shift, origin + margin - shift, minTime);
+      for (const i of indices) {
+        const x = 320 + (model.points[i] + shift - origin) * pixels;
+        const lifetime = model.death[i];
+        const height = heightAtTime(Math.min(lifetime, maxTime));
+        const level = height < 25 ? 0 : height < 125 ? 1 : 2;
+        const directions = model.direction[i] ? [model.direction[i]] : [-1, 1];
+        for (const direction of directions) {
+          const endX = x + direction * Math.min(lifetime, maxTime) * pixels;
+          if (Math.max(x, endX) < LEFT || Math.min(x, endX) > RIGHT) continue;
+          const steps = Math.max(2, Math.ceil(height / 8));
+          const edge = [];
+          for (let j = 0; j <= steps; j += 1) {
+            const h = height * j / steps;
+            edge.push(`${number(x + direction * timeAtHeight(h) * pixels)} ${number(BASE - h)}`);
+          }
+          paths[level].push("M" + edge.join("L"));
+          displayed += 1;
+          if (direction === 1 && lifetime <= maxTime && endX > LEFT && endX < RIGHT && lifetime * pixels > 4) {
+            const y = BASE - height;
+            dots.push(`M${number(endX - 2.2)} ${number(y)}a2.2 2.2 0 1 0 4.4 0a2.2 2.2 0 1 0 -4.4 0`);
+            for (let j = steps - 1; j >= 0; j -= 1) {
+              const h = height * j / steps;
+              edge.push(`${number(x + (2 * lifetime - timeAtHeight(h)) * pixels)} ${number(BASE - h)}`);
+            }
+            fills.push("M" + edge.join("L") + "Z");
+          }
+        }
+      }
+    }
+    // A spatial ruler continuously expands with the picture, then selects a
+    // smaller unit. Both spatial and temporal coordinates scale identically.
+    const octave = Math.floor(Math.log2(magnification) + 1e-10);
+    const ruler = 4 * START_SCALE / Math.pow(2, octave) * pixels;
+    return {faint: paths[0].join(""), medium: paths[1].join(""), bright: paths[2].join(""),
+      dots: dots.join(""), fills: fills.join(""), displayed, magnification,
+      ruler: `M${LEFT} 420v6m0 -3h${number(ruler)}m0 -3v6`,
+      rulerLabel: octave ? `1 / ${Math.pow(2, octave)} of the original ruler` : "original ruler"};
+  }
+
+  // ZOOM_MODEL_END: the limit law is motivation, not an exact sampler here.
+  const root = document.querySelector("[data-balloon-process]");
+  if (!root) return;
+  const pick = selector => root.querySelector(selector);
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const circleButton = pick("[data-balloon-circle-view]");
+  const zoomButton = pick("[data-balloon-zoom-view]");
+  const circlePanel = pick("[data-balloon-circle-panel]");
+  const zoomPanel = pick("[data-balloon-zoom-panel]");
+  const play = pick("[data-zoom-play]");
+  const range = pick("[data-zoom-progress]");
+  const status = pick("[data-zoom-status]");
+  const scene = pick("[data-zoom-scene]");
+  const paths = {};
+  for (const name of ["faint", "medium", "bright", "glow", "dots", "fills", "ruler"]) {
+    paths[name] = pick(`[data-zoom-${name}]`);
+  }
+  let model = null, progress = 0, origin = 0.5173;
+  let running = false, wanted = !reduced.matches, visible = false;
+  let request = 0, last = null, lastDraw = null, hold = 0, fadeIn = 0;
+
+  function draw(opacity = 1) {
+    if (!model) return;
+    const frame = zoomFrame(model, progress, origin);
+    for (const name of Object.keys(paths)) paths[name].setAttribute("d", frame[name === "glow" ? "bright" : name]);
+    scene.setAttribute("opacity", String(opacity));
+    pick("[data-zoom-factor]").textContent = `${frame.magnification.toFixed(1)}×`;
+    pick("[data-zoom-ruler-label]").textContent = frame.rulerLabel;
+    range.value = String(Math.round(progress * 1000));
+    range.setAttribute("aria-valuetext", `${frame.magnification.toFixed(1)} times closer; space and time magnified equally`);
+    if (!running) pick("[data-zoom-description]").textContent =
+      `A ${frame.magnification.toFixed(1)}-fold magnification of the balloon collision history. ` +
+      "Each peak marks two approaching balloon edges meeting. Space runs horizontally, and time increases upwards on a compressed scale. " +
+      "The zoom reveals earlier collisions in a dense finite sample on the circle, viewed locally as a line.";
+  }
+  function pause(manual = false) {
+    if (manual) wanted = false;
+    running = false;
+    if (request) window.cancelAnimationFrame(request);
+    request = 0; last = null; lastDraw = null;
+    play.textContent = "Play";
+    play.setAttribute("aria-label", "Play the backward zoom");
+    status.textContent = "Paused · drag the slider to explore earlier collisions.";
+    draw();
+  }
+  function nextWindow() {
+    origin = (origin + 0.3819660112501051) % 1;
+    progress = 0; hold = 0;
+  }
+  function tick(now) {
+    if (!running) return;
+    const dt = last === null ? 0 : Math.max(0, now - last);
+    last = now;
+    let opacity = 1;
+    if (progress < 1) {
+      progress = Math.min(1, progress + dt / ZOOM_DURATION);
+      if (fadeIn > 0) { fadeIn = Math.max(0, fadeIn - dt); opacity = 1 - fadeIn / 600; }
+    } else {
+      hold += dt;
+      if (hold > 900) opacity = Math.max(0, 1 - (hold - 900) / 600);
+      if (hold >= 1500) {
+        nextWindow(); fadeIn = 600; opacity = 0;
+        status.textContent = "A new window · zooming towards earlier collisions.";
+      }
+    }
+    if (lastDraw === null || now - lastDraw >= 32) {
+      draw(opacity); lastDraw = now;
+    }
+    request = window.requestAnimationFrame(tick);
+  }
+  function start() {
+    if (running || !visible || document.hidden || root.dataset.balloonView !== "zoom") return;
+    if (!model) model = denseProcess(zoomSample(ZOOM_SEED));
+    if (progress >= 1) { progress = 0; hold = 0; }
+    running = true; last = null; lastDraw = null;
+    play.textContent = "Pause";
+    play.setAttribute("aria-label", "Pause the backward zoom");
+    status.textContent = "Space and time shrink together. Watch smaller collisions emerge.";
+    pick("[data-zoom-description]").textContent = "A continuous backward zoom into balloon collision history. Curves are approaching balloon edges; their peaks are collisions. Finer events appear near time zero as physical space and time are magnified equally; the time display uses a compressed scale. A finite 64-fold zoom repeats in new windows.";
+    draw(); request = window.requestAnimationFrame(tick);
+  }
+  function visibility() {
+    if (visible && !document.hidden && root.dataset.balloonView === "zoom" && wanted) start();
+    else if (running) pause();
+  }
+  function select(view) {
+    root.dataset.balloonView = view;
+    circlePanel.hidden = view !== "circle"; zoomPanel.hidden = view !== "zoom";
+    circleButton.setAttribute("aria-pressed", String(view === "circle"));
+    zoomButton.setAttribute("aria-pressed", String(view === "zoom"));
+    root.dispatchEvent(new Event("balloonviewchange"));
+    if (view === "zoom" && !model) { model = denseProcess(zoomSample(ZOOM_SEED)); draw(); }
+    visibility();
+  }
+  circleButton.addEventListener("click", () => select("circle"));
+  zoomButton.addEventListener("click", () => select("zoom"));
+  play.addEventListener("click", () => {
+    if (running) pause(true); else { wanted = true; start(); }
+  });
+  pick("[data-zoom-new]").addEventListener("click", () => {
+    pause(); nextWindow(); fadeIn = 0;
+    draw(); visibility();
+  });
+  range.addEventListener("input", () => {
+    const requested = Number(range.value) / 1000;
+    pause(true); progress = Math.max(0, Math.min(1, requested));
+    hold = 0; fadeIn = 0; draw();
+  });
+  reduced.addEventListener?.("change", event => {if (event.matches) pause(true);});
+  document.addEventListener("visibilitychange", visibility);
+  pick("[data-balloon-views]").hidden = false;
   if ("IntersectionObserver" in window) {
     const observer = new window.IntersectionObserver(entries => {
       visible = entries.some(entry => entry.isIntersecting && entry.intersectionRatio >= 0.25);
